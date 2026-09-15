@@ -1,6 +1,6 @@
 # 履带维修机器人：Blender 建模与动画实施指南
 
-版本：1.1 · 日期：2026-09-15 · 状态：可交付 Blender Agent
+版本：1.2 · 日期：2026-09-15 · 状态：可交付 Blender Agent
 
 目标引擎：**Unity 2022.3.51f1 / URP 14.0.x**。共享资产约定：`robot-asset-v1`。
 
@@ -267,6 +267,16 @@ Push 总时长0.60 s。游戏中的前进发生在其中0.10–0.50 s，模型�
 - 不做 PushStart/PushLoop/PushEnd 三套额外资产；这些阶段已经包含在单一 Push 中。
 - 推不动时保持或返回 Idle，Unity 在 EmotionAnchor 上显示气泡；不增加 Blocked 动画。
 - 通关时同样使用 Idle 和气泡，不增加 Victory 动画。
+
+### 5.6 与Cinemachine、DOTween Pro、Feel的配合
+
+引擎侧已安装这些插件，机器人模型尺寸、节点名、三段动画和FBX交付约定保持 `robot-asset-v1`。
+
+- Cinemachine控制镜头；相机目标跟随稳定的角色位置，不挂在HeadYaw或BodyPivot等动画节点下。
+- DOTween提供角色/箱子在世界中的平滑位移和统一动作时钟；RobotPresenter根据同一时钟采样Blender剪辑。推板、轮子和头部已有动画曲线，不能再由DOTween Pro组件重复控制同一属性。
+- Feel负责接触音、粒子和状态提示等附加反馈，表情气泡由Unity生成；不增加新的角色动画。
+- 推动接触和释放时点仍是Push相对时间0.10 s和0.50 s。撤销、重开时引擎停止Tween与反馈，再恢复姿态和棋盘快照。
+- Blender Agent仍需交付真正可播放的Idle/Move/Push，不以插件配置替代缺失动画。
 
 ## 6. 关键帧和导出策略
 
