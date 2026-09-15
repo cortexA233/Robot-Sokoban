@@ -1,0 +1,195 @@
+{
+    "unityVersion": "2022.3.51f1",
+    "fbxSha256": "37708b3c35f7c3c5f44df035bd16b217cf33f8fa810e178c65c4d73384d5964c",
+    "passed": true,
+    "dimensions": {
+        "x": 0.7000000476837158,
+        "y": 0.7999999523162842,
+        "z": 0.6804999709129334
+    },
+    "rootEuler": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "rootScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "retractedContact": {
+        "x": 0.0,
+        "y": 0.4000000059604645,
+        "z": 0.36000001430511477
+    },
+    "extendedContact": {
+        "x": 0.0,
+        "y": 0.4000000059604645,
+        "z": 0.5999996066093445
+    },
+    "maxContactError": 4.76837158203125e-7,
+    "triangles": 4996,
+    "rootPath": "RobotRoot",
+    "clips": [
+        {
+            "name": "Idle",
+            "duration": 2.0,
+            "loop": true,
+            "curves": 250
+        },
+        {
+            "name": "Move",
+            "duration": 1.000000238418579,
+            "loop": true,
+            "curves": 250
+        },
+        {
+            "name": "Push",
+            "duration": 0.6000001430511475,
+            "loop": false,
+            "curves": 250
+        }
+    ],
+    "checks": [
+        {
+            "name": "three_named_clips",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "clip_durations",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "clip_loop_settings",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "dimensions_metres",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "ground_origin",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "robot_root_identity",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "anchor_hierarchy",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "retracted_face_forward_positive_z",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "emotion_anchor",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "named_left_right_front_back_axes",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "stationary_root_and_emotion/Idle",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "stationary_root_and_emotion/Move",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "stationary_root_and_emotion/Push",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "loop_endpoint_pose/Idle",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "loop_endpoint_pose/Move",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "visible_revolution/Move/Wheel_LF_Pivot",
+            "passed": true,
+            "detail": "359.9984"
+        },
+        {
+            "name": "visible_revolution/Push/Wheel_LF_Pivot",
+            "passed": true,
+            "detail": "359.9996"
+        },
+        {
+            "name": "visible_revolution/Move/Wheel_LB_Pivot",
+            "passed": true,
+            "detail": "359.9984"
+        },
+        {
+            "name": "visible_revolution/Push/Wheel_LB_Pivot",
+            "passed": true,
+            "detail": "359.9996"
+        },
+        {
+            "name": "visible_revolution/Move/Wheel_RF_Pivot",
+            "passed": true,
+            "detail": "359.9984"
+        },
+        {
+            "name": "visible_revolution/Push/Wheel_RF_Pivot",
+            "passed": true,
+            "detail": "359.9996"
+        },
+        {
+            "name": "visible_revolution/Move/Wheel_RB_Pivot",
+            "passed": true,
+            "detail": "359.9984"
+        },
+        {
+            "name": "visible_revolution/Push/Wheel_RB_Pivot",
+            "passed": true,
+            "detail": "359.9996"
+        },
+        {
+            "name": "push_contact_and_synchronized_one_metre_move",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "push_returns_neutral",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "triangle_budget",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "references_excluded",
+            "passed": true,
+            "detail": ""
+        }
+    ]
+}

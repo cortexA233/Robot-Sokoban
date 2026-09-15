@@ -1,0 +1,52 @@
+{
+  "use_selection": true,
+  "object_types": [
+    "EMPTY",
+    "MESH"
+  ],
+  "global_scale": 1.0,
+  "apply_unit_scale": true,
+  "apply_scale_options": "FBX_SCALE_UNITS",
+  "axis_forward": "-Z",
+  "axis_up": "Y",
+  "use_space_transform": false,
+  "bake_space_transform": false,
+  "use_mesh_modifiers": true,
+  "use_triangles": true,
+  "add_leaf_bones": false,
+  "bake_anim": true,
+  "bake_anim_use_nla_strips": false,
+  "bake_anim_use_all_actions": false,
+  "bake_anim_force_startend_keying": true,
+  "bake_anim_step": 1.0,
+  "bake_anim_simplify_factor": 0.0,
+  "path_mode": "RELATIVE",
+  "embed_textures": false,
+  "rawFbxFromBlender": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "axisHandling": "Explicit per-node/mesh conversion; Unity bakeAxisConversion=true"
+}

@@ -1,0 +1,496 @@
+{
+  "kind": "fbx-roundtrip",
+  "blenderVersion": "5.2.2 LTS",
+  "passed": true,
+  "checks": [
+    {
+      "name": "hierarchy/Chassis",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Track_L",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Track_R",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/BodyPivot",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Body",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/HeadYaw",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Head",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Screen",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Eye_L",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Eye_R",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/PushSlide",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/PushPlate",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/PusherStem",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/PushContact",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/PusherHousing",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/EmotionAnchor",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_LF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_LB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_RF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_RB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_LF",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_LB",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_RF",
+      "passed": true
+    },
+    {
+      "name": "hierarchy/Wheel_RB",
+      "passed": true
+    },
+    {
+      "name": "rest_dimensions",
+      "passed": true
+    },
+    {
+      "name": "ground_contact",
+      "passed": true
+    },
+    {
+      "name": "export_types",
+      "passed": true
+    },
+    {
+      "name": "positive_scales",
+      "passed": true
+    },
+    {
+      "name": "all_meshes_visible",
+      "passed": true
+    },
+    {
+      "name": "material_budget",
+      "passed": true
+    },
+    {
+      "name": "triangle_budget",
+      "passed": true
+    },
+    {
+      "name": "mesh_budget",
+      "passed": true
+    },
+    {
+      "name": "nondegenerate_unique_faces",
+      "passed": true
+    },
+    {
+      "name": "root_origin_unit_axes",
+      "passed": true
+    },
+    {
+      "name": "retracted_contact/0",
+      "passed": true
+    },
+    {
+      "name": "retracted_contact/70",
+      "passed": true
+    },
+    {
+      "name": "retracted_contact/100",
+      "passed": true
+    },
+    {
+      "name": "retracted_contact/110",
+      "passed": true
+    },
+    {
+      "name": "retracted_contact/128",
+      "passed": true
+    },
+    {
+      "name": "root_static_all_129_frames",
+      "passed": true
+    },
+    {
+      "name": "emotion_stable_all_129_frames",
+      "passed": true
+    },
+    {
+      "name": "push_contact_all_hold_frames",
+      "passed": true
+    },
+    {
+      "name": "physical_push_face_all_hold_frames",
+      "passed": true
+    },
+    {
+      "name": "loop_pose/Idle",
+      "passed": true
+    },
+    {
+      "name": "loop_pose/Move",
+      "passed": true
+    },
+    {
+      "name": "loop_pose/Push_returns_idle",
+      "passed": true
+    },
+    {
+      "name": "move_full_visible_revolution/Wheel_LF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "move_full_visible_revolution/Wheel_LB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "move_full_visible_revolution/Wheel_RF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "move_full_visible_revolution/Wheel_RB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "push_full_revolution/Wheel_LF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "push_full_revolution/Wheel_LB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "push_full_revolution/Wheel_RF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "push_full_revolution/Wheel_RB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "synchronized_one_metre_push",
+      "passed": true
+    },
+    {
+      "name": "animation_present/HeadYaw",
+      "passed": true
+    },
+    {
+      "name": "animation_present/BodyPivot",
+      "passed": true
+    },
+    {
+      "name": "animation_present/PushSlide",
+      "passed": true
+    },
+    {
+      "name": "animation_present/Wheel_LF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "animation_present/Wheel_LB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "animation_present/Wheel_RF_Pivot",
+      "passed": true
+    },
+    {
+      "name": "animation_present/Wheel_RB_Pivot",
+      "passed": true
+    },
+    {
+      "name": "animation_range_0_128",
+      "passed": true
+    },
+    {
+      "name": "raw_fbx_animation_ranges",
+      "passed": true
+    }
+  ],
+  "metrics": {
+    "dimensionsUnityXYZ": [
+      0.7000000476837158,
+      0.7999999523162842,
+      0.6805000305175781
+    ],
+    "boundsBlenderMin": [
+      -0.3500000238418579,
+      -0.35999998450279236,
+      0.0
+    ],
+    "boundsBlenderMax": [
+      0.3500000238418579,
+      0.3205000162124634,
+      0.7999999523162842
+    ],
+    "triangles": 4996,
+    "meshObjects": 15,
+    "totalExportNodes": 25,
+    "materials": [
+      "M_RobotAccent",
+      "M_RobotBody",
+      "M_RobotDark",
+      "M_RobotEmission"
+    ],
+    "degenerateTriangles": 0,
+    "duplicateFaces": 0,
+    "maxRootMatrixError": 0.0,
+    "maxEmotionErrorMeters": 0.0,
+    "maxPushFaceErrorMeters": 2.384185793236071e-08,
+    "oneMetrePushContactError": 1.1920928955078125e-07,
+    "holdContactSamplesUnity": [
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      [
+        0.0,
+        0.4000000059604645,
+        0.6000000238418579
+      ]
+    ],
+    "animationFrameRanges": {
+      "HeadYaw": [
+        0.0,
+        128.0
+      ],
+      "BodyPivot": [
+        0.0,
+        128.0
+      ],
+      "PushSlide": [
+        0.0,
+        128.0
+      ],
+      "Wheel_LF_Pivot": [
+        0.0,
+        128.0
+      ],
+      "Wheel_LB_Pivot": [
+        0.0,
+        128.0
+      ],
+      "Wheel_RF_Pivot": [
+        0.0,
+        128.0
+      ],
+      "Wheel_RB_Pivot": [
+        0.0,
+        128.0
+      ]
+    }
+  },
+  "artifactSha256": "37708b3c35f7c3c5f44df035bd16b217cf33f8fa810e178c65c4d73384d5964c",
+  "rawFbxFrameRanges": {
+    "RobotRoot": [
+      0.0,
+      128.0
+    ],
+    "BodyPivot": [
+      0.0,
+      128.0
+    ],
+    "Body": [
+      0.0,
+      128.0
+    ],
+    "HeadYaw": [
+      0.0,
+      128.0
+    ],
+    "Eye_L": [
+      0.0,
+      128.0
+    ],
+    "Eye_R": [
+      0.0,
+      128.0
+    ],
+    "Head": [
+      0.0,
+      128.0
+    ],
+    "Screen": [
+      0.0,
+      128.0
+    ],
+    "Chassis": [
+      0.0,
+      128.0
+    ],
+    "EmotionAnchor": [
+      0.0,
+      128.0
+    ],
+    "PusherHousing": [
+      0.0,
+      128.0
+    ],
+    "PushSlide": [
+      0.0,
+      128.0
+    ],
+    "PushContact": [
+      0.0,
+      128.0
+    ],
+    "PusherStem": [
+      0.0,
+      128.0
+    ],
+    "PushPlate": [
+      0.0,
+      128.0
+    ],
+    "Track_L": [
+      0.0,
+      128.0
+    ],
+    "Track_R": [
+      0.0,
+      128.0
+    ],
+    "Wheel_LB_Pivot": [
+      0.0,
+      128.0
+    ],
+    "Wheel_LB": [
+      0.0,
+      128.0
+    ],
+    "Wheel_LF_Pivot": [
+      0.0,
+      128.0
+    ],
+    "Wheel_LF": [
+      0.0,
+      128.0
+    ],
+    "Wheel_RB_Pivot": [
+      0.0,
+      128.0
+    ],
+    "Wheel_RB": [
+      0.0,
+      128.0
+    ],
+    "Wheel_RF_Pivot": [
+      0.0,
+      128.0
+    ],
+    "Wheel_RF": [
+      0.0,
+      128.0
+    ]
+  },
+  "measurementBasis": "Raw FBX read with manual Y-forward/Z-up (identity), then inverse rawFbxFromBlender applied to all local transforms and mesh vertices."
+}
