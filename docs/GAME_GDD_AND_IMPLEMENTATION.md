@@ -35,7 +35,7 @@
 - 工程保持在仓库根，按各阶段实际修改提交 `Assets`、`Packages`、`ProjectSettings` 及对应 `.meta`。保留已有文件和用户修改，不能把未检查的其他工作混进本阶段提交。
 - 当前 manifest 已记录 URP `14.0.11`、Input System `1.18.0`；先验证现有依赖的解析和编译，保留兼容配置，并锁定到 manifest/lock 文件。不要为了套用模板无故替换现有依赖。
 - manifest 已记录 Cinemachine `2.10.7`；使用 `CinemachineVirtualCamera`、`Cinemachine3rdPersonFollow` 和 `CinemachineBrain`，保持2.x接口。
-- 已导入 Feel `5.9.1` 和 DOTween Pro。相机、平滑运动、反馈的实现按第8.4–8.6节分工；插件版本/初始化须单独验证，不能据此改变既定规则、编辑器交付目标或Blender动画要求。
+- 已导入 DOTween Pro。相机、平滑运动、反馈的实现按第8.4–8.6节分工；插件版本/初始化须单独验证，不能据此改变既定规则、编辑器交付目标或Blender动画要求。
 - 先用默认材质与几何体完成交付；不得让正式角色或外部素材下载成为功能开发的前置条件。
 - 实现 Agent 每完成一个可验收阶段，运行相关检查、审查 diff、只暂存本阶段文件并提交。未经用户明确要求，不 push、不创建 PR、不发布。
 - 完成本方案时必须交付包含完整编辑器的 Unity 工程、Windows 游戏构建、关卡数据、评审者操作说明、编辑器验收记录和规则测试结果。编辑器在 Unity 内验收，Windows 构建用于游戏体验验收，两项结果分别记录。
@@ -610,7 +610,7 @@ DTO 采用可序列化类和数组，不在文件里保存 GameObject 引用或 
 | BoardView | 由数据生成白模/正式模型，响应状态事件 | 决定通行性 |
 | RobotPresenter | 三种动画、视觉朝向、推板接触、表情锚点 | 使用根运动改变网格位置 |
 | CameraRig | 双视角、环绕、避障和输入方向参考 | 推动箱子或改变解法状态 |
-| FeedbackPresenter | 将表现事件映射到Feel配置，管理反馈播放和清理 | 修改占格、供电、History或胜利条件 |
+| FeedbackPresenter | 根据表现事件播放音效、粒子和提示，管理反馈播放和清理 | 修改占格、供电、History或胜利条件 |
 | LevelEditor | 编辑副本、作者命令、保存、校验、试玩 | 维护另一套规则 |
 
 Domain、Runtime、Editor、Tests 使用清晰程序集依赖。Domain 使用整数组合和集合，避免 UnityEngine 依赖，便于快速 EditMode 测试。保持模块数量适中，不需要 ECS、网络框架或通用事件总线。
@@ -652,18 +652,17 @@ void Restore(GameState snapshot); // 取消旧表现并立即同步完整场景
 |---|---|---|---|
 | Cinemachine | manifest：2.10.7 | 第三人称环绕/跟随、避障，配合俯视虚拟相机和Brain管理输出 | CameraRig独占镜头模式、方向参考和投影设置 |
 | DOTween / DOTween Pro | 文件已导入；发行版本在接入时从Utility Panel记录，不能把DLL的1.0.0.0文件版本当发行版本 | 可取消的动作时间进度、门模型开合、菜单和气泡的过渡 | 只改变表现；移动终点和中间路径来自MoveResolution |
-| Feel | 本地readme：5.9.1 | 用MMF_Player配置接触音、落位反馈、通电光效、粒子、受阻与完成提示 | 从已确认的表现事件触发，不能通过Feedback回调推进谜题规则 |
 | Blender剪辑 | robot-asset-v1 | Idle、Move、Push内部机械动作 | RobotPresenter按共同动作时钟采样，保持既定帧范围和接触点 |
 
-**Cinemachine：** 第三人称与俯视各有独立虚拟相机配置，输出由一个Brain管理。环绕目标独立于机器人模型动画；切换仍遵守第3.3节的投影与方向规则。若添加轻微震动，优先通过Cinemachine Impulse叠加；DOTween和Feel不直接同时写实际Camera的Transform/FOV。
+**Cinemachine：** 第三人称与俯视各有独立虚拟相机配置，输出由一个Brain管理。环绕目标独立于机器人模型动画；切换仍遵守第3.3节的投影与方向规则。若添加轻微震动，优先通过Cinemachine Impulse叠加；DOTween不直接写实际Camera的Transform/FOV。
 
 **DOTween：** GameSession提交逻辑结果后，表现层创建属于这次命令的根Sequence或时间进度Tween。让一个线性时间值 `t` 从0走到动作总时长，再按第8.3节计算各物体位置和Push剪辑采样时间；机器人与箱子共享同一进度，SmoothStep只在位移计算中应用一次。不要给两个对象各启动一个可能延迟不同的独立推动Tween。
 
 DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。动态箱子路径必须由已解析的格子路径生成；DOTween Path不作为关卡寻路、碰撞或滑行判定来源。正式机器人的PushSlide、HeadYaw、轮轴由Blender剪辑驱动，不能再叠加一个写同一属性的DOTweenAnimation。
 
-**Feel：** 用简单的FeedbackPresenter集中绑定少量命名反馈组，策划可在Inspector调整音量、粒子、亮度、时长和强度。建议初始组为 `PushContact`、`CrateSettled`、`PowerOn`、`PowerOff`、`Blocked`、`LevelCompleted`。供电和门的稳定视觉状态由BoardView维护，Feel只做短促的附加效果，尽量使用独立灯光/粒子/覆盖层，避免争写同一材质属性。
+**反馈：** FeedbackPresenter根据已确认的表现事件，通过Unity音源、粒子和灯光组件播放接触、落位、通断电、受阻与完成效果。供电和门的稳定视觉状态由BoardView维护；短促的附加效果尽量使用独立灯光/粒子/覆盖层，避免争写同一材质属性。
 
-失败表情和通关气泡的文本/图形由游戏UI决定，DOTween负责其出现和淡出，Feel可配对应声音。默认每组反馈触发概率100%，没有必需的随机震屏或Hit Stop。关闭Feel附加反馈时，核心游戏和关卡编辑器仍应可用。
+失败表情和通关气泡的文本/图形由游戏UI决定，DOTween负责其出现和淡出，FeedbackPresenter播放对应声音。关闭附加音效与光效时，核心游戏和关卡编辑器仍应可用。
 
 ### 8.5 插件的取消、恢复与暂停协议
 
@@ -671,21 +670,20 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 
 1. 使旧代次失效，停止接受旧回调，清空待执行输入。
 2. 对当前会话拥有的DOTween根Tween/Sequence执行 `Kill(false)`，清理引用。`OnKill`只做资源清理；不能用 `Complete` 或 `Kill(true)`完成一个正在被撤销的动作，也不能用全局KillAll影响其他UI。
-3. 对当前会话的MMF_Player调用 `StopFeedbacks`，按具体反馈支持情况调用 `RestoreInitialValues`；停止/清除会话拥有的音源、粒子与气泡。不能假定Stop会自动恢复所有受影响属性。
+3. 停止并清理当前会话拥有的音源、粒子与气泡，重置附加效果改变的视觉属性。
 4. 取消当前Blender剪辑采样任务，按需要回到Idle起点；复用池对象前同样执行清理。
-5. 最后从目标GameState快照完整刷新玩家、箱子、门、插槽及HUD。Feel的“初始值”未必等于撤销目标局面，因此必须由快照做最终覆盖。
+5. 最后从目标GameState快照完整刷新玩家、箱子、门、插槽及HUD，确保视觉状态与撤销目标局面一致。
 
-游戏内Tween和Feel反馈使用受游戏暂停控制的时间；菜单过渡可使用独立时间。Feel的PauseFeedbacks用于序列暂停，不能单靠它推断所有已启动反馈都冻结；实际验证所用音源、粒子和过渡的暂停行为。
+游戏内Tween和反馈使用受游戏暂停控制的时间；菜单过渡可使用独立时间。实际验证所用音源、粒子和过渡的暂停与恢复行为。
 
-如果使用 `SetLink`，链接根Sequence/根Tween到其会话宿主；加入Sequence的子Tween不单独依赖SetLink清理。切关/停止试玩仍显式取消会话拥有的全部表现。Safe Mode是辅助保护，不替代生命周期管理。有关DOTween取消与Sequence控制的API语义参见[官方文档](https://dotween.demigiant.com/documentation.php)，Feel停止/恢复参见[官方说明](https://feel-docs.moremountains.com/core-concepts.html)。
+如果使用 `SetLink`，链接根Sequence/根Tween到其会话宿主；加入Sequence的子Tween不单独依赖SetLink清理。切关/停止试玩仍显式取消会话拥有的全部表现。Safe Mode是辅助保护，不替代生命周期管理。有关DOTween取消与Sequence控制的API语义参见[官方文档](https://dotween.demigiant.com/documentation.php)。
 
 ### 8.6 插件接入的首轮检查
 
 - 引擎保持2022.3.51f1、URP保持14.0.11。只接入本项目实际使用的反馈和模块；插件Demo的额外包不能成为正式游戏的隐式依赖。
 - 当前 `Assets/Resources/DOTweenSettings.asset` 显示 `createASMDEF=0`，未扫描到DOTween对应asmdef。接入自有Runtime程序集前，通过 `Tools > Demigiant > DOTween Utility Panel` 检查Setup和程序集生成，再配置实际依赖；确认Pro组件及所用Modules可被引用。
 - 现有DOTween设置中UI模块开启，UI Toolkit和TextMesh Pro模块关闭。基础uGUI可用对应模块；如果需要TMP/UIToolkit扩展，先显式启用并验证。Level Editor继续用Unity UI Toolkit制作，不能依赖动画插件才能编辑关卡。
-- Feel的Cinemachine反馈源码支持 `MM_CINEMACHINE` / `MM_CINEMACHINE3` 分支；当前2.10.7应使用2.x集成路径。按Feel现有安装工具和程序集配置检查符号及引用，不把3.x分支强行用于2.x包。
-- 读取实际生成的Feel程序集/asmref再配置FeedbackPresenter所在程序集；Domain、校验器和关卡JSON不引用Feel、DOTween或Cinemachine类型。
+- Domain、校验器和关卡JSON不引用DOTween或Cinemachine类型。
 - 插件初始化纳入现有Bootstrap；工程已有的框架配置见[Unity接入记录](./UNITY_SETUP.md)，避免重复创建Canvas/EventSystem或多个初始化宿主。
 - 先在本项目的最小场景中验证“一次移动、一次反馈、一次取消、一次切镜头”和Windows编译，再接正式表现。导入文件存在不代表这些集成检查已经通过。
 - 编辑器内的地图预览保持静态；试玩进入正式Play模式。关闭工具或退出试玩后，不能把插件预览产生的Transform/材质改动保存回关卡设计或正式Prefab。
@@ -797,9 +795,9 @@ Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必�
 - 打包后通关、退出、重启，已完成关卡和设置能恢复。
 - 记录实际测试硬件；白模目标为 1920×1080、60 fps。目标性能不是未经测量的承诺。
 - 查看 Console，无未处理异常、缺失脚本、材质错误或持续刷屏日志。
-- 关闭Feel反馈后，三关解法结果、计数、撤销和编辑器完整流程保持一致；门/插槽仍正确显示稳定状态。
+- 关闭附加音效与光效后，三关解法结果、计数、撤销和编辑器完整流程保持一致；门/插槽仍正确显示稳定状态。
 - 在Push的0.05 s、0.30 s及滑行尾段分别执行Z/R，等待超过全部原反馈时长，不能再出现旧移动、旧门状态、重复结算或遗留气泡。
-- 调整DOTween表现时长、Feel强度或Cinemachine镜头参数后，逻辑终点和参考解法不改变。
+- 调整DOTween表现时长、音效与光效强度或Cinemachine镜头参数后，逻辑终点和参考解法不改变。
 - 连续试玩/返回编辑器至少10次，无残留音源、粒子、活动会话Tween或被改写的作者数据；暂停时游戏反馈停止，菜单仍能操作。
 
 ### 11.4 Take-home：评审者操作脚本
@@ -878,5 +876,3 @@ Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必�
 - [Unity 2022.3：从连续时间轴拆分动画剪辑](https://docs.unity3d.com/2022.3/Documentation/Manual/Splittinganimations.html)：用于导入 Idle/Move/Push。
 - [Unity 2022.3：GameObject 属性动画](https://docs.unity3d.com/2022.3/Documentation/Manual/animeditor-AnimatingAGameObject.html)：用于理解机械零件的 Transform 动画。
 - [DOTween：官方文档](https://dotween.demigiant.com/documentation.php)：用于Sequence、取消、时间模式和生命周期配置。
-- [Feel：MMF_Player](https://feel-docs.moremountains.com/mmf-player.html)：用于配置和触发反馈组。
-- [Feel：核心概念](https://feel-docs.moremountains.com/core-concepts.html)：用于区分停止、恢复初值与序列暂停。
