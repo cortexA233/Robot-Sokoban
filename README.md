@@ -5,6 +5,7 @@
 - 渲染管线：URP 14.0.11。
 - 输入：Input System 1.18.0，使用新输入系统。
 - KToolkit 源码：`Assets/KToolkit`，入口为 `KFrameworkManager.instance.InitKFramework()`。
+- 编辑器自动化：CoplayDev MCP for Unity 10.2.0；[连接、CLI 与验证说明](docs/UNITY_MCP.md)。
 - [依赖修复、KToolkit 来源及验证方法](docs/UNITY_SETUP.md)
 - [游戏设计与实现方案](docs/GAME_GDD_AND_IMPLEMENTATION.md)
 - [机器人建模与动画指南](docs/ROBOT_BLENDER_GUIDE.md)

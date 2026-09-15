@@ -1,0 +1,11 @@
+# Use this project's CoplayDev service instead of inherited Unity connections.
+[mcp_servers.unity]
+enabled = false
+
+[mcp_servers.unityMCP]
+enabled = false
+
+[mcp_servers.coplay_unity]
+url = "http://127.0.0.1:8087/mcp"
+startup_timeout_sec = 60
+tool_timeout_sec = 300
