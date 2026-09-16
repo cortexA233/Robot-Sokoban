@@ -25,6 +25,7 @@
 - [依赖修复、KToolkit 来源及验证方法](Docs/UnitySetup.md)
 - [游戏设计与实现方案](Docs/GameDesign.md)
 - [机器人建模与动画指南](Docs/RobotBlenderGuide.md)
+- [空间站场景与机关资产生产需求（首批10个主资产，含新会话开工提示）](Docs/StationArtProduction.md)
 
 ## 目录约定
 
