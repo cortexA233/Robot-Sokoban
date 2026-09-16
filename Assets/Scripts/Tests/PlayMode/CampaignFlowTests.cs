@@ -16,6 +16,8 @@ namespace Sokoban.Tests
             runner = new GameObject("Campaign flow test").AddComponent<LevelRunner>();
             yield return null;
             runner.enabled = false;
+            Assert.That(runner.Session, Is.Null, "正式启动应先显示主菜单。");
+            Assert.That(runner.SelectLevel(0), Is.True);
         }
         [UnityTearDown] public IEnumerator TearDown()
         {

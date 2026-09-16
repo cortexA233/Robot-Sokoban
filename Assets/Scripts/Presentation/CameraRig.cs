@@ -19,6 +19,8 @@ namespace Sokoban
         public float Yaw => yaw;
         public Direction Forward => TopDown ? Direction.N : (Direction)sector;
         public Camera Output => output;
+        public float MouseSensitivity { get; set; } = 1;
+        public bool InvertVertical { get; set; }
 
         public void Initialize(LevelDefinition definition, Transform target)
         {
@@ -65,7 +67,8 @@ namespace Sokoban
             if (!TopDown)
             {
                 var delta = mouse.delta.ReadValue();
-                yaw += delta.x * .12f; pitch = Mathf.Clamp(pitch - delta.y * .12f, 10, 65);
+                yaw += delta.x * .12f * MouseSensitivity;
+                pitch = Mathf.Clamp(pitch + delta.y * .12f * MouseSensitivity * (InvertVertical ? 1 : -1), 10, 65);
                 follow.CameraDistance = Mathf.Clamp(follow.CameraDistance - mouse.scroll.ReadValue().y / 120f * .2f, 2, 5);
                 if (Mathf.Abs(Mathf.DeltaAngle(sector * 90, yaw)) > 53) sector = (Mathf.RoundToInt(yaw / 90) % 4 + 4) % 4;
             }
