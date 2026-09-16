@@ -1,0 +1,6 @@
+{
+  "name": "Sokoban.LevelEditor",
+  "rootNamespace": "Sokoban.Editor",
+  "references": ["Sokoban.Domain", "Sokoban.Runtime"],
+  "includePlatforms": ["Editor"]
+}

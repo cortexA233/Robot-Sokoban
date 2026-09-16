@@ -1,0 +1,79 @@
+{
+  "milestone": "First playable authoring iteration; not final GDD acceptance",
+  "unityVersion": "2022.3.51f1",
+  "editorTests": {
+    "jobId": "0808628bbff44ee4a8a7135edb901d81",
+    "status": "succeeded",
+    "summary": {
+      "total": 51,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 1.4068306,
+      "resultState": "Passed"
+    }
+  },
+  "playTests": {
+    "jobId": "788a2c7c311f40898faec546a97ad18e",
+    "status": "succeeded",
+    "summary": {
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 14.4557306,
+      "resultState": "Passed"
+    }
+  },
+  "referenceSolutions": [
+    {
+      "id": "L01",
+      "moves": 8,
+      "pushes": 3
+    },
+    {
+      "id": "L02",
+      "moves": 32,
+      "pushes": 16
+    },
+    {
+      "id": "L03",
+      "moves": 68,
+      "pushes": 28
+    },
+    {
+      "id": "LAB01_LowFriction",
+      "moves": 1,
+      "pushes": 1
+    }
+  ],
+  "playtestRoundTrip": {
+    "method": "MCP invoked window button callback and LevelRunner APIs",
+    "returnedScene": "Assets/Scenes/SampleScene.unity",
+    "beforeAndAfterDraftHash": "5a1d88f1fc428bb26d29d86f0f4b55a54ab2333af788b69535dea19b03bcb035",
+    "commands": "E",
+    "completed": true,
+    "manualReviewerAcceptance": false
+  },
+  "developmentBuild": {
+    "jobId": "build-509031b1d3",
+    "target": "StandaloneWindows64",
+    "path": "Builds/AuthoringMilestone/StationRestart.exe",
+    "result": "succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "warningDetails": "No warnings in final build. Initial build had two transient MCP WebSocket warnings.",
+    "durationSeconds": 15.5386689,
+    "sizeMB": 104.47,
+    "bootCheck": "Launched hidden with Direct3D 11 for 7 seconds; no errors/exceptions in Logs/AuthoringMilestonePlayerFinal.log; stopped test process.",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "standaloneCompletionTested": false
+  },
+  "notes": [
+    "Final regression includes absent player/proof preservation through JSON, draft restore and Undo. Editor was restarted after it stopped responding during refresh; final tests/build ran after recovery.",
+    "One PlayMode retry did not initialize after domain reload; a fresh run succeeded. The failed attempt is not counted as a pass.",
+    "Draft file writes retry transient Windows sharing conflicts without deleting the previous destination.",
+    "Initial headless -nographics launch generated expected Null-GPU shader errors; the Direct3D 11 boot check used a separate log.",
+    "Full E01-E12/manual editor acceptance, campaign catalog/menus/progress/feedback and final build remain unfinished."
+  ]
+}

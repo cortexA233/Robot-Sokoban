@@ -1,0 +1,75 @@
+{
+  "definition": {
+    "schemaVersion": 1,
+    "id": "L02",
+    "title": "借电开路",
+    "briefing": "插槽 s 与 a 都能打开门。让右侧电源接替工作，再回收临时电源。",
+    "completionText": "运输舱已恢复供电",
+    "width": 13,
+    "height": 9,
+    "gridSize": 1,
+    "terrainRows": [
+      "#############",
+      "#.....#.....#",
+      "#.....#.....#",
+      "#.....#.....#",
+      "#...........#",
+      "#.....#.....#",
+      "#.....#.....#",
+      "#.....#.....#",
+      "#############"
+    ],
+    "playerSpawn": {
+      "x": 2,
+      "z": 2,
+      "facing": "E"
+    },
+    "crates": [
+      {
+        "id": "crate_01",
+        "x": 3,
+        "z": 2
+      },
+      {
+        "id": "crate_02",
+        "x": 3,
+        "z": 4
+      }
+    ],
+    "sockets": [
+      {
+        "id": "socket_s",
+        "x": 4,
+        "z": 2,
+        "isGoal": false
+      },
+      {
+        "id": "socket_a",
+        "x": 9,
+        "z": 4,
+        "isGoal": true
+      },
+      {
+        "id": "socket_b",
+        "x": 9,
+        "z": 2,
+        "isGoal": true
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_01",
+        "x": 6,
+        "z": 4,
+        "facing": "E",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_s",
+          "socket_a"
+        ]
+      }
+    ],
+    "decorations": []
+  },
+  "commands": "ENWNEEEEEEWWWSSSWNNWNEEEENESSWSE"
+}

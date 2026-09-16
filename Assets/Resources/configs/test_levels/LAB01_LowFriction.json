@@ -1,0 +1,41 @@
+{
+    "schemaVersion": 1,
+    "id": "LAB01_LowFriction",
+    "title": "低摩擦实验室",
+    "briefing": "向东推动一次，观察滑行；Z 整段撤销。",
+    "completionText": "低摩擦测试完成",
+    "width": 9,
+    "height": 7,
+    "gridSize": 1.0,
+    "terrainRows": [
+        "#########",
+        "#.......#",
+        "#.......#",
+        "#..~~~..#",
+        "#.......#",
+        "#.......#",
+        "#########"
+    ],
+    "playerSpawn": {
+        "x": 1,
+        "z": 3,
+        "facing": "E"
+    },
+    "crates": [
+        {
+            "id": "crate_01",
+            "x": 2,
+            "z": 3
+        }
+    ],
+    "sockets": [
+        {
+            "id": "socket_a",
+            "x": 6,
+            "z": 3,
+            "isGoal": true
+        }
+    ],
+    "gates": [],
+    "decorations": []
+}

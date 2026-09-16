@@ -1,0 +1,5 @@
+{
+  "name": "Sokoban.Domain",
+  "rootNamespace": "Sokoban.Domain",
+  "noEngineReferences": true
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Sokoban.Runtime",
+  "rootNamespace": "Sokoban",
+  "references": ["Sokoban.Domain", "Cinemachine", "Unity.InputSystem", "KToolkit", "UnityEngine.UI"],
+  "overrideReferences": true,
+  "precompiledReferences": ["DOTween.dll", "Newtonsoft.Json.dll"]
+}

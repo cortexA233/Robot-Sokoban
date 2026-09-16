@@ -1,0 +1,18 @@
+{
+    "schemaVersion": 1,
+    "levelId": "L01",
+    "contentHash": "9fb919bb36a7b80872603b3697cab2aff7dcd2bebea21a3227a72d1f95d295a7",
+    "commands": "SWWNNWNE",
+    "expectedMoves": 8,
+    "expectedPushes": 3,
+    "expectedPlayer": {
+        "x": 3,
+        "z": 4
+    },
+    "expectedCrateCells": [
+        {
+            "x": 4,
+            "z": 4
+        }
+    ]
+}
