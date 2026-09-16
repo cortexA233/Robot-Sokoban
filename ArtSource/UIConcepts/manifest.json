@@ -25,6 +25,13 @@
       "height": 941,
       "bytes": 1586341,
       "sha256": "4e665428bda3b8ed190c12b41fe53e0a5e0d7cc0622443f848eece2eb43a78a2"
+    },
+    {
+      "file": "minimal_ui_v2.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1028344,
+      "sha256": "8b65ef6fd2c4329a56ca57f054eb79826ede42e1204cb2f40290679ac9ef2afd"
     }
   ]
 }
