@@ -1,12 +1,12 @@
 # 《空间站重启》游戏 GDD 与 Unity 实现方案
 
-版本：1.2 · 日期：2026-09-15 · 状态：可交付实现 Agent · 用途：技术策划招聘 Take-home 测试
+版本：1.3 · 日期：2026-09-16 · 状态：可交付实现 Agent，机器人资产已交付、游戏接入待完成 · 用途：技术策划招聘 Take-home 测试
 
 配套文档：[履带机器人建模与动画指南](./RobotBlenderGuide.md)。本文件负责游戏规则、Unity 系统、编辑器及验收；配套文件负责角色资产。两份文档共享 `robot-asset-v1` 交付约定。
 
 ## 0. 给实现 Agent 的任务说明
 
-在本仓库实现一个用于技术策划招聘 Take-home 测试的 Unity 3D 推箱子项目。开发目标包含两项独立且必须同时通过验收的成果：**具备 2–3 张完整关卡的可玩游戏，以及完整可用的 Unity 内关卡编辑器**。使用白模完成游戏闭环、供电机制、低摩擦轨道和双视角；机器人后续由 Blender 资产替换。必须先建立关卡数据与编辑器的制作链，再通过它制作关卡。
+在本仓库实现一个用于技术策划招聘 Take-home 测试的 Unity 3D 推箱子项目。开发目标包含两项独立且必须同时通过验收的成果：**具备 2–3 张完整关卡的可玩游戏，以及完整可用的 Unity 内关卡编辑器**。场景、箱子和机关继续使用白模；主角直接复用已交付的履带机器人预制体，完成其与网格移动、推箱及双视角的接入。必须先建立关卡数据与编辑器的制作链，再通过它制作关卡。
 
 **编辑器是最高优先级的正式交付物。** 评审者应能仅通过编辑器界面独立完成“创建 → 编辑 → 配置机关 → 校验 → 试玩 → 修改 → 保存 → 重新打开 → 加入关卡目录”，无需编写代码、手改 JSON、调用 MCP 或请求实现 Agent 代操作。编辑器未达到这个标准时，整个 Take-home 项目不能标记为完成。
 
@@ -23,20 +23,23 @@
 | 核心机制 | 能源箱、供电插槽、受电门；低摩擦轨道也必须完整实现 |
 | 轨道使用 | 正式三关先不用；编辑器可放置，专门测试关和自动测试覆盖 |
 | 编辑器 | 完整可用的 Unity 内开发者工具，最高优先级；具备可供评审者直接操作的界面、说明与验收记录 |
-| 角色 | Blender 制作的简单履带机器人；仅 Idle、Move、Push 三种机械动画 |
+| 角色 | 已交付的履带机器人预制体，含 Idle、Move、Push；资产级检查已通过，完整游戏接入另行验收 |
 | 表情 | 推不动与通关等使用角色上方表情气泡，由 Unity 实现 |
-| 美术 | 初期全部白模；造型、色彩和灯光遵循简约科幻方向 |
+| 美术 | 主角使用已交付资产，场景/箱子/机关暂用白模；简约科幻风格 |
 | 后续关卡 | 都使用本文定义的编辑器、数据格式、校验、试玩和发布流程 |
 
 ### 0.2 工作起点与执行约束
 
 - 初版规划后，仓库已创建 `Assets`、`Packages`、`ProjectSettings`。当前 `ProjectVersion.txt` 为 `2022.3.51f1`；实现前检查已有工程并在其基础上完善，不重新初始化覆盖已有工作。
+- 先读取根目录 [AGENTS.md](../AGENTS.md)；目录、命名、MCP及资源移动按其执行。现有机器人、KToolkit及MCP工具均复用，不能按旧版文档重新建一套平行目录。
 - 用户指定引擎版本为 **Unity `2022.3.51f1`**，本机也已安装。工程必须使用这个精确版本创建、测试和构建；执行环境缺失时先补齐该版本，不能自行升级引擎。
 - 工程保持在仓库根，按各阶段实际修改提交 `Assets`、`Packages`、`ProjectSettings` 及对应 `.meta`。保留已有文件和用户修改，不能把未检查的其他工作混进本阶段提交。
 - 当前 manifest 已记录 URP `14.0.11`、Input System `1.18.0`；先验证现有依赖的解析和编译，保留兼容配置，并锁定到 manifest/lock 文件。不要为了套用模板无故替换现有依赖。
 - manifest 已记录 Cinemachine `2.10.7`；使用 `CinemachineVirtualCamera`、`Cinemachine3rdPersonFollow` 和 `CinemachineBrain`，保持2.x接口。
 - 已导入 DOTween Pro。相机、平滑运动、反馈的实现按第8.4–8.6节分工；插件版本/初始化须单独验证，不能据此改变既定规则、编辑器交付目标或Blender动画要求。
-- 先用默认材质与几何体完成交付；不得让正式角色或外部素材下载成为功能开发的前置条件。
+- 机器人资源入口为 `Assets/Resources/prefabs/gameplay/player/Robot.prefab`，交付清单为 `ArtSource/Robot/robot_asset_manifest.json`。先完成一次现有资产加载/动画绑定，再迭代游戏逻辑；白模角色可用于隔离测试，正式交付需接入现有机器人。
+- Unity实机操作使用 **CoplayDev MCP for Unity 10.2.0**，服务 `coplay_unity`，地址 `http://127.0.0.1:8087/mcp`。按[连接说明](./UnityMcp.md)读取实例、选中 `Sokoban_3D_Test`，核对项目根路径和Editor状态后使用工具，并用manage_tools启用所需分组；旧任务未加载工具时使用 `Tools/UnityMcp.ps1`。
+- 当前MCP高级相机工具可能只探测Cinemachine 3；Cinemachine 2.x的操作通过组件、反射或动态代码完成，不为启用工具预设升级依赖。改脚本后等待编译并读Console，按变更范围运行测试和截图检查。
 - 实现 Agent 每完成一个可验收阶段，运行相关检查、审查 diff、只暂存本阶段文件并提交。未经用户明确要求，不 push、不创建 PR、不发布。
 - 完成本方案时必须交付包含完整编辑器的 Unity 工程、Windows 游戏构建、关卡数据、评审者操作说明、编辑器验收记录和规则测试结果。编辑器在 Unity 内验收，Windows 构建用于游戏体验验收，两项结果分别记录。
 
@@ -51,9 +54,9 @@
 | 优先级 | 内容 | 完成要求 |
 |---|---|---|
 | P0：必须完成 | 关卡编辑器及完整生产流程 | 第6节必需功能、第11.4节评审操作全部通过，具备人工可操作的 UI |
-| P0：必须完成 | 规则系统与可玩游戏 | 供电、低摩擦、双视角、撤销、完整菜单/结算，至少两张正式关卡 |
+| P0：必须完成 | 规则系统与可玩游戏 | 供电、低摩擦、双视角、撤销、完整菜单/结算、已交付主角的游戏接入，至少两张正式关卡 |
 | P0：必须完成 | 可复现的交接 | 精确引擎版本、工程、构建、编辑器使用说明、测试与验收记录 |
-| P1：在P0稳定后完成 | 第三张关卡、简短演示录屏、正式机器人接入 | 增强展示效果，遵守白模替换接口 |
+| P1：在P0稳定后完成 | 第三张关卡、简短演示录屏、额外视觉打磨 | 增强展示效果，保持已验证的机器人资产接口 |
 | P2：后续打磨 | 更多装饰、灯光演出、音效变化、工具效率增强 | 不能占用编辑器完整性和可靠性的修复时间 |
 
 技术策划展示重点是：用明确规则建立机制，用工具让另一位策划制作新关卡，并能定位问题、修改参数、验证结果。第1天的最小编辑器只是中间里程碑，不能作为最终交付版本。
@@ -509,6 +512,7 @@ Assets/
   Scripts/Input/             输入适配
   Scripts/Presentation/      相机、动画与反馈表现
   Scripts/UI/                运行时 UI
+  Scripts/Audio/             项目音频控制，按需创建
   Scripts/Editor/LevelEditor/ 作者工具、试玩桥接、构建校验
   Scripts/Editor/Robot/       角色导入与验收工具
   Scripts/Editor/Mcp/         本项目 MCP 配置与兼容工具
@@ -520,15 +524,25 @@ Assets/
   Resources/configs/solutions/ 同名参考解法记录
   Resources/configs/CampaignCatalog.asset
   Resources/prefabs/gameplay/player/Robot.prefab
+  Resources/prefabs/gameplay/player/PlayerActor.prefab  拟新增的游戏外层包装
   Resources/UI_prefabs/screens/
-  Art/Whitebox/
+  Resources/UI_prefabs/world/ 世界空间UI，按需创建
+  Resources/audio/           运行时加载音频，按需创建
+  Material/Whitebox/          跨物件共享的白模材质，按需创建
+  Art/Whitebox/               自有白模模型及其局部材质，按需创建
   Art/Robot/Meshes/Robot.fbx
   Art/Robot/Materials/
   Art/Robot/Animations/Robot.controller
-  Settings/                  URP、Volume 与输入设置
+  Settings/                  URP、Volume 设置
+  Settings/Input/            输入Action资源
+  Shaders/                   项目Shader，按需创建
+  Integrations/<Package>/    项目自有插件适配，按需创建
+  Plugins/                   第三方插件，保留原内部结构
 ```
 
 目录和命名规则以根目录 `AGENTS.md` 为准，按实际内容创建文件夹。可编辑机器人源文件、导出脚本、预览与验证清单位于仓库根的 `ArtSource/Robot/`，项目文档位于 `Docs/`。
+
+上表是实际资源与后续规划的组合，不代表列出的游戏系统已实现。项目目录/C#文件使用PascalCase，Resources中的上述小写路径是有意保留的稳定接口。`Robot.prefab` 的资源键是 `prefabs/gameplay/player/Robot`；未来新增PlayerActor时使用 `prefabs/gameplay/player/PlayerActor`。美术源文件、预览和编辑器验收报告不进入Resources。需要移动Unity资源时，通过AssetDatabase.MoveAsset保留`.meta`和GUID，并在同一变更中更新调用路径和清单；不覆盖已有模型。
 
 作者数据以 JSON 为真源；CampaignCatalog 是按顺序引用这些 TextAsset 的 Unity 资源。每关不需要单独制作一个场景。Bootstrap 加载同一套游戏系统并根据数据生成棋盘。
 
@@ -701,7 +715,7 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 - 先在本项目的最小场景中验证“一次移动、一次反馈、一次取消、一次切镜头”和Windows编译，再接正式表现。导入文件存在不代表这些集成检查已经通过。
 - 编辑器内的地图预览保持静态；试玩进入正式Play模式。关闭工具或退出试玩后，不能把插件预览产生的Transform/材质改动保存回关卡设计或正式Prefab。
 
-## 9. 与 Blender 共享的 robot-asset-v1 约定
+## 9. 已交付机器人与 robot-asset-v1 接入约定
 
 ### 9.1 模型与锚点
 
@@ -709,6 +723,7 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 |---|---|
 | Unity 朝向 | +Y 向上，+Z 为机器人正前方，+X 为机器人右侧 |
 | 模型根 | `RobotRoot`，原点在地面投影中心，静止 Y=0 |
+| 视觉预制体外层 | `Robot`，Animator位于该层；内部子节点为RobotRoot，游戏位移使用第9.4节的PlayerActor外层 |
 | 尺寸 | 静止宽约 0.70 m、深约 0.68 m、高约 0.80 m |
 | 推板收回 | 正面位于局部 Z=0.36 m |
 | 推板伸出 | 正面位于局部 Z=0.60 m，总行程 0.24 m |
@@ -722,9 +737,9 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 
 ### 9.2 三种动画与文件
 
-资产目录交付：`ArtSource/Robot/Robot.blend`、`ArtSource/Robot/robot_asset_manifest.json`、`Assets/Art/Robot/Meshes/Robot.fbx`、所需简单材质/贴图、正侧顶预览和三段动作预览。
+已交付：`ArtSource/Robot/Robot.blend`、`ArtSource/Robot/robot_asset_manifest.json`、`Assets/Art/Robot/Meshes/Robot.fbx`、四种URP材质、Robot.controller、Robot.prefab以及图像/动作预览。完整路径和证据见第9.3节；当前资产不依赖外部贴图。
 
-采用一个连续烘焙时间轴导出，再在 Unity 按明确范围切成三条剪辑，减少多个机械物件 Action 分散导致遗漏的风险。采样 30 fps：
+当前FBX已由连续烘焙时间轴导出，Unity导入器已按以下范围配置三条内嵌剪辑。采样30 fps，后续接入直接复用这些引用：
 
 | Unity 剪辑名 | Blender/FBX 时间轴帧 | 时长 | 循环 |
 |---|---|---|---|
@@ -732,14 +747,44 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 | Move | 70–100 | 1.00 s | 是 |
 | Push | 110–128 | 0.60 s | 否 |
 
-Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必须经回读确认；若导出器偏移起点，manifest 记录实际帧区间，Unity 导入器按记录切片，不能凭记忆套范围。
+Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导入器范围一致。未来重新导出才重新核对时间原点和范围，并更新对应验证记录，不能仅修改清单来掩盖导出差异。
 
-- 三条动画都原地制作，RobotRoot 无位置、旋转、缩放动画；Unity 的 Root Motion 关闭。
-- 导入采用适用于机械层级的 Generic 配置，保留节点层级，不启用会隐藏必需 Transform 的层级优化。
+- 三条动画都原地制作，RobotRoot全程保持局部零位移、单位旋转和单位缩放；FBX中可存在这些属性的常量曲线，但不产生根位移。Unity的Root Motion关闭。
+- 当前导入配置为Generic + NoAvatar、bakeAxisConversion=true、preserveHierarchy=true、optimizeGameObjects=false、动画压缩Off。它是分件物体动画，不需要生成Humanoid Avatar；保留已验证的配置和`.meta`。
 - 推箱使用受游戏动作进度控制的确定性剪辑采样，例如 Playables；不依赖动画事件来推进规则。
 - 原地轮组转动可代表基础履带运动；首版不要求逐节履带模拟或履带材质滚动。模型动作必须来自 Blender 导出的机械动画。
 - 表情气泡由 Unity Canvas/Sprite 绘制，不占用第四条机器人动画。
-- 机器人白模必须提供相同锚点和 RobotPresenter 接口；正式 FBX 到位后替换视觉子树和资源引用，不改推箱逻辑。
+- 机器人白模测试替身与正式资源共用RobotPresenter接口；正式游戏默认使用现有Robot.prefab，不重新生成替代模型。
+
+### 9.3 交付内容、证据和验证范围
+
+| 内容 | 仓库路径/已知状态 |
+|---|---|
+| 模型 | `Assets/Art/Robot/Meshes/Robot.fbx` |
+| 材质 | `Assets/Art/Robot/Materials/`，Body、Dark、Accent、Emission四种URP材质 |
+| 动画控制器 | `Assets/Art/Robot/Animations/Robot.controller`，Idle为默认状态；三状态，无参数、无状态间Transitions |
+| 视觉预制体 | `Assets/Resources/prefabs/gameplay/player/Robot.prefab`，已有Animator、Root Motion关闭，没有游戏控制脚本 |
+| 导入/验收工具 | `Assets/Scripts/Editor/Robot/RobotAssetTools.cs`，菜单 `Tools > Robot > Import and Validate` |
+| 源文件/流水线 | `ArtSource/Robot/Robot.blend`、`ArtSource/Robot/scripts/` |
+| 交付清单 | [robot_asset_manifest.json](../ArtSource/Robot/robot_asset_manifest.json) |
+| 资产验证记录 | [Blender 63项](../ArtSource/Robot/blender_validation.json)、[FBX回读64项](../ArtSource/Robot/fbx_validation.json)、[Unity 28项](../ArtSource/Robot/unity_validation.json)，交付报告均通过 |
+| 已测规格 | Unity XYZ约 `(0.70,0.80,0.6805)` m；4996三角面、15个Mesh、25个导出节点；Unity报告中的最大接触误差约 `4.77e-7 m` |
+| 预览 | `ArtSource/Robot/previews/`，包括Idle/Move/Push视频、接触图及Unity渲染图 |
+
+验证范围是资产导入、局部变换、剪辑采样、接触面、一米同步位移和URP预览。清单仍为 `gameplayIntegrationChecked=false`：这些记录不等同于真实关卡中的RobotPresenter、表情、撤销、相机和构建验收。
+
+2026-09-16本次只读核对：清单31个文件均存在，30个工作区文件哈希吻合；其中FBX、预制体、控制器与材质均匹配。当前工作区 `Robot.blend` 有未提交修改，哈希不匹配；Git已提交的Robot.blend仍与交付清单匹配。继续使用已验证的导出资产作为接入基线，保留源文件修改。未来采用修改后的源文件时必须重新导出和验证，再更新清单；不得只刷新哈希或把既有通过记录套到新源文件上。
+
+### 9.4 实现 Agent 的机器人接入步骤
+
+1. **包装现有资产。** 在 `Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab` 新建游戏外层，嵌套现有Robot.prefab。玩家输入/格坐标/朝向控制放在外层或由GameSession持有；RobotPresenter放在 `Assets/Scripts/Player/`，只持有视觉对象引用。保留Robot美术预制体的GUID和子层级。
+2. **分清动画根。** 预制体最外层Robot持有Animator，内层RobotRoot保持静止局部变换。当前剪辑以Robot为绑定根，曲线路径均以 `RobotRoot/...` 开头，包含RobotRoot本身的常量曲线；不能把Animator挪到PlayerActor/RobotRoot，或用内层RobotRoot承载网格位移。
+3. **绑定现有剪辑。** 从Controller持有的引用/序列化AnimationClip字段绑定Idle、Move、Push，不在Player构建中调用AssetDatabase加载FBX。Controller没有Speed/IsPushing/Push触发器，不假定这些参数存在。使用受第8.3节共同时间值驱动的Playables实现采样，并保证只有一套动画驱动器写机械节点，不能让Controller自动播放与手动采样相互覆盖。
+4. **精确寻址锚点。** 相对于视觉根Robot，气泡路径为 `RobotRoot/EmotionAnchor`，推板接触路径为 `RobotRoot/PushSlide/PushContact`；相对于内层RobotRoot则分别为 `EmotionAnchor` 和 `PushSlide/PushContact`。相机目标在游戏层单独维护，高度0.55 m，仅跟随玩家平移，环绕角度由CameraRig控制，不继承机器人转身或机械节点摆动。
+5. **接入规则与时序。** 由GameSession提交规则结果，DOTween驱动游戏外层与箱子的共同位移进度，Blender剪辑只控制内部机械动作。Push仍为0.60 s，接触/释放位于0.10/0.50 s。滑行尾段、取消、暂停与快照恢复按第4、8节执行。
+6. **完成游戏级验收。** 在实际关卡中验证四方向转身/移动/推动、0.01 m接触容差、滑行时玩家停留、表情锚点、双视角、动作中撤销和重开。记录在游戏测试/交付材料中；全部通过后才能标记主角游戏接入完成。
+
+`Tools > Robot > Import and Validate` 会配置/重导入FBX，并写入材质、控制器、Robot.prefab、报告及预览，属于有副作用的资产流水线入口。常规接入时读取现成资产和报告；需要重新导入时先保护已有游戏包装和用户工作，执行后审查所有资源差异并重新验证哈希。新增游戏逻辑留在PlayerActor包装及项目脚本中，避免被流水线重新保存美术预制体时覆盖。
 
 ## 10. 白模、美术和反馈
 
@@ -839,15 +884,15 @@ Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必�
 
 | 时间 | 工作 | 阶段结束时必须能演示 |
 |---|---|---|
-| 第1天 | 检查现有工程与插件编译/程序集配置；数据/规则骨架；最小编辑器：建图、刷墙地板、放玩家/箱子/目标、保存加载 | 编辑器制作一张小图，进入游戏能推箱、完成、重开；这是中间里程碑 |
+| 第1天 | 核对AGENTS/MCP与现有工程；加载已交付Robot预制体；数据/规则骨架；最小编辑器的建图、保存加载 | 编辑器制作一张小图，进入游戏能推箱、完成、重开；角色资源路径及三段动画引用可用 |
 | 第2天 | 供电/门、History、规则测试；编辑器机关连接与校验 | 编辑器建一扇受电门，断电/占据/撤销行为正确 |
 | 第3天 | LowFriction、LAB01；编辑器撤销/重做、草稿恢复、试玩返回、录制回放与目录管理 | 从界面完成两个机制的建图/保存/试玩；工作副本不被试玩污染 |
-| 第4天 | 编辑器E01–E12首轮验收并修复缺口；第三人称/俯视、输入映射和镜头避障 | 编辑器完整操作流程跑通；同一关可切换视角准确移动和推箱 |
+| 第4天 | 编辑器E01–E12首轮验收；机器人Presenter/接触/撤销；第三人称/俯视、输入映射与避障 | 现有机器人在游戏中移动/推箱；编辑器完整流程及双视角可用 |
 | 第5天 | 用编辑器建立 L01–L03，导入参考解法并测试；菜单与关卡流程 | 三关从菜单进入且可完成；正式JSON都来自编辑器 |
-| 第6天 | 请未参与实现的人按第11.4节操作编辑器，修复易用性问题；完成评审说明，再做反馈/角色接入 | 他人无需Agent协助即可建关、试玩、保存、重开；记录真实验收结果 |
+| 第6天 | 请未参与实现的人按第11.4节操作编辑器；补齐真实关卡中的机器人/反馈验收与评审说明 | 他人可独立建关；正式主角与表情、相机、取消操作通过游戏级验收 |
 | 第7天 | 编辑器与游戏双线回归、正式构建、提交材料整理 | 完整Unity编辑器工程、Windows游戏构建、规则测试和编辑器验收记录 |
 
-如果时间不足，按此顺序缩减：装饰数量 → 灯光演出 → 额外音效变化 → 第三张正式关卡。至少保留 L01/L02、两个已完成机制、LAB01、双视角、撤销，以及完整编辑器的 E01–E12、评审操作流程和使用说明。**编辑器的完整性、正确保存、错误定位和试玩往返不可减项。** 正式机器人未到位时允许交付白模，不改变动画接口。
+如果时间不足，按此顺序缩减：装饰数量 → 灯光演出 → 额外音效变化 → 第三张正式关卡。至少保留 L01/L02、两个已完成机制、LAB01、双视角、撤销、现有机器人接入，以及完整编辑器的 E01–E12、评审操作流程和使用说明。**编辑器的完整性、正确保存、错误定位和试玩往返不可减项。** 主角资产已到位，沿用现有资产完成接入，不再安排重建模型或等待美术交付。
 
 ### Take-home 提交材料
 
@@ -872,7 +917,7 @@ Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必�
 - [ ] 评审者操作脚本已在界面中实际跑通，能够独立创建并验证一张含供电和低摩擦的关卡。
 - [ ] 3 张正式关卡；若按减项策略交付 2 张，在交付说明中明确指出。
 - [ ] LAB01 和核心规则、编辑器保存往返、参考解法回放测试通过。
-- [ ] 白模角色符合 robot-asset-v1；正式资产到位时完成替换和导入验收。
+- [ ] 已复用Robot.prefab，完成PlayerActor/RobotPresenter及第9.4节的游戏级验收；资产级报告不代替本项。
 - [ ] Windows 构建已实际启动并完成至少一关；正式全部解法在共享内核回放通过。
 - [ ] Take-home提交材料齐全：README、编辑器使用说明、实测验收记录、已知问题与构建路径。
 - [ ] 修改已审查并形成聚焦 Git 提交；未经授权不发布远程变更。
@@ -881,6 +926,8 @@ Push 接触帧=113，移动结束/开始收回帧=125。FBX 的时间原点必�
 
 以下是实现依据，本文中的玩法和模块划分是项目设计决定。参考页面中的版本示例不应覆盖本地实际包版本。
 
+- [项目AGENTS.md](../AGENTS.md)：本地目录、命名、MCP、资源移动与提交规则的依据。
+- [Unity MCP连接与兼容说明](./UnityMcp.md)：CoplayDev 10.2.0、指定项目路由及Cinemachine 2.x工具边界。
 - [Unity 2022.3：URP 包](https://docs.unity3d.com/2022.3/Documentation/Manual/com.unity.render-pipelines.universal.html)：确认 URP 14.0 系列与编辑器版本关系。
 - [Unity 2022.3：Cinemachine 包](https://docs.unity3d.com/2022.3/Documentation/Manual/com.unity.cinemachine.html)：确认 2.10 系列包的兼容基线。
 - [Unity 2022.3：创建自定义 EditorWindow](https://docs.unity3d.com/2022.3/Documentation/Manual/UIE-HowTo-CreateEditorWindow.html)：用于 UI Toolkit 编辑窗口及重载处理。

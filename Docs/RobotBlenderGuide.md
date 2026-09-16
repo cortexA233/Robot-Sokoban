@@ -1,18 +1,18 @@
 # 履带维修机器人：Blender 建模与动画实施指南
 
-版本：1.2 · 日期：2026-09-15 · 状态：可交付 Blender Agent
+版本：1.3 · 日期：2026-09-16 · 状态：机器人资产已交付；作为资产维护与接入规范
 
 目标引擎：**Unity 2022.3.51f1 / URP 14.0.x**。共享资产约定：`robot-asset-v1`。
 
-配套文档：[游戏 GDD 与 Unity 实现方案](./GameDesign.md)。本文件包含独立执行所需的角色要求；即使没有引擎工程，Blender Agent 也能先完成资产交付。
+配套文档：[游戏 GDD 与 Unity 实现方案](./GameDesign.md)。模型、三段动画、URP材质、控制器和预制体已经交付；实现Agent按GDD第9节复用现有资产。本文件保留原建模要求与流程，供后续修改和重新导出使用，不要求重新制作已完成的模型。
 
-项目用于技术策划招聘 Take-home 测试。**完整可用的 Unity 内关卡编辑器与至少两张完整关卡是核心交付。** 游戏开发先使用符合本约定的白模，机器人美术接入不阻塞编辑器建设与验收；角色资产本身的交付仍需满足下述三段动画和导出检查。
+项目用于技术策划招聘 Take-home 测试。**完整可用的 Unity 内关卡编辑器与至少两张完整关卡是核心交付。** 场景和机关可继续用白模，主角直接接入现有机器人；资产级验证与游戏中的移动、撤销、相机和表情验收分别记录。
 
-## 0. 直接给 Blender Agent 的任务
+## 0. 给 Blender Agent 的资产维护说明
 
-使用 Blender 和可用的 MCP 接口，制作一台简约科幻风格的履带维修机器人，完成分件模型、基础材质、Idle/Move/Push 三种机械动画、可导入 Unity 的 FBX、动画清单和验证预览。
+用户要求修改机器人时，使用Blender和可用的MCP维护现有源文件、分件模型、基础材质、Idle/Move/Push动画、FBX、清单及验证预览。默认从现有 `ArtSource/Robot/Robot.blend` 和配套脚本继续，先检查本地修改；未请求重建时不运行build_robot.py覆盖现有资产。
 
-角色由左右履带、紧凑底盘、浅色机身、屏幕脸和前置伸缩推板组成。机器人在游戏中按格移动，推动 0.8 m 的能源箱。游戏初期使用白模，本资产需要遵守相同尺寸和动画接触约定，便于直接替换。
+角色由左右履带、紧凑底盘、浅色机身、屏幕脸和前置伸缩推板组成。机器人在游戏中按格移动，推动0.8 m的能源箱。现有资产满足下述尺寸与接触约定；修改后必须保持该接口，或在同一迭代中更新GDD、使用方与验证记录。
 
 **资产必须在 Blender 内完成三种机械动画。** Unity 负责原地动画的播放、机器人与箱子的世界位移，以及头顶表情气泡。不要把应交付的机械动作留成“以后由 Unity 脚本补上”。
 
@@ -35,6 +35,16 @@
 4. 保留无关场景内容；将本任务成果另存到指定源文件，不清空整个 Blender 场景来开始工作。
 5. MCP 若提供 Python 执行能力，使用 bpy 建立几何体、父子关系和关键帧；先确认当前版本 API，再操作 Action、动画槽或 F-Curve，避免依赖旧版内部结构。
 6. 每个阶段保存并生成预览；关键尺寸和导出行为需要用数据读取确认，不能仅凭单张透视图判断。
+7. Unity内检查/导入遵循 [AGENTS.md](../AGENTS.md) 和 [Unity MCP说明](./UnityMcp.md)，使用指定的coplay_unity服务并核对项目路径。保留现有资源GUID；不为了工具兼容升级Unity、URP或Cinemachine。
+
+### 0.3 当前交付基线
+
+- [交付清单](../ArtSource/Robot/robot_asset_manifest.json) 记录Blender `5.2.2 LTS`、Unity `2022.3.51f1`、URP `14.0.11`。
+- 已交付FBX、四种材质、Robot.controller和Robot.prefab；三段剪辑及帧范围与本指南一致。4996三角面、15个Mesh、25个导出节点。
+- 源文件检查63项、FBX回读64项、Unity检查28项的交付报告均通过；`gameplayIntegrationChecked=false`，游戏级验收仍由实现Agent完成。
+- 2026-09-16核对发现工作区Robot.blend已有未提交修改，与清单哈希不同；Git已提交的源文件以及当前FBX、预制体、材质、控制器仍匹配交付清单。保留本地源修改，不更新哈希冒充复验；从修改后的源文件再次发布导出结果前，重新验证并记录对应文件哈希。
+- 原始模型层级仍为本指南第3节的RobotRoot。Unity额外包装根为Robot，Animator位于Robot上；气泡与接触点相对于它的路径分别为 `RobotRoot/EmotionAnchor`、`RobotRoot/PushSlide/PushContact`。
+- `Robot.controller` 当前三状态、零参数、零Transitions、默认Idle，属于资产基础控制器；游戏外层包装、动画时间控制与事件绑定见GDD第9.4节。
 
 ## 1. 视觉设计
 
@@ -268,15 +278,15 @@ Push 总时长0.60 s。游戏中的前进发生在其中0.10–0.50 s，模型�
 - 推不动时保持或返回 Idle，Unity 在 EmotionAnchor 上显示气泡；不增加 Blocked 动画。
 - 通关时同样使用 Idle 和气泡，不增加 Victory 动画。
 
-### 5.6 与Cinemachine、DOTween Pro、Feel的配合
+### 5.6 与Cinemachine、DOTween Pro和Unity反馈系统的配合
 
 引擎侧已安装这些插件，机器人模型尺寸、节点名、三段动画和FBX交付约定保持 `robot-asset-v1`。
 
 - Cinemachine控制镜头；相机目标跟随稳定的角色位置，不挂在HeadYaw或BodyPivot等动画节点下。
 - DOTween提供角色/箱子在世界中的平滑位移和统一动作时钟；RobotPresenter根据同一时钟采样Blender剪辑。推板、轮子和头部已有动画曲线，不能再由DOTween Pro组件重复控制同一属性。
-- Feel负责接触音、粒子和状态提示等附加反馈，表情气泡由Unity生成；不增加新的角色动画。
+- 游戏的FeedbackPresenter使用Unity音源、粒子和灯光播放附加反馈，表情气泡由Unity生成；不增加新的角色动画，当前方案不要求Feel依赖。
 - 推动接触和释放时点仍是Push相对时间0.10 s和0.50 s。撤销、重开时引擎停止Tween与反馈，再恢复姿态和棋盘快照。
-- Blender Agent仍需交付真正可播放的Idle/Move/Push，不以插件配置替代缺失动画。
+- 后续修改仍须保留真正可播放的Idle/Move/Push，不以插件配置替代现有机械动画。
 
 ## 6. 关键帧和导出策略
 
@@ -301,6 +311,8 @@ Push 总时长0.60 s。游戏中的前进发生在其中0.10–0.50 s，模型�
 
 ### 6.2 FBX 导出初值
 
+现有交付已把导出方案落实到 `ArtSource/Robot/scripts/export_robot.py`：脚本对节点/网格做明确坐标转换，使用 `use_space_transform=false`、`bake_space_transform=false`，Unity侧开启bakeAxisConversion。后续导出优先沿用该脚本和清单中的实际参数，下表作为其余通用设置约定；只照Forward/Up两项手工重新导出不能保证相同结果。
+
 | 设置 | 本方案要求 |
 |---|---|
 | 文件 | `Assets/Art/Robot/Meshes/Robot.fbx` |
@@ -324,7 +336,7 @@ Push 总时长0.60 s。游戏中的前进发生在其中0.10–0.50 s，模型�
 这一部分供 Blender Agent 自检及交给 Unity Agent 使用：
 
 1. 在 Unity **2022.3.51f1** 中导入 FBX，确认模型为米制、朝 +Z、根位于地面。
-2. Generic 动画配置，保留完整机械层级；不做 Humanoid 重定向，不启用会移除必需节点的优化。
+2. 沿用已验证的Generic + NoAvatar，bakeAxisConversion=true、preserveHierarchy=true、optimizeGameObjects=false、动画压缩Off；保留完整机械层级与FBX的`.meta`。
 3. 保持三个剪辑名称严格为 Idle、Move、Push；使用清单里的实际导出帧范围切片。
 4. Idle 和 Move 设置循环；Push 不循环，时长0.60 s。
 5. 关闭 Root Motion；角色世界位移由网格系统控制。
@@ -366,9 +378,9 @@ Assets/Scripts/Editor/Robot/
 
 上述导入目录遵循根目录 `AGENTS.md`；源文件与资产流水线仍保留在 `ArtSource/Robot/`。
 
-Unity 尚未创建时，仍可创建对应输出目录交付 FBX；不要为了验证角色擅自初始化一套与 GDD 不同的游戏工程。Unity 会在后续导入时生成 `.meta`，Blender Agent 不手写虚假的 GUID。
+上述工程和资源已经存在，后续修改在原路径更新并保留`.meta`/GUID。游戏行为应放在GDD约定的PlayerActor外层与项目脚本中。`Tools > Robot > Import and Validate` 会重导入、写材质/控制器/预制体以及报告和预览，应在明确需要更新资产时运行并检查完整diff；它不是无副作用的只读检查。
 
-清单的必需字段示例：
+下面为清单结构模板。当前真实版本、已通过检查和具体数值以 `ArtSource/Robot/robot_asset_manifest.json` 为准，不用模板里的占位值覆盖已交付清单：
 
 ```json
 {
@@ -415,6 +427,8 @@ Unity 尚未创建时，仍可创建对应输出目录交付 FBX；不要为了�
 - 所有脚本只能重建/修改本任务的 Collection 和输出文件；保存源文件、导出与验证可以重复执行。
 
 ## 8. 验收与常见问题修复
+
+以下清单用于后续变更复验。已有的资产级交付结果见第0.3节；其中真实关卡里的游戏接入项目仍待实现，不能以历史资产采样报告代替。
 
 ### 8.1 Blender 数据检查
 
