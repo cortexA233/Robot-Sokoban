@@ -26,7 +26,7 @@ namespace Sokoban.Editor
         private readonly HashSet<Cell> stroke = new HashSet<Cell>();
         public LevelDocument Document => document;
 
-        [MenuItem("Tools/Sokoban/Level Editor")]
+        [MenuItem("Sokoban_Tools/Level Editor")]
         public static LevelEditorWindow OpenWindow() => GetWindow<LevelEditorWindow>("Sokoban Level Editor");
 
         private void OnEnable()

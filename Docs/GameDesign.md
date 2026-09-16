@@ -383,7 +383,7 @@ SWWWWSSSWNNWNEEEEENESS
 
 ### 6.1 窗口与工具
 
-入口：`Tools > Sokoban > Level Editor`。使用 UI Toolkit EditorWindow，配合 SceneView 网格交互。
+入口：`Sokoban_Tools > Level Editor`。使用 UI Toolkit EditorWindow，配合 SceneView 网格交互。
 
 | 区域 | 必需功能 |
 |---|---|
@@ -866,7 +866,7 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 | 步骤 | 评审操作 | 预期结果 |
 |---|---|---|
-| 1 | 用2022.3.51f1打开工程，按README进入 `Tools > Sokoban > Level Editor` | 无编译错误，能找到帮助、示例关卡和新建按钮 |
+| 1 | 用2022.3.51f1打开工程，按README进入 `Sokoban_Tools > Level Editor` | 无编译错误，能找到帮助、示例关卡和新建按钮 |
 | 2 | 新建9×7地图，设置外围墙，标题为“评审测试关” | 网格尺寸和落格预览正确，生成新的关卡ID |
 | 3 | 放玩家(1,3)、箱子(2,3)、目标插槽(6,3)、门(7,3) | 所有元素能选中和修改；门显示缺少供电来源的提示 |
 | 4 | 将(3,3)、(4,3)、(5,3)刷为低摩擦轨道，门设置Any并选择(6,3)的目标插槽为来源 | 轨道区别于普通地板，插槽到门有连接可视化，校验通过 |
