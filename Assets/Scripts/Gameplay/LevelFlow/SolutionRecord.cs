@@ -19,6 +19,7 @@ namespace Sokoban
 
         public static SolutionRecord Capture(LevelDefinition level, GameSession session)
         {
+            if (!session.ReferenceReplayValid) throw new InvalidOperationException("当前局面包含 GM 修改或现场起点，不能保存为原关卡参考解法。");
             if (!session.State.Completed) throw new InvalidOperationException("尚未通关，不能作为参考解法。");
             var replay = ReplayCommands(level, session.Commands);
             if (!replay.State.Completed) throw new InvalidOperationException("录制未到达完成状态。");

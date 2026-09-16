@@ -27,7 +27,11 @@ namespace Sokoban.Domain
     {
         public static bool IsFacing(string facing) => facing == "N" || facing == "E" || facing == "S" || facing == "W";
 
-        public static ValidationReport Validate(LevelDefinition level)
+        public static ValidationReport Validate(LevelDefinition level) => Validate(level, false);
+        // A live checkpoint may occupy a gate or deliberately have insufficient energy.
+        // All shape, reference, type and occupancy constraints still apply.
+        public static ValidationReport ValidateLive(LevelDefinition level) => Validate(level, true);
+        private static ValidationReport Validate(LevelDefinition level, bool live)
         {
             var report = new ValidationReport();
             if (level == null) { report.Error("关卡数据为空。"); return report; }
@@ -91,7 +95,11 @@ namespace Sokoban.Domain
             }
             int goals = level.sockets.Count(s => s != null && s.isGoal);
             if (goals == 0) report.Error("至少需要一个目标插槽。");
-            if (level.crates.Count(c => c != null && c.IsEnergy) < goals) report.Error("能源箱数不能少于目标插槽数；普通箱不供电。");
+            if (level.crates.Count(c => c != null && c.IsEnergy) < goals)
+            {
+                const string shortage = "能源箱数不能少于目标插槽数；普通箱不供电。";
+                if (live) report.Warn(shortage); else report.Error(shortage);
+            }
             var usedSockets = new HashSet<string>();
             foreach (var gate in level.gates)
             {
@@ -99,7 +107,7 @@ namespace Sokoban.Domain
                 checkEntity(gate);
                 if (!deviceCells.Add(gate.Cell)) report.Error("插槽/门占格重叠。", gate.Cell);
                 if (level.TerrainAt(gate.Cell) != Terrain.Floor) report.Error("门只能放在普通地板上。", gate.Cell);
-                if (level.playerSpawn != null && gate.Cell == level.playerSpawn.Cell) report.Error("玩家不能出生在门上。", gate.Cell);
+                if (!live && level.playerSpawn != null && gate.Cell == level.playerSpawn.Cell) report.Error("玩家不能出生在门上。", gate.Cell);
                 if (!IsFacing(gate.facing)) report.Error("门朝向必须是 N/E/S/W。", gate.Cell);
                 if (gate.powerMode != "Any" && gate.powerMode != "All") report.Error("门模式必须是 Any 或 All。", gate.Cell);
                 if (gate.sourceSocketIds == null || gate.sourceSocketIds.Length == 0) report.Error("请为门选择至少一个供电插槽。", gate.Cell);

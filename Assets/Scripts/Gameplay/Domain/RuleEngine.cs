@@ -63,13 +63,30 @@ namespace Sokoban.Domain
         private readonly LevelDefinition level;
         private readonly Dictionary<Cell, GateDefinition> gates;
         private readonly HashSet<string> energyCrateIds;
-        public RuleEngine(LevelDefinition definition)
+        public RuleEngine(LevelDefinition definition) : this(definition, null) { }
+        internal RuleEngine(LevelDefinition definition, BoardSnapshot checkpoint)
         {
-            var report = LevelValidator.Validate(definition);
+            if (checkpoint != null) definition = checkpoint.ApplyTo(definition);
+            var report = checkpoint == null ? LevelValidator.Validate(definition) : LevelValidator.ValidateLive(definition);
             if (!report.IsValid) throw new ArgumentException(string.Join("\n", report.Issues.Where(i => i.IsError)), nameof(definition));
             level = definition.Copy();
             gates = level.gates.ToDictionary(g => g.Cell);
             energyCrateIds = new HashSet<string>(level.crates.Where(c => c.IsEnergy).Select(c => c.id));
+        }
+
+        public GameState WithPositions(GameState previous, Cell player, Direction facing, IDictionary<string, Cell> crates)
+        {
+            if (!Enum.IsDefined(typeof(Direction), facing)) throw new ArgumentException("玩家朝向无效。");
+            if (crates == null || crates.Count != level.crates.Length || level.crates.Any(c => !crates.ContainsKey(c.id)))
+                throw new ArgumentException("GM 移位不能改变箱子 ID 集合。");
+            var occupied = new HashSet<Cell>();
+            foreach (var cell in new[] { player }.Concat(crates.Values))
+            {
+                if (!level.Contains(cell) || level.TerrainAt(cell) == Terrain.Wall || level.TerrainAt(cell) == Terrain.Void)
+                    throw new ArgumentException("目标格不可放置：" + cell);
+                if (!occupied.Add(cell)) throw new ArgumentException("玩家或箱子占格重叠：" + cell);
+            }
+            return State(player, facing, new Dictionary<string, Cell>(crates), previous.Moves, previous.Pushes);
         }
 
         public GameState CreateInitialState()
