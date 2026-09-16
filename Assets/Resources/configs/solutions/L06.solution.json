@@ -1,0 +1,30 @@
+{
+    "schemaVersion": 1,
+    "levelId": "L06",
+    "contentHash": "d92fcbe5bcde395da3e462e1eb8ff77e682cb265556b352c2b98169e7a418888",
+    "commands": "SSEESEENNNWWSSWWNNEWSSEENNNNSSEESSWSWNNNN",
+    "expectedMoves": 41,
+    "expectedPushes": 15,
+    "expectedPlayer": {
+        "x": 3,
+        "z": 5
+    },
+    "expectedCrateCells": [
+        {
+            "x": 2,
+            "z": 1
+        },
+        {
+            "x": 5,
+            "z": 5
+        },
+        {
+            "x": 3,
+            "z": 6
+        },
+        {
+            "x": 3,
+            "z": 7
+        }
+    ]
+}

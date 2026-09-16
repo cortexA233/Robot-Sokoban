@@ -53,6 +53,10 @@ namespace Sokoban.Domain
 
     [Serializable] public sealed class CrateDefinition : PlacedEntity
     {
+        public const string Energy = "Energy";
+        public const string Cargo = "Cargo";
+        public string kind = Energy;
+        public bool IsEnergy => kind == Energy;
         public CrateDefinition Copy() => (CrateDefinition)MemberwiseClone();
     }
     [Serializable] public sealed class SocketDefinition : PlacedEntity

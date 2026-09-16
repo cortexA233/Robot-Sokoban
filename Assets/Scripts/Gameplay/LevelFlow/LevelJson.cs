@@ -18,6 +18,8 @@ namespace Sokoban
     {
         private sealed class FieldsOnlyResolver : DefaultContractResolver
         {
+            private readonly bool legacy;
+            public FieldsOnlyResolver(bool legacy = false) { this.legacy = legacy; }
             protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization serialization)
             {
                 var hierarchy = new Stack<Type>();
@@ -25,15 +27,36 @@ namespace Sokoban
                 var properties = new List<JsonProperty>();
                 while (hierarchy.Count > 0)
                     foreach (var field in hierarchy.Pop().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).OrderBy(f => f.MetadataToken))
-                        properties.Add(CreateProperty(field, MemberSerialization.Fields));
+                        if (!legacy || field.DeclaringType != typeof(CrateDefinition) || field.Name != nameof(CrateDefinition.kind))
+                            properties.Add(CreateProperty(field, MemberSerialization.Fields));
                 return properties;
             }
         }
         private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver() };
-        public static string Write(LevelDefinition level) => JsonConvert.SerializeObject(level, Formatting.Indented, Settings) + "\n";
+        private static readonly JsonSerializerSettings LegacySettings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver(true) };
+        private static JsonSerializerSettings WireSettings(LevelDefinition level)
+        {
+            // Retain v1 bytes/hashes for existing energy-only levels and their proofs.
+            // Never silently discard a cargo type while serializing a v1 definition.
+            if (level.schemaVersion == 1 && level.crates != null && level.crates.Any(c => c != null && !c.IsEnergy))
+                throw new FormatException("普通箱需要 schemaVersion=2，不能保存为旧版能源箱数据。");
+            return level.schemaVersion == 1 ? LegacySettings : Settings;
+        }
+        public static string Write(LevelDefinition level) => JsonConvert.SerializeObject(level, Formatting.Indented, WireSettings(level)) + "\n";
         public static LevelDefinition Read(string json)
         {
             var token = JToken.Parse(json, new JsonLoadSettings { DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error });
+            Require(token.Type == JTokenType.Object, "$");
+            var version = token["schemaVersion"];
+            CheckShape(typeof(int), version, "$.schemaVersion", false);
+            int schema = (int)version;
+            if (schema != 1 && schema != 2) throw new FormatException("仅支持 schemaVersion=1 或 2。");
+            if (schema == 1 && token["crates"] is JArray crates)
+                foreach (var item in crates.OfType<JObject>())
+                {
+                    if (item.Property("kind") != null) throw new FormatException("schemaVersion=1 的箱子不能包含 kind；请使用版本 2。");
+                    item.Add("kind", CrateDefinition.Energy);
+                }
             CheckShape(typeof(LevelDefinition), token, "$", false);
             return token.ToObject<LevelDefinition>(JsonSerializer.Create(Settings));
         }
@@ -74,7 +97,7 @@ namespace Sokoban
         public static string Hash(LevelDefinition level)
         {
             using (var sha = SHA256.Create())
-                return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(level, Formatting.None, Settings)))).Replace("-", "").ToLowerInvariant();
+                return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(level, Formatting.None, WireSettings(level))))).Replace("-", "").ToLowerInvariant();
         }
 
         public static void AtomicWrite(string path, string contents)

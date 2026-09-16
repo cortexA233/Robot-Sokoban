@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "id": "L04",
+  "title": "借一格",
+  "briefing": "普通箱有交叉支架，不供电；先给它腾位置，再把能源箱送到目标。",
+  "completionText": "货物整备完成",
+  "width": 7,
+  "height": 7,
+  "gridSize": 1.0,
+  "terrainRows": [
+    "#######",
+    "###.###",
+    "#....##",
+    "#.#..##",
+    "#....##",
+    "##...##",
+    "#######"
+  ],
+  "playerSpawn": {
+    "x": 2,
+    "z": 1,
+    "facing": "W"
+  },
+  "crates": [
+    {
+      "id": "crate_A",
+      "x": 3,
+      "z": 2,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_X",
+      "x": 3,
+      "z": 3,
+      "kind": "Cargo"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "socket_a",
+      "x": 3,
+      "z": 5,
+      "isGoal": true
+    }
+  ],
+  "gates": [],
+  "decorations": []
+}

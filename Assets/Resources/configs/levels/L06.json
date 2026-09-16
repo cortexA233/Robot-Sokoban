@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "id": "L06",
+  "title": "先过箱，再交电",
+  "briefing": "下方辅助插槽与最深处目标都能开门；先交接供电，再回收临时能源箱。",
+  "completionText": "全部区域已恢复供电",
+  "width": 7,
+  "height": 9,
+  "gridSize": 1.0,
+  "terrainRows": [
+    "#######",
+    "###.###",
+    "###.#.#",
+    "###.#.#",
+    "#.....#",
+    "#.#.#.#",
+    "#.....#",
+    "#.....#",
+    "#######"
+  ],
+  "playerSpawn": {
+    "x": 1,
+    "z": 4,
+    "facing": "N"
+  },
+  "crates": [
+    {
+      "id": "crate_A",
+      "x": 3,
+      "z": 2,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_B",
+      "x": 3,
+      "z": 4,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_X",
+      "x": 5,
+      "z": 4,
+      "kind": "Cargo"
+    },
+    {
+      "id": "crate_Y",
+      "x": 3,
+      "z": 3,
+      "kind": "Cargo"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "socket_a",
+      "x": 3,
+      "z": 7,
+      "isGoal": true
+    },
+    {
+      "id": "socket_b",
+      "x": 3,
+      "z": 6,
+      "isGoal": true
+    },
+    {
+      "id": "socket_s",
+      "x": 4,
+      "z": 2,
+      "isGoal": false
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate_D",
+      "x": 3,
+      "z": 5,
+      "facing": "N",
+      "powerMode": "Any",
+      "sourceSocketIds": [
+        "socket_s",
+        "socket_a"
+      ]
+    }
+  ],
+  "decorations": []
+}

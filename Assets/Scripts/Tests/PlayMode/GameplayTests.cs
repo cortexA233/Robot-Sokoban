@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using Sokoban.Domain;
 using UnityEngine;
@@ -76,6 +77,34 @@ namespace Sokoban.Tests
             Assert.That(Vector3.Dot(runner.Cameras.Output.transform.up, Vector3.forward), Is.GreaterThan(.999f));
             runner.Restart(); Assert.That(runner.Cameras.TopDown, Is.True);
         }
+        [UnityTest] public IEnumerator CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower()
+        {
+            var level = lab.Copy(); level.schemaVersion = 2;
+            level.crates[0].kind = CrateDefinition.Cargo;
+            level.crates = new[] { level.crates[0], new CrateDefinition { id = "extra_energy", x = 1, z = 1 } };
+            runner.LoadLevel(level); yield return null;
+            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo crate"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo top brace"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo side brace"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["extra_energy"].Find("Energy crate"), Is.Not.Null);
+            Assert.That(runner.TryMove(Direction.E), Is.True);
+            yield return new WaitForSeconds(.32f);
+            float backFace = runner.Board.Crates["crate_01"].GetComponentsInChildren<Renderer>().Min(r => r.bounds.min.x);
+            Assert.That(Mathf.Abs(runner.Board.Robot.Contact.position.x - backFace), Is.LessThanOrEqualTo(.01f));
+            yield return new WaitForSeconds(.33f); runner.ToggleCamera(); runner.Undo();
+            yield return new WaitForSeconds(1.1f);
+            Assert.That(runner.Board.Crates["crate_01"].position, Is.EqualTo(new Vector3(2, 0, 3)));
+            Assert.That(runner.Session.State.Moves, Is.Zero); Assert.That(runner.PoweredGoalCount, Is.Zero);
+            Assert.That(runner.TryMove(Direction.E), Is.True);
+            yield return new WaitForSeconds(1.2f);
+            Assert.That(runner.Board.Crates["crate_01"].position, Is.EqualTo(new Vector3(6, 0, 3)));
+            Assert.That(runner.Completed, Is.False); Assert.That(runner.PoweredGoalCount, Is.Zero);
+            Assert.That(runner.Cameras.Output.orthographic, Is.True);
+            runner.Restart(); yield return null;
+            Assert.That(runner.Session.State.Crates["crate_01"], Is.EqualTo(new Cell(2, 3)));
+            Assert.That(runner.Session.State.Pushes, Is.Zero);
+        }
+
         [UnityTest] public IEnumerator RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData()
         {
             string hash = LevelJson.Hash(lab);

@@ -31,7 +31,7 @@ namespace Sokoban.Domain
         {
             var report = new ValidationReport();
             if (level == null) { report.Error("关卡数据为空。"); return report; }
-            if (level.schemaVersion != 1) report.Error("仅支持 schemaVersion=1。");
+            if (level.schemaVersion != 1 && level.schemaVersion != 2) report.Error("仅支持 schemaVersion=1 或 2。");
             if (string.IsNullOrWhiteSpace(level.id)) report.Error("关卡 ID 不能为空。");
             if (string.IsNullOrWhiteSpace(level.title)) report.Error("关卡标题不能为空。");
             if (level.width < 5 || level.width > 32 || level.height < 5 || level.height > 32)
@@ -75,6 +75,10 @@ namespace Sokoban.Domain
             {
                 if (crate == null) { report.Error("存在空箱子记录。"); continue; }
                 checkEntity(crate);
+                if (crate.kind != CrateDefinition.Energy && crate.kind != CrateDefinition.Cargo)
+                    report.Error("箱子类型必须是 Energy 或 Cargo。", crate.Cell);
+                else if (level.schemaVersion == 1 && !crate.IsEnergy)
+                    report.Error("普通箱需要 schemaVersion=2。", crate.Cell);
                 if (!dynamicCells.Add(crate.Cell)) report.Error("玩家或箱子占格重叠。", crate.Cell);
             }
             foreach (var socket in level.sockets)
@@ -87,7 +91,7 @@ namespace Sokoban.Domain
             }
             int goals = level.sockets.Count(s => s != null && s.isGoal);
             if (goals == 0) report.Error("至少需要一个目标插槽。");
-            if (level.crates.Count(c => c != null) < goals) report.Error("箱子数不能少于目标插槽数。");
+            if (level.crates.Count(c => c != null && c.IsEnergy) < goals) report.Error("能源箱数不能少于目标插槽数；普通箱不供电。");
             var usedSockets = new HashSet<string>();
             foreach (var gate in level.gates)
             {
@@ -144,9 +148,9 @@ namespace Sokoban.Domain
                 bool horizontal = FixedObstacle(level, crate.Cell.Step(Direction.E)) || FixedObstacle(level, crate.Cell.Step(Direction.W));
                 bool vertical = FixedObstacle(level, crate.Cell.Step(Direction.N)) || FixedObstacle(level, crate.Cell.Step(Direction.S));
                 if (horizontal && vertical && !level.sockets.Any(s => s.isGoal && s.Cell == crate.Cell))
-                    report.Warn("箱子位于非目标的固定直角死角。", crate.Cell);
+                    report.Warn(crate.IsEnergy ? "能源箱位于非目标的固定直角死角。" : "普通箱位于固定死角；请确认这里是无需再次移动的停车位。", crate.Cell);
             }
-            if (level.sockets.Where(s => s.isGoal).All(s => level.crates.Any(c => c.Cell == s.Cell))) report.Warn("关卡开局已经完成。");
+            if (level.sockets.Where(s => s.isGoal).All(s => level.crates.Any(c => c.IsEnergy && c.Cell == s.Cell))) report.Warn("关卡开局已经完成。");
             return report;
         }
 

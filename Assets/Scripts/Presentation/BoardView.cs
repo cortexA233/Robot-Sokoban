@@ -15,7 +15,7 @@ namespace Sokoban
         private readonly Dictionary<string, Renderer> gateMarkers = new Dictionary<string, Renderer>();
         private readonly List<Renderer> upperWalls = new List<Renderer>();
         private readonly List<Material> ownedMaterials = new List<Material>();
-        private Material floor, wall, dark, orange, cyan, track, goal, utility;
+        private Material floor, wall, dark, orange, cyan, track, goal, utility, cargoBody, cargoTrim;
         private bool topDown;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
@@ -47,6 +47,7 @@ namespace Sokoban
             dark = Material(new Color(.1f, .15f, .20f)); orange = Material(new Color(.94f, .55f, .15f));
             cyan = Material(new Color(.17f, .88f, .9f)); track = Material(new Color(.38f, .64f, .76f));
             goal = Material(new Color(.69f, .82f, .86f)); utility = Material(new Color(.75f, .61f, .3f));
+            cargoBody = Material(new Color(.35f, .25f, .16f)); cargoTrim = Material(new Color(.79f, .68f, .48f));
             for (int z = 0; z < level.height; z++)
                 for (int x = 0; x < level.width; x++)
                 {
@@ -64,9 +65,26 @@ namespace Sokoban
             foreach (var crate in level.crates)
             {
                 var root = new GameObject(crate.id).transform; root.SetParent(transform, false); root.position = Position(crate.Cell);
-                Box("Energy crate", new Vector3(0, .4f, 0), Vector3.one * .8f, wall, root);
-                Box("Energy stripe X", new Vector3(0, .81f, 0), new Vector3(.65f, .025f, .15f), orange, root);
-                Box("Energy stripe Z", new Vector3(0, .81f, 0), new Vector3(.15f, .025f, .65f), orange, root);
+                if (crate.IsEnergy)
+                {
+                    Box("Energy crate", new Vector3(0, .4f, 0), Vector3.one * .8f, wall, root);
+                    Box("Energy stripe X", new Vector3(0, .81f, 0), new Vector3(.65f, .025f, .15f), orange, root);
+                    Box("Energy stripe Z", new Vector3(0, .81f, 0), new Vector3(.15f, .025f, .65f), orange, root);
+                }
+                else
+                {
+                    Box("Cargo crate", new Vector3(0, .4f, 0), Vector3.one * .8f, cargoBody, root);
+                    foreach (float angle in new[] { -45f, 45f })
+                        Box("Cargo top brace", new Vector3(0, .81f, 0), new Vector3(.08f, .025f, .86f), cargoTrim, root)
+                            .transform.localRotation = Quaternion.Euler(0, angle, 0);
+                    for (int side = 0; side < 4; side++)
+                        foreach (float angle in new[] { -45f, 45f })
+                        {
+                            var turn = Quaternion.Euler(0, side * 90, 0);
+                            Box("Cargo side brace", turn * new Vector3(0, .4f, -.401f), new Vector3(.08f, .86f, .008f), cargoTrim, root)
+                                .transform.localRotation = turn * Quaternion.Euler(0, 0, angle);
+                        }
+                }
                 crates.Add(crate.id, root);
             }
             foreach (var socket in level.sockets)

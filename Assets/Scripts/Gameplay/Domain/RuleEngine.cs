@@ -62,12 +62,14 @@ namespace Sokoban.Domain
     {
         private readonly LevelDefinition level;
         private readonly Dictionary<Cell, GateDefinition> gates;
+        private readonly HashSet<string> energyCrateIds;
         public RuleEngine(LevelDefinition definition)
         {
             var report = LevelValidator.Validate(definition);
             if (!report.IsValid) throw new ArgumentException(string.Join("\n", report.Issues.Where(i => i.IsError)), nameof(definition));
             level = definition.Copy();
             gates = level.gates.ToDictionary(g => g.Cell);
+            energyCrateIds = new HashSet<string>(level.crates.Where(c => c.IsEnergy).Select(c => c.id));
         }
 
         public GameState CreateInitialState()
@@ -75,14 +77,21 @@ namespace Sokoban.Domain
             var crates = level.crates.ToDictionary(c => c.id, c => c.Cell);
             return State(level.playerSpawn.Cell, (Direction)Enum.Parse(typeof(Direction), level.playerSpawn.facing), crates, 0, 0);
         }
-        private GameState State(Cell player, Direction facing, Dictionary<string, Cell> crates, int moves, int pushes) =>
-            new GameState(player, facing, crates, moves, pushes, level.sockets.Where(s => s.isGoal).All(s => crates.ContainsValue(s.Cell)));
-
-        public PowerState Power(GameState state) => Power(state.Player, state.Crates.Values);
-        private PowerState Power(Cell player, IEnumerable<Cell> crates)
+        private GameState State(Cell player, Direction facing, Dictionary<string, Cell> crates, int moves, int pushes)
         {
-            var occupied = new HashSet<Cell>(crates);
-            var sockets = level.sockets.ToDictionary(s => s.id, s => occupied.Contains(s.Cell));
+            var energized = PoweredCells(crates);
+            return new GameState(player, facing, crates, moves, pushes, level.sockets.Where(s => s.isGoal).All(s => energized.Contains(s.Cell)));
+        }
+
+        private HashSet<Cell> PoweredCells(IEnumerable<KeyValuePair<string, Cell>> crates) =>
+            new HashSet<Cell>(crates.Where(c => energyCrateIds.Contains(c.Key)).Select(c => c.Value));
+
+        public PowerState Power(GameState state) => Power(state.Player, state.Crates);
+        private PowerState Power(Cell player, IEnumerable<KeyValuePair<string, Cell>> crates)
+        {
+            var occupied = new HashSet<Cell>(crates.Select(c => c.Value));
+            var energized = PoweredCells(crates);
+            var sockets = level.sockets.ToDictionary(s => s.id, s => energized.Contains(s.Cell));
             var powered = level.gates.ToDictionary(g => g.id, g => g.powerMode == "All"
                 ? g.sourceSocketIds.All(id => sockets[id]) : g.sourceSocketIds.Any(id => sockets[id]));
             var open = level.gates.ToDictionary(g => g.id, g => powered[g.id] || g.Cell == player || occupied.Contains(g.Cell));
@@ -109,7 +118,7 @@ namespace Sokoban.Domain
             }
             var crates = state.Crates.ToDictionary(c => c.Key, c => c.Value);
             if (pushed != null) crates[pushed] = crateTarget;
-            power = Power(next, crates.Values);
+            power = Power(next, crates);
             var steps = new List<Microstep> { new Microstep(state.Player, next, pushed, next, crateTarget, power) };
             if (pushed != null)
             {
@@ -121,7 +130,7 @@ namespace Sokoban.Domain
                     if (!Passable(to, power) || to == next || crates.ContainsValue(to)) break;
                     if (++guard > Math.Max(level.width, level.height)) throw new InvalidOperationException("滑行超出地图跨度。");
                     crates[pushed] = to;
-                    power = Power(next, crates.Values);
+                    power = Power(next, crates);
                     steps.Add(new Microstep(next, next, pushed, from, to, power));
                 }
             }

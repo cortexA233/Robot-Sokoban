@@ -66,7 +66,7 @@ namespace Sokoban.Tests
         }
         [UnityTest, Timeout(120000)] public IEnumerator LastLevelFinishesCampaignAndReturnsToSelection()
         {
-            Assert.That(runner.SelectLevel(2), Is.True);
+            Assert.That(runner.SelectLevel(runner.CampaignLevelCount - 1), Is.True);
             yield return SolveCurrentLevel();
             Assert.That(runner.IsFinalCampaignLevel, Is.True);
             Assert.That(runner.CompletionHeading, Is.EqualTo("空间站已重启！"));
@@ -103,12 +103,38 @@ namespace Sokoban.Tests
         [UnityTest] public IEnumerator ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices()
         {
             var state = runner.Session.State;
-            Assert.That(runner.SelectLevel(-1), Is.False); Assert.That(runner.SelectLevel(3), Is.False);
+            Assert.That(runner.SelectLevel(-1), Is.False); Assert.That(runner.SelectLevel(runner.CampaignLevelCount), Is.False);
             Assert.That(runner.Session.State, Is.SameAs(state));
             runner.SetPaused(true); runner.OpenLevelSelect(); runner.CloseLevelSelect();
             yield return null;
             Assert.That(runner.Paused, Is.True); Assert.That(runner.Session.State, Is.SameAs(state));
         }
+        [UnityTest, Timeout(180000)] public IEnumerator OriginalThirdLevelContinuesThroughAllCargoLevels()
+        {
+            Assert.That(runner.CampaignLevelCount, Is.EqualTo(6));
+            Assert.That(runner.SelectLevel(2), Is.True);
+            Assert.That(runner.IsFinalCampaignLevel, Is.False);
+            yield return SolveCurrentLevel();
+            for (int index = 3; index < 6; index++)
+            {
+                Assert.That(runner.NextLevel(), Is.True);
+                yield return null;
+                Assert.That(runner.Definition.id, Is.EqualTo("L0" + (index + 1)));
+                Assert.That(runner.Session.State.Moves, Is.Zero);
+                Assert.That(runner.Session.UndoCount, Is.Zero);
+                Assert.That(runner.Session.Commands, Is.Empty);
+                foreach (var crate in runner.Definition.crates)
+                    Assert.That(runner.Board.Crates[crate.id].Find(crate.IsEnergy ? "Energy crate" : "Cargo crate"), Is.Not.Null);
+                runner.ToggleCamera();
+                yield return SolveCurrentLevel();
+                var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/" + runner.Definition.id + ".solution").text);
+                Assert.That(runner.Session.State.Moves, Is.EqualTo(proof.expectedMoves));
+                Assert.That(runner.Session.State.Pushes, Is.EqualTo(proof.expectedPushes));
+                Assert.That(runner.PoweredGoalCount, Is.EqualTo(runner.GoalCount));
+            }
+            Assert.That(runner.IsFinalCampaignLevel, Is.True); Assert.That(runner.NextLevel(), Is.False);
+        }
+
         [UnityTest] public IEnumerator EditorPlaytestNeverNavigatesIntoCampaign()
         {
             UnityEngine.Object.Destroy(runner.gameObject); yield return null;

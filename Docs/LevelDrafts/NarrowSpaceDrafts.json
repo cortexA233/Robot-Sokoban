@@ -1,9 +1,9 @@
 {
   "draftFormat": "sokoban-narrow-space-proposal-v1",
-  "status": "design-only",
+  "status": "implemented-as-L04-L06",
   "date": "2026-09-16",
-  "runtimeValidated": false,
-  "note": "策划示意数据，不是 LevelDefinition 或编辑器配方；实施时通过关卡编辑器制作并录制解法。",
+  "runtimeValidated": true,
+  "note": "已通过关卡编辑器配方流程制作为 L04–L06 并追加到原三关之后；本文件仍为策划示意数据，不是运行时格式。运行验证见 Validation/CargoCrateIterationResults.json。",
   "legend": {
     "#": "Wall",
     ".": "Floor",
@@ -18,6 +18,7 @@
   "drafts": [
     {
       "id": "DRAFT_A",
+      "implementedLevelId": "L04",
       "title": "借一格",
       "role": "普通箱与反向让位教学",
       "width": 7,
@@ -45,6 +46,7 @@
     },
     {
       "id": "DRAFT_B",
+      "implementedLevelId": "L05",
       "title": "三箱锁喉",
       "role": "四箱嵌套与先深后浅",
       "width": 7,
@@ -76,6 +78,7 @@
     },
     {
       "id": "DRAFT_C",
+      "implementedLevelId": "L06",
       "title": "先过箱，再交电",
       "role": "窄道嵌套与供电交接",
       "width": 7,
@@ -108,5 +111,5 @@
       }
     }
   ],
-  "verificationMethod": "独立离线网格模型回放参考解法；用第二份按单步命令枚举的模型复核。固定普通箱/断开辅助电源的搜索不使用死锁剪枝或玩家区域合并。未验证 Unity 导入、规则实现、镜头或人工难度。计数为参考路线，不宣称最优。"
+  "verificationMethod": "设计阶段：独立离线网格回放及第二份单步枚举模型复核；固定普通箱/断开辅助电源搜索不使用死锁剪枝或玩家区域合并。实施阶段：L04–L06 经编辑器作者接口保存、共享规则回放和真实 LevelRunner 连续通关验证，结果见 Validation/CargoCrateIterationResults.json。计数是参考路线，不宣称最优；人工难度尚待试玩反馈。"
 }

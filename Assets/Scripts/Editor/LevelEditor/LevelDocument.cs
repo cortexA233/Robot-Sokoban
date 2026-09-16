@@ -8,7 +8,7 @@ using Terrain = Sokoban.Domain.Terrain;
 
 namespace Sokoban.Editor
 {
-    public enum LevelBrush { Select, Floor, Wall, Void, LowFriction, Player, Crate, UtilitySocket, GoalSocket, Gate, Erase }
+    public enum LevelBrush { Select, Floor, Wall, Void, LowFriction, Player, Crate, UtilitySocket, GoalSocket, Gate, Erase, CargoCrate }
     public enum AuthorLayer { Terrain, Devices, Actors }
 
     // Both the window and recipe importer call these author operations.
@@ -60,7 +60,7 @@ namespace Sokoban.Editor
             if (width < 5 || width > 32 || height < 5 || height > 32) throw new ArgumentOutOfRangeException("尺寸必须是 5–32。");
             return new LevelDefinition
             {
-                schemaVersion = 1, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), title = "新关卡",
+                schemaVersion = 2, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), title = "新关卡",
                 briefing = "把能源箱送入目标插槽。", completionText = "区域已恢复供电", width = width, height = height,
                 gridSize = 1, terrainRows = Enumerable.Repeat(new string('.', width), height).ToArray(),
                 crates = Array.Empty<CrateDefinition>(), sockets = Array.Empty<SocketDefinition>(),
@@ -100,9 +100,9 @@ namespace Sokoban.Editor
         {
             var ground = level.TerrainAt(cell);
             if (ground == Terrain.Void || ground == Terrain.Wall) throw new InvalidOperationException("请先放置地板。");
-            if (brush == LevelBrush.Player || brush == LevelBrush.Crate)
+            if (brush == LevelBrush.Player || brush == LevelBrush.Crate || brush == LevelBrush.CargoCrate)
             {
-                if (level.crates.Any(c => c.Cell == cell) || (brush == LevelBrush.Crate && level.playerSpawn != null && level.playerSpawn.Cell == cell))
+                if (level.crates.Any(c => c.Cell == cell) || (brush != LevelBrush.Player && level.playerSpawn != null && level.playerSpawn.Cell == cell))
                     throw new InvalidOperationException("玩家与箱子不能重叠。");
                 if (brush == LevelBrush.Player)
                 {
@@ -110,7 +110,9 @@ namespace Sokoban.Editor
                     level.playerSpawn = new PlayerSpawn { x = cell.x, z = cell.z, facing = facing }; return "player";
                 }
                 string id = NewId("crate");
-                level.crates = level.crates.Concat(new[] { new CrateDefinition { id = id, x = cell.x, z = cell.z } }).ToArray();
+                if (brush == LevelBrush.CargoCrate) level.schemaVersion = 2;
+                level.crates = level.crates.Concat(new[] { new CrateDefinition { id = id, x = cell.x, z = cell.z,
+                    kind = brush == LevelBrush.CargoCrate ? CrateDefinition.Cargo : CrateDefinition.Energy } }).ToArray();
                 return id;
             }
             if (ground != Terrain.Floor || level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell))
@@ -167,6 +169,13 @@ namespace Sokoban.Editor
             entity.x = to.x; entity.z = to.z;
         }
         public void SetGateSources(string id, string[] sources) => level.gates.Single(g => g.id == id).sourceSocketIds = sources.Distinct().ToArray();
+        public void SetCrateKind(string id, string kind)
+        {
+            if (kind != CrateDefinition.Energy && kind != CrateDefinition.Cargo) throw new ArgumentException("箱子类型必须是 Energy 或 Cargo。", nameof(kind));
+            var crate = level.crates.Single(c => c.id == id);
+            if (kind == CrateDefinition.Cargo) level.schemaVersion = 2;
+            crate.kind = kind;
+        }
         public int CroppedCount(int width, int height) => level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Concat(level.decorations)
             .Count(e => e.x >= width || e.z >= height) + (level.playerSpawn != null && (level.playerSpawn.x >= width || level.playerSpawn.z >= height) ? 1 : 0);
         public void Resize(int width, int height)

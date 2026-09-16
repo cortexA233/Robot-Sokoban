@@ -97,7 +97,7 @@ namespace Sokoban.Editor
             Button(palette, "外围墙", () => Edit("建立外围墙", document.Border), "border");
             Button(palette, "SceneView 聚焦", FrameBoard, "frame-board");
             palette.Add(new Label("示例关卡"));
-            foreach (string name in new[] { "L01", "L02", "L03", "LAB01_LowFriction" })
+            foreach (string name in new[] { "L01", "L02", "L03", "L04", "L05", "L06", "LAB01_LowFriction" })
             {
                 string path = "Assets/Resources/configs/" + (name.StartsWith("LAB") ? "test_levels/" : "levels/") + name + ".json";
                 Button(palette, name.StartsWith("LAB") ? "LAB01（开发测试）" : name, () => { if (ConfirmDiscard()) Run(() => { document.Open(path); Refresh(); FrameBoard(); }); });
@@ -114,7 +114,7 @@ namespace Sokoban.Editor
             rootVisualElement.SetEnabled(!EditorApplication.isPlayingOrWillChangePlaymode);
             Refresh();
         }
-        private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层" }[(int)value];
+        private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层", "普通箱（不供电）" }[(int)value];
         private static void Button(VisualElement parent, string text, Action action, string name = null)
         { var button = new Button(action) { text = text, name = name }; button.style.minHeight = 25; parent.Add(button); }
         private void Run(Action action)
@@ -156,7 +156,8 @@ namespace Sokoban.Editor
         {
             var l = document.level;
             if (l.playerSpawn != null && l.playerSpawn.Cell == cell) return "P";
-            if (l.crates.Any(c => c.Cell == cell)) return "C";
+            var crate = l.crates.FirstOrDefault(c => c.Cell == cell);
+            if (crate != null) return crate.IsEnergy ? "C" : "X";
             if (l.gates.Any(g => g.Cell == cell)) return "D";
             var s = l.sockets.FirstOrDefault(v => v.Cell == cell); if (s != null) return s.isGoal ? "◎" : "s";
             return l.TerrainAt(cell) == Terrain.LowFriction ? "≋" : l.TerrainAt(cell) == Terrain.Wall ? "■" : "";
@@ -239,6 +240,14 @@ namespace Sokoban.Editor
                 string direction = player ? level.playerSpawn.facing : ((GateDefinition)entity).facing;
                 var dropdown = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, LevelValidator.IsFacing(direction) ? direction : "N");
                 properties.Add(dropdown); dropdown.RegisterValueChangedCallback(e => Edit("旋转元素", () => { if (player) level.playerSpawn.facing = e.newValue; else ((GateDefinition)entity).facing = e.newValue; }));
+            }
+            if (entity is CrateDefinition crate)
+            {
+                var kind = new PopupField<string>("箱子类型", new List<string> { "能源箱", "普通箱" }, crate.IsEnergy ? "能源箱" : "普通箱") { name = "crate-kind" };
+                kind.tooltip = "普通箱可以推动，但不会给插槽供电，也不需要归位。";
+                properties.Add(kind);
+                kind.RegisterValueChangedCallback(e => Edit("修改箱子类型", () => document.SetCrateKind(crate.id,
+                    e.newValue == "能源箱" ? CrateDefinition.Energy : CrateDefinition.Cargo)));
             }
             if (entity is SocketDefinition socket)
             {
@@ -391,7 +400,7 @@ namespace Sokoban.Editor
         public static void OpenHelp() => GetWindow<HelpWindow>("关卡编辑器帮助");
         public void CreateGUI()
         {
-            rootVisualElement.Add(new Label("1. 新建 → 调整宽高 → 外围墙。\n2. 放玩家 P、箱子 C、目标插槽 ◎。\n3. 放门 D 后，在属性中勾选来源插槽。\n4. 校验；点击错误可定位。\n5. 试玩并录制；↑→↓← 为世界方向，V 切视角，Z 撤销，R 重开。\n6. 通关后保存参考解法，再退出 Play Mode。\n7. 保存关卡；回放通过后再保存，绑定当前版本。\n\n地图坐标从左下角 (0,0) 开始，北方在上。\n左键选择/放置，地形可拖刷；右键按图层擦除。\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Q/E 旋转。\nSceneView Alt/中键保留导航。\n\n当前为首轮实现；正式目录管理、菜单/进度及完整验收仍待后续迭代。") { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingTop = 16 } });
+            rootVisualElement.Add(new Label("1. 新建 → 调整宽高 → 外围墙。\n2. 放玩家 P、能源箱 C、目标插槽 ◎；普通箱 X 可推、不供电、无需归位。\n3. 放门 D 后，在属性中勾选来源插槽。\n4. 校验；点击错误可定位。\n5. 试玩并录制；↑→↓← 为世界方向，V 切视角，Z 撤销，R 重开。\n6. 通关后保存参考解法，再退出 Play Mode。\n7. 保存关卡；回放通过后再保存，绑定当前版本。\n\n地图坐标从左下角 (0,0) 开始，北方在上。\n左键选择/放置，地形可拖刷；右键按图层擦除。\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Q/E 旋转。\nSceneView Alt/中键保留导航。\n\n当前为首轮实现；正式目录管理、菜单/进度及完整验收仍待后续迭代。") { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingTop = 16 } });
         }
     }
 }

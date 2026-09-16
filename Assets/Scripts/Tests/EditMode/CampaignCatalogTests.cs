@@ -8,11 +8,11 @@ namespace Sokoban.Tests
 {
     public sealed class CampaignCatalogTests
     {
-        [Test] public void DefaultCatalogContainsOnlyThreeOrderedCampaignLevels()
+        [Test] public void DefaultCatalogAppendsThreeCargoLevelsAfterOriginalCampaign()
         {
             var catalog = Resources.Load<CampaignCatalog>("configs/CampaignCatalog");
             Assert.That(catalog, Is.Not.Null);
-            Assert.That(catalog.ReadLevels().Select(level => level.id), Is.EqualTo(new[] { "L01", "L02", "L03" }));
+            Assert.That(catalog.ReadLevels().Select(level => level.id), Is.EqualTo(new[] { "L01", "L02", "L03", "L04", "L05", "L06" }));
             var copy = catalog.ReadLevels(); copy[0].title = "changed";
             Assert.That(catalog.ReadLevels()[0].title, Is.EqualTo("唤醒维修区"));
         }

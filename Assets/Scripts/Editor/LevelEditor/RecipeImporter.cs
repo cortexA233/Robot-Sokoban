@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Sokoban.Domain;
 using UnityEditor;
 using UnityEngine;
@@ -18,9 +20,11 @@ namespace Sokoban.Editor
     {
         public static void ImportInto(LevelDocument document, string json)
         {
-            var recipe = JsonUtility.FromJson<LevelRecipe>(json);
-            if (recipe?.definition == null) throw new FormatException("配方缺少 definition。");
-            var source = recipe.definition;
+            var recipe = JObject.Parse(json, new JsonLoadSettings { DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error });
+            if (recipe["definition"] == null) throw new FormatException("配方缺少 definition。");
+            var source = LevelJson.Read(recipe["definition"].ToString());
+            if (recipe["commands"] != null && recipe["commands"].Type != JTokenType.String) throw new FormatException("配方 commands 必须是方向字符串。");
+            string commands = (string)recipe["commands"];
             var report = LevelValidator.Validate(source);
             if (!report.IsValid) throw new FormatException(string.Join("\n", report.Issues.Where(i => i.IsError)));
             // Build in isolation. A failed import never replaces the author's current work.
@@ -28,12 +32,15 @@ namespace Sokoban.Editor
             try
             {
                 temporary.level = LevelDocument.NewLevel(source.width, source.height);
+                temporary.level.schemaVersion = source.schemaVersion;
+                temporary.draftPath = document.draftPath;
                 temporary.level.id = source.id; temporary.level.title = source.title;
                 temporary.level.briefing = source.briefing; temporary.level.completionText = source.completionText;
                 for (int z = 0; z < source.height; z++)
                     for (int x = 0; x < source.width; x++) temporary.Paint(new Cell(x, z), source.terrainRows[source.height - z - 1][x]);
                 temporary.Place(LevelBrush.Player, source.playerSpawn.Cell, source.playerSpawn.facing);
-                foreach (var crate in source.crates) temporary.Find(temporary.Place(LevelBrush.Crate, crate.Cell, "N")).id = crate.id;
+                foreach (var crate in source.crates)
+                    temporary.Find(temporary.Place(crate.IsEnergy ? LevelBrush.Crate : LevelBrush.CargoCrate, crate.Cell, "N")).id = crate.id;
                 foreach (var socket in source.sockets)
                     temporary.Find(temporary.Place(socket.isGoal ? LevelBrush.GoalSocket : LevelBrush.UtilitySocket, socket.Cell, "N")).id = socket.id;
                 foreach (var gate in source.gates)
@@ -43,7 +50,7 @@ namespace Sokoban.Editor
                 }
                 temporary.level.decorations = source.decorations.Select(d => d.Copy()).ToArray();
                 SolutionRecord solution = null;
-                if (!string.IsNullOrEmpty(recipe.commands)) solution = SolutionRecord.Capture(temporary.level, SolutionRecord.ReplayCommands(temporary.level, recipe.commands));
+                if (!string.IsNullOrEmpty(commands)) solution = SolutionRecord.Capture(temporary.level, SolutionRecord.ReplayCommands(temporary.level, commands));
                 document.Change("导入策划配方", () =>
                 {
                     document.level = temporary.level.Copy(); document.solution = solution;

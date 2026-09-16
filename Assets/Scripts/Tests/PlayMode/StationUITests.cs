@@ -106,6 +106,20 @@ namespace Sokoban.Tests
             Assert.That(Page<HudPage>().transform.Find("Header/Title").GetComponent<Text>().text, Does.Contain("借电开路"));
         }
 
+        [UnityTest] public IEnumerator AddedLevelsAreReachableThroughScrolledSelection()
+        {
+            yield return Click<MainMenuPage>("Content/Levels");
+            var page = Page<LevelSelectPage>();
+            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level06/Label").GetComponent<Text>().text, Does.Contain("先过箱，再交电"));
+            page.transform.Find("Content/List").GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
+            yield return null;
+            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level06");
+            yield return Click<LevelSelectPage>("Content/Enter");
+            yield return WaitForTransition();
+            Assert.That(runner.Definition.id, Is.EqualTo("L06"));
+            Assert.That(runner.GoalCount, Is.EqualTo(2)); Assert.That(runner.PoweredGoalCount, Is.Zero);
+        }
+
         [UnityTest] public IEnumerator PauseSelectionBackPreservesSessionAndSettingsPersist()
         {
             runner.SelectLevel(0);

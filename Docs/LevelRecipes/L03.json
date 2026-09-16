@@ -4,7 +4,7 @@
     "id": "L03",
     "title": "重启主核心",
     "briefing": "完成两次供电交接，回收临时能源箱，重启主核心。",
-    "completionText": "空间站已重启",
+    "completionText": "主核心已恢复供电",
     "width": 19,
     "height": 9,
     "gridSize": 1,
