@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-16",
+  "recordedAtUtc": "2026-09-16T18:59:16.013904+00:00",
+  "scope": "Project agent instructions, skill routing, prompts and guidance",
+  "status": "project_configuration_verified",
+  "codexRuntime": "0.154.0-alpha.6.2 (desktop bundled binary)",
+  "rootInstructions": {
+    "beforeLines": 63,
+    "afterLines": 35,
+    "beforeBytes": 6785,
+    "afterBytes": 4200
+  },
+  "documentChecks": {
+    "files": 16,
+    "localLinks": 78,
+    "brokenLinks": 0,
+    "tomlAndPromptJsonParsed": true,
+    "gitDiffCheckExitCode": 0
+  },
+  "projectSkills": [
+    {
+      "name": "sokoban-robot-asset",
+      "description": "Modify this project's Blender robot source, mechanical animation, FBX export or asset validation.",
+      "description_chars": 97,
+      "lines": 21
+    },
+    {
+      "name": "sokoban-unity-editor",
+      "description": "Operate or recover this project's Unity Editor through CoplayDev MCP, including scene/asset changes and Unity test runs.",
+      "description_chars": 120,
+      "lines": 17
+    }
+  ],
+  "skillValidation": {
+    "quickValidate": "2 passed",
+    "nativeRepoDiscovery": "2 enabled, no errors",
+    "nativeMetadataSnapshotCount": 55,
+    "nativeParseErrors": [],
+    "implicitRoutingReview": "static scenario review only"
+  },
+  "progressiveLoading": {
+    "method": "codex debug prompt-input; no model invocation",
+    "probe": "检查 README 中一处措辞。",
+    "rootLoaded": true,
+    "projectSkillDescriptionsLoaded": true,
+    "projectSkillBodiesLoaded": false,
+    "fullGddLoaded": false,
+    "fullRobotGuideLoaded": false
+  },
+  "mcp": {
+    "server": "coplay_unity",
+    "url": "http://127.0.0.1:8087/mcp",
+    "unityVersion": "2022.3.51f1",
+    "projectRoot": "C:/recent_project/Sokoban_3D_Test",
+    "scene": "Assets/Scenes/Bootstrap.unity",
+    "compiling": false,
+    "importing": false,
+    "consoleErrorCount": 0,
+    "cliStatusInstanceProjectStateAndHierarchyReads": "passed"
+  },
+  "preservation": {
+    "nonMarkdownFilesChecked": 722,
+    "unchangedFromAuditBaseline": 721,
+    "concurrentCommitPreserved": "56330ae",
+    "concurrentChanges": {
+      "Assets/Scripts/Editor/LevelEditor/LevelEditorWindow.cs": {
+        "baseline_sha256": "881eb959184c21f0c7e4300c839cf915c09c2e7e464899c0c4eff432f4efc253",
+        "observed_sha256": "aa121882c49b66573066c9ef49a613498d5262371789c6df8749848b9142e50c",
+        "action": "Preserved; changed outside this documentation/configuration iteration."
+      }
+    },
+    "unityVersionsAndPackagePinsUnchanged": true,
+    "artPromptsSourcesGuidsAndUserImportsUnchangedByThisIteration": true
+  },
+  "sharedSkills": {
+    "modified": false,
+    "duplicateNamesStillDiscoverable": [
+      "skill-creator",
+      "unity-developer",
+      "unity-shader"
+    ],
+    "projectConfigDisableProbe": "readable by config/read but absent from prompt filtering; ineffective entries removed",
+    "resolution": "Project AGENTS scopes applicability; shared catalog itself remains unchanged."
+  },
+  "gameplayTestsAndBuild": "Not run: this iteration changes guidance, not gameplay. Live compilation/Console and MCP connectivity were checked.",
+  "instructionFileSha256": {
+    ".agents/skills/sokoban-robot-asset/SKILL.md": "0908730320e27f362d90518b29ecf2830e328b1ccffe6f8ff5293a228b313023",
+    ".agents/skills/sokoban-unity-editor/SKILL.md": "4e16da6dfa94b07ae89dd72c1b21ec47c0b2f023ce144322fa99e69486efd920",
+    "AGENTS.md": "85689263b4b628b033b1cc962c2d7e09e377879c74663175bd4007b007f91e75",
+    "ArtSource/Robot/README.md": "02185747ea5b3a11801735c3fe3eb72712a66159f45870550a79dbe8f4e7dc8e",
+    "ArtSource/UIConcepts/README.md": "c8fa9a85ca63cd1212eedd4cd5a0933b09e0ecd507fe51b6564bec85fec14b3d",
+    "Docs/AgentConfigurationAudit.md": "0be7bcdc9367f55c6c8eec182705bc298344bbd7202b5341a95184b67f05ef78",
+    "Docs/GameDesign.md": "44c99d2221e455332a1b15fa57142131f3e79bed2d1fa4f0f1adecbea3df5035",
+    "Docs/GMAndLiveEditingPlan.md": "c5f05b274d6cf9f8a9650c82423db18378a1057170c76acd705ffd32af0675c8",
+    "Docs/ImplementationProgress.md": "1b474e391df9851adb73a3d8b8f8d4d432eb5aa91fe2cc9462d75f50ad987e7d",
+    "Docs/LevelEditorGuide.md": "1ba3851ab2b1c9156147c0d94eaae22492d54f59aeee91081be74f3e85a13ea9",
+    "Docs/ProjectStructure.md": "f59584432db35e15597277fcbd2da06569a0d90e4cc451077841d2a04c61871a",
+    "Docs/RobotBlenderGuide.md": "73d59eb354e6604594f8270b7bfcbc303a9caaa9c4c0e32f15152dfe7d642202",
+    "Docs/UIImplementation.md": "04f7b4f3da2d29518022020ef63b068d05a059d6db1a1bb37ec2aded67d430be",
+    "Docs/UnityMcp.md": "3a71f28215ee603a36d52932715963b31c08ee92ae7c1a49cf41d9b893c243f2",
+    "Docs/UnitySetup.md": "80be890a46db737a12fde567896356ebc5d00a131ef5422b2b252798f40f99e8",
+    "README.md": "32808b860d6f982a8bb883dc4d7ed12a659107b757f693aa7ee9e95faa2cd5f8"
+  }
+}

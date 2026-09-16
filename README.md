@@ -28,7 +28,7 @@
 
 ## 目录约定
 
-完整规则见 [AGENTS.md](AGENTS.md)，组织方式参考 Element_Ballance。
+Agent 的按需阅读入口、授权与完成标准见 [AGENTS.md](AGENTS.md)；新增/移动文件的详细规则见 [ProjectStructure.md](Docs/ProjectStructure.md)。组织方式参考 Element_Ballance，无需该参考工程在本机存在。
 
 - `Assets/Art/`：按主题组织模型、材质和动画。
 - `Assets/Scripts/`：按功能组织运行时代码；项目工具在 `Editor/`，KToolkit 在 `KToolkit_for_unity/`。

@@ -1,12 +1,14 @@
 # 《空间站重启》游戏 GDD 与 Unity 实现方案
 
-版本：1.3 · 日期：2026-09-16 · 状态：可交付实现 Agent，机器人资产已交付、游戏接入待完成 · 用途：技术策划招聘 Take-home 测试
+版本：1.4 · 日期：2026-09-16 · 状态：产品与技术规格；已实现范围见 [ImplementationProgress.md](ImplementationProgress.md) · 用途：技术策划招聘 Take-home 测试
 
 配套文档：[履带机器人建模与动画指南](./RobotBlenderGuide.md)。本文件负责游戏规则、Unity 系统、编辑器及验收；配套文件负责角色资产。两份文档共享 `robot-asset-v1` 交付约定。
 
-## 0. 给实现 Agent 的任务说明
+按任务读取：规则/坐标见第2、4节；输入/相机见第3节；关卡编辑器见第6节；数据见第7节；模块与表现见第8节；机器人游戏接入见第9节；完整交付验收见第11–12节。本文不是每次编辑前的必读清单，也不自动授权实现尚未请求的全部功能。
 
-在本仓库实现一个用于技术策划招聘 Take-home 测试的 Unity 3D 推箱子项目。开发目标包含两项独立且必须同时通过验收的成果：**具备 2–3 张完整关卡的可玩游戏，以及完整可用的 Unity 内关卡编辑器**。场景、箱子和机关继续使用白模；主角直接复用已交付的履带机器人预制体，完成其与网格移动、推箱及双视角的接入。必须先建立关卡数据与编辑器的制作链，再通过它制作关卡。
+## 0. 产品目标与范围
+
+本项目用于技术策划招聘 Take-home 测试。完整交付包含两项成果：**具备 2–3 张完整关卡的可玩游戏，以及完整可用的 Unity 内关卡编辑器**。场景、箱子和机关继续使用白模；主角复用已交付的履带机器人预制体。关卡通过现有作者工具与数据链制作，游戏与编辑器共享规则内核。
 
 **编辑器是最高优先级的正式交付物。** 评审者应能仅通过编辑器界面独立完成“创建 → 编辑 → 配置机关 → 校验 → 试玩 → 修改 → 保存 → 重新打开 → 加入关卡目录”，无需编写代码、手改 JSON、调用 MCP 或请求实现 Agent 代操作。编辑器未达到这个标准时，整个 Take-home 项目不能标记为完成。
 
@@ -28,20 +30,12 @@
 | 美术 | 主角使用已交付资产，场景/箱子/机关暂用白模；简约科幻风格 |
 | 后续关卡 | 都使用本文定义的编辑器、数据格式、校验、试玩和发布流程 |
 
-### 0.2 工作起点与执行约束
+### 0.2 当前实现基线
 
-- 初版规划后，仓库已创建 `Assets`、`Packages`、`ProjectSettings`。当前 `ProjectVersion.txt` 为 `2022.3.51f1`；实现前检查已有工程并在其基础上完善，不重新初始化覆盖已有工作。
-- 先读取根目录 [AGENTS.md](../AGENTS.md)；目录、命名、MCP及资源移动按其执行。现有机器人、KToolkit及MCP工具均复用，不能按旧版文档重新建一套平行目录。
-- 用户指定引擎版本为 **Unity `2022.3.51f1`**，本机也已安装。工程必须使用这个精确版本创建、测试和构建；执行环境缺失时先补齐该版本，不能自行升级引擎。
-- 工程保持在仓库根，按各阶段实际修改提交 `Assets`、`Packages`、`ProjectSettings` 及对应 `.meta`。保留已有文件和用户修改，不能把未检查的其他工作混进本阶段提交。
-- 当前 manifest 已记录 URP `14.0.11`、Input System `1.18.0`；先验证现有依赖的解析和编译，保留兼容配置，并锁定到 manifest/lock 文件。不要为了套用模板无故替换现有依赖。
-- manifest 已记录 Cinemachine `2.10.7`；使用 `CinemachineVirtualCamera`、`Cinemachine3rdPersonFollow` 和 `CinemachineBrain`，保持2.x接口。
-- 已导入 DOTween Pro。相机、平滑运动、反馈的实现按第8.4–8.6节分工；插件版本/初始化须单独验证，不能据此改变既定规则、编辑器交付目标或Blender动画要求。
-- 机器人资源入口为 `Assets/Resources/prefabs/gameplay/player/Robot.prefab`，交付清单为 `ArtSource/Robot/robot_asset_manifest.json`。先完成一次现有资产加载/动画绑定，再迭代游戏逻辑；白模角色可用于隔离测试，正式交付需接入现有机器人。
-- Unity实机操作使用 **CoplayDev MCP for Unity 10.2.0**，服务 `coplay_unity`，地址 `http://127.0.0.1:8087/mcp`。按[连接说明](./UnityMcp.md)读取实例、选中 `Sokoban_3D_Test`，核对项目根路径和Editor状态后使用工具，并用manage_tools启用所需分组；旧任务未加载工具时使用 `Tools/UnityMcp.ps1`。
-- 当前MCP高级相机工具可能只探测Cinemachine 3；Cinemachine 2.x的操作通过组件、反射或动态代码完成，不为启用工具预设升级依赖。改脚本后等待编译并读Console，按变更范围运行测试和截图检查。
-- 实现 Agent 每完成一个可验收阶段，运行相关检查、审查 diff、只暂存本阶段文件并提交。未经用户明确要求，不 push、不创建 PR、不发布。
-- 完成本方案时必须交付包含完整编辑器的 Unity 工程、Windows 游戏构建、关卡数据、评审者操作说明、编辑器验收记录和规则测试结果。编辑器在 Unity 内验收，Windows 构建用于游戏体验验收，两项结果分别记录。
+- 在现有工程上迭代。版本、授权和提交边界由 [AGENTS.md](../AGENTS.md) 维护；新增/移动文件时用 [ProjectStructure.md](ProjectStructure.md)，实机操作时用 [UnityMcp.md](UnityMcp.md)。
+- 当前依赖为 URP `14.0.11`、Input System `1.18.0`、Cinemachine `2.10.7`；相机使用 `CinemachineVirtualCamera`、`Cinemachine3rdPersonFollow` 和 `CinemachineBrain` 的2.x接口。DOTween现有使用与变更检查见第8.4–8.6节。
+- 现有 `PlayerActor.prefab` 已嵌套 `Assets/Resources/prefabs/gameplay/player/Robot.prefab`，并接入移动、推动与动画采样；后续按第9节维护，不重建已经存在的包装和资产。资产清单仍在 `ArtSource/Robot/robot_asset_manifest.json`，与游戏测试记录分开。
+- 作者工具、三关流程和UGUI均已有实现；剩余范围见实现记录。只有请求完整交付时，才以第11–12节的工程、构建、数据、说明和验收记录作为整体完成标准。
 
 ### 0.3 范围控制
 
@@ -707,14 +701,14 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 
 如果使用 `SetLink`，链接根Sequence/根Tween到其会话宿主；加入Sequence的子Tween不单独依赖SetLink清理。切关/停止试玩仍显式取消会话拥有的全部表现。Safe Mode是辅助保护，不替代生命周期管理。有关DOTween取消与Sequence控制的API语义参见[官方文档](https://dotween.demigiant.com/documentation.php)。
 
-### 8.6 插件接入的首轮检查
+### 8.6 插件接入与变更验证
 
 - 引擎保持2022.3.51f1、URP保持14.0.11。只接入本项目实际使用的反馈和模块；插件Demo的额外包不能成为正式游戏的隐式依赖。
-- 当前 `Assets/Resources/DOTweenSettings.asset` 显示 `createASMDEF=0`，未扫描到DOTween对应asmdef。接入自有Runtime程序集前，通过 `Tools > Demigiant > DOTween Utility Panel` 检查Setup和程序集生成，再配置实际依赖；确认Pro组件及所用Modules可被引用。
+- 当前自有Runtime程序集已使用DOTween核心DLL，已记录核心版本 `1.2.825`。仅在新增Pro组件/Modules引用或修复程序集问题时检查Utility Panel、Setup及asmdef；现有核心调用不要求重新生成插件配置。
 - 现有DOTween设置中UI模块开启，UI Toolkit和TextMesh Pro模块关闭。基础uGUI可用对应模块；如果需要TMP/UIToolkit扩展，先显式启用并验证。Level Editor继续用Unity UI Toolkit制作，不能依赖动画插件才能编辑关卡。
 - Domain、校验器和关卡JSON不引用DOTween或Cinemachine类型。
 - 插件初始化纳入现有Bootstrap；工程已有的框架配置见[Unity接入记录](./UnitySetup.md)，避免重复创建Canvas/EventSystem或多个初始化宿主。
-- 先在本项目的最小场景中验证“一次移动、一次反馈、一次取消、一次切镜头”和Windows编译，再接正式表现。导入文件存在不代表这些集成检查已经通过。
+- 首次接入新插件能力时，验证其实际使用、取消/暂停和目标平台编译。已有能力的局部修改运行受影响的集成测试；不重复首轮完整场景搭建和无关构建。导入文件存在不代表集成已经通过。
 - 编辑器内的地图预览保持静态；试玩进入正式Play模式。关闭工具或退出试玩后，不能把插件预览产生的Transform/材质改动保存回关卡设计或正式Prefab。
 
 ## 9. 已交付机器人与 robot-asset-v1 接入约定
@@ -777,9 +771,9 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 2026-09-16本次只读核对：清单31个文件均存在，30个工作区文件哈希吻合；其中FBX、预制体、控制器与材质均匹配。当前工作区 `Robot.blend` 有未提交修改，哈希不匹配；Git已提交的Robot.blend仍与交付清单匹配。继续使用已验证的导出资产作为接入基线，保留源文件修改。未来采用修改后的源文件时必须重新导出和验证，再更新清单；不得只刷新哈希或把既有通过记录套到新源文件上。
 
-### 9.4 实现 Agent 的机器人接入步骤
+### 9.4 机器人运行时集成约定
 
-1. **包装现有资产。** 在 `Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab` 新建游戏外层，嵌套现有Robot.prefab。玩家输入/格坐标/朝向控制放在外层或由GameSession持有；RobotPresenter放在 `Assets/Scripts/Player/`，只持有视觉对象引用。保留Robot美术预制体的GUID和子层级。
+1. **维护现有包装。** `Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab` 已作为游戏外层嵌套Robot.prefab。玩家输入/格坐标/朝向控制放在外层或由GameSession持有；RobotPresenter位于 `Assets/Scripts/Player/`，只持有视觉对象引用。保留Robot美术预制体的GUID和子层级。
 2. **分清动画根。** 预制体最外层Robot持有Animator，内层RobotRoot保持静止局部变换。当前剪辑以Robot为绑定根，曲线路径均以 `RobotRoot/...` 开头，包含RobotRoot本身的常量曲线；不能把Animator挪到PlayerActor/RobotRoot，或用内层RobotRoot承载网格位移。
 3. **绑定现有剪辑。** 从Controller持有的引用/序列化AnimationClip字段绑定Idle、Move、Push，不在Player构建中调用AssetDatabase加载FBX。Controller没有Speed/IsPushing/Push触发器，不假定这些参数存在。使用受第8.3节共同时间值驱动的Playables实现采样，并保证只有一套动画驱动器写机械节点，不能让Controller自动播放与手动采样相互覆盖。
 4. **精确寻址锚点。** 相对于视觉根Robot，气泡路径为 `RobotRoot/EmotionAnchor`，推板接触路径为 `RobotRoot/PushSlide/PushContact`；相对于内层RobotRoot则分别为 `EmotionAnchor` 和 `PushSlide/PushContact`。相机目标在游戏层单独维护，高度0.55 m，仅跟随玩家平移，环绕角度由CameraRig控制，不继承机器人转身或机械节点摆动。
@@ -864,6 +858,8 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 目标是评审者阅读简短说明后，约10分钟能完成以下流程；时间为易用性目标，实际耗时在验收时记录。本流程只使用 Unity 界面，不修改源码、JSON，也不调用 Agent/MCP。
 
+这是最终用户的操作路径。Agent 可通过实际界面的鼠标键盘或等价输入自动化自行完成同一路径的功能验收，并继续修复失败；直接调用业务API不能代替界面验证。独立评审者的易用性反馈另行记录，不作为每轮实现、测试和本地提交的前置审批，也不能把Agent操作记录冒充为独立用户评审。
+
 | 步骤 | 评审操作 | 预期结果 |
 |---|---|---|
 | 1 | 用2022.3.51f1打开工程，按README进入 `Sokoban_Tools > Level Editor` | 无编译错误，能找到帮助、示例关卡和新建按钮 |
@@ -884,6 +880,8 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 ## 12. 一周里程碑与完成门槛
 
+下表保留初始排期，供理解功能依赖。后续任务从当前实现状态继续，按用户请求的范围完成，不重复已通过的阶段，也不把排期当作自动停止点。
+
 | 时间 | 工作 | 阶段结束时必须能演示 |
 |---|---|---|
 | 第1天 | 核对AGENTS/MCP与现有工程；加载已交付Robot预制体；数据/规则骨架；最小编辑器的建图、保存加载 | 编辑器制作一张小图，进入游戏能推箱、完成、重开；角色资源路径及三段动画引用可用 |
@@ -891,10 +889,10 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 | 第3天 | LowFriction、LAB01；编辑器撤销/重做、草稿恢复、试玩返回、录制回放与目录管理 | 从界面完成两个机制的建图/保存/试玩；工作副本不被试玩污染 |
 | 第4天 | 编辑器E01–E12首轮验收；机器人Presenter/接触/撤销；第三人称/俯视、输入映射与避障 | 现有机器人在游戏中移动/推箱；编辑器完整流程及双视角可用 |
 | 第5天 | 用编辑器建立 L01–L03，导入参考解法并测试；菜单与关卡流程 | 三关从菜单进入且可完成；正式JSON都来自编辑器 |
-| 第6天 | 请未参与实现的人按第11.4节操作编辑器；补齐真实关卡中的机器人/反馈验收与评审说明 | 他人可独立建关；正式主角与表情、相机、取消操作通过游戏级验收 |
+| 第6天 | 自行跑通第11.4节界面路径，补齐机器人/反馈验收与说明；有独立评审时另记反馈 | 界面路径完整可操作；正式主角与表情、相机、取消操作通过游戏级验收 |
 | 第7天 | 编辑器与游戏双线回归、正式构建、提交材料整理 | 完整Unity编辑器工程、Windows游戏构建、规则测试和编辑器验收记录 |
 
-如果时间不足，按此顺序缩减：装饰数量 → 灯光演出 → 额外音效变化 → 第三张正式关卡。至少保留 L01/L02、两个已完成机制、LAB01、双视角、撤销、现有机器人接入，以及完整编辑器的 E01–E12、评审操作流程和使用说明。**编辑器的完整性、正确保存、错误定位和试玩往返不可减项。** 主角资产已到位，沿用现有资产完成接入，不再安排重建模型或等待美术交付。
+装饰、灯光演出、额外音效变化和第三张正式关卡是初始排期中的可选范围；缩减用户已经要求的交付需另行确认，不能因完成第一版或时间不足自行删减。最低交付仍包含 L01/L02、两个机制、LAB01、双视角、撤销、现有机器人接入，以及完整编辑器的 E01–E12、评审操作流程和使用说明。
 
 ### Take-home 提交材料
 
@@ -920,7 +918,7 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 - [ ] 3 张正式关卡；若按减项策略交付 2 张，在交付说明中明确指出。
 - [ ] LAB01 和核心规则、编辑器保存往返、参考解法回放测试通过。
 - [ ] 已复用Robot.prefab，完成PlayerActor/RobotPresenter及第9.4节的游戏级验收；资产级报告不代替本项。
-- [ ] Windows 构建已实际启动并完成至少一关；正式全部解法在共享内核回放通过。
+- [ ] Windows 构建已实际启动并完成至少两张正式关卡；正式全部解法在共享内核回放通过。
 - [ ] Take-home提交材料齐全：README、编辑器使用说明、实测验收记录、已知问题与构建路径。
 - [ ] 修改已审查并形成聚焦 Git 提交；未经授权不发布远程变更。
 
@@ -928,7 +926,7 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 以下是实现依据，本文中的玩法和模块划分是项目设计决定。参考页面中的版本示例不应覆盖本地实际包版本。
 
-- [项目AGENTS.md](../AGENTS.md)：本地目录、命名、MCP、资源移动与提交规则的依据。
+- [项目AGENTS.md](../AGENTS.md)：任务路由、授权与完成标准；新增/移动文件的详细约定见 [ProjectStructure.md](ProjectStructure.md)。
 - [Unity MCP连接与兼容说明](./UnityMcp.md)：CoplayDev 10.2.0、指定项目路由及Cinemachine 2.x工具边界。
 - [Unity 2022.3：URP 包](https://docs.unity3d.com/2022.3/Documentation/Manual/com.unity.render-pipelines.universal.html)：确认 URP 14.0 系列与编辑器版本关系。
 - [Unity 2022.3：Cinemachine 包](https://docs.unity3d.com/2022.3/Documentation/Manual/com.unity.cinemachine.html)：确认 2.10 系列包的兼容基线。

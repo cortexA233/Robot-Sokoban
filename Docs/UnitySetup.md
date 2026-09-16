@@ -4,6 +4,8 @@
 
 本工程使用 **Unity 2022.3.51f1**。在 Unity Hub 中添加仓库根目录即可打开。
 
+本文记录依赖接入及故障复现，只在环境/包问题或框架初始化修改时读取对应部分。日常实机操作和测试入口见 [UnityMcp.md](UnityMcp.md)。
+
 原始工程的依赖清单混用了 Unity 6 模板的包版本和模块，导致导航 API 缺失、测试框架无法解析，并进一步引起 Visual Studio 集成包的编译错误。本次使用本机 2022.3.51f1 自带的 Package Manager 版本清单修复：
 
 | 包 | 原版本 | 当前版本 |
@@ -51,11 +53,11 @@ public class GameBootstrap : MonoBehaviour
 }
 ```
 
-初始化会建立持久化的框架对象、UI Canvas、EventSystem 和对象池父节点。项目启用新输入系统，框架会使用 `InputSystemUIInputModule`。框架管理器负责每帧更新 UI、定时器和 Tick 系统。当前 SampleScene 保留为模板场景，尚未添加游戏启动组件。
+初始化会建立持久化的框架对象、UI Canvas、EventSystem 和对象池父节点。项目启用新输入系统，框架会使用 `InputSystemUIInputModule`。框架管理器负责每帧更新 UI、定时器和 Tick 系统。上述代码是接入示例；当前正式入口为Bootstrap与LevelRunner，已有初始化调用。SampleScene保留为模板，不要再添加第二个初始化宿主。
 
 ## 验证方法
 
-先关闭正在打开本工程的 Unity 编辑器，再在仓库根目录执行：
+已有Editor实例时，优先通过 [MCP测试入口](UnityMcp.md) 或Test Runner运行相关测试，无需关闭编辑器。仅在没有进程占用本工程、确需批处理复现时，使用下面的离线入口；切换到离线验证前保护未保存场景和草稿：
 
 ```powershell
 $unityEditor = 'C:\Program Files\Unity\Hub\Editor\2022.3.51f1\Editor\Unity.exe'

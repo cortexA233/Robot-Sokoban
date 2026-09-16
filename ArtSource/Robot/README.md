@@ -24,7 +24,7 @@
 
 ## 验证
 
-`blender_validation.json`、`fbx_validation.json`、`unity_validation.json` 均通过。报告包含实际采样值和资产 SHA-256；`robot_asset_manifest.json` 汇总参数及交付文件哈希。
+交付时的 `blender_validation.json`、`fbx_validation.json`、`unity_validation.json` 均通过。报告包含实际采样值和资产 SHA-256；`robot_asset_manifest.json` 汇总参数及交付文件哈希。这些结果仅适用于记录的文件版本。2026-09-16已发现工作区 `Robot.blend` 存在未提交修改、与清单哈希不符；保留该修改，采用新源导出前重新验证，不能只刷新清单哈希。
 
 - 推板接触面收回 Z=0.36、伸出 Z=0.60，中心 Y=0.40。
 - 113–125 帧逐帧保持接触；Unity 内同步推动 1 m 的计算检查误差小于 **0.000001 m**。
@@ -43,13 +43,12 @@ Unity 保留模型包装节点 `Robot`，内部 `RobotRoot` 路径为 `RobotRoot
 
 URP 映射依据四种基础颜色与粗糙度；发光眼睛采用低强度线性青色，保证在没有色调映射的编辑器预览中也能看清。
 
-## 重建与复查
+## 维护与复验
 
-在仓库根目录的 PowerShell 执行（路径按本机安装位置调整）：
+只检查现有交付时，读取报告并比对其文件哈希即可。修改资产后按受影响环节选择以下命令，在仓库根目录运行；校验脚本也会写报告，执行前保留需要的旧证据。路径按本机安装位置调整：
 
 ```powershell
 $robotBlender = 'D:\Steam\steamapps\common\Blender\blender.exe'
-& $robotBlender -b ArtSource/Robot/Robot.blend --python-exit-code 1 -P ArtSource/Robot/scripts/build_robot.py
 & $robotBlender -b ArtSource/Robot/Robot.blend --python-exit-code 1 -P ArtSource/Robot/scripts/validate_robot.py
 & $robotBlender -b ArtSource/Robot/Robot.blend --python-exit-code 1 -P ArtSource/Robot/scripts/export_robot.py
 & $robotBlender -b --factory-startup --python-exit-code 1 -P ArtSource/Robot/scripts/validate_robot.py -- --roundtrip
@@ -57,12 +56,12 @@ $robotBlender = 'D:\Steam\steamapps\common\Blender\blender.exe'
 python ArtSource/Robot/scripts/package_previews.py
 ```
 
-Unity 菜单 **Tools → Robot → Import and Validate** 重建材质映射、导入设置、Prefab 和验证报告，检查只在临时预览场景内运行。完成后执行 `python ArtSource/Robot/scripts/write_manifest.py` 更新清单。视频打包脚本需要 Pillow 和 ffmpeg；建模与 FBX 不依赖它们。
+Unity 菜单 **Tools → Robot → Import and Validate** 会写入材质、导入设置、控制器、Prefab、预览和验证报告；临时预览场景不代表此命令只读。需要更新导入资产时保护手工修改，再执行并检查结果。只有所需验证确实通过、报告对应本次文件后，才执行 `python ArtSource/Robot/scripts/write_manifest.py` 更新清单。视频打包脚本需要Pillow和ffmpeg，仅更新视频时使用。
 
-脚本只重建标记属于本任务的场景内容；原默认 Scene 保留在源文件内。重复导出通过临时副本执行，不覆盖源模型的坐标或关键帧。
+`build_robot.py` 是从头生成模型的入口，常规维护不运行。仅在请求包含重建且现有源修改已受到保护时使用；该脚本会重建任务所属内容。导出脚本通过临时副本处理坐标与关键帧，不覆盖源模型。
 
 ## 接入范围
 
-本交付完成角色资产及 Unity 导入验收。完整关卡中的 RobotPresenter、箱子网格逻辑、推不动/通关气泡、镜头切换、撤销与重开属于后续游戏系统接入；本次没有把这些游戏行为标记为已验收。
+本目录记录角色资产及Unity导入验收。游戏层的PlayerActor、RobotPresenter、网格动作、相机、撤销与重开已另有实现和测试；表情/反馈等剩余范围见 [ImplementationProgress.md](../../Docs/ImplementationProgress.md)。资产报告不替代游戏级证据，普通游戏代码修改也不要求重建美术资产。
 
 参考：[Unity 动画切片](https://docs.unity3d.com/2022.3/Documentation/Manual/Splittinganimations.html)、[Unity 轴转换 API](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/ModelImporter-bakeAxisConversion.html)。

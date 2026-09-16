@@ -48,4 +48,4 @@
 
 ![低摩擦关卡在正式 LevelRunner 中的俯视试玩](Images/LowFrictionPlaytest.png)
 
-正式目录 UI、菜单/存档、反馈和完整人工操作验收见 [后续范围](ImplementationProgress.md)。
+编辑器内目录管理、进度存档、反馈和完整界面验收见 [后续范围](ImplementationProgress.md)；游戏菜单与选关UI的当前实现见 [UIImplementation.md](UIImplementation.md)。

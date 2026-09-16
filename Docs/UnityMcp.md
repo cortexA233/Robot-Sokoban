@@ -2,6 +2,8 @@
 
 本项目使用 **Unity 2022.3.51f1 + CoplayDev MCP for Unity 10.2.0**。
 
+仅在实机操作、编译/测试或连接排障时使用本文；普通文档编辑不需要打开Unity。项目Skill [sokoban-unity-editor](../.agents/skills/sokoban-unity-editor/SKILL.md) 按任务路由到下列章节，历史验收记录不是每次需要重跑的清单。
+
 ## 安装与连接
 
 | 项目 | 配置 |
@@ -25,11 +27,11 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 
 `.codex/config.toml` 为本工程启用 `coplay_unity`，并在项目范围内禁用继承的 `unity` 和 `unityMCP` 配置，避免使用其他工程的官方服务或旧版 Coplay 服务。用户级 Codex 配置继续保留。项目需处于 Codex 的受信任范围。
 
-已打开的 Codex 任务可能仍持有旧工具目录；重新打开任务以加载新配置。可先运行下方 CLI，无需等待工具目录刷新。
+已打开的 Codex 任务可能仍持有旧工具目录；此时直接使用下方CLI继续工作。需要恢复原生工具目录时再重新打开任务。
 
 ## 终端入口
 
-在项目根目录使用包装脚本，它固定了服务地址和项目实例，并处理中文 Windows 的 Python 输出编码：
+在项目根目录使用包装脚本，它固定了服务地址和项目实例，并处理中文 Windows 的 Python 输出编码。实例名固定不代表已经核对了项目路径；修改前仍需读取项目信息：
 
 ```powershell
 .\Tools\UnityMcp.ps1 status
@@ -43,13 +45,18 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 
 ## Agent 使用流程
 
-1. 读取 `mcpforunity://instances`，用 `set_active_instance` 选中本工程。
-2. 读取 `mcpforunity://project/info`，确认 `projectRoot`；读取 `mcpforunity://editor/state`，确认编辑器就绪。
-3. 按需用 `manage_tools(action="activate", group="...")` 启用 `testing`、`docs`、`ui`、`animation`、`profiling`、`scripting_ext` 或 `vfx`。工具分组的可见性按会话生效。
-4. 使用场景、对象、组件和 Prefab 工具操作项目。批量操作可使用 `batch_execute`。
-5. 从文件系统新增、删除或移动 Unity 资源后，使用 `refresh_unity(mode="force", scope="all", compile="request")`；只请求脚本编译不会导入尚未登记的新文件。等待编译/重载完成，再读 Console。
+首次连接或连接恢复后，读取 `mcpforunity://instances`，用 `set_active_instance` 选中本工程；读取 `mcpforunity://project/info` 核对 `projectRoot` 与当前仓库路径，并通过 `mcpforunity://editor/state` 检查编辑器是否可操作。状态变化或目标切换时重新确认；无需为同一稳定会话的每次读取重复整个流程。
 
-运行 KToolkit 验收测试的 MCP 参数：
+只加载目标场景/对象需要的资源和工具。按需用 `manage_tools(action="activate", group="...")` 启用 `testing`、`ui` 等分组；分组可见性按会话生效。可批量提交独立操作，有先后依赖的操作在前一步成功后继续。
+
+## 编译与测试
+
+- 从文件系统新增、删除或移动Unity资源后，需要实际导入，可用 `refresh_unity(mode="force", scope="all", compile="request")`；只请求脚本编译不会登记新资源。
+- 修改脚本后等待编译/域重载完成，再读Console。若所用工具已触发导入/编译，无需再强制刷新；文档和仓库配置变更不触发Unity刷新。
+- 规则/数据变更使用相关EditMode测试；表现、输入和生命周期变更使用相关PlayMode测试与实机检查；涉及Player隔离或构建配置时验证构建。无需因局部修复运行所有项目和第三方测试。
+- 本地测试与修复可自主执行。测试可能切换Play Mode、创建临时场景或写草稿/PlayerPrefs，运行前保护相关用户状态；不把当前工作场景当作可丢弃夹具。
+
+仅在KToolkit接入或初始化发生变化时使用下面的测试参数；游戏测试按实际受影响的程序集/用例筛选：
 
 ```json
 {
@@ -60,7 +67,7 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 }
 ```
 
-将上述参数交给 `run_tests`，随后使用 `get_test_job(job_id=..., wait_timeout=30)` 获取结果。
+将参数交给 `run_tests`，使用 `get_test_job(job_id=..., wait_timeout=30)` 获取终态。检查最终summary，修复本轮造成的失败并重跑受影响用例；不要把已启动的job当作测试通过。
 
 ## 2022.3 兼容处理与功能边界
 
@@ -92,8 +99,8 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 
 ## 排查
 
-- 无连接：先打开本工程，检查 **Window > MCP for Unity** 的 HTTP 地址是否为 `http://127.0.0.1:8087`，等待服务就绪后重新连接。
-- Codex 工具缺失：在项目目录执行 `codex mcp list`，确认 `coplay_unity` 启用，再重新打开任务。
+- 无连接：先检查本工程的Unity进程与8087端口。尚未打开工程时，可以使用已安装的2022.3.51f1打开当前仓库；已有实例则检查 **Window > MCP for Unity** 的HTTP地址和连接状态。不要启动第二个进程争用同一工程，或通过强制关闭编辑器丢弃未保存工作。
+- Codex工具缺失：在项目目录执行 `codex mcp list` 确认配置，然后使用项目CLI继续；原生工具目录恢复不是继续工作的前提。
 - CLI 找不到：重新执行上面的 `uv tool install`，并让 uv 的工具目录进入 PATH。可用 `uv tool update-shell`，然后重开终端。
 - 测试任务异常中断：先确认编辑器状态中的 `tests.is_running` 为 false，再用 `run_tests(clear_stuck=true)` 清除孤立任务。不要清除仍在执行的测试。
 
