@@ -2,15 +2,17 @@
 
 使用 **Unity 2022.3.51f1** 打开仓库根目录。
 
-当前为**第一轮可玩作者工具里程碑**，尚未达到 GDD 的完整 Take-home 交付标准。
+当前已具备作者工具基础、三关连续游玩与运行时选关，尚未达到 GDD 的完整 Take-home 交付标准。
 
 - 打开 **Tools > Sokoban > Level Editor**，左侧选择 L01/L02/L03 或 LAB01，再点击“试玩并录制”。
 - 可以从空白图放地形、玩家、箱子、插槽与门；门的供电来源在右侧勾选。校验错误可点击定位。
 - 试玩：WASD 为镜头相对方向，方向键为世界方向；V 切换跟随/俯视，Z 撤销，R 重开，Esc 暂停。通关后可保存参考解法，再用 Unity Play 按钮退出并返回原设计。
-- 直接打开 `Assets/Scenes/Bootstrap.unity` 并 Play 会加载 L01。当前没有正式主菜单、选关或进度存档。
+- 直接打开 `Assets/Scenes/Bootstrap.unity` 并 Play 会加载 L01。通关后点击“下一关”进入 L02/L03；也可“返回选关”。Esc 暂停页提供选关入口，当前三关均可直接选择。
+- L03 通关显示“空间站已重启”，可返回选关或重玩。切关会重置本关计数与撤销记录；主菜单、设置与持久化进度仍待实现。
 - 本机开发构建：`Builds/AuthoringMilestone/StationRestart.exe`；已验证启动，尚非最终交付构建。
 - [首轮关卡编辑器使用说明](Docs/LevelEditorGuide.md)
 - [实现状态、验证结果和剩余范围](Docs/ImplementationProgress.md)
+- 正式顺序由 `Assets/Resources/configs/CampaignCatalog.asset` 的 JSON 引用列表决定；LAB01 默认不在目录内。编辑器试玩不进入正式关卡切换流程。
 
 - 渲染管线：URP 14.0.11。
 - 输入：Input System 1.18.0，使用新输入系统。

@@ -48,5 +48,22 @@ namespace Sokoban.Editor
             AssetDatabase.SaveAssets();
             Debug.Log("PlayerActor 和 Bootstrap 已就绪；原机器人资产与现有场景保留。");
         }
+
+        [MenuItem("Tools/Sokoban/Create Campaign Catalog")]
+        public static void PrepareCampaignCatalog()
+        {
+            const string path = "Assets/Resources/configs/CampaignCatalog.asset";
+            if (AssetDatabase.LoadAssetAtPath<CampaignCatalog>(path)) return;
+            var levels = new[] { "L01", "L02", "L03" }.Select(id => AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/configs/levels/" + id + ".json")).ToArray();
+            if (levels.Any(level => !level)) throw new InvalidOperationException("请先导入 L01–L03 关卡。");
+            var catalog = ScriptableObject.CreateInstance<CampaignCatalog>();
+            var serialized = new SerializedObject(catalog);
+            var entries = serialized.FindProperty("levels"); entries.arraySize = levels.Length;
+            for (int i = 0; i < levels.Length; i++) entries.GetArrayElementAtIndex(i).objectReferenceValue = levels[i];
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            catalog.ReadLevels();
+            AssetDatabase.CreateAsset(catalog, path);
+            AssetDatabase.SaveAssets();
+        }
     }
 }
