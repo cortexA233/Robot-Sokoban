@@ -13,6 +13,7 @@
 - [UGUI 页面、过渡实现与验证说明](Docs/UIImplementation.md)
 - 本机开发构建：`Builds/AuthoringMilestone/StationRestart.exe`；已验证启动，尚非最终交付构建。
 - [首轮关卡编辑器使用说明](Docs/LevelEditorGuide.md)
+- [GM 与关卡编辑器现场试玩迭代方案（待实现）](Docs/GMAndLiveEditingPlan.md)
 - [实现状态、验证结果和剩余范围](Docs/ImplementationProgress.md)
 - 正式顺序由 `Assets/Resources/configs/CampaignCatalog.asset` 的 JSON 引用列表决定；LAB01 默认不在目录内。编辑器试玩不进入正式关卡切换流程。
 
