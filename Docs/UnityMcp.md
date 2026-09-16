@@ -64,7 +64,7 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 
 ## 2022.3 兼容处理与功能边界
 
-- **测试回调恢复**：`Assets/Editor/SokobanMcpTestCallbacks.cs` 在每次脚本域载入时创建上游测试服务。10.2.0 的服务默认延迟创建；本项目的 EditMode 测试会进入 Play Mode 并重载脚本域，原回调可能丢失，造成测试结束后 MCP job 仍显示 `running`。此文件恢复上游回调注册，不修改 KToolkit 测试或包缓存。
+- **测试回调恢复**：`Assets/Scripts/Editor/Mcp/SokobanMcpTestCallbacks.cs` 在每次脚本域载入时创建上游测试服务。10.2.0 的服务默认延迟创建；本项目的 EditMode 测试会进入 Play Mode 并重载脚本域，原回调可能丢失，造成测试结束后 MCP job 仍显示 `running`。此文件恢复上游回调注册，不修改 KToolkit 测试或包缓存。
 - **测试结果读取**：跨脚本域重载后，上游 `progress` 计数和逐项 `results` 列表仍可能不完整；最终判定使用 `status` 和 Unity Test Runner 返回的 `result.summary`，不要把中途进度当作最终通过数。
 - **Cinemachine 2.x**：本项目保留 `2.10.7`。上游相机高级工具探测的是 Cinemachine 3 的 `CinemachineCamera`，因此可能报告未安装 Cinemachine。基础 Camera 和截图仍可使用；2.x 相机通过 `manage_components`、`unity_reflect` 或 `execute_code` 操作，不为启用相机预设升级依赖。
 - **动态 C#**：`execute_code` 默认在可用时使用 Roslyn，否则使用 CodeDom。应检查返回的编译器/错误信息，不能假设动态代码支持项目脚本的全部语言特性。

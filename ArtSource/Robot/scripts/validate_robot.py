@@ -141,7 +141,7 @@ def validate(roundtrip=False, output=None):
                        'maxRootMatrixError':max(root_errors),'maxEmotionErrorMeters':max(anchor_errors),
                        'maxPushFaceErrorMeters':max(face_errors),'oneMetrePushContactError':moving_contact_error,
                        'holdContactSamplesUnity':contacts,'animationFrameRanges':frame_ranges}}
-    artifact=PROJECT/'Assets/_Game/Art/Robot/Robot.fbx' if roundtrip else Path(bpy.data.filepath)
+    artifact=PROJECT/'Assets/Art/Robot/Meshes/Robot.fbx' if roundtrip else Path(bpy.data.filepath)
     report['artifactSha256']=hashlib.sha256(artifact.read_bytes()).hexdigest()
     if roundtrip:
         report['rawFbxFrameRanges']=RAW_RANGES
@@ -163,7 +163,7 @@ def import_roundtrip():
     assert bpy.data.objects.get('RobotRoot') is None
     scene=bpy.context.scene
     scene.render.fps=30
-    bpy.ops.import_scene.fbx(filepath=str(PROJECT/'Assets/_Game/Art/Robot/Robot.fbx'),anim_offset=0,
+    bpy.ops.import_scene.fbx(filepath=str(PROJECT/'Assets/Art/Robot/Meshes/Robot.fbx'),anim_offset=0,
                              use_manual_orientation=True,axis_forward='Y',axis_up='Z')
     root=scene.objects['RobotRoot']; objects=[root]+list(root.children_recursive)
     global RAW_RANGES

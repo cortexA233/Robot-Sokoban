@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sokoban.Editor
 {
-    /// <summary>Applies the local MCP connection documented in docs/UNITY_MCP.md.</summary>
+    /// <summary>Applies the local MCP connection documented in Docs/UnityMcp.md.</summary>
     public static class SokobanMcpSetup
     {
         public const string ServerUrl = "http://127.0.0.1:8087";

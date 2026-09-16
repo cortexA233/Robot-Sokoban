@@ -4,7 +4,7 @@
 
 目标引擎：**Unity 2022.3.51f1 / URP 14.0.x**。共享资产约定：`robot-asset-v1`。
 
-配套文档：[游戏 GDD 与 Unity 实现方案](./GAME_GDD_AND_IMPLEMENTATION.md)。本文件包含独立执行所需的角色要求；即使没有引擎工程，Blender Agent 也能先完成资产交付。
+配套文档：[游戏 GDD 与 Unity 实现方案](./GameDesign.md)。本文件包含独立执行所需的角色要求；即使没有引擎工程，Blender Agent 也能先完成资产交付。
 
 项目用于技术策划招聘 Take-home 测试。**完整可用的 Unity 内关卡编辑器与至少两张完整关卡是核心交付。** 游戏开发先使用符合本约定的白模，机器人美术接入不阻塞编辑器建设与验收；角色资产本身的交付仍需满足下述三段动画和导出检查。
 
@@ -303,7 +303,7 @@ Push 总时长0.60 s。游戏中的前进发生在其中0.10–0.50 s，模型�
 
 | 设置 | 本方案要求 |
 |---|---|
-| 文件 | `Assets/_Game/Art/Robot/Robot.fbx` |
+| 文件 | `Assets/Art/Robot/Meshes/Robot.fbx` |
 | 导出对象 | RobotRoot 及其全部需要的子节点，仅 Mesh 和 Empty |
 | 摄像机/灯光/参考物 | 排除 |
 | 单位 | 源文件米制；验证导入后1单位=1m |
@@ -353,10 +353,18 @@ ArtSource/Robot/
     idle.mp4                       或等价 GIF/逐帧序列
     move.mp4
     push.mp4
-Assets/_Game/Art/Robot/
-  Robot.fbx
+Assets/Art/Robot/
+  Meshes/Robot.fbx
+  Materials/
+  Animations/Robot.controller
   Textures/                        使用贴图时才创建
+Assets/Resources/prefabs/gameplay/player/
+  Robot.prefab
+Assets/Scripts/Editor/Robot/
+  RobotAssetTools.cs                Unity 导入与验证工具
 ```
+
+上述导入目录遵循根目录 `AGENTS.md`；源文件与资产流水线仍保留在 `ArtSource/Robot/`。
 
 Unity 尚未创建时，仍可创建对应输出目录交付 FBX；不要为了验证角色擅自初始化一套与 GDD 不同的游戏工程。Unity 会在后续导入时生成 `.meta`，Blender Agent 不手写虚假的 GUID。
 

@@ -445,8 +445,8 @@
     },
     {
       "path": "ArtSource/Robot/scripts/export_robot.py",
-      "bytes": 6196,
-      "sha256": "ad79f2845149c128f7a370887aed18c6cf52591cbbd5551425203b4a1804409b"
+      "bytes": 6197,
+      "sha256": "ee80145bb1ccf190dd7214a9424b2a9cc5e15a40806e62c9db3e8d090971892f"
     },
     {
       "path": "ArtSource/Robot/scripts/package_previews.py",
@@ -460,46 +460,46 @@
     },
     {
       "path": "ArtSource/Robot/scripts/validate_robot.py",
-      "bytes": 10444,
-      "sha256": "b07c4fe0cd89c6b341881f17f759176a21c9850f5a0e0c424cc1b37db50cef29"
+      "bytes": 10446,
+      "sha256": "edecf5f641f51b5096f862bb10bc89439fbb55d0916d8c3508796d362c986a5a"
     },
     {
       "path": "ArtSource/Robot/scripts/write_manifest.py",
-      "bytes": 4984,
-      "sha256": "a26fdd7aea4e1737a0046703204ab6d5ee8f547d1f0362e3e2d8afeb1d3187a1"
+      "bytes": 5028,
+      "sha256": "4903c2cd2197b99f060f85c78385fd18b4b47c99ecca5b656580f54ada579193"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Materials/M_RobotAccent.mat",
+      "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
       "bytes": 3673,
       "sha256": "e45413ae6fab181640ed610e7c5b999eedbbc6cc0315e7a6c81c8b3fa35c62c3"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Materials/M_RobotBody.mat",
+      "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
       "bytes": 3672,
       "sha256": "ecdd9f31628220c5d458c11479d039137a539d787f5690f6ce82399bd7d6b349"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Materials/M_RobotDark.mat",
+      "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
       "bytes": 3683,
       "sha256": "c9bd04347eb9fd60148d1575dfe89420465ebb85d228651920aa8d1915790a59"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Materials/M_RobotEmission.mat",
+      "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
       "bytes": 3714,
       "sha256": "1a1dee9bdaa757bd2b3b3ae56feb8fbfe522911d1411fc06600b56c5f234fcb7"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Robot.controller",
+      "path": "Assets/Art/Robot/Animations/Robot.controller",
       "bytes": 3634,
       "sha256": "a3cbb7785c98baa0ca5abc78403273bcdf845f9c3bdf64675cfe318317f2102b"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Robot.fbx",
+      "path": "Assets/Art/Robot/Meshes/Robot.fbx",
       "bytes": 472220,
       "sha256": "37708b3c35f7c3c5f44df035bd16b217cf33f8fa810e178c65c4d73384d5964c"
     },
     {
-      "path": "Assets/_Game/Art/Robot/Robot.prefab",
+      "path": "Assets/Resources/prefabs/gameplay/player/Robot.prefab",
       "bytes": 3502,
       "sha256": "c2af430e0a850267e348e7d4d73337c6de43fccc78b79fb6c86913bab92f5fd0"
     }

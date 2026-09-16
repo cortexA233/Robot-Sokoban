@@ -15,8 +15,10 @@ namespace Sokoban.Art.Editor
     [InitializeOnLoad]
     public static class RobotAssetTools
     {
-        const string Folder = "Assets/_Game/Art/Robot";
-        const string ModelPath = Folder + "/Robot.fbx";
+        const string Folder = "Assets/Art/Robot";
+        const string ModelPath = Folder + "/Meshes/Robot.fbx";
+        const string AnimationFolder = Folder + "/Animations";
+        const string PrefabFolder = "Assets/Resources/prefabs/gameplay/player";
         static string Source => Path.GetFullPath("ArtSource/Robot");
         static string RequestPath => Path.Combine(Source, ".validate-unity");
 
@@ -258,7 +260,9 @@ namespace Sokoban.Art.Editor
 
         static void SavePrefab(GameObject model, AnimationClip[] clips)
         {
-            string path=Folder+"/Robot.controller";
+            EnsureFolder(AnimationFolder);
+            EnsureFolder(PrefabFolder);
+            string path=AnimationFolder+"/Robot.controller";
             var controller=AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
             if (!controller) controller=AnimatorController.CreateAnimatorControllerAtPath(path);
             var machine=controller.layers[0].stateMachine;
@@ -272,9 +276,21 @@ namespace Sokoban.Art.Editor
             if (!animator) animator=model.AddComponent<Animator>();
             animator.runtimeAnimatorController=controller;
             animator.applyRootMotion=false;
-            PrefabUtility.SaveAsPrefabAsset(model,Folder+"/Robot.prefab");
+            PrefabUtility.SaveAsPrefabAsset(model,PrefabFolder+"/Robot.prefab");
             EditorUtility.SetDirty(controller);
             AssetDatabase.SaveAssets();
+        }
+
+        static void EnsureFolder(string path)
+        {
+            string[] parts = path.Split('/');
+            string parent = parts[0];
+            for (int i = 1; i < parts.Length; i++)
+            {
+                string next = parent + "/" + parts[i];
+                if (!AssetDatabase.IsValidFolder(next)) AssetDatabase.CreateFolder(parent, parts[i]);
+                parent = next;
+            }
         }
 
         static void RenderPreview(GameObject model)

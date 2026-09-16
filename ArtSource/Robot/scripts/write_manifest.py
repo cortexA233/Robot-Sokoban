@@ -16,7 +16,7 @@ def main():
     source=json.loads((BASE/'blender_validation.json').read_text())
     fbx=json.loads((BASE/'fbx_validation.json').read_text())
     unity=json.loads((BASE/'unity_validation.json').read_text())
-    fbx_path=PROJECT/'Assets/_Game/Art/Robot/Robot.fbx'
+    fbx_path=PROJECT/'Assets/Art/Robot/Meshes/Robot.fbx'
     assert source['passed'] and fbx['passed'] and unity['passed']
     assert source['artifactSha256']==sha(BASE/'Robot.blend'), 'Source changed after validation'
     assert fbx['artifactSha256']==unity['fbxSha256']==sha(fbx_path), 'FBX changed after validation'
@@ -58,8 +58,9 @@ def main():
     deliverables+=list((BASE/'scripts').glob('*.py'))
     deliverables+=list((BASE/'previews').glob('*.png'))+list((BASE/'previews').glob('*.mp4'))
     deliverables+=list((BASE/'previews/blockout').glob('*.png'))
-    deliverables+=list((PROJECT/'Assets/_Game/Art/Robot').glob('*.prefab'))+list((PROJECT/'Assets/_Game/Art/Robot').glob('*.controller'))
-    deliverables+=list((PROJECT/'Assets/_Game/Art/Robot/Materials').glob('*.mat'))
+    deliverables+=list((PROJECT/'Assets/Resources/prefabs/gameplay/player').glob('Robot.prefab'))
+    deliverables+=list((PROJECT/'Assets/Art/Robot/Animations').glob('Robot.controller'))
+    deliverables+=list((PROJECT/'Assets/Art/Robot/Materials').glob('*.mat'))
     manifest['files']=[{'path':p.relative_to(PROJECT).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(set(deliverables))]
     (BASE/'robot_asset_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('Manifest packaged:',len(deliverables),'files; all three validation stages passed.')

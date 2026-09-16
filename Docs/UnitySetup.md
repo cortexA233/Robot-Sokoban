@@ -21,7 +21,7 @@ Unity 2022.3 使用 URP 14，核心包版本随编辑器固定，参见 [Unity �
 
 - 上游：[cortexA233/KToolkit_for_unity](https://github.com/cortexA233/KToolkit_for_unity)。
 - 来源提交：[`e85a1747f0524679cbfb43aecb7bbff41616e4ac`](https://github.com/cortexA233/KToolkit_for_unity/tree/e85a1747f0524679cbfb43aecb7bbff41616e4ac)。
-- 接入目录：`Assets/KToolkit`。包含 Framework、Editor、Tests、程序集定义、原始 README 和 MIT 许可证。
+- 接入目录：`Assets/Scripts/KToolkit_for_unity`。包含 Framework、Editor、Tests、程序集定义、原始 README 和 MIT 许可证。
 - 采用上游支持的源码导入方式，源码随本仓库提交，后续更新可与上述来源提交比较。
 
 ### 本地兼容修改

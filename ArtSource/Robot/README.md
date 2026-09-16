@@ -1,13 +1,16 @@
 # 履带维修机器人交付
 
-按 `docs/ROBOT_BLENDER_GUIDE.md` v1.2 制作，协议为 `robot-asset-v1`。
+按 `Docs/RobotBlenderGuide.md` v1.2 制作，协议为 `robot-asset-v1`。
 
 ## 成果
 
 - 源文件：`ArtSource/Robot/Robot.blend`，Blender **5.2.2 LTS**。
 - 白模阶段：`Robot_blockout.blend` 与 `previews/blockout/` 四向预览。
-- 导出：`Assets/_Game/Art/Robot/Robot.fbx`。
-- Unity：**2022.3.51f1 / URP 14.0.11**；同目录提供 `Robot.prefab`、`Robot.controller` 和 `Materials/`。
+- 导出：`Assets/Art/Robot/Meshes/Robot.fbx`。
+- Unity：**2022.3.51f1 / URP 14.0.11**。
+- Prefab：`Assets/Resources/prefabs/gameplay/player/Robot.prefab`。
+- 动画控制器：`Assets/Art/Robot/Animations/Robot.controller`；材质：`Assets/Art/Robot/Materials/`。
+- Unity 导入与验证工具：`Assets/Scripts/Editor/Robot/RobotAssetTools.cs`。
 - 实测静止尺寸（Unity X/Y/Z）：**0.7000 / 0.8000 / 0.6805 m**。接地面 Y=0。
 - **4,996 三角面、15 个 Mesh、25 个导出节点、4 种材质**；无贴图或外部模型依赖。
 

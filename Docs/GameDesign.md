@@ -2,7 +2,7 @@
 
 版本：1.2 · 日期：2026-09-15 · 状态：可交付实现 Agent · 用途：技术策划招聘 Take-home 测试
 
-配套文档：[履带机器人建模与动画指南](./ROBOT_BLENDER_GUIDE.md)。本文件负责游戏规则、Unity 系统、编辑器及验收；配套文件负责角色资产。两份文档共享 `robot-asset-v1` 交付约定。
+配套文档：[履带机器人建模与动画指南](./RobotBlenderGuide.md)。本文件负责游戏规则、Unity 系统、编辑器及验收；配套文件负责角色资产。两份文档共享 `robot-asset-v1` 交付约定。
 
 ## 0. 给实现 Agent 的任务说明
 
@@ -501,21 +501,34 @@ SWWWWSSSWNNWNEEEEENESS
 ### 7.1 文件布局
 
 ```text
-Assets/_Game/
+Assets/
   Scenes/Bootstrap.unity
-  Scripts/Domain/             纯 C# 规则、数据、校验
-  Scripts/Runtime/            输入、状态会话、相机、表现、UI
-  Scripts/Editor/             作者工具、试玩桥接、构建校验
-  Tests/EditMode/
-  Tests/PlayMode/
-  Content/Levels/             L01.json、L02.json、L03.json
-  Content/TestLevels/         LAB01_LowFriction.json
-  Content/Solutions/          同名参考解法记录
-  Content/CampaignCatalog.asset
+  Scripts/Gameplay/Domain/    纯 C# 规则、数据、校验
+  Scripts/Gameplay/LevelFlow/ 状态会话与关卡流程
+  Scripts/Player/             玩家控制与角色接入
+  Scripts/Input/             输入适配
+  Scripts/Presentation/      相机、动画与反馈表现
+  Scripts/UI/                运行时 UI
+  Scripts/Editor/LevelEditor/ 作者工具、试玩桥接、构建校验
+  Scripts/Editor/Robot/       角色导入与验收工具
+  Scripts/Editor/Mcp/         本项目 MCP 配置与兼容工具
+  Scripts/KToolkit_for_unity/ 通用框架源码
+  Scripts/Tests/EditMode/
+  Scripts/Tests/PlayMode/
+  Resources/configs/levels/  L01.json、L02.json、L03.json
+  Resources/configs/test_levels/ LAB01_LowFriction.json
+  Resources/configs/solutions/ 同名参考解法记录
+  Resources/configs/CampaignCatalog.asset
+  Resources/prefabs/gameplay/player/Robot.prefab
+  Resources/UI_prefabs/screens/
   Art/Whitebox/
-  Art/Robot/                 后续正式 FBX、材质、动画元数据
-  Prefabs/
+  Art/Robot/Meshes/Robot.fbx
+  Art/Robot/Materials/
+  Art/Robot/Animations/Robot.controller
+  Settings/                  URP、Volume 与输入设置
 ```
+
+目录和命名规则以根目录 `AGENTS.md` 为准，按实际内容创建文件夹。可编辑机器人源文件、导出脚本、预览与验证清单位于仓库根的 `ArtSource/Robot/`，项目文档位于 `Docs/`。
 
 作者数据以 JSON 为真源；CampaignCatalog 是按顺序引用这些 TextAsset 的 Unity 资源。每关不需要单独制作一个场景。Bootstrap 加载同一套游戏系统并根据数据生成棋盘。
 
@@ -684,7 +697,7 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 - 当前 `Assets/Resources/DOTweenSettings.asset` 显示 `createASMDEF=0`，未扫描到DOTween对应asmdef。接入自有Runtime程序集前，通过 `Tools > Demigiant > DOTween Utility Panel` 检查Setup和程序集生成，再配置实际依赖；确认Pro组件及所用Modules可被引用。
 - 现有DOTween设置中UI模块开启，UI Toolkit和TextMesh Pro模块关闭。基础uGUI可用对应模块；如果需要TMP/UIToolkit扩展，先显式启用并验证。Level Editor继续用Unity UI Toolkit制作，不能依赖动画插件才能编辑关卡。
 - Domain、校验器和关卡JSON不引用DOTween或Cinemachine类型。
-- 插件初始化纳入现有Bootstrap；工程已有的框架配置见[Unity接入记录](./UNITY_SETUP.md)，避免重复创建Canvas/EventSystem或多个初始化宿主。
+- 插件初始化纳入现有Bootstrap；工程已有的框架配置见[Unity接入记录](./UnitySetup.md)，避免重复创建Canvas/EventSystem或多个初始化宿主。
 - 先在本项目的最小场景中验证“一次移动、一次反馈、一次取消、一次切镜头”和Windows编译，再接正式表现。导入文件存在不代表这些集成检查已经通过。
 - 编辑器内的地图预览保持静态；试玩进入正式Play模式。关闭工具或退出试玩后，不能把插件预览产生的Transform/材质改动保存回关卡设计或正式Prefab。
 
@@ -709,7 +722,7 @@ DOTween Pro的可视化组件适合菜单、固定UI元素和纯视觉装饰。�
 
 ### 9.2 三种动画与文件
 
-资产目录交付：`ArtSource/Robot/Robot.blend`、`ArtSource/Robot/robot_asset_manifest.json`、`Assets/_Game/Art/Robot/Robot.fbx`、所需简单材质/贴图、正侧顶预览和三段动作预览。
+资产目录交付：`ArtSource/Robot/Robot.blend`、`ArtSource/Robot/robot_asset_manifest.json`、`Assets/Art/Robot/Meshes/Robot.fbx`、所需简单材质/贴图、正侧顶预览和三段动作预览。
 
 采用一个连续烘焙时间轴导出，再在 Unity 按明确范围切成三条剪辑，减少多个机械物件 Action 分散导致遗漏的风险。采样 30 fps：
 

@@ -17,7 +17,7 @@ def export(filepath=None):
     selected=list(bpy.context.selected_objects)
     active=bpy.context.view_layer.objects.active
     old_frame=scene.frame_current
-    path=Path(filepath) if filepath else PROJECT/'Assets/_Game/Art/Robot/Robot.fbx'
+    path=Path(filepath) if filepath else PROJECT/'Assets/Art/Robot/Meshes/Robot.fbx'
     path.parent.mkdir(parents=True,exist_ok=True)
     settings=dict(use_selection=True,object_types={'MESH','EMPTY'},global_scale=1.0,
                   apply_unit_scale=True,apply_scale_options='FBX_SCALE_UNITS',
