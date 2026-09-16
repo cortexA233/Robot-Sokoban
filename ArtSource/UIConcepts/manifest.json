@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-16",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "purpose": "Static UI concepts; not implemented Unity screens",
+  "outputs": [
+    {
+      "file": "main_menu.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1499126,
+      "sha256": "441d23489d5cf0f808a8ab0304a5f1484b223058a8144e54f024c37eda130dcd"
+    },
+    {
+      "file": "gameplay_hud.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1745106,
+      "sha256": "fd97f02b480da6bebc0b4810047813d991ed23e187a8437c07fdd6efa162c3e0"
+    },
+    {
+      "file": "level_select.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1586341,
+      "sha256": "4e665428bda3b8ed190c12b41fe53e0a5e0d7cc0622443f848eece2eb43a78a2"
+    }
+  ]
+}
