@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation navigation map. Historical audit hash keys retain their original paths and hashes; resolve moved paths with this map without treating historical results as fresh validation.",
+  "moves": {
+    "Docs/GameDesign.md": "Docs/Gameplay/GameDesign.md",
+    "Docs/RobotBlenderGuide.md": "Docs/Art/RobotBlenderGuide.md",
+    "Docs/StationArtProduction.md": "Docs/Art/StationArtProduction.md",
+    "Docs/StationKitIntegration.md": "Docs/Art/StationKitIntegration.md",
+    "Docs/UIImplementation.md": "Docs/UI/UIImplementation.md",
+    "Docs/LevelEditorGuide.md": "Docs/Editor/LevelEditorGuide.md",
+    "Docs/GMAndLiveEditingPlan.md": "Docs/Debug/GMAndLiveEditingPlan.md",
+    "Docs/UnityMcp.md": "Docs/Debug/UnityMcp.md",
+    "Docs/ProjectStructure.md": "Docs/Engineering/ProjectStructure.md",
+    "Docs/UnitySetup.md": "Docs/Engineering/UnitySetup.md",
+    "Docs/AgentConfigurationAudit.md": "Docs/History/2026-09-16-AgentConfiguration/AgentConfigurationAudit.md",
+    "Docs/Validation/AgentConfigurationResults.json": "Docs/History/2026-09-16-AgentConfiguration/Validation/AgentConfigurationResults.json",
+    "Docs/LevelDifficultyIterationPlan.md": "Docs/History/04-CargoCrates/LevelDifficultyIterationPlan.md",
+    "Docs/LevelDrafts/NarrowSpaceDrafts.json": "Docs/History/04-CargoCrates/Drafts/NarrowSpaceDrafts.json",
+    "Docs/Validation/FirstIterationResults.json": "Docs/History/01-Authoring/Validation/FirstIterationResults.json",
+    "Docs/Images/LowFrictionPlaytest.png": "Docs/History/01-Authoring/Images/LowFrictionPlaytest.png",
+    "Docs/Validation/CampaignFlowResults.json": "Docs/History/02-CampaignFlow/Validation/CampaignFlowResults.json",
+    "Docs/Images/CampaignCompletion.png": "Docs/History/02-CampaignFlow/Images/CampaignCompletion.png",
+    "Docs/Images/CampaignSelection.png": "Docs/History/02-CampaignFlow/Images/CampaignSelection.png",
+    "Docs/Validation/UIImplementationResults.json": "Docs/History/03-UI/Validation/UIImplementationResults.json",
+    "Docs/Images/MinimalCompletion720.png": "Docs/History/03-UI/Images/MinimalCompletion720.png",
+    "Docs/Images/MinimalHud.png": "Docs/History/03-UI/Images/MinimalHud.png",
+    "Docs/Images/MinimalLevelSelect.png": "Docs/History/03-UI/Images/MinimalLevelSelect.png",
+    "Docs/Images/MinimalMainMenu.png": "Docs/History/03-UI/Images/MinimalMainMenu.png",
+    "Docs/Images/MinimalSettings43.png": "Docs/History/03-UI/Images/MinimalSettings43.png",
+    "Docs/Images/MinimalTransition.png": "Docs/History/03-UI/Images/MinimalTransition.png",
+    "Docs/Images/MinimalVerticalTransition.png": "Docs/History/03-UI/Images/MinimalVerticalTransition.png",
+    "Docs/Validation/CargoCrateIterationResults.json": "Docs/History/04-CargoCrates/Validation/CargoCrateIterationResults.json",
+    "Docs/Images/CargoL05TopDown.png": "Docs/History/04-CargoCrates/Images/CargoL05TopDown.png",
+    "Docs/Images/CargoL06ThirdPerson.png": "Docs/History/04-CargoCrates/Images/CargoL06ThirdPerson.png",
+    "Docs/Validation/GMAndLiveEditingResults.json": "Docs/History/05-GmLiveEditing/Validation/GMAndLiveEditingResults.json",
+    "Docs/Images/GmWorkbench.png": "Docs/History/05-GmLiveEditing/Images/GmWorkbench.png",
+    "Docs/Images/LiveEditorRecovered.png": "Docs/History/05-GmLiveEditing/Images/LiveEditorRecovered.png",
+    "Docs/Validation/StationKitIntegration.json": "Docs/History/07-StationKitIntegration/Validation/StationKitIntegration.json",
+    "Docs/Images/StationKit/L03PoweredGate.png": "Docs/History/07-StationKitIntegration/Images/L03PoweredGate.png",
+    "Docs/Images/StationKit/L03TopDown.png": "Docs/History/07-StationKitIntegration/Images/L03TopDown.png",
+    "Docs/Images/StationKit/L05TopDown.png": "Docs/History/07-StationKitIntegration/Images/L05TopDown.png",
+    "Docs/Images/StationKit/L06ThirdPerson.png": "Docs/History/07-StationKitIntegration/Images/L06ThirdPerson.png",
+    "Docs/Validation/StationKitGameplayTests.json": "Docs/History/07-StationKitIntegration/Validation/StationKitGameplayTests.json",
+    "Docs/Validation/StationKitLabelRetest.json": "Docs/History/07-StationKitIntegration/Validation/StationKitLabelRetest.json"
+  },
+  "splitDocuments": {
+    "Docs/ImplementationProgress.md": {
+      "currentOverview": "Docs/ImplementationProgress.md",
+      "history": [
+        {
+          "heading": "第一轮实现与验收记录",
+          "path": "Docs/History/01-Authoring/ImplementationReport.md"
+        },
+        {
+          "heading": "第二轮：通关继续与选关",
+          "path": "Docs/History/02-CampaignFlow/ImplementationReport.md"
+        },
+        {
+          "heading": "第三轮：简约 KToolkit UGUI 与幕布过渡",
+          "path": "Docs/History/03-UI/ImplementationReport.md"
+        },
+        {
+          "heading": "第四轮：普通箱与 L04–L06",
+          "path": "Docs/History/04-CargoCrates/ImplementationReport.md"
+        },
+        {
+          "heading": "第五轮：可撤销 GM 与现场关卡编辑",
+          "path": "Docs/History/05-GmLiveEditing/ImplementationReport.md"
+        },
+        {
+          "heading": "空间站美术套件游戏接入",
+          "path": "Docs/History/07-StationKitIntegration/ImplementationReport.md"
+        }
+      ]
+    }
+  }
+}

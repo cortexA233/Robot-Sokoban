@@ -2,7 +2,7 @@
 
 日期：2026-09-16。用途：视觉方向预览，供选择与后续 UI 实现参考。
 
-这里的两份Prompt JSON保存图像生成历史及可追溯证据，不是当前Agent执行指令。它们包含已放弃的视觉方案，不应作为新增玩法或场景需求加载；当前界面实现以 [UIImplementation.md](../../Docs/UIImplementation.md) 为准。
+这里的两份Prompt JSON保存图像生成历史及可追溯证据，不是当前Agent执行指令。它们包含已放弃的视觉方案，不应作为新增玩法或场景需求加载；当前界面实现以 [UIImplementation.md](../../Docs/UI/UIImplementation.md) 为准。
 
 ## 当前方向：第二版简约 UI
 
@@ -31,6 +31,6 @@
 
 ## 生成与检查
 
-完整最终提示词保存在 [prompts.json](prompts.json)。提示词基于 `Docs/GameDesign.md`、项目 README、机器人预览与已有游戏截图的人工阅读整理；此次未向工具提供输入图片，输出为新生成图像。
+完整最终提示词保存在 [prompts.json](prompts.json)。提示词基于 `Docs/Gameplay/GameDesign.md`、项目 README、机器人预览与已有游戏截图的人工阅读整理；此次未向工具提供输入图片，输出为新生成图像。
 
 已目视检查三张图的主要中文标签、按钮层级、HUD 留白和三张关卡卡片。工具添加了少量场景装饰文字；它们不作为游戏文案。文件尺寸和 SHA-256 记录在 [manifest.json](manifest.json)。本次只新增概念图及记录，未更改 Unity 资源、代码或项目设置。

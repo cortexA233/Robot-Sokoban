@@ -67,17 +67,17 @@ def write():
     files=[]
     for folder in folders:
         files.extend(p for p in folder.rglob('*') if p.is_file() and p.name!='station_kit_asset_manifest.json' and p.suffix not in ('.blend1','.pyc') and '__pycache__' not in p.parts)
-    files.extend([PROJECT/'Assets/Scenes/StationKitPreview.unity',PROJECT/'Assets/Scenes/StationKitPreview.unity.meta',PROJECT/'Docs/StationArtProduction.md'])
+    files.extend([PROJECT/'Assets/Scenes/StationKitPreview.unity',PROJECT/'Assets/Scenes/StationKitPreview.unity.meta',PROJECT/'Docs/Art/StationArtProduction.md'])
     for asset in ('Assets/Art/StationKit.meta','Assets/Material.meta','Assets/Material/Station.meta','Assets/Resources/prefabs/gameplay/StationKit.meta','Assets/Scripts/Editor/StationKit.meta'):
         p=PROJECT/asset
         if p.exists(): files.append(p)
     for check in acceptance.values():
         for path in check['evidence']: assert (PROJECT/path).exists(),path
-    integration_path=PROJECT/'Docs/Validation/StationKitIntegration.json'
+    integration_path=PROJECT/'Docs/History/07-StationKitIntegration/Validation/StationKitIntegration.json'
     integration=json.loads(integration_path.read_text(encoding='utf-8-sig')) if integration_path.exists() else None
     integrated=bool(integration and integration.get('passed') and integration.get('artifactHashes') and
         all((PROJECT/p).exists() and sha(PROJECT/p)==digest for p,digest in integration['artifactHashes'].items()))
-    result={'protocol':'station-kit-v1','specification':'Docs/StationArtProduction.md v1.1','checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    result={'protocol':'station-kit-v1','specification':'Docs/Art/StationArtProduction.md v1.1','checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'tools':{'blender':bf['blenderVersion'],'unity':uv['unityVersion'],'urp':'14.0.11','cinemachine':'2.10.7','unityMCP':'10.2.0'},
         'completion':{'blenderFbxProduction':'passed','unityAssetAcceptance':'passed','formalGameplayIntegration':'passed' if integrated else 'not_run','gameRegression':'passed' if integrated else 'not_run'},
         'gameplayIntegrationEvidence':rel(integration_path) if integrated else None,

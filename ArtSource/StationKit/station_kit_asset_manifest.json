@@ -1,6 +1,6 @@
 {
   "protocol": "station-kit-v1",
-  "specification": "Docs/StationArtProduction.md v1.1",
+  "specification": "Docs/Art/StationArtProduction.md v1.1",
   "checkedAt": "2026-09-17T03:00:08.956235+00:00",
   "tools": {
     "blender": "5.2.2 LTS",
@@ -15,7 +15,7 @@
     "formalGameplayIntegration": "passed",
     "gameRegression": "passed"
   },
-  "gameplayIntegrationEvidence": "Docs/Validation/StationKitIntegration.json",
+  "gameplayIntegrationEvidence": "Docs/History/07-StationKitIntegration/Validation/StationKitIntegration.json",
   "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
   "assets": [
     {
@@ -5262,8 +5262,8 @@
     },
     {
       "path": "ArtSource/StationKit/README.md",
-      "sha256": "2752d21db8d9cc848bddb393af81984cc38baff00e58ffa4c487b0ef61dfc9b5",
-      "bytes": 11533
+      "sha256": "c99a3778b467d7dd1dd0b9fa3dd8621ed57af58379c9ecaa5ff858c15162fb75",
+      "bytes": 11685
     },
     {
       "path": "ArtSource/StationKit/scripts/build_station_kit.py",
@@ -5297,8 +5297,8 @@
     },
     {
       "path": "ArtSource/StationKit/scripts/write_manifest.py",
-      "sha256": "c49a69be06cb93f126c15e54172aefca7303251ad23074637556393f88569e43",
-      "bytes": 11639
+      "sha256": "40d17a5a69ad4bc49b2b768969a60dfcfb1ecc8c0c5400808b0b3a9412518be2",
+      "bytes": 11777
     },
     {
       "path": "ArtSource/StationKit/StationKit.blend",
@@ -5881,9 +5881,18 @@
       "bytes": 172
     },
     {
-      "path": "Docs/StationArtProduction.md",
-      "sha256": "0054ca91f3d7d321d27aa6f5ec96596a7f19a24edc966b98da26e8e19c9b28ea",
-      "bytes": 39113
+      "path": "Docs/Art/StationArtProduction.md",
+      "sha256": "8a2de84b9530998267f23bea8b7222056df564b4ccf245ca9eca96ef50ae52d4",
+      "bytes": 39660
     }
-  ]
+  ],
+  "documentationMaintenance": {
+    "version": "v0.1.0",
+    "scope": "Documentation navigation and file inventory only. Original asset validation results, measured hashes and checkedAt are unchanged; no asset rebuild or revalidation was performed.",
+    "updatedInventoryPaths": [
+      "ArtSource/StationKit/README.md",
+      "ArtSource/StationKit/scripts/write_manifest.py",
+      "Docs/Art/StationArtProduction.md"
+    ]
+  }
 }

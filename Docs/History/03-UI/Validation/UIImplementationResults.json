@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-16",
+  "environment": {
+    "project": "Sokoban_3D_Test",
+    "unity": "2022.3.51f1",
+    "urp": "14.0.11",
+    "cinemachine": "2.10.7",
+    "mcp": "CoplayDev 10.2.0"
+  },
+  "tests": [
+    {
+      "jobId": "10f358216d994bb084df69875bd8a77f",
+      "mode": "EditMode",
+      "summary": {
+        "total": 54,
+        "passed": 54,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 1.6004675,
+        "resultState": "Passed"
+      }
+    },
+    {
+      "jobId": "3124e4873c104fbb956770a254f5bd57",
+      "mode": "PlayMode",
+      "summary": {
+        "total": 24,
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 86.6401351,
+        "resultState": "Passed"
+      },
+      "results": [
+        {
+          "name": "Sokoban.Tests.CampaignFlowTests.CompletingFirstLevelCanContinueToSecondWithFreshSession",
+          "state": "Passed",
+          "durationSeconds": 20.8374402
+        },
+        {
+          "name": "Sokoban.Tests.CampaignFlowTests.EditorPlaytestNeverNavigatesIntoCampaign",
+          "state": "Passed",
+          "durationSeconds": 1.1996689
+        },
+        {
+          "name": "Sokoban.Tests.CampaignFlowTests.LastLevelFinishesCampaignAndReturnsToSelection",
+          "state": "Passed",
+          "durationSeconds": 32.5527432
+        },
+        {
+          "name": "Sokoban.Tests.CampaignFlowTests.ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices",
+          "state": "Passed",
+          "durationSeconds": 0.0559581
+        },
+        {
+          "name": "Sokoban.Tests.CampaignFlowTests.SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch",
+          "state": "Passed",
+          "durationSeconds": 1.7855979
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+          "state": "Passed",
+          "durationSeconds": 1.1701509
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.PauseFreezesOwnedActionThenResumes",
+          "state": "Passed",
+          "durationSeconds": 1.7616164
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RealRobotUsesOnePushClockAndMatchesContactPlane",
+          "state": "Passed",
+          "durationSeconds": 1.1878189
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+          "state": "Passed",
+          "durationSeconds": 1.2421054
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringContact",
+          "state": "Passed",
+          "durationSeconds": 1.4583483
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringExtension",
+          "state": "Passed",
+          "durationSeconds": 1.2022918
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringSlide",
+          "state": "Passed",
+          "durationSeconds": 1.8037106
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringContact",
+          "state": "Passed",
+          "durationSeconds": 1.4714773
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringExtension",
+          "state": "Passed",
+          "durationSeconds": 1.2088576
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringSlide",
+          "state": "Passed",
+          "durationSeconds": 1.800926
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+          "state": "Passed",
+          "durationSeconds": 1.3534699
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.CompletionButtonAdvancesWithFadeAndFreshCounters",
+          "state": "Passed",
+          "durationSeconds": 5.0600032
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+          "state": "Passed",
+          "durationSeconds": 1.7352666
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+          "state": "Passed",
+          "durationSeconds": 2.0823484
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.HudUndoAndRestartUseTheRealSession",
+          "state": "Passed",
+          "durationSeconds": 0.8513539
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+          "state": "Passed",
+          "durationSeconds": 2.7472391
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.PauseSelectionBackPreservesSessionAndSettingsPersist",
+          "state": "Passed",
+          "durationSeconds": 0.5920598
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+          "state": "Passed",
+          "durationSeconds": 1.3628508
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+          "state": "Passed",
+          "durationSeconds": 0.0460342
+        }
+      ]
+    }
+  ],
+  "earlierChecks": [
+    {
+      "jobId": "492c6608e66b4ab3aef6e96478ac75bb",
+      "result": "failed",
+      "reason": "Four UI click tests issued raycasts on the activation frame before UGUI graphic depth registration. Confirmed by same-frame zero hits versus next-frame three hits; changed click helper to wait a frame."
+    },
+    {
+      "jobId": "9e93898f0b3a4d7f98a9c08a161c3e7a",
+      "result": "passed",
+      "summary": "7/7 targeted UI tests"
+    },
+    {
+      "jobId": "9ffb863a25eb45e29ddf0efb10849072",
+      "result": "passed",
+      "summary": "23/23 PlayMode tests before the slider geometry regression was added."
+    }
+  ],
+  "visualQA": [
+    {
+      "file": "Docs/History/03-UI/Images/MinimalMainMenu.png",
+      "width": 1920,
+      "height": 1080,
+      "subject": "Real UGUI menu, embedded Chinese font, muted orange primary button"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalLevelSelect.png",
+      "width": 1920,
+      "height": 1080,
+      "subject": "Three text-only catalog rows, selected marker, enter and back actions"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalHud.png",
+      "width": 1920,
+      "height": 1080,
+      "subject": "HUD over the actual L01 blockout, no concept-art background"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalCompletion720.png",
+      "width": 1280,
+      "height": 720,
+      "subject": "Actual L01 solution completion: 8 moves / 3 pushes, all dialog controls within frame"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalSettings43.png",
+      "width": 2000,
+      "height": 1500,
+      "subject": "Settings at 4:3, corrected slider fill/handle bounds"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalTransition.png",
+      "width": 1920,
+      "height": 1080,
+      "subject": "Horizontal curtain transition mid-animation"
+    },
+    {
+      "file": "Docs/History/03-UI/Images/MinimalVerticalTransition.png",
+      "width": 2000,
+      "height": 1500,
+      "subject": "Vertical curtain transition mid-animation at stable 4:3 resolution"
+    }
+  ],
+  "build": {
+    "jobId": "build-5b772c50c2",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "path": "Builds/AuthoringMilestone/StationRestart.exe",
+    "scenes": [
+      "Assets/Scenes/Bootstrap.unity"
+    ],
+    "development": true,
+    "durationSeconds": 21.0269074,
+    "sizeMB": 112.52,
+    "errors": 0,
+    "warnings": 0
+  },
+  "smoke": {
+    "result": "passed",
+    "seconds": 7,
+    "graphics": "Direct3D 11",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "log": "Logs/UIBuildSmoke.log",
+    "scope": "Standalone startup with KToolkit initialization and no logged errors; gameplay/UI interaction validated separately in Editor."
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "font": {
+    "name": "NotoSansSC-Regular.otf",
+    "sha256": "faa6c9df652116dde789d351359f3d7e5d2285a2b2a1f04a2d7244df706d5ea9",
+    "source": "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf",
+    "license": "Assets/Art/UI/Fonts/LICENSE.txt"
+  },
+  "scopeNotes": [
+    "No changes to KToolkit, engine/package versions, robot asset, level data or existing third-party imports.",
+    "Campaign unlock/progress and best-score persistence remain outside this UI iteration.",
+    "Existing developer Resources/test data remains in the development build; it is not a final release build."
+  ]
+}

@@ -1,6 +1,6 @@
 # 履带维修机器人交付
 
-按 `Docs/RobotBlenderGuide.md` v1.2 制作，协议为 `robot-asset-v1`。
+按 `Docs/Art/RobotBlenderGuide.md` v1.2 制作，协议为 `robot-asset-v1`。
 
 ## 成果
 

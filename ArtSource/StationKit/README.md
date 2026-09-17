@@ -1,7 +1,7 @@
 # Station Kit · station-kit-v1
 
 首批 11 个主资产已完成 **Blender / FBX 生产**和 **Unity 独立资产验收**。
-后续用户授权的正式游戏接入也已完成，见 [游戏接入与回归记录](../../Docs/StationKitIntegration.md)。本页以下保留资产生产迭代的说明；规则、关卡 JSON、参考解法和构建场景列表保持不变。
+后续用户授权的正式游戏接入也已完成，见 [游戏接入与回归记录](../../Docs/Art/StationKitIntegration.md)。本页以下保留资产生产迭代的说明；规则、关卡 JSON、参考解法和构建场景列表保持不变。
 验收日期：2026-09-16（America/New_York；报告时间使用 UTC）。
 
 - [可编辑源文件](StationKit.blend)
