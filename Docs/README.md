@@ -6,6 +6,8 @@
 
 后续迭代先到 [开发版本台账](Versions/README.md) 规划版本号、范围和验收，再开始实现。当前追踪起点为 [v0.1.0 · 文档归类与版本管理](Versions/V0.1.0.md)。
 
+后续方向与建议排期见 [迭代路线图](Versions/Roadmap.md)：UI、编辑器分类、场景去文字与配色、第三人称镜头，以及目录工具、玩家进度、引导、反馈和交付验收。路线图条目尚未立项，具体方案与版本在启动时登记。
+
 当前玩法版本 [v0.3.0 已封版](Versions/V0.3.0.md)：[转向运输关卡与格图](Gameplay/RedirectorLevelPlan.md)、[实现验收](Versions/V0.3.0Validation/README.md)。
 
 ## 按用途查找

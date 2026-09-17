@@ -12,7 +12,8 @@ Work within the current user request. Explicit user instructions take precedence
 
 ## Version planning
 
-- Before starting a new implementation iteration or requirement, read the [version ledger](Docs/Versions/README.md), choose the next unused `vMAJOR.MINOR.PATCH` under its rules, and write a version plan with scope, exclusions and acceptance checks. Record it as planned, then in progress before implementation. Do this autonomously; ask only for missing decisions that materially affect scope.
+- Keep future requirements in the [iteration roadmap](Docs/Versions/Roadmap.md). Roadmap IDs are stable planning references, not reserved versions or authorization to implement every item. Link each item to its formal version plan when the iteration is opened.
+- Before starting any new iteration or independent requirement, including documentation/configuration maintenance, read the [version ledger](Docs/Versions/README.md), choose the next unused `vMAJOR.MINOR.PATCH` under its rules, and write a version plan with scope, exclusions and acceptance checks. Record it as planned, then in progress before implementation. Do this autonomously; ask only for missing decisions that materially affect scope.
 - Keep follow-up fixes and clarifications within the active version unless they form a separately scoped iteration. Check the ledger before reserving a number; do not reuse completed versions or retroactively assign versions to historical phases.
 - At completion, update the plan and ledger with actual verification, remaining limitations and status. Include `[vX.Y.Z]` in each focused commit for that iteration and report the version and final commit. Blocked/unverified work must not be marked complete.
 - These are development tracking versions. They do not automatically change Unity's player version, create Git tags or authorize publishing.
