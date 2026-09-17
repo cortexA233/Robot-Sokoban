@@ -19,7 +19,7 @@ Use this reference when adding, moving or renaming project files. Existing organ
 | `Docs/README.md` | Navigation by purpose, development phase and existing version identifiers |
 | `Docs/ImplementationProgress.md` | Current implementation baseline, remaining scope and links to historical evidence |
 | `Docs/Versions/README.md`, `V<major>.<minor>.<patch>.md` | Development version ledger and per-iteration plans, verification and commit lookup; plan before implementation |
-| `Docs/Versions/Roadmap.md` | Future iteration directions, priorities, dependencies and acceptance targets; roadmap IDs do not reserve development versions |
+| `Docs/Versions/Roadmap.md` | Requirement-to-version assignments, execution order, dependencies and acceptance targets; scheduled versions have individual plans and ledger entries |
 | `Docs/Gameplay/`, `Art/`, `UI/`, `Editor/`, `Debug/`, `Engineering/` | Maintained specifications and guides, each stored once under its primary purpose |
 | `Docs/History/<NN-Phase>/` | Completed iteration reports, original proposals, `Validation/` JSON and `Images/` screenshots |
 | `Docs/History/<YYYY-MM-DD-Topic>/` | Dated engineering maintenance records outside the gameplay iteration sequence |
