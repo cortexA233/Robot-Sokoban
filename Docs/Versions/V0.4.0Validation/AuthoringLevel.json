@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 3,
+  "id": "level_e7ad56c2",
+  "title": "V040 作者流程验收",
+  "briefing": "把能源箱送入目标插槽。",
+  "completionText": "区域已恢复供电",
+  "width": 9,
+  "height": 9,
+  "gridSize": 1.0,
+  "terrainRows": [
+    "#########",
+    "#.......#",
+    "#.......#",
+    "#.......#",
+    "#.......#",
+    "#....~~.#",
+    "#.......#",
+    "#.......#",
+    "#########"
+  ],
+  "playerSpawn": {
+    "x": 1,
+    "z": 3,
+    "facing": "N"
+  },
+  "crates": [
+    {
+      "id": "crate_ebe2e2ea",
+      "x": 2,
+      "z": 3,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_9063d6ba",
+      "x": 6,
+      "z": 2,
+      "kind": "Cargo"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "socket_bbce72f1",
+      "x": 3,
+      "z": 3,
+      "isGoal": true
+    },
+    {
+      "id": "socket_aff7ea37",
+      "x": 2,
+      "z": 3,
+      "isGoal": false
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate_c8bd858e",
+      "x": 6,
+      "z": 5,
+      "facing": "N",
+      "powerMode": "Any",
+      "sourceSocketIds": [
+        "socket_aff7ea37"
+      ]
+    }
+  ],
+  "decorations": [],
+  "redirectors": [
+    {
+      "id": "redirector_52ddeda8",
+      "x": 5,
+      "z": 2,
+      "facing": "E"
+    }
+  ]
+}

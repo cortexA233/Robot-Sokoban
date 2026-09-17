@@ -16,11 +16,16 @@ namespace Sokoban.Editor
         private const string Recording = "Library/SokobanDrafts/Recording.json";
         static PlaytestBridge() { EditorApplication.playModeStateChanged += OnPlayMode; }
 
-        public static void Play(LevelDocument document)
+        public static void Play(LevelDocument document, Action<ValidationReport> showValidation = null)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("请先退出当前试玩。");
             var report = LevelValidator.Validate(document.level);
-            if (!report.IsValid) throw new InvalidOperationException("关卡有校验错误，请点击校验并修复。");
+            showValidation?.Invoke(report);
+            if (!report.IsValid)
+            {
+                if (showValidation == null) throw new InvalidOperationException("关卡有校验错误：\n" + string.Join("\n", report.Issues));
+                return;
+            }
             var scene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/Bootstrap.unity");
             if (!scene) throw new InvalidOperationException("Bootstrap 场景缺失，请运行 Prepare Gameplay Assets。");
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;

@@ -201,6 +201,21 @@ namespace Sokoban.Tests
             Assert.That(Object.FindObjectsOfType<CameraRig>().Length, Is.Zero);
         }
 
+        [UnityTest] public IEnumerator DisposingAfterCanvasObjectsAreGoneStillReleasesPageWrappers()
+        {
+            var controller = runner.UI;
+            var pages = KUIManager.instance.DebugGetUIList().ToArray();
+            foreach (var page in pages)
+                if ((page is StationPage || page is GeneralFadePage) && page.gameObject) Object.DestroyImmediate(page.gameObject);
+            Assert.DoesNotThrow(() => controller.Dispose());
+            Assert.DoesNotThrow(() => controller.Dispose(), "Repeated cleanup must be harmless.");
+            foreach (var page in pages)
+                if (page is StationPage || page is GeneralFadePage) Assert.That(page.isDestroyed, Is.True);
+            Object.Destroy(runner.gameObject); runner = null;
+            yield return null;
+            Assert.That(KUIManager.instance.DebugGetUIList().Count, Is.Zero);
+        }
+
         [UnityTest] public IEnumerator SettingsSliderGraphicsStayInsideTracksAtBothEnds()
         {
             yield return Click<MainMenuPage>("Content/Settings");

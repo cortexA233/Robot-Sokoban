@@ -39,6 +39,8 @@
 
 DOTween 过渡采用非缩放时间，暂停或 timeScale 为 0 时仍能完成；重复导航被拒绝。销毁控制器时使用 Kill(false)，不补执行旧回调。幕布页始终置于当前 Canvas 最上层。
 
+v0.4.0 的作者试玩往返检查补充了退出时的清理保护：Unity 可能先销毁 Canvas 下的 GameObject，再销毁 LevelRunner；StationUIController 会跳过已销毁对象的 SetActive，同时继续注销页面包装对象。重复清理保持无害。
+
 `LevelRunner.LoadLevel/SelectLevel/NextLevel` 保留同步作者/测试 API；玩家按钮统一通过 StationUIController 的过渡入口，不绕过遮盖阶段。规则仍在原 GameSession 中，页面不复制推箱、供电或通关判定。
 
 ## 字体

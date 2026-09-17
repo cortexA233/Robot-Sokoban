@@ -1,0 +1,82 @@
+{
+  "nativeUiVerified": true,
+  "version": "v0.4.0",
+  "status": "passed",
+  "expectedMoves": 1,
+  "tests": [
+    {
+      "failed": 0,
+      "passed": 140,
+      "started": "2026-09-17 18:02:14Z",
+      "total": 140,
+      "finished": "2026-09-17 18:02:17Z",
+      "raw": "Logs/V0.4.0/EditMode-140.xml",
+      "suite": "EditMode"
+    },
+    {
+      "failed": 0,
+      "passed": 47,
+      "started": "2026-09-17 17:36:24Z",
+      "total": 47,
+      "finished": "2026-09-17 17:40:31Z",
+      "raw": "Logs/V0.4.0/PlayMode-47.xml",
+      "suite": "PlayMode"
+    },
+    {
+      "failed": 0,
+      "passed": 12,
+      "started": "2026-09-17 18:12:53Z",
+      "total": 12,
+      "finished": "2026-09-17 18:13:18Z",
+      "raw": "Logs/V0.4.0/UiPlayMode-12.xml",
+      "suite": "UI follow-up"
+    }
+  ],
+  "unity": "2022.3.51f1",
+  "implementationBaseline": "cb88099",
+  "expectedPushes": 1,
+  "finalCampaign": [
+    "L04",
+    "L05",
+    "L06",
+    "L07",
+    "L08",
+    "L09",
+    "L10",
+    "L11",
+    "L12"
+  ],
+  "recordedCommands": "E",
+  "fixtureRemovedFromRuntimeAssets": true,
+  "limitations": [
+    "Player check covers startup, not the full v0.9.0 delivery matrix.",
+    "One playtest move was entered through Input System keyboard state events; ordinary native short key injection was not sampled."
+  ],
+  "preserved": [
+    {
+      "path": "Assets/Resources/configs/CampaignCatalog.asset",
+      "matchesBackup": true,
+      "sha256": "88AB84ADE97D4FD6DF887DD01E30309DA5A05CE771F7CA6866AD624F5E84DE5C"
+    },
+    {
+      "path": "Assets/Resources/configs/levels/self_test.json",
+      "matchesBackup": true,
+      "sha256": "57CB7DC5A2C83304DDDC2A34F6F5541FC0A5B818F23B20DE2BC0AD5DCC4B385D"
+    },
+    {
+      "path": "Library/SokobanDrafts/Current.json",
+      "matchesBackup": true,
+      "sha256": "3519091DE817D216A13E15B741D98B80496FE9B222D843463D9F05486F779372"
+    },
+    {
+      "path": "Library/SokobanDrafts/Playtest.json",
+      "matchesBackup": true,
+      "sha256": "D1ABA493CA9FCF4C1FFBE079ACF742B2125C8C6E5DB86A0F4D13CB4B71CB973C"
+    },
+    {
+      "path": "Library/SokobanDrafts/Live/Workspace.json",
+      "matchesBackup": true,
+      "sha256": "82F47A021A8737721682E0D065B5570E56E9C6C5C041F97FF090CBF338C01524"
+    }
+  ]
+}

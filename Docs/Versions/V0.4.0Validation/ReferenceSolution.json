@@ -1,0 +1,22 @@
+{
+    "schemaVersion": 1,
+    "levelId": "level_e7ad56c2",
+    "contentHash": "fbd70a2ae59a366fe15d958bf1720dd34e4c84b8f3cc117e79b82163114fe57e",
+    "commands": "E",
+    "expectedMoves": 1,
+    "expectedPushes": 1,
+    "expectedPlayer": {
+        "x": 2,
+        "z": 3
+    },
+    "expectedCrateCells": [
+        {
+            "x": 6,
+            "z": 2
+        },
+        {
+            "x": 3,
+            "z": 3
+        }
+    ]
+}

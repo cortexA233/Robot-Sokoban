@@ -150,7 +150,12 @@ namespace Sokoban.UI
             Fade?.Cancel();
             if (Fade != null && !Fade.isDestroyed) Fade.DestroySelf();
             foreach (var page in pages)
-                if (!page.isDestroyed) { page.gameObject.SetActive(false); page.DestroySelf(); }
+                if (!page.isDestroyed)
+                {
+                    // Editor Play Mode can destroy the canvas before the runner disposes its page wrappers.
+                    if (page.gameObject) page.gameObject.SetActive(false);
+                    page.DestroySelf();
+                }
             pages.Clear();
             if (menuCamera) UnityEngine.Object.Destroy(menuCamera.gameObject);
             if (Runner) Runner.SetNavigationLocked(false);
