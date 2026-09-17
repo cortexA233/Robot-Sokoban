@@ -1,0 +1,54 @@
+{
+  "format": "redirector-design-drafts-v1",
+  "status": "Design studies only; not Unity level recipes or runtime data",
+  "legend": {
+    "#": "wall",
+    ".": "floor",
+    "~": "low-friction track",
+    "^ > v <": "fixed redirector pointing north, east, south, west",
+    "P": "player on floor",
+    "A": "energy crate on floor",
+    "X": "cargo crate on floor",
+    "a": "goal socket on floor"
+  },
+  "levels": [
+    {
+      "id": "L07_study",
+      "title": "拐个弯",
+      "width": 7,
+      "height": 7,
+      "rows": [
+        "#######",
+        "#####a#",
+        "###>~.#",
+        "###~#.#",
+        "#P#A#.#",
+        "#.....#",
+        "#######"
+      ],
+      "commands": "SEENSEENNN",
+      "expectedMoves": 10,
+      "expectedPushes": 2,
+      "keyCommands": [4, 10]
+    },
+    {
+      "id": "L08_study",
+      "title": "借箱刹车",
+      "width": 7,
+      "height": 7,
+      "rows": [
+        "#######",
+        "####.##",
+        "#...X.#",
+        "#PA~^.#",
+        "####a##",
+        "####.##",
+        "#######"
+      ],
+      "commands": "ENEES",
+      "expectedMoves": 5,
+      "expectedPushes": 3,
+      "keyCommands": [1, 4, 5]
+    }
+  ]
+}

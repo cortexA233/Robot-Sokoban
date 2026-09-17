@@ -1,0 +1,189 @@
+{
+  "scope": "Offline design model only; no Unity verification",
+  "calibration": [
+    {
+      "id": "L04",
+      "moves": 22,
+      "pushes": 8
+    },
+    {
+      "id": "L05",
+      "moves": 42,
+      "pushes": 13
+    },
+    {
+      "id": "L06",
+      "moves": 41,
+      "pushes": 15
+    }
+  ],
+  "studies": [
+    {
+      "id": "L07_study",
+      "replay": {
+        "moves": 10,
+        "pushes": 2,
+        "pushSnapshots": [
+          {
+            "command": 4,
+            "route": [
+              [
+                3,
+                3
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "player": [
+              3,
+              2
+            ],
+            "crates": [
+              [
+                5,
+                4
+              ]
+            ]
+          },
+          {
+            "command": 10,
+            "route": [
+              [
+                5,
+                5
+              ]
+            ],
+            "player": [
+              5,
+              4
+            ],
+            "crates": [
+              [
+                5,
+                5
+              ]
+            ]
+          }
+        ]
+      },
+      "redirectorReplacedByFloor": {
+        "solvable": false,
+        "visitedStates": 59,
+        "exhausted": true
+      }
+    },
+    {
+      "id": "L08_study",
+      "replay": {
+        "moves": 5,
+        "pushes": 3,
+        "pushSnapshots": [
+          {
+            "command": 1,
+            "route": [
+              [
+                3,
+                3
+              ],
+              [
+                4,
+                3
+              ]
+            ],
+            "player": [
+              2,
+              3
+            ],
+            "crates": [
+              [
+                4,
+                4
+              ],
+              [
+                4,
+                3
+              ]
+            ]
+          },
+          {
+            "command": 4,
+            "route": [
+              [
+                5,
+                4
+              ]
+            ],
+            "player": [
+              4,
+              4
+            ],
+            "crates": [
+              [
+                5,
+                4
+              ],
+              [
+                4,
+                3
+              ]
+            ]
+          },
+          {
+            "command": 5,
+            "route": [
+              [
+                4,
+                2
+              ]
+            ],
+            "player": [
+              4,
+              3
+            ],
+            "crates": [
+              [
+                5,
+                4
+              ],
+              [
+                4,
+                2
+              ]
+            ]
+          }
+        ]
+      },
+      "redirectorReplacedByFloor": {
+        "solvable": true,
+        "visitedStates": 40,
+        "exhausted": false,
+        "commands": "ENEES"
+      },
+      "cargoFrozen": {
+        "solvable": false,
+        "visitedStates": 35,
+        "exhausted": true
+      },
+      "cargoRemoved": {
+        "solvable": false,
+        "visitedStates": 95,
+        "exhausted": true
+      },
+      "cargoClearedFirst": {
+        "solvable": false,
+        "visitedStates": 43,
+        "exhausted": true
+      }
+    }
+  ]
+}
