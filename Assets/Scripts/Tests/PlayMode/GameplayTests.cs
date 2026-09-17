@@ -83,10 +83,10 @@ namespace Sokoban.Tests
             level.crates[0].kind = CrateDefinition.Cargo;
             level.crates = new[] { level.crates[0], new CrateDefinition { id = "extra_energy", x = 1, z = 1 } };
             runner.LoadLevel(level); yield return null;
-            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo crate"), Is.Not.Null);
-            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo top brace"), Is.Not.Null);
-            Assert.That(runner.Board.Crates["crate_01"].Find("Cargo side brace"), Is.Not.Null);
-            Assert.That(runner.Board.Crates["extra_energy"].Find("Energy crate"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["crate_01"].Find("CargoCrateRoot/Geometry/Shell"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["crate_01"].Find("CargoCrateRoot/TypeMarker/CargoBraces"), Is.Not.Null);
+            Assert.That(runner.Board.Crates["crate_01"].GetComponentsInChildren<Renderer>().Length, Is.EqualTo(2));
+            Assert.That(runner.Board.Crates["extra_energy"].Find("EnergyCrateRoot/EnergyWindow/FixedWindows"), Is.Not.Null);
             Assert.That(runner.TryMove(Direction.E), Is.True);
             yield return new WaitForSeconds(.32f);
             float backFace = runner.Board.Crates["crate_01"].GetComponentsInChildren<Renderer>().Min(r => r.bounds.min.x);

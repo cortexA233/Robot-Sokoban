@@ -53,8 +53,8 @@ namespace Sokoban
             }, duration + .08f, duration + .08f).SetEase(Ease.Linear).SetTarget(this).SetLink(gameObject)
                 .OnComplete(() => { if (ticket != generation) return; command = null; board.Robot.Sample(0, 0); completed?.Invoke(); });
         }
-        public void SetPaused(bool paused) { if (paused) command?.Pause(); else command?.Play(); }
-        public void Cancel() { generation++; command?.Kill(false); command = null; }
+        public void SetPaused(bool paused) { if (paused) command?.Pause(); else command?.Play(); if (board) board.SetPaused(paused); }
+        public void Cancel() { generation++; command?.Kill(false); command = null; if (board) board.CancelTransitions(); }
         private void OnDestroy() => Cancel();
     }
 }

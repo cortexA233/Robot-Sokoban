@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8fc0d62f5f3bc4d8f6a37d7bef629e, type: 3}
+  m_Name: StationKitTheme
+  m_EditorClassIdentifier: 
+  assets:
+  - id: EnergyCrate
+    prefab: {fileID: 2051873878727098484, guid: f3371653bf54e12468a389df975821cb, type: 3}
+  - id: CargoCrate
+    prefab: {fileID: 911672834892772616, guid: 9a305a3c4343cba4bbe96f9acd786516, type: 3}
+  - id: GoalSocket
+    prefab: {fileID: 101478850301061916, guid: 199d05b981e29b54c9c1ee7abbd22667, type: 3}
+  - id: UtilitySocket
+    prefab: {fileID: 8273285582287054540, guid: 5938d71c642ff60438f02c516a87b092, type: 3}
+  - id: PowerGate
+    prefab: {fileID: 6582283871220307954, guid: eb8ebaa788abbed41895b45e2265e323, type: 3}
+  - id: FloorPlain
+    prefab: {fileID: 8004461414549246492, guid: 10e705de4be410c43aec1f062af046f3, type: 3}
+  - id: FloorService
+    prefab: {fileID: 7507865486310126502, guid: 864d5059f439560499dfbc48d38ee81f, type: 3}
+  - id: FloorGrate
+    prefab: {fileID: 4582219158282811112, guid: ff53f4ed9fc6fa745824180855ec3dc8, type: 3}
+  - id: WallStraight
+    prefab: {fileID: 3141264172886046078, guid: a8964ea7f7a5d2e4392443a810ad8795, type: 3}
+  - id: WallCorner
+    prefab: {fileID: 2919537913268942877, guid: f1ce5c53ca210944684b57d68f7fcc4a, type: 3}
+  - id: WallEnd
+    prefab: {fileID: 6694596802459623610, guid: 51aa881e692c77747a54b00c11e5acd0, type: 3}
+  styles:
+  - key: blue
+    material: {fileID: 2100000, guid: 98e11d44c04d0f24f8e83277a24bd0bc, type: 2}
+    symbol: 0
+  - key: purple
+    material: {fileID: 2100000, guid: 50fe323f71819264bb1dc9c4dd12cdc9, type: 2}
+    symbol: 1
+  - key: lime
+    material: {fileID: 2100000, guid: acb145c06d0abd54186e5ef6c4c6078d, type: 2}
+    symbol: 2
+  - key: teal
+    material: {fileID: 2100000, guid: 7ef557418fcfd0c4e9e75c5c376023dc, type: 2}
+    symbol: 0
+  - key: gold
+    material: {fileID: 2100000, guid: ac07240fdc5a6aa468b9bb5ff0ec5f0c, type: 2}
+    symbol: 1
+  bindings:
+  - levelId: L01
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L02
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L02
+    socketId: socket_b
+    styleKey: purple
+    label: B
+  - levelId: L02
+    socketId: socket_s
+    styleKey: teal
+    label: S
+  - levelId: L03
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L03
+    socketId: socket_b
+    styleKey: purple
+    label: B
+  - levelId: L03
+    socketId: socket_c
+    styleKey: lime
+    label: C
+  - levelId: L03
+    socketId: socket_s
+    styleKey: teal
+    label: S
+  - levelId: L03
+    socketId: socket_t
+    styleKey: gold
+    label: T
+  - levelId: L04
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L05
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L05
+    socketId: socket_b
+    styleKey: purple
+    label: B
+  - levelId: L06
+    socketId: socket_a
+    styleKey: blue
+    label: A
+  - levelId: L06
+    socketId: socket_b
+    styleKey: purple
+    label: B
+  - levelId: L06
+    socketId: socket_s
+    styleKey: teal
+    label: S
+  socketSymbols:
+  - {fileID: 7206818818390534744, guid: 529dcb81d4219a5419f2b617c4420260, type: 3}
+  - {fileID: 4300000, guid: 76734ae90aaf3e145b71c934ce3fb4cf, type: 2}
+  - {fileID: 4300000, guid: 82b0a770ddb547e4cb804a742e4b2d32, type: 2}
+  badgeSymbols:
+  - {fileID: -5346259405723687252, guid: 1ae00861b0c4fc34ca8ab66b600264bc, type: 3}
+  - {fileID: 4300000, guid: c4b6fc4928c7a674988a672b89b29c46, type: 2}
+  - {fileID: 4300000, guid: 9a27f27a2a6289541b5efa03321cd51c, type: 2}
+  powerOff: {fileID: 2100000, guid: 000ec7cacf51fee4eb42fb8febbd03e7, type: 2}
+  powerOn: {fileID: 2100000, guid: 776eb9ee4663f4d45acb7ed9ac9e6140, type: 2}
+  trackSurface: {fileID: 2100000, guid: 4a35f6ebacca97e438bf6e389e1fc579, type: 2}
+  trackMark: {fileID: 2100000, guid: afad58afdd704a245a8b822ed352d98e, type: 2}
+  labelMaterial: {fileID: 2100000, guid: 0eb49106c3314dc459faf7e5a2c6fee3, type: 2}
+  labelFont: {fileID: 12800000, guid: 5e43384c0f517914e8b4f2975e8f181d, type: 3}
+  gateSeconds: 0.18

@@ -73,9 +73,14 @@ def write():
         if p.exists(): files.append(p)
     for check in acceptance.values():
         for path in check['evidence']: assert (PROJECT/path).exists(),path
+    integration_path=PROJECT/'Docs/Validation/StationKitIntegration.json'
+    integration=json.loads(integration_path.read_text(encoding='utf-8-sig')) if integration_path.exists() else None
+    integrated=bool(integration and integration.get('passed') and integration.get('artifactHashes') and
+        all((PROJECT/p).exists() and sha(PROJECT/p)==digest for p,digest in integration['artifactHashes'].items()))
     result={'protocol':'station-kit-v1','specification':'Docs/StationArtProduction.md v1.1','checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'tools':{'blender':bf['blenderVersion'],'unity':uv['unityVersion'],'urp':'14.0.11','cinemachine':'2.10.7','unityMCP':'10.2.0'},
-        'completion':{'blenderFbxProduction':'passed','unityAssetAcceptance':'passed','formalGameplayIntegration':'not_run','gameRegression':'not_run'},
+        'completion':{'blenderFbxProduction':'passed','unityAssetAcceptance':'passed','formalGameplayIntegration':'passed' if integrated else 'not_run','gameRegression':'passed' if integrated else 'not_run'},
+        'gameplayIntegrationEvidence':rel(integration_path) if integrated else None,
         'sourceSha256':sha(BASE/'StationKit.blend'),'assets':assets,'materials':interfaces['materials'],'unityMaterials':uv['materials'],
         'materialConvention':{'colorSpace':'sRGB','unityShader':'Universal Render Pipeline/Lit','smoothness':'1 - roughness','emission':'sRGB converted to linear, multiplied by emissionStrength; _EMISSION enabled for status lamps',
             'textureDependencies':[],'runtimeMutation':'Finite cached demonstration material variants; no mutation of shared neutral bases and no per-frame material allocation.'},

@@ -1,14 +1,14 @@
 # 空间站场景与机关：Blender 资产生产需求
 
-版本：1.1 · 日期：2026-09-16 · 状态：首批资产已制作并完成独立验收，正式游戏接入未执行 · 资产协议：`station-kit-v1`
+版本：1.1 · 日期：2026-09-16 · 状态：首批资产已交付并接入游戏 · 资产协议：`station-kit-v1`
 
-本轮实际交付、预览、复现命令与验收限制见 [StationKit 交付说明](../ArtSource/StationKit/README.md) 和 [逐资产清单](../ArtSource/StationKit/station_kit_asset_manifest.json)。下文保留生产合同；游戏运行时仍使用既有表现，后续批次与正式接入不随本次交付自动开工。
+实际交付、预览、复现命令与验收限制见 [StationKit 交付说明](../ArtSource/StationKit/README.md) 和 [逐资产清单](../ArtSource/StationKit/station_kit_asset_manifest.json)。用户后续授权的正式接入已完成，见 [游戏接入记录](StationKitIntegration.md)。下文保留首批生产合同；后续批次仍不自动开工。
 
 本文供新的 Codex 会话通过 Blender + MCP 生产资产。首批交付能源箱、普通箱、两类插槽、受电门、三种地板和三种墙体，共 **11 个主资产**，建立可复用的空间站美术套件。不同连接的配色由外部配置驱动，模型须支持换色、多路连接和独立的工作状态表现。
 
 1.1 版对齐已实现的普通箱机制：新增 `CargoCrate`，明确仅能源箱给插槽供电，补充混合箱辨识、普通箱占槽/占门的预览与验收。既有资产 ID、节点和材质角色约定继续沿用；两类箱子共享尺寸与推动接口，不共享供电能力。
 
-本文是新增资产的生产依据；[GameDesign.md](GameDesign.md) 第 2–4 节仍是尺寸、相机和游戏规则依据。当前游戏中的场景和机关仍主要由 [BoardView.cs](../Assets/Scripts/Presentation/BoardView.cs) 生成白模。本文件不代表这些模型、配色配置或接入代码已经存在。
+本文是新增资产的生产依据；[GameDesign.md](GameDesign.md) 第 2–4 节仍是尺寸、相机和游戏规则依据。[BoardView.cs](../Assets/Scripts/Presentation/BoardView.cs) 现已加载套件 Prefab；具体配色、状态同步与已验证范围见游戏接入记录，生产合同本身不代替验收证据。
 
 ## 1. 交付范围与生产顺序
 

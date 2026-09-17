@@ -156,7 +156,7 @@ namespace Sokoban
             Revision++; RecordDebug("移动 " + direction + "：接受");
             Presenter.Present(result, () =>
             {
-                Board.Restore(Session); idleTime = 0; Completed = Session.State.Completed;
+                Board.Restore(Session, false); idleTime = 0; Completed = Session.State.Completed;
                 if (Completed) Message = Definition.completionText;
                 NotifyChanged();
             });

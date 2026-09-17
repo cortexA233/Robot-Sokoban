@@ -124,7 +124,7 @@ namespace Sokoban.Tests
                 Assert.That(runner.Session.UndoCount, Is.Zero);
                 Assert.That(runner.Session.Commands, Is.Empty);
                 foreach (var crate in runner.Definition.crates)
-                    Assert.That(runner.Board.Crates[crate.id].Find(crate.IsEnergy ? "Energy crate" : "Cargo crate"), Is.Not.Null);
+                    Assert.That(runner.Board.Crates[crate.id].Find(crate.IsEnergy ? "EnergyCrateRoot" : "CargoCrateRoot"), Is.Not.Null);
                 runner.ToggleCamera();
                 yield return SolveCurrentLevel();
                 var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/" + runner.Definition.id + ".solution").text);

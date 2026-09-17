@@ -1,7 +1,7 @@
 {
   "protocol": "station-kit-v1",
   "specification": "Docs/StationArtProduction.md v1.1",
-  "checkedAt": "2026-09-17T02:02:33.506991+00:00",
+  "checkedAt": "2026-09-17T03:00:08.956235+00:00",
   "tools": {
     "blender": "5.2.2 LTS",
     "unity": "2022.3.51f1",
@@ -12,9 +12,10 @@
   "completion": {
     "blenderFbxProduction": "passed",
     "unityAssetAcceptance": "passed",
-    "formalGameplayIntegration": "not_run",
-    "gameRegression": "not_run"
+    "formalGameplayIntegration": "passed",
+    "gameRegression": "passed"
   },
+  "gameplayIntegrationEvidence": "Docs/Validation/StationKitIntegration.json",
   "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
   "assets": [
     {
@@ -4751,7 +4752,7 @@
         "b": 0.26352980732917786,
         "a": 0.3499999940395355
       },
-      "emissionKeyword": false
+      "emissionKeyword": true
     },
     {
       "name": "M_StationFloor",
@@ -4886,7 +4887,7 @@
         "b": 0.4463455080986023,
         "a": 0.6499999761581421
       },
-      "emissionKeyword": false
+      "emissionKeyword": true
     },
     {
       "name": "M_StationSymbol",
@@ -5261,8 +5262,8 @@
     },
     {
       "path": "ArtSource/StationKit/README.md",
-      "sha256": "d07db6c48ed6b8b77cde9bed4729b7dfcd1512df2c8a62556595e2f7b2c9816e",
-      "bytes": 11326
+      "sha256": "2752d21db8d9cc848bddb393af81984cc38baff00e58ffa4c487b0ef61dfc9b5",
+      "bytes": 11533
     },
     {
       "path": "ArtSource/StationKit/scripts/build_station_kit.py",
@@ -5296,8 +5297,8 @@
     },
     {
       "path": "ArtSource/StationKit/scripts/write_manifest.py",
-      "sha256": "ccd4389c3f317ca6bceba0a3648deab19a21926195690f651ee7b2943daecbe7",
-      "bytes": 11088
+      "sha256": "c49a69be06cb93f126c15e54172aefca7303251ad23074637556393f88569e43",
+      "bytes": 11639
     },
     {
       "path": "ArtSource/StationKit/StationKit.blend",
@@ -5356,8 +5357,8 @@
     },
     {
       "path": "ArtSource/StationKit/validation/unity_validation.json",
-      "sha256": "0afa6c1377e6c6e74df74f719e1775b540a466e1a20963994c14a38cc11deeba",
-      "bytes": 48282
+      "sha256": "66eb78192b46c7b006ab676e2d4085149eec17a5f82dc4b7f98e33b2042c797d",
+      "bytes": 48280
     },
     {
       "path": "ArtSource/StationKit/validation/unrelated_work.json",
@@ -5373,6 +5374,31 @@
       "path": "ArtSource/StationKit/validation/visual_review.json",
       "sha256": "1429b54ef2532dc7f18c4933aa1dfb5a6b10c9b89e6b40d0ca3c60a39c3da1d6",
       "bytes": 2751
+    },
+    {
+      "path": "Assets/Art/StationKit/Gameplay/InputBadgeCircle.asset",
+      "sha256": "1751ba29e5b82805599b4c98f40590a9ea207654a4e8c2d0dde6e7ff4cb89c0e",
+      "bytes": 17442
+    },
+    {
+      "path": "Assets/Art/StationKit/Gameplay/InputBadgeCircle.asset.meta",
+      "sha256": "230e106cf7247c83631ecb950461903fa2de01d0aaf50327912a3a27bd058231",
+      "bytes": 188
+    },
+    {
+      "path": "Assets/Art/StationKit/Gameplay/InputBadgeTriangle.asset",
+      "sha256": "dc897839cd3a22e74a8e98c6a8e9af3d46925e349bc964f8e2fb606a0bc76f5b",
+      "bytes": 15880
+    },
+    {
+      "path": "Assets/Art/StationKit/Gameplay/InputBadgeTriangle.asset.meta",
+      "sha256": "9aa48db5cda2f13daa6bed09c4f96a7464787ec7ffd2d3afce3389fba5e46a79",
+      "bytes": 188
+    },
+    {
+      "path": "Assets/Art/StationKit/Gameplay.meta",
+      "sha256": "fede2f030ad2e4f865abc48bea0ab37c1af8fddf40a1719bea9674d47458af13",
+      "bytes": 172
     },
     {
       "path": "Assets/Art/StationKit/Meshes/CargoCrate.fbx",
@@ -5556,7 +5582,7 @@
     },
     {
       "path": "Assets/Material/Station/M_StationEnergyWindow.mat",
-      "sha256": "3b941245b26742636f8356ae2c1b7b73a7a199e92de6cd657013cc2f56659f93",
+      "sha256": "7ddac3e726278e2bfd113c2550024210aa4bd3962dae1686cbf671337de57f45",
       "bytes": 3712
     },
     {
@@ -5626,8 +5652,8 @@
     },
     {
       "path": "Assets/Material/Station/M_StationStatusEmission.mat",
-      "sha256": "a9eb6632c3aa4e2c2efb2b76eeb05c5a5e021b0fbb95bf0f903cd53270b16038",
-      "bytes": 3699
+      "sha256": "387ffbf399d13c26c4ee03531901f02001d7c208862920031939d7333507cf75",
+      "bytes": 3688
     },
     {
       "path": "Assets/Material/Station/M_StationStatusEmission.mat.meta",
@@ -5646,8 +5672,8 @@
     },
     {
       "path": "Assets/Material/Station/M_StationStatusEmission_On.mat",
-      "sha256": "a2df2f8da46b5409faa9a804d4800b2563e2d365945794038de0cef2793f10c9",
-      "bytes": 3715
+      "sha256": "5ac68be9946a9f4f94b1c4b456ce7ee93802f93a1facd2263c71f729e709068f",
+      "bytes": 3726
     },
     {
       "path": "Assets/Material/Station/M_StationStatusEmission_On.mat.meta",
@@ -5801,8 +5827,8 @@
     },
     {
       "path": "Assets/Scripts/Editor/StationKit/StationKitAssetTools.cs",
-      "sha256": "a9256a50724fbe8e17e5d8615386455796eb0411572b9bb9c10f79c7ee9fd863",
-      "bytes": 17955
+      "sha256": "35457d77a7988bdc5e5836cd5a89a770392e754e1f12ff84a18ffaaf98eb7ab1",
+      "bytes": 18066
     },
     {
       "path": "Assets/Scripts/Editor/StationKit/StationKitAssetTools.cs.meta",
@@ -5820,6 +5846,16 @@
       "bytes": 243
     },
     {
+      "path": "Assets/Scripts/Editor/StationKit/StationKitGameplayAssets.cs",
+      "sha256": "0b21dc5422cfee6c4922b965869147f133840d23106a8eb9b112f86c6f0973ea",
+      "bytes": 8350
+    },
+    {
+      "path": "Assets/Scripts/Editor/StationKit/StationKitGameplayAssets.cs.meta",
+      "sha256": "edfde473367a73d64564a7066df0982e055c1a7eafa73579f1a5c9cd757fe3e6",
+      "bytes": 243
+    },
+    {
       "path": "Assets/Scripts/Editor/StationKit/StationKitOccupancyEvidence.cs",
       "sha256": "243e67771b102b603d457ad38b281e6cb11e113f339adb9fa3e69234f646c1ff",
       "bytes": 4835
@@ -5830,14 +5866,24 @@
       "bytes": 243
     },
     {
+      "path": "Assets/Scripts/Editor/StationKit/StationKitTestEvidence.cs",
+      "sha256": "a628d1fdb80b94fb631b5823ac0e42bf741244060e0803f474f96a1ef3fcfbbd",
+      "bytes": 2366
+    },
+    {
+      "path": "Assets/Scripts/Editor/StationKit/StationKitTestEvidence.cs.meta",
+      "sha256": "bd6204a73a032d5fa0940843dd1b95c377fcac9bd3d4a59f2ec0251899f4f0f0",
+      "bytes": 243
+    },
+    {
       "path": "Assets/Scripts/Editor/StationKit.meta",
       "sha256": "47e15ac5604aa5452af76f73c57109915599db464102f0a44b14bd343850cd71",
       "bytes": 172
     },
     {
       "path": "Docs/StationArtProduction.md",
-      "sha256": "da36ca7348fab647f01afd6c538675e909a368eb459f3e6071067ab676fba060",
-      "bytes": 39114
+      "sha256": "0054ca91f3d7d321d27aa6f5ec96596a7f19a24edc966b98da26e8e19c9b28ea",
+      "bytes": 39113
     }
   ]
 }

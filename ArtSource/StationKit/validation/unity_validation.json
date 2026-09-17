@@ -1,7 +1,7 @@
 {
     "protocol": "station-kit-v1",
     "unityVersion": "2022.3.51f1",
-    "checkedAt": "2026-09-17T02:01:31.8549609Z",
+    "checkedAt": "2026-09-17T02:51:43.3440902Z",
     "passed": true,
     "assets": [
         {
@@ -1027,7 +1027,7 @@
                 "b": 0.26352980732917788,
                 "a": 0.3499999940395355
             },
-            "emissionKeyword": false
+            "emissionKeyword": true
         },
         {
             "name": "M_StationFloor",
@@ -1162,7 +1162,7 @@
                 "b": 0.4463455080986023,
                 "a": 0.6499999761581421
             },
-            "emissionKeyword": false
+            "emissionKeyword": true
         },
         {
             "name": "M_StationSymbol",

@@ -1,7 +1,7 @@
 # Station Kit · station-kit-v1
 
 首批 11 个主资产已完成 **Blender / FBX 生产**和 **Unity 独立资产验收**。
-正式游戏接入尚未执行：BoardView、规则、关卡 JSON、参考解法和构建场景列表均未修改。
+后续用户授权的正式游戏接入也已完成，见 [游戏接入与回归记录](../../Docs/StationKitIntegration.md)。本页以下保留资产生产迭代的说明；规则、关卡 JSON、参考解法和构建场景列表保持不变。
 验收日期：2026-09-16（America/New_York；报告时间使用 UTC）。
 
 - [可编辑源文件](StationKit.blend)
@@ -61,7 +61,7 @@ Unity 工具覆盖已有材质、Prefab、展示场景前也保留备份，始�
 ## 材质、状态与挂点
 
 公共材质位于 `Assets/Material/Station/`，均为 URP/Lit。完整映射在清单的每个 Renderer/槽索引中；不要硬编码全局槽号。
-颜色按 sRGB 记录，Unity `_Smoothness = 1 - Blender roughness`。发光强度使用线性颜色乘法，状态灯材质启用 `_EMISSION`。
+颜色按 sRGB 记录，Unity `_Smoothness = 1 - Blender roughness`。发光强度使用线性颜色乘法；通电灯启用 `_EMISSION` 并清除 `EmissiveIsBlack`，断电材质关闭发光变体。
 能源窗使用独立固定角色 `FixedEnergy`，不属于 `LinkAccent` 或机关供电状态；普通箱只有固定外观角色。
 
 | 接口 | 用法 |
@@ -143,6 +143,6 @@ pipeline['gallery_layout']()
 - [视觉复核](validation/visual_review.json)：分别记录图像、观察和检查范围。1920×1080、1280×720，FOV 55°/3.2 m 四侧观察、北向正交俯视和灰阶，无 Bloom。
 
 扫掠是保守几何检查，容许地面覆盖图形最高 3 mm；不依赖物理碰撞器，也没有抬高箱子/机器人。
-当前材质与细节预算通过，但没有宣称完成大关卡性能基准、LOD、光照烘焙、正式状态同步或完整游戏回归。
+资产生产迭代未覆盖大关卡性能基准、LOD 或光照烘焙；正式状态同步与游戏回归在后续接入迭代验证，范围见上述接入记录。
 小型标牌在完整棋盘缩放下依靠颜色和大类形状辅助识别，正式 UI 接入可补短编号与放大提示。
 原 Robot.blend 的未提交版本保持原哈希。原有 Plugins、DOTween 设置及 ProjectSettings 的未提交内容不属于本次提交；Unity 导入期间 ProjectSettings 文件哈希发生变化，现有 DOTWEEN defines 保留，未将其回退或纳入本次提交。

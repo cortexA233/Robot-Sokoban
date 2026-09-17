@@ -1,0 +1,67 @@
+{
+    "unityVersion": "2022.3.51f1",
+    "state": "Passed",
+    "completedAt": "2026-09-17T02:44:08.9161732Z",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 9.5930137,
+    "tests": [
+        {
+            "name": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.0410103
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CampaignUsesAllElevenAssetsWithOriginalAuthorData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.2016023
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CargoRobotEmptyHandoffPausesAndUndoCancelsClosing",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.3149516
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.062241
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1047229
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.7681291
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.9268913
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.1146503
+        }
+    ]
+}

@@ -9,137 +9,120 @@ namespace Sokoban
     public sealed class BoardView : MonoBehaviour
     {
         private readonly Dictionary<string, Transform> crates = new Dictionary<string, Transform>();
-        private readonly Dictionary<string, Renderer[]> sockets = new Dictionary<string, Renderer[]>();
-        private readonly Dictionary<string, Material> socketOffMaterials = new Dictionary<string, Material>();
-        private readonly Dictionary<string, Renderer> gates = new Dictionary<string, Renderer>();
-        private readonly Dictionary<string, Renderer> gateMarkers = new Dictionary<string, Renderer>();
+        private readonly Dictionary<string, StationKitRendering.PowerLamps> sockets = new Dictionary<string, StationKitRendering.PowerLamps>();
+        private readonly Dictionary<string, StationGateView> gates = new Dictionary<string, StationGateView>();
         private readonly List<Renderer> upperWalls = new List<Renderer>();
-        private readonly List<Material> ownedMaterials = new List<Material>();
-        private Material floor, wall, dark, orange, cyan, track, goal, utility, cargoBody, cargoTrim;
-        private bool topDown;
+        private StationKitTheme theme;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
+        public IReadOnlyDictionary<string, StationGateView> Gates => gates;
         public static Vector3 Position(Cell cell) => new Vector3(cell.x, 0, cell.z);
 
-        private Material Material(Color color)
+        private GameObject Place(string assetId, string name, Vector3 position, float yaw = 0)
         {
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (!shader) throw new InvalidOperationException("URP Lit shader is missing.");
-            var material = new Material(shader) { color = color };
-            material.SetFloat("_Smoothness", .3f);
-            ownedMaterials.Add(material);
-            return material;
+            var obj = Instantiate(theme.Prefab(assetId), transform);
+            obj.name = name; obj.transform.localPosition = position; obj.transform.localRotation = Quaternion.Euler(0, yaw, 0);
+            return obj;
         }
-
-        private Renderer Box(string label, Vector3 center, Vector3 scale, Material material, Transform parent = null, bool collider = false)
+        private void TrackMark(Vector3 position)
         {
-            var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            obj.name = label; obj.transform.SetParent(parent ? parent : transform, false);
-            obj.transform.localPosition = center; obj.transform.localScale = scale;
-            obj.GetComponent<Renderer>().sharedMaterial = material;
-            if (!collider) { obj.GetComponent<Collider>().enabled = false; Destroy(obj.GetComponent<Collider>()); }
-            return obj.GetComponent<Renderer>();
+            var obj = GameObject.CreatePrimitive(PrimitiveType.Cube); obj.name = "Low friction marking";
+            obj.transform.SetParent(transform, false); obj.transform.localPosition = position;
+            obj.transform.localScale = new Vector3(.025f, .002f, .72f);
+            obj.GetComponent<Renderer>().sharedMaterial = theme.trackMark;
+            var collider = obj.GetComponent<Collider>(); collider.enabled = false; Destroy(collider);
+        }
+        private static string WallAsset(LevelDefinition level, Cell cell, out float yaw)
+        {
+            var neighbors = new bool[4]; int count = 0, single = 0;
+            for (int i = 0; i < 4; i++)
+                if (neighbors[i] = level.TerrainAt(cell.Step((Direction)i)) == Terrain.Wall) { count++; single = i; }
+            yaw = 0;
+            if (count <= 1) { yaw = count == 0 ? 0 : (single * 90 + 180) % 360; return "WallEnd"; }
+            if (count == 2)
+            {
+                if (neighbors[0] && neighbors[2]) { yaw = 90; return "WallStraight"; }
+                if (neighbors[1] && neighbors[3]) return "WallStraight";
+                for (int q = 0; q < 4; q++)
+                    if (neighbors[(2 + q) % 4] && neighbors[(3 + q) % 4]) { yaw = q * 90; break; }
+                return "WallCorner";
+            }
+            for (int i = 0; i < 4; i++) if (!neighbors[i]) yaw = i * 90;
+            return "WallStraight"; // Full-cell geometry also closes T and cross junctions.
         }
 
         public void Build(LevelDefinition level)
         {
-            floor = Material(new Color(.34f, .4f, .46f)); wall = Material(new Color(.74f, .79f, .82f));
-            dark = Material(new Color(.1f, .15f, .20f)); orange = Material(new Color(.94f, .55f, .15f));
-            cyan = Material(new Color(.17f, .88f, .9f)); track = Material(new Color(.38f, .64f, .76f));
-            goal = Material(new Color(.69f, .82f, .86f)); utility = Material(new Color(.75f, .61f, .3f));
-            cargoBody = Material(new Color(.35f, .25f, .16f)); cargoTrim = Material(new Color(.79f, .68f, .48f));
+            theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
+            if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Run Tools > Station Kit > Prepare Gameplay Integration.");
+            gameObject.AddComponent<StationKitLabelMaterials>().Initialize(theme);
             for (int z = 0; z < level.height; z++)
                 for (int x = 0; x < level.width; x++)
                 {
                     var cell = new Cell(x, z); var terrain = level.TerrainAt(cell); var pos = Position(cell);
                     if (terrain == Terrain.Void) continue;
-                    Box("Floor " + cell, pos + Vector3.down * .12f, new Vector3(.96f, .24f, .96f), terrain == Terrain.LowFriction ? track : floor);
+                    string deck = terrain != Terrain.Floor ? "FloorPlain" :
+                        (x * 17 + z * 31) % 13 == 0 ? "FloorService" : (x * 19 + z * 7) % 23 == 0 ? "FloorGrate" : "FloorPlain";
+                    var floor = Place(deck, "Floor " + cell, pos);
+                    if (terrain == Terrain.LowFriction)
+                    {
+                        floor.GetComponentInChildren<Renderer>().sharedMaterial = theme.trackSurface;
+                        for (int i = -1; i <= 1; i++) TrackMark(pos + new Vector3(i * .22f, .0015f, 0));
+                    }
                     if (terrain == Terrain.Wall)
                     {
-                        Box("Wall base", pos + Vector3.up * .12f, new Vector3(.98f, .24f, .98f), dark);
-                        upperWalls.Add(Box("Wall " + cell, pos + Vector3.up * .83f, new Vector3(.97f, 1.42f, .97f), wall, collider: true));
+                        string asset = WallAsset(level, cell, out float yaw);
+                        var wall = Place(asset, "Wall " + cell, pos, yaw);
+                        upperWalls.AddRange(StationKitRendering.Part(wall.transform, asset + "Root/Upper").GetComponentsInChildren<Renderer>());
+                        // Camera obstruction only; logical collision is owned by RuleEngine.
+                        var obstacle = wall.AddComponent<BoxCollider>(); obstacle.center = new Vector3(0, .77f, 0); obstacle.size = new Vector3(.98f, 1.54f, .98f);
                     }
-                    if (terrain == Terrain.LowFriction)
-                        for (int i = -1; i <= 1; i++) Box("Track stripe", pos + new Vector3(i * .22f, .013f, 0), new Vector3(.04f, .02f, .8f), dark);
                 }
             foreach (var crate in level.crates)
-            {
-                var root = new GameObject(crate.id).transform; root.SetParent(transform, false); root.position = Position(crate.Cell);
-                if (crate.IsEnergy)
-                {
-                    Box("Energy crate", new Vector3(0, .4f, 0), Vector3.one * .8f, wall, root);
-                    Box("Energy stripe X", new Vector3(0, .81f, 0), new Vector3(.65f, .025f, .15f), orange, root);
-                    Box("Energy stripe Z", new Vector3(0, .81f, 0), new Vector3(.15f, .025f, .65f), orange, root);
-                }
-                else
-                {
-                    Box("Cargo crate", new Vector3(0, .4f, 0), Vector3.one * .8f, cargoBody, root);
-                    foreach (float angle in new[] { -45f, 45f })
-                        Box("Cargo top brace", new Vector3(0, .81f, 0), new Vector3(.08f, .025f, .86f), cargoTrim, root)
-                            .transform.localRotation = Quaternion.Euler(0, angle, 0);
-                    for (int side = 0; side < 4; side++)
-                        foreach (float angle in new[] { -45f, 45f })
-                        {
-                            var turn = Quaternion.Euler(0, side * 90, 0);
-                            Box("Cargo side brace", turn * new Vector3(0, .4f, -.401f), new Vector3(.08f, .86f, .008f), cargoTrim, root)
-                                .transform.localRotation = turn * Quaternion.Euler(0, 0, angle);
-                        }
-                }
-                crates.Add(crate.id, root);
-            }
+                crates.Add(crate.id, Place(crate.kind == CrateDefinition.Energy ? "EnergyCrate" : "CargoCrate", crate.id, Position(crate.Cell)).transform);
             foreach (var socket in level.sockets)
             {
-                var pieces = new List<Renderer>(); var pos = Position(socket.Cell);
+                string asset = socket.isGoal ? "GoalSocket" : "UtilitySocket";
+                var obj = Place(asset, socket.id, Position(socket.Cell));
+                var root = StationKitRendering.Part(obj.transform, asset + "Root");
+                var style = theme.Style(level.id, socket.id, out string label);
+                StationKitRendering.Identity(obj, style);
+                StationKitRendering.Part(root, "LinkMarkers/IdentityBands").GetComponent<MeshFilter>().sharedMesh = theme.socketSymbols[style.symbol];
                 for (int side = 0; side < 4; side++)
                 {
-                    var offset = Quaternion.Euler(0, side * 90, 0) * new Vector3(0, .025f, .43f);
-                    pieces.Add(Box(socket.id, pos + offset, side % 2 == 0 ? new Vector3(.9f, .04f, .06f) : new Vector3(.06f, .04f, .9f), socket.isGoal ? goal : utility));
+                    var turn = Quaternion.Euler(0, side * 90, 0);
+                    var text = StationKitRendering.Label(root, label, turn * new Vector3(-.23f, .003f, .438f), .043f, theme, true);
+                    text.transform.localRotation = turn * Quaternion.Euler(90, 0, 0);
                 }
-                if (socket.isGoal) pieces.Add(Box("Goal center", pos + Vector3.up * .012f, new Vector3(.4f, .02f, .4f), goal));
-                sockets.Add(socket.id, pieces.ToArray());
-                socketOffMaterials.Add(socket.id, socket.isGoal ? goal : utility);
+                sockets.Add(socket.id, new StationKitRendering.PowerLamps(obj, theme));
             }
             foreach (var gate in level.gates)
             {
-                var root = new GameObject(gate.id).transform; root.SetParent(transform, false);
-                root.position = Position(gate.Cell); root.rotation = Quaternion.Euler(0, gate.facing == "E" || gate.facing == "W" ? 90 : 0, 0);
-                Box("Left jamb", new Vector3(-.43f, .7f, 0), new Vector3(.12f, 1.4f, .25f), dark, root);
-                Box("Right jamb", new Vector3(.43f, .7f, 0), new Vector3(.12f, 1.4f, .25f), dark, root);
-                gates.Add(gate.id, Box("Gate panel", new Vector3(0, .6f, 0), new Vector3(.74f, 1.2f, .16f), orange, root, true));
-                gateMarkers.Add(gate.id, Box("Gate status", new Vector3(0, .035f, 0), new Vector3(.85f, .04f, .3f), orange, root));
+                var obj = Place("PowerGate", gate.id, Position(gate.Cell), (int)Enum.Parse(typeof(Direction), gate.facing) * 90);
+                var view = obj.AddComponent<StationGateView>(); view.Initialize(gate, level, theme); gates.Add(gate.id, view);
             }
             var prefab = Resources.Load<GameObject>("prefabs/gameplay/player/PlayerActor");
             if (!prefab) throw new InvalidOperationException("PlayerActor prefab is missing. Run Tools > Sokoban > Prepare Gameplay Assets.");
-            Robot = Instantiate(prefab, transform).GetComponent<RobotPresenter>();
-            Robot.Initialize();
+            Robot = Instantiate(prefab, transform).GetComponent<RobotPresenter>(); Robot.Initialize();
         }
 
-        public void ApplyPower(PowerState power)
+        public void ApplyPower(PowerState power, bool immediate = false)
         {
-            foreach (var pair in sockets)
-                foreach (var renderer in pair.Value) renderer.sharedMaterial = power.Sockets[pair.Key] ? cyan : socketOffMaterials[pair.Key];
-            foreach (var pair in gates)
-            {
-                bool open = power.OpenGates[pair.Key];
-                pair.Value.transform.localPosition = new Vector3(0, open ? 1.9f : .6f, 0);
-                pair.Value.sharedMaterial = open ? cyan : orange;
-                pair.Value.GetComponent<Collider>().enabled = !open;
-                pair.Value.enabled = !topDown;
-                gateMarkers[pair.Key].sharedMaterial = open ? cyan : orange;
-            }
+            foreach (var pair in sockets) pair.Value.Set(power.Sockets[pair.Key]);
+            foreach (var pair in gates) pair.Value.Apply(power.PoweredGates[pair.Key], power.OpenGates[pair.Key], power.Sockets, immediate);
         }
         public void SetTopDown(bool value)
         {
-            topDown = value;
-            foreach (var wallRenderer in upperWalls) wallRenderer.enabled = !value;
-            foreach (var gate in gates.Values) gate.enabled = !value;
+            foreach (var renderer in upperWalls) renderer.enabled = !value;
+            foreach (var gate in gates.Values) gate.SetTopDown(value);
         }
-        public void Restore(GameSession session)
+        public void SetPaused(bool value) { foreach (var gate in gates.Values) gate.SetPaused(value); }
+        public void CancelTransitions() { foreach (var gate in gates.Values) if (gate) gate.Cancel(); }
+        public void Restore(GameSession session, bool immediate = true)
         {
             Robot.Restore(session.State.Player, session.State.Facing);
             foreach (var crate in session.State.Crates) crates[crate.Key].position = Position(crate.Value);
-            ApplyPower(session.Rules.Power(session.State));
+            ApplyPower(session.Rules.Power(session.State), immediate);
         }
-        private void OnDestroy() { foreach (var material in ownedMaterials) if (material) Destroy(material); }
     }
 }

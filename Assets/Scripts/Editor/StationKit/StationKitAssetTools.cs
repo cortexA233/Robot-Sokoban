@@ -85,8 +85,9 @@ namespace Sokoban.Art.Editor
             if (m) Backup(path);
             if (!m) { m = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(m, path); }
             m.SetColor("_BaseColor", color); m.SetFloat("_Metallic", metallic); m.SetFloat("_Smoothness", 1 - roughness);
-            // The keyword remains enabled for the independently controlled status material.
-            if (emission > 0 || name.Contains("StatusEmission")) m.EnableKeyword("_EMISSION"); else m.DisableKeyword("_EMISSION");
+            // URP's material validator removes _EMISSION when EmissiveIsBlack is set.
+            m.globalIlluminationFlags = emission > 0 ? MaterialGlobalIlluminationFlags.BakedEmissive : MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            if (emission > 0) m.EnableKeyword("_EMISSION"); else m.DisableKeyword("_EMISSION");
             m.SetColor("_EmissionColor", color.linear * emission); EditorUtility.SetDirty(m);
             return m;
         }
