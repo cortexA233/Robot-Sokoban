@@ -124,7 +124,7 @@ namespace Sokoban.Editor
             header.anchorMax = new Vector2(1, 1); header.offsetMax = new Vector2(-32, -28);
             header.offsetMin = new Vector2(32, -138);
             Fill(header, Paper);
-            Label(header, "Title", "02  借电开路", 26, 18, 580, 64, 32, true);
+            Label(header, "Title", "关卡标题", 26, 18, 580, 64, 32, true);
             RightLabel(header, "Power", "供电 1/2", 630, 150);
             RightLabel(header, "Moves", "移动 24", 450, 150);
             RightLabel(header, "Pushes", "推动 8", 270, 150);
@@ -177,7 +177,7 @@ namespace Sokoban.Editor
             layout.childControlWidth = layout.childControlHeight = true; layout.childForceExpandWidth = true; layout.childForceExpandHeight = false;
             layout.spacing = 12;
             rows.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            var row = Button(rows, "Template", "01  唤醒维修区", 0, 0, 1000, 112);
+            var row = Button(rows, "Template", "关卡", 0, 0, 1000, 112);
             row.gameObject.AddComponent<LayoutElement>().preferredHeight = 112;
             var selected = Rect(row.transform, "Selected", 0, 0, 1000, 112);
             Fill(selected, new Color32(232, 234, 231, 255), false); selected.SetAsFirstSibling();

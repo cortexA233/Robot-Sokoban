@@ -119,7 +119,7 @@ namespace Sokoban.Editor
             Button(palette, "外围墙", () => Edit("建立外围墙", document.Border), "border");
             Button(palette, "SceneView 聚焦", FrameBoard, "frame-board");
             palette.Add(new Label("示例关卡"));
-            foreach (string name in new[] { "L01", "L02", "L03", "L04", "L05", "L06", "LAB01_LowFriction" })
+            foreach (string name in new[] { "L04", "L05", "L06", "LAB01_LowFriction" })
             {
                 string path = "Assets/Resources/configs/" + (name.StartsWith("LAB") ? "test_levels/" : "levels/") + name + ".json";
                 Button(palette, name.StartsWith("LAB") ? "LAB01（开发测试）" : name, () => { if (ConfirmDiscard()) Run(() => { document.Open(path); Refresh(); FrameBoard(); }); }, "example-" + name);

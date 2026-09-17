@@ -16,7 +16,23 @@ namespace Sokoban.Tests
         {
             document = ScriptableObject.CreateInstance<LevelDocument>();
             document.draftPath = "Library/SokobanDrafts/Test_" + Guid.NewGuid().ToString("N") + ".json";
-            document.level = LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L02").text);
+            // A small authoring fixture keeps device/resize coverage independent of shipped levels.
+            document.level = LevelDocument.NewLevel(11, 7);
+            document.level.schemaVersion = 1;
+            document.level.playerSpawn = new PlayerSpawn { x = 2, z = 2, facing = "E" };
+            document.level.crates = new[]
+            {
+                new CrateDefinition { id = "crate_01", x = 3, z = 2 },
+                new CrateDefinition { id = "crate_02", x = 3, z = 4 }
+            };
+            document.level.sockets = new[]
+            {
+                new SocketDefinition { id = "socket_s", x = 4, z = 2, isGoal = false },
+                new SocketDefinition { id = "socket_a", x = 9, z = 4, isGoal = true },
+                new SocketDefinition { id = "socket_b", x = 9, z = 2, isGoal = true }
+            };
+            document.level.gates = new[] { new GateDefinition { id = "gate_01", x = 6, z = 4, facing = "E",
+                powerMode = "Any", sourceSocketIds = new[] { "socket_s", "socket_a" } } };
             Undo.IncrementCurrentGroup();
         }
         [TearDown] public void TearDown()
@@ -99,7 +115,8 @@ namespace Sokoban.Tests
         }
         [Test] public void ProofExpiresOnEditAndCanBeReplayedAndRebound()
         {
-            var proof = SolutionRecord.Capture(document.level, SolutionRecord.ReplayCommands(document.level, "ENWNEEEEEEWWWSSSWNNWNEEEENESSWSE"));
+            document.level = LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text);
+            var proof = SolutionRecord.Capture(document.level, SolutionRecord.ReplayCommands(document.level, "E"));
             document.level.title += " 改名";
             Assert.Throws<InvalidOperationException>(() => proof.Verify(document.level, true));
             Assert.DoesNotThrow(() => proof.Verify(document.level, false));
@@ -145,14 +162,14 @@ namespace Sokoban.Tests
         [Test] public void RecipeImportClearsOldFilePathInRestorableDraft()
         {
             document.filePath = "OriginalMustNotBeOverwritten.json";
-            RecipeImporter.ImportInto(document, File.ReadAllText("Docs/LevelRecipes/L01.json"));
+            RecipeImporter.ImportInto(document, File.ReadAllText("Docs/LevelRecipes/L04.json"));
             Assert.That(document.filePath, Is.Empty);
             var recovered = ScriptableObject.CreateInstance<LevelDocument>();
             recovered.draftPath = document.draftPath;
             try
             {
                 recovered.RestoreDraft(); Assert.That(recovered.filePath, Is.Empty);
-                Assert.That(recovered.IsDirty, Is.True); Assert.That(recovered.level.id, Is.EqualTo("L01"));
+                Assert.That(recovered.IsDirty, Is.True); Assert.That(recovered.level.id, Is.EqualTo("L04"));
             }
             finally { UnityEngine.Object.DestroyImmediate(recovered); }
         }

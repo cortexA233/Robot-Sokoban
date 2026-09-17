@@ -52,42 +52,6 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: ac07240fdc5a6aa468b9bb5ff0ec5f0c, type: 2}
     symbol: 1
   bindings:
-  - levelId: L01
-    socketId: socket_a
-    styleKey: blue
-    label: A
-  - levelId: L02
-    socketId: socket_a
-    styleKey: blue
-    label: A
-  - levelId: L02
-    socketId: socket_b
-    styleKey: purple
-    label: B
-  - levelId: L02
-    socketId: socket_s
-    styleKey: teal
-    label: S
-  - levelId: L03
-    socketId: socket_a
-    styleKey: blue
-    label: A
-  - levelId: L03
-    socketId: socket_b
-    styleKey: purple
-    label: B
-  - levelId: L03
-    socketId: socket_c
-    styleKey: lime
-    label: C
-  - levelId: L03
-    socketId: socket_s
-    styleKey: teal
-    label: S
-  - levelId: L03
-    socketId: socket_t
-    styleKey: gold
-    label: T
   - levelId: L04
     socketId: socket_a
     styleKey: blue

@@ -58,6 +58,8 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator CaptureUpgradeUndoAndRecoverKeepSourceAndKinds()
         {
+            runner.LoadLevel(LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text));
+            author.level = runner.Definition.Copy(); author.savedHash = LevelJson.Hash(author.level);
             author.Change("未保存作者修改", () => author.level.title += " 作者草稿");
             string original = LevelJson.Write(author.level); string sourceHash = LevelJson.Hash(runner.Definition);
             var workspace = Capture(); var draft = workspace.Draft;

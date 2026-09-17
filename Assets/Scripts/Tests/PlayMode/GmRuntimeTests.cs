@@ -21,7 +21,7 @@ namespace Sokoban.Tests
         {
             LevelRunner.PlaytestDefinition = null;
             runner = new GameObject("GM test runner").AddComponent<LevelRunner>(); yield return null;
-            runner.enabled = false; runner.SelectLevel(3); yield return null;
+            runner.enabled = false; runner.SelectLevel(0); yield return null;
         }
         [UnityTearDown] public IEnumerator TearDown()
         { if (runner) Object.Destroy(runner.gameObject); yield return null; LevelRunner.PlaytestDefinition = null; }
@@ -83,7 +83,7 @@ namespace Sokoban.Tests
             runner.Restart(); Assert.That(runner.Definition.crates.All(c => !c.IsEnergy), Is.True);
             Assert.That(runner.EndLiveSandbox(out _), Is.True); yield return null;
             Assert.That(LevelJson.Hash(runner.Definition), Is.EqualTo(hash)); Assert.That(runner.Session.State, Is.SameAs(origin));
-            Assert.That(runner.CampaignIndex, Is.EqualTo(3)); Assert.That(runner.IsPlaytest, Is.False);
+            Assert.That(runner.CampaignIndex, Is.EqualTo(0)); Assert.That(runner.IsPlaytest, Is.False);
             Assert.That(runner.DebugAnimationPaused, Is.True);
             Assert.That(runner.GetComponentsInChildren<BoardView>().Length, Is.EqualTo(1));
             Assert.That(runner.GetComponentsInChildren<CameraRig>().Length, Is.EqualTo(1));

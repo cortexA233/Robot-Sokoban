@@ -46,12 +46,13 @@ namespace Sokoban.Tests
             Assert.That(runner.TryMove(d),Is.True); yield return WaitFor(()=>!runner.Presenter.Busy);
         }
 
-        [UnityTest] public IEnumerator CampaignUsesAllElevenAssetsWithOriginalAuthorData()
+        [UnityTest] public IEnumerator CampaignAndAuthoringUseAllElevenAssetsWithOriginalData()
         {
             var seen=new HashSet<string>();
-            for(int i=0;i<runner.CampaignLevelCount;i++)
+            // Small campaign maps need not contain every decorative floor variant.
+            foreach(var level in Resources.Load<CampaignCatalog>("configs/CampaignCatalog").ReadLevels().Concat(new[] { Fixture() }))
             {
-                var text=Resources.Load<TextAsset>("configs/levels/L"+(i+1).ToString("D2")); var level=LevelJson.Read(text.text); string hash=LevelJson.Hash(level);
+                string hash=LevelJson.Hash(level);
                 runner.LoadLevel(level); yield return null;
                 foreach(var t in runner.Board.GetComponentsInChildren<Transform>(true)) if(t.name.EndsWith("Root",StringComparison.Ordinal)) seen.Add(t.name);
                 foreach(var c in level.crates)
@@ -149,7 +150,7 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases()
         {
-            var level=LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L03").text); runner.LoadLevel(level); yield return null;
+            var level=LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L06").text); runner.LoadLevel(level); yield return null;
             Func<Dictionary<string,Material>> identity=()=>runner.Definition.sockets.ToDictionary(s=>s.id,s=>runner.Board.transform.Find(s.id).GetComponentsInChildren<Renderer>()
                 .SelectMany(r=>r.sharedMaterials).First(m=>m.name.StartsWith("M_StationLinkAccent",StringComparison.Ordinal)));
             var before=identity(); var colors=before.ToDictionary(p=>p.Key,p=>p.Value.GetColor("_BaseColor"));

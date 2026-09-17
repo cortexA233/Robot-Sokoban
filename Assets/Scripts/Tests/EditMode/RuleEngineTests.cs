@@ -139,7 +139,6 @@ namespace Sokoban.Tests
             Assert.That(LevelJson.Write(level), Is.EqualTo(before)); Terrain(level, 3, 3, '#'); session.Restart();
             Assert.That(session.Move(Direction.E).Accepted, Is.True);
         }
-        [TestCase("L01", 8, 3, 3, 4)] [TestCase("L02", 32, 16, 8, 2)] [TestCase("L03", 68, 28, 15, 3)]
         [TestCase("L04", 22, 8, 3, 4)] [TestCase("L05", 42, 13, 3, 4)] [TestCase("L06", 41, 15, 3, 5)]
         [TestCase("LAB01_LowFriction", 1, 1, 2, 3)]
         public void PublishedRecipeMatchesGddReference(string id, int moves, int pushes, int x, int z)

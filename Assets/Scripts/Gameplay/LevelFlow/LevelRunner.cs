@@ -15,7 +15,7 @@ namespace Sokoban
         public static LevelDefinition PlaytestDefinition;
         public static event Action<LevelDefinition, GameSession> SaveReferenceRequested;
         public event Action Changed;
-        public string initialLevel = "configs/levels/L01";
+        public string initialLevel = "configs/levels/L04";
         public GameSession Session { get; private set; }
         public LevelDefinition Definition { get; private set; }
         public BoardView Board { get; private set; }

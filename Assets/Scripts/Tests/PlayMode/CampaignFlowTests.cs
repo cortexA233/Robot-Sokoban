@@ -46,12 +46,12 @@ namespace Sokoban.Tests
 
         [UnityTest, Timeout(120000)] public IEnumerator CompletingFirstLevelCanContinueToSecondWithFreshSession()
         {
-            Assert.That(runner.Definition.id, Is.EqualTo("L01"));
+            Assert.That(runner.Definition.id, Is.EqualTo("L04"));
             yield return SolveCurrentLevel();
             Assert.That(runner.CanGoNext, Is.True);
             Assert.That(runner.NextLevel(), Is.True);
             yield return null;
-            Assert.That(runner.Definition.id, Is.EqualTo("L02"));
+            Assert.That(runner.Definition.id, Is.EqualTo("L05"));
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Session.UndoCount, Is.Zero);
             Assert.That(runner.Session.Commands, Is.Empty);
@@ -61,7 +61,7 @@ namespace Sokoban.Tests
             yield return SolveCurrentLevel();
             Assert.That(runner.NextLevel(), Is.True);
             yield return null;
-            Assert.That(runner.Definition.id, Is.EqualTo("L03"));
+            Assert.That(runner.Definition.id, Is.EqualTo("L06"));
             Assert.That(runner.Session.State.Moves, Is.Zero); Assert.That(runner.Session.UndoCount, Is.Zero);
         }
         [UnityTest, Timeout(120000)] public IEnumerator LastLevelFinishesCampaignAndReturnsToSelection()
@@ -75,14 +75,14 @@ namespace Sokoban.Tests
             Assert.That(runner.LevelSelectionOpen, Is.True);
             Assert.That(runner.SelectLevel(0), Is.True);
             yield return null;
-            Assert.That(runner.Definition.id, Is.EqualTo("L01"));
+            Assert.That(runner.Definition.id, Is.EqualTo("L04"));
             Assert.That(runner.LevelSelectionOpen, Is.False); Assert.That(runner.Completed, Is.False);
             Assert.That(runner.Session.State.Moves, Is.Zero);
         }
         [UnityTest] public IEnumerator SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch()
         {
             Assert.That(runner.NextLevel(), Is.False);
-            Assert.That(runner.TryMove(Direction.S), Is.True);
+            Assert.That(runner.TryMove(Direction.E), Is.True);
             yield return new WaitForSeconds(.12f);
             Assert.That(runner.OpenLevelSelect(), Is.True);
             Vector3 before = runner.Board.Robot.transform.position;
@@ -96,7 +96,7 @@ namespace Sokoban.Tests
             runner.TryMove(Direction.W); runner.OpenLevelSelect();
             Assert.That(runner.SelectLevel(1), Is.True);
             yield return new WaitForSeconds(1);
-            Assert.That(runner.Definition.id, Is.EqualTo("L02")); Assert.That(runner.Session.State.Moves, Is.Zero);
+            Assert.That(runner.Definition.id, Is.EqualTo("L05")); Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Completed, Is.False); Assert.That(runner.Presenter.Busy, Is.False);
             Assert.That(UnityEngine.Object.FindObjectsOfType<BoardView>().Length, Is.EqualTo(1));
         }
@@ -109,17 +109,15 @@ namespace Sokoban.Tests
             yield return null;
             Assert.That(runner.Paused, Is.True); Assert.That(runner.Session.State, Is.SameAs(state));
         }
-        [UnityTest, Timeout(180000)] public IEnumerator OriginalThirdLevelContinuesThroughAllCargoLevels()
+        [UnityTest, Timeout(180000)] public IEnumerator RemainingCampaignContinuesThroughAllThreeCargoLevels()
         {
-            Assert.That(runner.CampaignLevelCount, Is.EqualTo(6));
-            Assert.That(runner.SelectLevel(2), Is.True);
+            Assert.That(runner.CampaignLevelCount, Is.EqualTo(3));
             Assert.That(runner.IsFinalCampaignLevel, Is.False);
-            yield return SolveCurrentLevel();
-            for (int index = 3; index < 6; index++)
+            for (int index = 0; index < runner.CampaignLevelCount; index++)
             {
-                Assert.That(runner.NextLevel(), Is.True);
+                if (index > 0) Assert.That(runner.NextLevel(), Is.True);
                 yield return null;
-                Assert.That(runner.Definition.id, Is.EqualTo("L0" + (index + 1)));
+                Assert.That(runner.Definition.id, Is.EqualTo("L0" + (index + 4)));
                 Assert.That(runner.Session.State.Moves, Is.Zero);
                 Assert.That(runner.Session.UndoCount, Is.Zero);
                 Assert.That(runner.Session.Commands, Is.Empty);

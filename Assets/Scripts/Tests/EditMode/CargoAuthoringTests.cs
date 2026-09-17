@@ -16,7 +16,7 @@ namespace Sokoban.Tests
         {
             document = ScriptableObject.CreateInstance<LevelDocument>();
             document.draftPath = "Library/SokobanDrafts/Cargo_" + Guid.NewGuid().ToString("N") + ".json";
-            document.level = LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L02").text);
+            document.level = LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text);
         }
         [TearDown] public void TearDown()
         {
@@ -26,7 +26,7 @@ namespace Sokoban.Tests
 
         [Test] public void LegacyLevelKeepsEnergyMeaningAndOriginalProofHash()
         {
-            var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/L02.solution").text);
+            var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/LAB01_LowFriction.solution").text);
             Assert.That(document.level.schemaVersion, Is.EqualTo(1));
             Assert.That(document.level.crates.All(c => c.IsEnergy), Is.True);
             Assert.That(LevelJson.Write(document.level), Does.Not.Contain("\"kind\""));
@@ -48,7 +48,7 @@ namespace Sokoban.Tests
 
         [Test] public void TypeEditInvalidatesProofAndSurvivesDraftAndCopy()
         {
-            document.solution = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/L02.solution").text);
+            document.solution = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/LAB01_LowFriction.solution").text);
             document.Change("改普通箱", () => document.SetCrateKind("crate_01", CrateDefinition.Cargo));
             Assert.That(LevelJson.Hash(document.level), Is.Not.EqualTo(document.solution.contentHash));
             document.RestoreDraft();
