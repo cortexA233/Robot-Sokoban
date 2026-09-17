@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "kind": "visual-readability-audit",
+  "reviewDate": "2026-09-16",
+  "timezone": "America/New_York",
+  "recordedAtUtc": "2026-09-17T03:47:35.4627450Z",
+  "project": "C:/recent_project/Sokoban_3D_Test",
+  "unityVersion": "2022.3.51f1",
+  "scene": "Assets/Scenes/Bootstrap.unity",
+  "report": "Docs/Art/VisualReadabilityReview.md",
+  "captureMethod": "CoplayDev manage_camera screenshot, Game View ScreenCapture, supersize 1; no image editing and no GM overlays.",
+  "statePreparation": "Campaign levels loaded through LevelRunner.SelectLevel. Utility E checkpoint used LevelRunner.TryMove. Later checkpoints replayed accepted directions through the live GameSession.Move, then BoardView.Restore, CameraRig.Snap and UI.Refresh. All non-empty commands were accepted. No entity teleportation, level-data edits or asset changes.",
+  "cameraPreparation": "Existing CameraRig.Toggle/Restore. Top-down is north-up. Third-person angles and distance use the existing supported range.",
+  "scope": "Current visuals only; proposed improvements have not been implemented or validated.",
+  "limitations": [
+    "Screenshots cover L02/L03 Any gates with two inputs; All, more than two inputs and one source feeding multiple gates are proposal requirements, not screenshot-verified cases.",
+    "All current screenshots are 1920x1080; proposed 1280x720 and grayscale acceptance is future work.",
+    "Legal checkpoint replay verifies settled presentation, not intermediate animation frames.",
+    "No full test suite or Player build was run for this documentation-only audit."
+  ],
+  "editorBefore": {
+    "sceneDirty": false,
+    "consoleErrors": 0,
+    "playing": false
+  },
+  "editorAfter": {
+    "sceneDirty": false,
+    "consoleErrors": 0,
+    "playing": false
+  },
+  "captures": [
+    {
+      "capturedAtUtc": "2026-09-17T03:39:32.6237386Z",
+      "sha256": "cf544fa071ee0b88096e713fad8b783fa20eec20ad44cb34bc2b01ecd9d0b174",
+      "height": 1080,
+      "gatePowered": false,
+      "commands": "",
+      "camera": {
+        "mode": "TopDown",
+        "orthographicSize": 5.5
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": false
+      },
+      "gateOpen": false,
+      "file": "L02InitialTopDown.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02InitialTopDown.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:40:12.6702016Z",
+      "sha256": "9bef9ba9a22fd4ba57f426356418c18743c098356370ec22c9621024c137c6d9",
+      "height": 1080,
+      "gatePowered": false,
+      "commands": "",
+      "camera": {
+        "mode": "TopDown",
+        "orthographicSize": 3.1
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": false
+      },
+      "gateOpen": false,
+      "file": "L02GateTopDownZoom.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02GateTopDownZoom.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:40:48.2681326Z",
+      "sha256": "85be0b4f3d5b332ebc454d4782b4c8193d13c95a509a2862a66e79250186f29e",
+      "height": 1080,
+      "gatePowered": true,
+      "commands": "E",
+      "camera": {
+        "pitch": 55,
+        "mode": "ThirdPerson",
+        "yaw": 45,
+        "distance": 4.5
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": true
+      },
+      "gateOpen": true,
+      "file": "L02UtilityPoweredThirdPerson.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02UtilityPoweredThirdPerson.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:41:29.4527273Z",
+      "sha256": "6f7babb67ac0ec61c577657a03f7d88c9d1dd88949e49afa920aec969720d0f5",
+      "height": 1080,
+      "gatePowered": true,
+      "commands": "ENWNEEEE",
+      "camera": {
+        "pitch": 55,
+        "mode": "ThirdPerson",
+        "yaw": 90,
+        "distance": 4.5
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": true
+      },
+      "gateOpen": true,
+      "file": "L02GateThirdPerson.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02GateThirdPerson.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:42:04.4764958Z",
+      "sha256": "191db42efb94fd40b578d71b7eadcb47307e1643f66f658d8b9e2041523797d7",
+      "height": 1080,
+      "gatePowered": true,
+      "commands": "ENWNEEEEEEWWWSSSWN",
+      "camera": {
+        "mode": "TopDown",
+        "orthographicSize": 5.5
+      },
+      "powered": {
+        "A": true,
+        "B": false,
+        "S": false
+      },
+      "gateOpen": true,
+      "file": "L02GoalTakeoverTopDown.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02GoalTakeoverTopDown.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:42:53.9361996Z",
+      "sha256": "01c5a130c2f972d3f2a8f7301e7d615c3a7d02fa2f5cc456dc8f9b26f16ac5dc",
+      "height": 1080,
+      "gatePowered": {
+        "gate_01": false,
+        "gate_02": false
+      },
+      "commands": "",
+      "camera": {
+        "mode": "TopDown",
+        "orthographicSize": 5.90625
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": false,
+        "C": false,
+        "T": false
+      },
+      "gateOpen": {
+        "gate_01": false,
+        "gate_02": false
+      },
+      "file": "L03InitialTopDown.png",
+      "level": "L03",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L03InitialTopDown.png"
+    },
+    {
+      "capturedAtUtc": "2026-09-17T03:43:33.3801019Z",
+      "sha256": "f277a4320b76252c44d6d08af6f309b36a34aa1501db301efe5f77b9cad02b5f",
+      "height": 1080,
+      "gatePowered": true,
+      "commands": "ENWNEEEEESE",
+      "camera": {
+        "pitch": 55,
+        "mode": "ThirdPerson",
+        "yaw": 60,
+        "distance": 3.2
+      },
+      "powered": {
+        "A": false,
+        "B": false,
+        "S": true
+      },
+      "gateOpen": true,
+      "file": "L02GoalComparisonThirdPerson.png",
+      "level": "L02",
+      "width": 1920,
+      "path": "Docs/Art/Images/VisualReadability/L02GoalComparisonThirdPerson.png"
+    }
+  ],
+  "sourceFingerprintsRecordedAfterCapture": [
+    {
+      "path": "Assets/Resources/configs/levels/L02.json",
+      "sha256": "3d3a9bdb071711c947549668366f2a0b28ee2046f6ec8504adfdd5e9250fd94a"
+    },
+    {
+      "path": "Assets/Resources/configs/levels/L03.json",
+      "sha256": "23462865b6719d95cdfc2eb7f9e9a9ea3d42622c077323c5a51e62d36e55aac7"
+    },
+    {
+      "path": "Assets/Resources/configs/solutions/L02.solution.json",
+      "sha256": "3c2865c1ef153dbeccead1a34056dc428ab95ae08b80a70793fba2e3937f8a47"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/BoardView.cs",
+      "sha256": "61f656b99fb235cf9f0c7d66c8eaa814036dece93033da13d167d5c4a802cfb7"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/StationGateView.cs",
+      "sha256": "515120462373d21b125ccb04f4d670c893feb5ad057dc4286ceae4cf43d061b4"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/CameraRig.cs",
+      "sha256": "3b35accb36146c669f418bae4b24aea5cd495ebaff54e5a3be469764527b92c8"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/GmOverlay.cs",
+      "sha256": "86191478a3bce7f1b1f54107488576ddb0b1a71542e03b537f958ea3156f3046"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Domain/RuleEngine.cs",
+      "sha256": "6902abbacbdb84f5852c30d307cbf4ef9eb451dc3e744578a38837d3256a96f6"
+    },
+    {
+      "path": "Assets/Resources/configs/StationKitTheme.asset",
+      "sha256": "ba3c69944ee9abeb177b768260e9277e037f553f53cab04f03f0db446f7640cb"
+    },
+    {
+      "path": "ArtSource/StationKit/scripts/build_station_kit.py",
+      "sha256": "4f9eb8d5cead572bae444510a2f32baa7044135f694efc7df77bd13a5ec2861c"
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/GoalSocket.fbx",
+      "sha256": "85d79e4590754fde12e8094662d5be02ab6db0f6747af9775222260ded273e65"
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/UtilitySocket.fbx",
+      "sha256": "e04876208de48d50b920626e980c29f0011ff36f8e6ee78228cdcab8aa5ea6ac"
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/PowerGate.fbx",
+      "sha256": "b87051586938a23e215b2b3255e28480d1bd68d6016726c36ba7ca5bdbcf8c12"
+    }
+  ]
+}
