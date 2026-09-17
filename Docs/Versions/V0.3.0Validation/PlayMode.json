@@ -1,0 +1,449 @@
+{
+  "job_id": "62db3c9786fb4726905ae1dfa6c70ae0",
+  "status": "succeeded",
+  "mode": "PlayMode",
+  "started_unix_ms": 1789628289056,
+  "finished_unix_ms": 1789628534910,
+  "last_update_unix_ms": 1789628534910,
+  "progress": {
+    "completed": 46,
+    "total": 46,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1789628534720,
+    "last_finished_test_full_name": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+    "last_finished_unix_ms": 1789628534776,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": {
+    "mode": "PlayMode",
+    "summary": {
+      "total": 46,
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 244.4247351,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "CampaignContinuesThroughAllNineLevels",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.CampaignContinuesThroughAllNineLevels",
+        "state": "Passed",
+        "durationSeconds": 122.1820965,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CompletingFirstLevelCanContinueToSecondWithFreshSession",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.CompletingFirstLevelCanContinueToSecondWithFreshSession",
+        "state": "Passed",
+        "durationSeconds": 28.7257425,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "EditorPlaytestNeverNavigatesIntoCampaign",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.EditorPlaytestNeverNavigatesIntoCampaign",
+        "state": "Passed",
+        "durationSeconds": 1.2100578,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "LastLevelFinishesCampaignAndReturnsToSelection",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.LastLevelFinishesCampaignAndReturnsToSelection",
+        "state": "Passed",
+        "durationSeconds": 17.9782801,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices",
+        "state": "Passed",
+        "durationSeconds": 0.0689575,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch",
+        "fullName": "Sokoban.Tests.CampaignFlowTests.SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch",
+        "state": "Passed",
+        "durationSeconds": 1.7850946,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+        "fullName": "Sokoban.Tests.GameplayTests.CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+        "state": "Passed",
+        "durationSeconds": 1.1689235,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower",
+        "fullName": "Sokoban.Tests.GameplayTests.CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower",
+        "state": "Passed",
+        "durationSeconds": 3.0448589,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "PauseFreezesOwnedActionThenResumes",
+        "fullName": "Sokoban.Tests.GameplayTests.PauseFreezesOwnedActionThenResumes",
+        "state": "Passed",
+        "durationSeconds": 1.7674267,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RealRobotUsesOnePushClockAndMatchesContactPlane",
+        "fullName": "Sokoban.Tests.GameplayTests.RealRobotUsesOnePushClockAndMatchesContactPlane",
+        "state": "Passed",
+        "durationSeconds": 1.1867766,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+        "fullName": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+        "state": "Passed",
+        "durationSeconds": 1.2156529,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RestartDuringContact",
+        "fullName": "Sokoban.Tests.GameplayTests.RestartDuringContact",
+        "state": "Passed",
+        "durationSeconds": 1.4653972,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RestartDuringExtension",
+        "fullName": "Sokoban.Tests.GameplayTests.RestartDuringExtension",
+        "state": "Passed",
+        "durationSeconds": 1.2125771,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RestartDuringSlide",
+        "fullName": "Sokoban.Tests.GameplayTests.RestartDuringSlide",
+        "state": "Passed",
+        "durationSeconds": 1.8192544,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "UndoDuringContact",
+        "fullName": "Sokoban.Tests.GameplayTests.UndoDuringContact",
+        "state": "Passed",
+        "durationSeconds": 1.4769004,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "UndoDuringExtension",
+        "fullName": "Sokoban.Tests.GameplayTests.UndoDuringExtension",
+        "state": "Passed",
+        "durationSeconds": 1.2515858,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "UndoDuringSlide",
+        "fullName": "Sokoban.Tests.GameplayTests.UndoDuringSlide",
+        "state": "Passed",
+        "durationSeconds": 1.8141749,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "F1AndEscapeAreConsumedWithoutPausingGame",
+        "fullName": "Sokoban.Tests.GmRuntimeTests.F1AndEscapeAreConsumedWithoutPausingGame",
+        "state": "Passed",
+        "durationSeconds": 0.1097006,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "InvalidGmDuringAnimationLeavesTweenAndHistoryUntouched",
+        "fullName": "Sokoban.Tests.GmRuntimeTests.InvalidGmDuringAnimationLeavesTweenAndHistoryUntouched",
+        "state": "Passed",
+        "durationSeconds": 0.9632665,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "LiveApplyRejectsInvalidDraftThenRebuildsTypesAndRestoresOrigin",
+        "fullName": "Sokoban.Tests.GmRuntimeTests.LiveApplyRejectsInvalidDraftThenRebuildsTypesAndRestoresOrigin",
+        "state": "Passed",
+        "durationSeconds": 0.0790091,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RealGmControlsMoveUndoAndBlockUnderlyingGame",
+        "fullName": "Sokoban.Tests.GmRuntimeTests.RealGmControlsMoveUndoAndBlockUnderlyingGame",
+        "state": "Passed",
+        "durationSeconds": 0.100255,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "LargestBoardFitsTopViewAndRepeatedRebuildReleasesMeshes",
+        "fullName": "Sokoban.Tests.RedirectorGameplayTests.LargestBoardFitsTopViewAndRepeatedRebuildReleasesMeshes",
+        "state": "Passed",
+        "durationSeconds": 0.5899805,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "PauseAndCameraSwitchDuringTurnResumeToTheSameGoal",
+        "fullName": "Sokoban.Tests.RedirectorGameplayTests.PauseAndCameraSwitchDuringTurnResumeToTheSameGoal",
+        "state": "Passed",
+        "durationSeconds": 4.6407546,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "RestartDuringTheTurnRestoresInitialBoard",
+        "fullName": "Sokoban.Tests.RedirectorGameplayTests.RestartDuringTheTurnRestoresInitialBoard",
+        "state": "Passed",
+        "durationSeconds": 2.6163216,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "UndoDuringTheTurnRestoresWholeCommand",
+        "fullName": "Sokoban.Tests.RedirectorGameplayTests.UndoDuringTheTurnRestoresWholeCommand",
+        "state": "Passed",
+        "durationSeconds": 2.6123293,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "VisibleBoxFollowsEveryCornerAndRobotStopsAfterFirstStep",
+        "fullName": "Sokoban.Tests.RedirectorGameplayTests.VisibleBoxFollowsEveryCornerAndRobotStopsAfterFirstStep",
+        "state": "Passed",
+        "durationSeconds": 1.9928511,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "ActualPowerHandoffUpdatesOnlyItsBranchAndUndoRestoresBothSignals",
+        "fullName": "Sokoban.Tests.StationCircuitTests.ActualPowerHandoffUpdatesOnlyItsBranchAndUndoRestoresBothSignals",
+        "state": "Passed",
+        "durationSeconds": 8.8667512,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "GoalAndGateSourceAreIndependentVisualRolesInTheRealCampaign",
+        "fullName": "Sokoban.Tests.StationCircuitTests.GoalAndGateSourceAreIndependentVisualRolesInTheRealCampaign",
+        "state": "Passed",
+        "durationSeconds": 0.0739015,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "LabelsStayUprightAndDoNotInterceptInputOrLeakOnRebuild",
+        "fullName": "Sokoban.Tests.StationCircuitTests.LabelsStayUprightAndDoNotInterceptInputOrLeakOnRebuild",
+        "state": "Passed",
+        "durationSeconds": 2.2243322,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "OccupiedUnpoweredGateHasAnOpenPassageAndExplicitReason",
+        "fullName": "Sokoban.Tests.StationCircuitTests.OccupiedUnpoweredGateHasAnOpenPassageAndExplicitReason",
+        "state": "Passed",
+        "durationSeconds": 0.4163188,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CampaignAndAuthoringUseAllElevenAssetsWithOriginalData",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.CampaignAndAuthoringUseAllElevenAssetsWithOriginalData",
+        "state": "Passed",
+        "durationSeconds": 0.235432,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CargoRobotEmptyHandoffPausesAndUndoCancelsClosing",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.CargoRobotEmptyHandoffPausesAndUndoCancelsClosing",
+        "state": "Passed",
+        "durationSeconds": 2.3565261,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators",
+        "state": "Passed",
+        "durationSeconds": 0.2491875,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases",
+        "state": "Passed",
+        "durationSeconds": 0.2722284,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases",
+        "state": "Passed",
+        "durationSeconds": 0.8486426,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+        "fullName": "Sokoban.Tests.StationKitGameplayTests.UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+        "state": "Passed",
+        "durationSeconds": 1.9624493,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+        "fullName": "Sokoban.Tests.StationUITests.BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+        "state": "Passed",
+        "durationSeconds": 1.3595459,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "CompletionButtonAdvancesWithFadeAndFreshCounters",
+        "fullName": "Sokoban.Tests.StationUITests.CompletionButtonAdvancesWithFadeAndFreshCounters",
+        "state": "Passed",
+        "durationSeconds": 11.4770199,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+        "fullName": "Sokoban.Tests.StationUITests.DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+        "state": "Passed",
+        "durationSeconds": 1.7811589,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+        "fullName": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+        "state": "Passed",
+        "durationSeconds": 2.0923852,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "HudUndoAndRestartUseTheRealSession",
+        "fullName": "Sokoban.Tests.StationUITests.HudUndoAndRestartUseTheRealSession",
+        "state": "Passed",
+        "durationSeconds": 0.8679143,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "LastLevelIsReachableThroughSelection",
+        "fullName": "Sokoban.Tests.StationUITests.LastLevelIsReachableThroughSelection",
+        "state": "Passed",
+        "durationSeconds": 1.3871556,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+        "fullName": "Sokoban.Tests.StationUITests.MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+        "state": "Passed",
+        "durationSeconds": 2.7653303,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "PauseSelectionBackPreservesSessionAndSettingsPersist",
+        "fullName": "Sokoban.Tests.StationUITests.PauseSelectionBackPreservesSessionAndSettingsPersist",
+        "state": "Passed",
+        "durationSeconds": 0.6002189,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+        "fullName": "Sokoban.Tests.StationUITests.SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+        "state": "Passed",
+        "durationSeconds": 1.372802,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      },
+      {
+        "name": "SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+        "fullName": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+        "state": "Passed",
+        "durationSeconds": 0.0563406,
+        "message": null,
+        "stackTrace": null,
+        "output": "<color=yellow>Cortex Log:</color> InitKFramework  \r\n"
+      }
+    ]
+  }
+}

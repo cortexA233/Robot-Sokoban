@@ -8,11 +8,11 @@ namespace Sokoban.Tests
 {
     public sealed class CampaignCatalogTests
     {
-        [Test] public void DefaultCatalogContainsOnlyTheThreeRemainingLevels()
+        [Test] public void DefaultCatalogContainsTheRetainedLevelsAndSixTransportLevels()
         {
             var catalog = Resources.Load<CampaignCatalog>("configs/CampaignCatalog");
             Assert.That(catalog, Is.Not.Null);
-            Assert.That(catalog.ReadLevels().Select(level => level.id), Is.EqualTo(new[] { "L04", "L05", "L06" }));
+            Assert.That(catalog.ReadLevels().Select(level => level.id), Is.EqualTo(Enumerable.Range(4, 9).Select(i => "L" + i.ToString("00"))));
             var copy = catalog.ReadLevels(); copy[0].title = "changed";
             Assert.That(catalog.ReadLevels()[0].title, Is.EqualTo("借一格"));
         }

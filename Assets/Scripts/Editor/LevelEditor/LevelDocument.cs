@@ -8,7 +8,7 @@ using Terrain = Sokoban.Domain.Terrain;
 
 namespace Sokoban.Editor
 {
-    public enum LevelBrush { Select, Floor, Wall, Void, LowFriction, Player, Crate, UtilitySocket, GoalSocket, Gate, Erase, CargoCrate }
+    public enum LevelBrush { Select, Floor, Wall, Void, LowFriction, Player, Crate, UtilitySocket, GoalSocket, Gate, Erase, CargoCrate, Redirector }
     public enum AuthorLayer { Terrain, Devices, Actors }
 
     // Both the window and recipe importer call these author operations.
@@ -61,7 +61,7 @@ namespace Sokoban.Editor
             if (width < 5 || width > 32 || height < 5 || height > 32) throw new ArgumentOutOfRangeException("尺寸必须是 5–32。");
             return new LevelDefinition
             {
-                schemaVersion = 2, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), title = "新关卡",
+                schemaVersion = 3, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), title = "新关卡",
                 briefing = "把能源箱送入目标插槽。", completionText = "区域已恢复供电", width = width, height = height,
                 gridSize = 1, terrainRows = Enumerable.Repeat(new string('.', width), height).ToArray(),
                 crates = Array.Empty<CrateDefinition>(), sockets = Array.Empty<SocketDefinition>(),
@@ -83,8 +83,8 @@ namespace Sokoban.Editor
         {
             if (!level.Contains(cell) || ".#~_".IndexOf(terrain) < 0) throw new InvalidOperationException("非法地形或越界格。");
             if (terrain == '#' || terrain == '_') { Erase(cell, AuthorLayer.Actors); Erase(cell, AuthorLayer.Devices); }
-            if (terrain == '~' && (level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell)))
-                throw new InvalidOperationException("请先移走插槽/门，再刷低摩擦轨道。");
+            if (terrain == '~' && (level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell) || level.redirectors.Any(r => r.Cell == cell)))
+                throw new InvalidOperationException("请先移走插槽/门/转向板，再刷低摩擦轨道。");
             char[] row = level.terrainRows[level.height - 1 - cell.z].ToCharArray();
             row[cell.x] = terrain;
             level.terrainRows[level.height - 1 - cell.z] = new string(row);
@@ -111,13 +111,20 @@ namespace Sokoban.Editor
                     level.playerSpawn = new PlayerSpawn { x = cell.x, z = cell.z, facing = facing }; return "player";
                 }
                 string id = NewId("crate");
-                if (brush == LevelBrush.CargoCrate) level.schemaVersion = 2;
+                if (brush == LevelBrush.CargoCrate) level.schemaVersion = Math.Max(2, level.schemaVersion);
                 level.crates = level.crates.Concat(new[] { new CrateDefinition { id = id, x = cell.x, z = cell.z,
                     kind = brush == LevelBrush.CargoCrate ? CrateDefinition.Cargo : CrateDefinition.Energy } }).ToArray();
                 return id;
             }
-            if (ground != Terrain.Floor || level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell))
-                throw new InvalidOperationException("插槽/门必须放在没有其他机关的普通地板上。");
+            if (ground != Terrain.Floor || level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell) || level.redirectors.Any(r => r.Cell == cell))
+                throw new InvalidOperationException("插槽/门/转向板必须放在没有其他机关的普通地板上。");
+            if (brush == LevelBrush.Redirector)
+            {
+                if (!LevelValidator.IsFacing(facing)) throw new InvalidOperationException("转向板方向必须是 N/E/S/W。");
+                string id = NewId("redirector"); level.schemaVersion = 3;
+                level.redirectors = level.redirectors.Concat(new[] { new RedirectorDefinition { id = id, x = cell.x, z = cell.z, facing = facing } }).ToArray();
+                return id;
+            }
             if (brush == LevelBrush.Gate)
             {
                 if (!isLiveDraft && level.playerSpawn != null && level.playerSpawn.Cell == cell) throw new InvalidOperationException("门不能覆盖玩家出生点。");
@@ -145,11 +152,12 @@ namespace Sokoban.Editor
                 var removed = level.sockets.Where(s => s.Cell == cell).Select(s => s.id).ToArray();
                 level.sockets = level.sockets.Where(s => s.Cell != cell).ToArray();
                 level.gates = level.gates.Where(g => g.Cell != cell).ToArray();
+                level.redirectors = level.redirectors.Where(r => r.Cell != cell).ToArray();
                 foreach (var gate in level.gates) gate.sourceSocketIds = gate.sourceSocketIds.Except(removed).ToArray();
             }
         }
 
-        public PlacedEntity Find(string id) => level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).FirstOrDefault(e => e.id == id);
+        public PlacedEntity Find(string id) => level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Concat(level.redirectors).FirstOrDefault(e => e.id == id);
         public void Move(string id, Cell to)
         {
             if (level.TerrainAt(to) == Terrain.Void || level.TerrainAt(to) == Terrain.Wall) throw new InvalidOperationException("目标格不可放置。");
@@ -163,7 +171,7 @@ namespace Sokoban.Editor
                     level.playerSpawn.x = to.x; level.playerSpawn.z = to.z; return;
                 }
             }
-            else if (level.TerrainAt(to) != Terrain.Floor || level.sockets.Any(s => s.id != id && s.Cell == to) || level.gates.Any(g => g.id != id && g.Cell == to) ||
+            else if (level.TerrainAt(to) != Terrain.Floor || level.sockets.Any(s => s.id != id && s.Cell == to) || level.gates.Any(g => g.id != id && g.Cell == to) || level.redirectors.Any(r => r.id != id && r.Cell == to) ||
                 (!isLiveDraft && Find(id) is GateDefinition && level.playerSpawn != null && level.playerSpawn.Cell == to))
                 throw new InvalidOperationException("目标格无法容纳这个机关。");
             var entity = Find(id) ?? throw new InvalidOperationException("选中元素已不存在。");
@@ -174,10 +182,10 @@ namespace Sokoban.Editor
         {
             if (kind != CrateDefinition.Energy && kind != CrateDefinition.Cargo) throw new ArgumentException("箱子类型必须是 Energy 或 Cargo。", nameof(kind));
             var crate = level.crates.Single(c => c.id == id);
-            if (kind == CrateDefinition.Cargo) level.schemaVersion = 2;
+            if (kind == CrateDefinition.Cargo) level.schemaVersion = Math.Max(2, level.schemaVersion);
             crate.kind = kind;
         }
-        public int CroppedCount(int width, int height) => level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Concat(level.decorations)
+        public int CroppedCount(int width, int height) => level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Concat(level.redirectors).Concat(level.decorations)
             .Count(e => e.x >= width || e.z >= height) + (level.playerSpawn != null && (level.playerSpawn.x >= width || level.playerSpawn.z >= height) ? 1 : 0);
         public void Resize(int width, int height)
         {

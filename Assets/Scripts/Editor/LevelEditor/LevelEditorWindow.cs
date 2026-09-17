@@ -113,13 +113,13 @@ namespace Sokoban.Editor
             }
             var layerField = new EnumField("擦除层", layer); palette.Add(layerField);
             layerField.RegisterValueChangedCallback(e => layer = (AuthorLayer)e.newValue);
-            var facingField = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, facing); palette.Add(facingField);
+            var facingField = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, facing) { name = "brush-facing" }; palette.Add(facingField);
             facingField.RegisterValueChangedCallback(e => facing = e.newValue);
             Button(palette, "撤销 Ctrl+Z", Undo.PerformUndo, "undo"); Button(palette, "重做 Ctrl+Y", Undo.PerformRedo, "redo");
             Button(palette, "外围墙", () => Edit("建立外围墙", document.Border), "border");
             Button(palette, "SceneView 聚焦", FrameBoard, "frame-board");
             palette.Add(new Label("示例关卡"));
-            foreach (string name in new[] { "L04", "L05", "L06", "LAB01_LowFriction" })
+            foreach (string name in new[] { "L04", "L05", "L06", "L07", "L08", "L09", "L10", "L11", "L12", "LAB01_LowFriction" })
             {
                 string path = "Assets/Resources/configs/" + (name.StartsWith("LAB") ? "test_levels/" : "levels/") + name + ".json";
                 Button(palette, name.StartsWith("LAB") ? "LAB01（开发测试）" : name, () => { if (ConfirmDiscard()) Run(() => { document.Open(path); Refresh(); FrameBoard(); }); }, "example-" + name);
@@ -136,7 +136,7 @@ namespace Sokoban.Editor
             RefreshMode();
             Refresh();
         }
-        private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层", "普通箱（不供电）" }[(int)value];
+        private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层", "普通箱（不供电）", "固定转向板" }[(int)value];
         private static void Button(VisualElement parent, string text, Action action, string name = null)
         { var button = new Button(action) { text = text, name = name }; button.style.minHeight = 25; parent.Add(button); }
         private void OnInspectorUpdate()
@@ -246,13 +246,17 @@ namespace Sokoban.Editor
         private string Symbol(Cell cell)
         {
             var l = document.level;
-            if (l.playerSpawn != null && l.playerSpawn.Cell == cell) return "P";
+            var redirector = l.redirectors.FirstOrDefault(r => r.Cell == cell);
+            string arrow = redirector == null ? "" : Arrow(redirector.facing);
+            if (l.playerSpawn != null && l.playerSpawn.Cell == cell) return "P" + arrow;
             var crate = l.crates.FirstOrDefault(c => c.Cell == cell);
-            if (crate != null) return crate.IsEnergy ? "C" : "X";
+            if (crate != null) return (crate.IsEnergy ? "C" : "X") + arrow;
             if (l.gates.Any(g => g.Cell == cell)) return "D";
             var s = l.sockets.FirstOrDefault(v => v.Cell == cell); if (s != null) return s.isGoal ? "◎" : "s";
+            if (redirector != null) return arrow;
             return l.TerrainAt(cell) == Terrain.LowFriction ? "≋" : l.TerrainAt(cell) == Terrain.Wall ? "■" : "";
         }
+        private static string Arrow(string direction) => direction == "N" ? "↑" : direction == "E" ? "→" : direction == "S" ? "↓" : "←";
         private Color TileColor(Cell cell)
         {
             if (selectedCell == cell) return new Color(.7f, .4f, .12f);
@@ -288,7 +292,7 @@ namespace Sokoban.Editor
                 else if (IsTerrainBrush()) document.Paint(cell, new[] { '.', '#', '_', '~' }[(int)brush - (int)LevelBrush.Floor]);
                 else if (brush != LevelBrush.Select) selectedId = document.Place(brush, cell, facing);
                 else selectedId = document.level.playerSpawn != null && document.level.playerSpawn.Cell == cell ? "player" :
-                    document.level.crates.Cast<PlacedEntity>().Concat(document.level.sockets).Concat(document.level.gates).FirstOrDefault(e => e.Cell == cell)?.id;
+                    document.level.crates.Cast<PlacedEntity>().Concat(document.level.sockets).Concat(document.level.gates).Concat(document.level.redirectors).FirstOrDefault(e => e.Cell == cell)?.id;
                 EditorUtility.SetDirty(document);
                 // Rebuild after pointer dispatch so drag capture/enter continues to work.
                 rootVisualElement.schedule.Execute(Refresh);
@@ -314,7 +318,7 @@ namespace Sokoban.Editor
             if (selectedCell.HasValue)
             {
                 var at = selectedCell.Value;
-                foreach (var entityAtCell in level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Where(e => e.Cell == at))
+                foreach (var entityAtCell in level.crates.Cast<PlacedEntity>().Concat(level.sockets).Concat(level.gates).Concat(level.redirectors).Where(e => e.Cell == at))
                 {
                     string id = entityAtCell.id; Button(properties, "选择 " + id, () => { selectedId = id; DrawProperties(); });
                 }
@@ -327,11 +331,12 @@ namespace Sokoban.Editor
             var x = new IntegerField("X") { value = position.x, isDelayed = true };
             var z = new IntegerField("Z") { value = position.z, isDelayed = true }; properties.Add(x); properties.Add(z);
             Button(properties, "移动到坐标", () => Edit("移动元素", () => { document.Move(selectedId, new Cell(x.value, z.value)); selectedCell = new Cell(x.value, z.value); }), "move-entity");
-            if (player || entity is GateDefinition)
+            if (player || entity is GateDefinition || entity is RedirectorDefinition)
             {
-                string direction = player ? level.playerSpawn.facing : ((GateDefinition)entity).facing;
-                var dropdown = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, LevelValidator.IsFacing(direction) ? direction : "N");
-                properties.Add(dropdown); dropdown.RegisterValueChangedCallback(e => Edit("旋转元素", () => { if (player) level.playerSpawn.facing = e.newValue; else ((GateDefinition)entity).facing = e.newValue; }));
+                string direction = player ? level.playerSpawn.facing : entity is GateDefinition selectedGate ? selectedGate.facing : ((RedirectorDefinition)entity).facing;
+                var dropdown = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, LevelValidator.IsFacing(direction) ? direction : "N") { name = "entity-facing" };
+                properties.Add(dropdown); dropdown.RegisterValueChangedCallback(e => Edit("旋转元素", () => { if (player) level.playerSpawn.facing = e.newValue; else if (entity is GateDefinition g) g.facing = e.newValue; else ((RedirectorDefinition)entity).facing = e.newValue; }));
+                if (entity is RedirectorDefinition) properties.Add(new Label("箱子进入后沿箭头继续移动；受阻停稳后不会自行重启。") { style = { whiteSpace = WhiteSpace.Normal } });
             }
             if (entity is CrateDefinition crate)
             {
@@ -453,11 +458,13 @@ namespace Sokoban.Editor
         {
             Edit("旋转元素", () =>
             {
-                string current = selectedId == "player" && document.level.playerSpawn != null ? document.level.playerSpawn.facing : (document.Find(selectedId) as GateDefinition)?.facing ?? facing;
+                string current = selectedId == "player" && document.level.playerSpawn != null ? document.level.playerSpawn.facing : (document.Find(selectedId) as GateDefinition)?.facing ?? (document.Find(selectedId) as RedirectorDefinition)?.facing ?? facing;
                 string rotated = ((Direction)(((int)Enum.Parse(typeof(Direction), current) + delta + 4) % 4)).ToString();
                 if (selectedId == "player" && document.level.playerSpawn != null) document.level.playerSpawn.facing = rotated;
                 else if (document.Find(selectedId) is GateDefinition gate) gate.facing = rotated;
+                else if (document.Find(selectedId) is RedirectorDefinition redirector) redirector.facing = rotated;
                 facing = rotated;
+                rootVisualElement.Q<PopupField<string>>("brush-facing")?.SetValueWithoutNotify(rotated);
             });
         }
         private void FrameBoard()
@@ -497,6 +504,7 @@ namespace Sokoban.Editor
             if (!l.Contains(hover)) return;
             if (evt.type == EventType.Layout) HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
             Handles.color = Color.yellow; Handles.DrawWireCube(BoardView.Position(hover), new Vector3(.95f, .03f, .95f));
+            if (brush == LevelBrush.Redirector) Handles.Label(BoardView.Position(hover) + Vector3.up * .06f, "转向 " + Arrow(facing));
             if (evt.type == EventType.MouseDown && (evt.button == 0 || evt.button == 1)) { BeginStroke(); Apply(hover, evt.button == 1); evt.Use(); }
             if (evt.type == EventType.MouseDrag && brushing && IsTerrainBrush()) { Apply(hover, evt.button == 1); evt.Use(); }
             if (evt.type == EventType.MouseMove) view.Repaint();
@@ -508,7 +516,7 @@ namespace Sokoban.Editor
         public static void OpenHelp() => GetWindow<HelpWindow>("关卡编辑器帮助");
         public void CreateGUI()
         {
-            rootVisualElement.Add(new Label("1. 新建 → 调整宽高 → 外围墙。\n2. 放玩家 P、能源箱 C、目标插槽 ◎；普通箱 X 可推、不供电、无需归位。\n3. 放门 D 后，在属性中勾选来源插槽。\n4. 校验；点击错误可定位。\n5. 试玩并录制；↑→↓← 为世界方向，V 切视角，Z 撤销，R 重开。\n6. 通关后保存参考解法，再退出 Play Mode。\n7. 保存关卡；回放通过后再保存，绑定当前版本。\n\n地图坐标从左下角 (0,0) 开始，北方在上。\n左键选择/放置，地形可拖刷；右键按图层擦除。\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Q/E 旋转。\nSceneView Alt/中键保留导航。\n\n当前为首轮实现；正式目录管理、菜单/进度及完整验收仍待后续迭代。") { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingTop = 16 } });
+            rootVisualElement.Add(new Label("1. 新建 → 调整宽高 → 外围墙。\n2. 放玩家 P、能源箱 C、目标插槽 ◎；普通箱 X 可推、不供电、无需归位。\n3. 放门 D 后勾选来源插槽；固定转向板放普通地板上，用朝向或 Q/E 旋转。\n4. 校验；点击错误可定位。\n5. 试玩并录制；↑→↓← 为世界方向，V 切视角，Z 撤销，R 重开。\n6. 通关后保存参考解法，再退出 Play Mode。\n7. 保存关卡；回放通过后再保存，绑定当前版本。\n\n地图坐标从左下角 (0,0) 开始，北方在上。\n左键选择/放置，地形可拖刷；右键按图层擦除。\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Q/E 旋转。\nSceneView Alt/中键保留导航。\n\nL04–L12 为九张正式关卡；L07/L08 是转向教学。箱子受阻停稳后不会自动重启，需要再次推动。\n新图为 v3；旧图加板可撤销升级。编辑器目录管理与玩家进度存档仍属后续范围。") { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingTop = 16 } });
         }
     }
 }

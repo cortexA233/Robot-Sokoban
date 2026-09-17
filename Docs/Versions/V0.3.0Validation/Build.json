@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "Build Succeeded.",
+  "data": {
+    "job_id": "build-791d3bfe4f",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "Builds/V0.3.0/StationRestart.exe",
+    "started_at": "2026-09-17T07:12:32.2974497Z",
+    "duration_seconds": 19.436383199999998,
+    "completed_at": "2026-09-17T07:12:51.7338329Z",
+    "total_size_mb": 81.63,
+    "errors": 0,
+    "warnings": 0
+  }
+}

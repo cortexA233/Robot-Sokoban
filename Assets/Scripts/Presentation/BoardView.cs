@@ -10,11 +10,13 @@ namespace Sokoban
     {
         private readonly Dictionary<string, Transform> crates = new Dictionary<string, Transform>();
         private readonly Dictionary<string, StationGateView> gates = new Dictionary<string, StationGateView>();
+        private readonly Dictionary<string, RedirectorView> redirectors = new Dictionary<string, RedirectorView>();
         private readonly List<Renderer> upperWalls = new List<Renderer>();
         private StationKitTheme theme;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
         public IReadOnlyDictionary<string, StationGateView> Gates => gates;
+        public IReadOnlyDictionary<string, RedirectorView> Redirectors => redirectors;
         public StationCircuitView Circuits { get; private set; }
         public static Vector3 Position(Cell cell) => new Vector3(cell.x, 0, cell.z);
 
@@ -59,6 +61,7 @@ namespace Sokoban
             var featureCells = new HashSet<Cell>();
             foreach (var socket in level.sockets) featureCells.Add(socket.Cell);
             foreach (var gate in level.gates) featureCells.Add(gate.Cell);
+            foreach (var redirector in level.redirectors) featureCells.Add(redirector.Cell);
             for (int z = 0; z < level.height; z++)
                 for (int x = 0; x < level.width; x++)
                 {
@@ -96,6 +99,13 @@ namespace Sokoban
                 Circuits.AddGate(gate, obj.transform);
             }
             Circuits.BuildWires();
+            foreach (var redirector in level.redirectors)
+            {
+                var obj = new GameObject(redirector.id); obj.transform.SetParent(transform, false);
+                obj.transform.localPosition = Position(redirector.Cell);
+                var view = obj.AddComponent<RedirectorView>(); view.Initialize(redirector, theme);
+                redirectors.Add(redirector.id, view);
+            }
             var prefab = Resources.Load<GameObject>("prefabs/gameplay/player/PlayerActor");
             if (!prefab) throw new InvalidOperationException("PlayerActor prefab is missing. Run Tools > Sokoban > Prepare Gameplay Assets.");
             Robot = Instantiate(prefab, transform).GetComponent<RobotPresenter>(); Robot.Initialize();

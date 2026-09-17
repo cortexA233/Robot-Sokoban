@@ -82,6 +82,11 @@ namespace Sokoban.Domain
         public string facing;
         public DecorationDefinition Copy() => (DecorationDefinition)MemberwiseClone();
     }
+    [Serializable] public sealed class RedirectorDefinition : PlacedEntity
+    {
+        public string facing;
+        public RedirectorDefinition Copy() => (RedirectorDefinition)MemberwiseClone();
+    }
 
     // Author data only. Runtime state never writes back into these DTOs.
     [Serializable]
@@ -101,6 +106,7 @@ namespace Sokoban.Domain
         public SocketDefinition[] sockets;
         public GateDefinition[] gates;
         public DecorationDefinition[] decorations;
+        public RedirectorDefinition[] redirectors = Array.Empty<RedirectorDefinition>();
 
         public bool Contains(Cell cell) => cell.x >= 0 && cell.z >= 0 && cell.x < width && cell.z < height;
         public Terrain TerrainAt(Cell cell)
@@ -125,6 +131,7 @@ namespace Sokoban.Domain
             copy.sockets = sockets?.Select(s => s?.Copy()).ToArray();
             copy.gates = gates?.Select(g => g?.Copy()).ToArray();
             copy.decorations = decorations?.Select(d => d?.Copy()).ToArray();
+            copy.redirectors = redirectors?.Select(d => d?.Copy()).ToArray();
             return copy;
         }
     }

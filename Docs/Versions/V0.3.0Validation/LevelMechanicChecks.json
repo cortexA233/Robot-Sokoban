@@ -1,0 +1,108 @@
+{
+  "scope": "Offline design analysis; C# replay is verified separately in Unity",
+  "levels": [
+    {
+      "id": "L07",
+      "cargoFrozen": {},
+      "gatesClosed": {}
+    },
+    {
+      "id": "L08",
+      "cargoFrozen": {
+        "crate_X": {
+          "solvable": false,
+          "states": 4,
+          "exhausted": true
+        }
+      },
+      "gatesClosed": {}
+    },
+    {
+      "id": "L09",
+      "cargoFrozen": {},
+      "gatesClosed": {
+        "gate_D": {
+          "solvable": false,
+          "states": 258,
+          "exhausted": true
+        }
+      },
+      "utilityDisconnected": {
+        "solvable": false,
+        "states": 258,
+        "exhausted": true
+      }
+    },
+    {
+      "id": "L10",
+      "cargoFrozen": {
+        "crate_X": {
+          "solvable": false,
+          "states": 49,
+          "exhausted": true
+        }
+      },
+      "gatesClosed": {
+        "gate_D": {
+          "solvable": false,
+          "states": 591,
+          "exhausted": true
+        }
+      },
+      "utilityDisconnected": {
+        "solvable": false,
+        "states": 591,
+        "exhausted": true
+      }
+    },
+    {
+      "id": "L11",
+      "cargoFrozen": {
+        "crate_X": {
+          "solvable": false,
+          "states": 3,
+          "exhausted": true
+        }
+      },
+      "gatesClosed": {
+        "gate_D": {
+          "solvable": false,
+          "states": 36,
+          "exhausted": true
+        }
+      }
+    },
+    {
+      "id": "L12",
+      "cargoFrozen": {
+        "crate_X": {
+          "solvable": false,
+          "states": 280,
+          "exhausted": true
+        },
+        "crate_Y": {
+          "solvable": false,
+          "states": 32,
+          "exhausted": true
+        }
+      },
+      "gatesClosed": {
+        "gate_F": {
+          "solvable": false,
+          "states": 8165,
+          "exhausted": true
+        },
+        "gate_D": {
+          "solvable": false,
+          "states": 254,
+          "exhausted": true
+        }
+      },
+      "utilityDisconnected": {
+        "solvable": false,
+        "states": 254,
+        "exhausted": true
+      }
+    }
+  ]
+}

@@ -45,7 +45,7 @@ namespace Sokoban.Domain
         { PlayerFrom = from; PlayerTo = to; CrateId = crateId; CrateFrom = crateFrom; CrateTo = crateTo; Power = power; }
     }
 
-    public enum RejectReason { None, PlayerBlocked, CrateBlocked, ChainPush, Completed }
+    public enum RejectReason { None, PlayerBlocked, CrateBlocked, ChainPush, Completed, TransportCycle }
 
     public sealed class MoveResolution
     {
@@ -62,6 +62,7 @@ namespace Sokoban.Domain
     {
         private readonly LevelDefinition level;
         private readonly Dictionary<Cell, GateDefinition> gates;
+        private readonly Dictionary<Cell, Direction> redirectors;
         private readonly HashSet<string> energyCrateIds;
         public RuleEngine(LevelDefinition definition) : this(definition, null) { }
         internal RuleEngine(LevelDefinition definition, BoardSnapshot checkpoint)
@@ -71,6 +72,7 @@ namespace Sokoban.Domain
             if (!report.IsValid) throw new ArgumentException(string.Join("\n", report.Issues.Where(i => i.IsError)), nameof(definition));
             level = definition.Copy();
             gates = level.gates.ToDictionary(g => g.Cell);
+            redirectors = level.redirectors.ToDictionary(r => r.Cell, r => (Direction)Enum.Parse(typeof(Direction), r.facing));
             energyCrateIds = new HashSet<string>(level.crates.Where(c => c.IsEnergy).Select(c => c.id));
         }
 
@@ -139,13 +141,19 @@ namespace Sokoban.Domain
             var steps = new List<Microstep> { new Microstep(state.Player, next, pushed, next, crateTarget, power) };
             if (pushed != null)
             {
-                int guard = 0;
-                while (level.TerrainAt(crates[pushed]) == Terrain.LowFriction)
+                Direction travel = direction;
+                // Only this crate moves during automatic transport. The player and other
+                // crates are fixed and power is derived, so cell + direction is complete.
+                var visited = new HashSet<KeyValuePair<Cell, Direction>>();
+                while (true)
                 {
                     Cell from = crates[pushed];
-                    Cell to = from.Step(direction);
+                    if (redirectors.TryGetValue(from, out var redirected)) travel = redirected;
+                    else if (level.TerrainAt(from) != Terrain.LowFriction) break;
+                    if (!visited.Add(new KeyValuePair<Cell, Direction>(from, travel)))
+                        return new MoveResolution(RejectReason.TransportCycle, state);
+                    Cell to = from.Step(travel);
                     if (!Passable(to, power) || to == next || crates.ContainsValue(to)) break;
-                    if (++guard > Math.Max(level.width, level.height)) throw new InvalidOperationException("滑行超出地图跨度。");
                     crates[pushed] = to;
                     power = Power(next, crates);
                     steps.Add(new Microstep(next, next, pushed, from, to, power));

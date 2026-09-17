@@ -1,0 +1,18 @@
+{
+    "schemaVersion": 1,
+    "levelId": "L07",
+    "contentHash": "d31b71e3f594ff3d5cdefd2f5dc5334bf6a4e412194b1693654549aeae5105f7",
+    "commands": "SEENSEENNN",
+    "expectedMoves": 10,
+    "expectedPushes": 2,
+    "expectedPlayer": {
+        "x": 5,
+        "z": 4
+    },
+    "expectedCrateCells": [
+        {
+            "x": 5,
+            "z": 5
+        }
+    ]
+}

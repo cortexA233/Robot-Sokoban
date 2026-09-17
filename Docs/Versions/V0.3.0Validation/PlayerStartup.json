@@ -1,0 +1,10 @@
+{
+  "result": "passed",
+  "scope": "Non-development Windows player startup smoke, not standalone campaign interaction",
+  "aliveAfterSeconds": 8,
+  "frameworkInitialized": true,
+  "errors": [],
+  "executable": "Builds/V0.3.0/StationRestart.exe",
+  "exeSha256": "7a193068a4e18076b1aad0c95bb9037fcb00ed0edc69657a75e16c248040a8c3",
+  "cleanup": "Only the spawned smoke process was stopped"
+}

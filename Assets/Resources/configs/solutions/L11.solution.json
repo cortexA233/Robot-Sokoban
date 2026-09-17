@@ -1,0 +1,26 @@
+{
+    "schemaVersion": 1,
+    "levelId": "L11",
+    "contentHash": "eca6236fcf0e00eff51f20f48f8ad1c015274f4f60f7ebdefe49533d58a4ddae",
+    "commands": "ENEEEWSSSNNNWNEESEN",
+    "expectedMoves": 19,
+    "expectedPushes": 10,
+    "expectedPlayer": {
+        "x": 6,
+        "z": 6
+    },
+    "expectedCrateCells": [
+        {
+            "x": 4,
+            "z": 1
+        },
+        {
+            "x": 7,
+            "z": 5
+        },
+        {
+            "x": 6,
+            "z": 7
+        }
+    ]
+}

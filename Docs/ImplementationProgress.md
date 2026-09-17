@@ -2,15 +2,17 @@
 
 基线：截至 `0dd9ca2` 的已提交实现及已有验证记录。文档整理不代表重新测试当前工作区，也不扩大历史验收范围。按用途和开发阶段查找全文见 [文档索引](README.md)。
 
-关卡内容更新：[v0.2.1](Versions/V0.2.1.md) 删除原前三关 L01–L03，当前正式顺序为 L04 → L05 → L06，LAB01 仍为开发测试关。
+关卡内容更新：[v0.2.1](Versions/V0.2.1.md) 删除原前三关 L01–L03，当时正式顺序保留 L04 → L05 → L06；v0.3.0 再追加 L07–L12，LAB01 仍为开发测试关。
 
 表现更新：[v0.2.0](Versions/V0.2.0.md) 已实现目标环/门电源插头的独立组合、稳定门编号、供电连线与俯视标牌。EditMode 3/3、完整项目 PlayMode 41/41 通过，包含当前三关参考解法；[实机与验证记录](History/08-CircuitReadability/ImplementationReport.md)。
+
+玩法更新：[v0.3.0](Versions/V0.3.0.md) 已实现固定转向板、schema v3、完整转向板制作/现场编辑支持及 L07–L12；正式目录共九关。全组 EditMode 122/122、PlayMode 46/46，最终定向复测与 Windows 构建/启动通过；[封版验收材料](Versions/V0.3.0Validation/README.md)。
 
 ## 已实现
 
 | 用途 | 当前能力 | 维护入口 |
 | --- | --- | --- |
-| Gameplay | 共享规则、供电门、低摩擦、Energy/Cargo 两类箱子、撤销/重开、L04–L06 连续游玩与参考解法 | [GDD](Gameplay/GameDesign.md) |
+| Gameplay | 共享规则、供电门、低摩擦、固定转向板、Energy/Cargo 两类箱子、撤销/重开、L04–L12 连续游玩与参考解法 | [GDD](Gameplay/GameDesign.md) |
 | 编辑器 | UI Toolkit / SceneView 关卡制作、严格校验、原子保存、草稿恢复、配方导入、试玩录制与解法回放 | [操作指南](Editor/LevelEditorGuide.md) |
 | UI | KToolkit UGUI 主菜单、HUD、选关、暂停、结算、设置保存及幕布过渡 | [UI 实现](UI/UIImplementation.md) |
 | Debug | Editor / 开发版 F1 GM、可撤销移位、状态诊断；Editor 内捕获、编辑、应用及恢复现场草稿 | [GM 与现场编辑契约](Debug/GMAndLiveEditingPlan.md) |

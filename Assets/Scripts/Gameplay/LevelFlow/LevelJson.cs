@@ -18,8 +18,8 @@ namespace Sokoban
     {
         private sealed class FieldsOnlyResolver : DefaultContractResolver
         {
-            private readonly bool legacy;
-            public FieldsOnlyResolver(bool legacy = false) { this.legacy = legacy; }
+            private readonly int schema;
+            public FieldsOnlyResolver(int schema) { this.schema = schema; }
             protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization serialization)
             {
                 var hierarchy = new Stack<Type>();
@@ -27,20 +27,25 @@ namespace Sokoban
                 var properties = new List<JsonProperty>();
                 while (hierarchy.Count > 0)
                     foreach (var field in hierarchy.Pop().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).OrderBy(f => f.MetadataToken))
-                        if (!legacy || field.DeclaringType != typeof(CrateDefinition) || field.Name != nameof(CrateDefinition.kind))
+                        if (!(schema == 1 && field.DeclaringType == typeof(CrateDefinition) && field.Name == nameof(CrateDefinition.kind)) &&
+                            !(schema < 3 && field.DeclaringType == typeof(LevelDefinition) && field.Name == nameof(LevelDefinition.redirectors)))
                             properties.Add(CreateProperty(field, MemberSerialization.Fields));
                 return properties;
             }
         }
-        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver() };
-        private static readonly JsonSerializerSettings LegacySettings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver(true) };
+        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver(3) };
+        private static readonly JsonSerializerSettings TypedSettings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver(2) };
+        private static readonly JsonSerializerSettings LegacySettings = new JsonSerializerSettings { ContractResolver = new FieldsOnlyResolver(1) };
         private static JsonSerializerSettings WireSettings(LevelDefinition level)
         {
+            if (level.schemaVersion < 1 || level.schemaVersion > 3) throw new FormatException("仅支持 schemaVersion=1、2 或 3。");
+            if (level.schemaVersion < 3 && level.redirectors != null && level.redirectors.Length > 0)
+                throw new FormatException("转向板需要 schemaVersion=3，不能保存为旧版数据。");
             // Retain v1 bytes/hashes for existing energy-only levels and their proofs.
             // Never silently discard a cargo type while serializing a v1 definition.
             if (level.schemaVersion == 1 && level.crates != null && level.crates.Any(c => c != null && !c.IsEnergy))
                 throw new FormatException("普通箱需要 schemaVersion=2，不能保存为旧版能源箱数据。");
-            return level.schemaVersion == 1 ? LegacySettings : Settings;
+            return level.schemaVersion == 1 ? LegacySettings : level.schemaVersion == 2 ? TypedSettings : Settings;
         }
         public static string Write(LevelDefinition level) => JsonConvert.SerializeObject(level, Formatting.Indented, WireSettings(level)) + "\n";
         public static LevelDefinition Read(string json)
@@ -50,7 +55,12 @@ namespace Sokoban
             var version = token["schemaVersion"];
             CheckShape(typeof(int), version, "$.schemaVersion", false);
             int schema = (int)version;
-            if (schema != 1 && schema != 2) throw new FormatException("仅支持 schemaVersion=1 或 2。");
+            if (schema < 1 || schema > 3) throw new FormatException("仅支持 schemaVersion=1、2 或 3。");
+            if (schema < 3)
+            {
+                if (((JObject)token).Property("redirectors") != null) throw new FormatException("旧版关卡不能包含 redirectors；请使用版本 3。");
+                ((JObject)token).Add("redirectors", new JArray());
+            }
             if (schema == 1 && token["crates"] is JArray crates)
                 foreach (var item in crates.OfType<JObject>())
                 {

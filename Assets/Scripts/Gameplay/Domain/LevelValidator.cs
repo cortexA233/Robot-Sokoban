@@ -35,7 +35,7 @@ namespace Sokoban.Domain
         {
             var report = new ValidationReport();
             if (level == null) { report.Error("关卡数据为空。"); return report; }
-            if (level.schemaVersion != 1 && level.schemaVersion != 2) report.Error("仅支持 schemaVersion=1 或 2。");
+            if (level.schemaVersion < 1 || level.schemaVersion > 3) report.Error("仅支持 schemaVersion=1、2 或 3。");
             if (string.IsNullOrWhiteSpace(level.id)) report.Error("关卡 ID 不能为空。");
             if (string.IsNullOrWhiteSpace(level.title)) report.Error("关卡标题不能为空。");
             if (level.width < 5 || level.width > 32 || level.height < 5 || level.height > 32)
@@ -49,8 +49,9 @@ namespace Sokoban.Domain
                     for (int x = 0; x < level.width; x++)
                         if (".#~_".IndexOf(level.terrainRows[r][x]) < 0)
                             report.Error("未知地形符号。", new Cell(x, level.height - r - 1));
-            if (level.crates == null || level.sockets == null || level.gates == null || level.decorations == null)
-            { report.Error("crates/sockets/gates/decorations 数组不可缺失。"); return report; }
+            if (level.crates == null || level.sockets == null || level.gates == null || level.decorations == null || level.redirectors == null)
+            { report.Error("crates/sockets/gates/decorations/redirectors 数组不可缺失。"); return report; }
+            if (level.schemaVersion < 3 && level.redirectors.Length > 0) report.Error("转向板需要 schemaVersion=3。");
             if (!validTerrain || level.width < 5 || level.width > 32 || level.height < 5 || level.height > 32) return report;
 
             var ids = new HashSet<string>(StringComparer.Ordinal);
@@ -121,6 +122,14 @@ namespace Sokoban.Domain
                         usedSockets.Add(source);
                     }
                 }
+            }
+            foreach (var redirector in level.redirectors)
+            {
+                if (redirector == null) { report.Error("存在空转向板记录。"); continue; }
+                checkEntity(redirector);
+                if (!deviceCells.Add(redirector.Cell)) report.Error("转向板不能与插槽、门或其他转向板重叠。", redirector.Cell);
+                if (level.TerrainAt(redirector.Cell) != Terrain.Floor) report.Error("转向板只能放在普通地板上。", redirector.Cell);
+                if (!IsFacing(redirector.facing)) report.Error("转向板方向必须是 N/E/S/W。", redirector.Cell);
             }
             foreach (var decoration in level.decorations)
             {

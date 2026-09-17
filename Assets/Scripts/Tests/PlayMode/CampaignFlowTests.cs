@@ -109,15 +109,15 @@ namespace Sokoban.Tests
             yield return null;
             Assert.That(runner.Paused, Is.True); Assert.That(runner.Session.State, Is.SameAs(state));
         }
-        [UnityTest, Timeout(180000)] public IEnumerator RemainingCampaignContinuesThroughAllThreeCargoLevels()
+        [UnityTest, Timeout(360000)] public IEnumerator CampaignContinuesThroughAllNineLevels()
         {
-            Assert.That(runner.CampaignLevelCount, Is.EqualTo(3));
+            Assert.That(runner.CampaignLevelCount, Is.EqualTo(9));
             Assert.That(runner.IsFinalCampaignLevel, Is.False);
             for (int index = 0; index < runner.CampaignLevelCount; index++)
             {
                 if (index > 0) Assert.That(runner.NextLevel(), Is.True);
                 yield return null;
-                Assert.That(runner.Definition.id, Is.EqualTo("L0" + (index + 4)));
+                Assert.That(runner.Definition.id, Is.EqualTo("L" + (index + 4).ToString("00")));
                 Assert.That(runner.Session.State.Moves, Is.Zero);
                 Assert.That(runner.Session.UndoCount, Is.Zero);
                 Assert.That(runner.Session.Commands, Is.Empty);

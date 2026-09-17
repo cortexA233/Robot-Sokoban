@@ -1,0 +1,91 @@
+{
+  "definition": {
+    "schemaVersion": 3,
+    "id": "L10",
+    "title": "共用转角",
+    "briefing": "两路箱子共用一个转角。留出候车与推动位置，先送深处，再回收临时电源。",
+    "completionText": "运输区已恢复供电",
+    "width": 8,
+    "height": 9,
+    "gridSize": 1.0,
+    "terrainRows": [
+      "########",
+      "#......#",
+      "###..#.#",
+      "#...~#.#",
+      "#....~.#",
+      "#...~#.#",
+      "#....#.#",
+      "#......#",
+      "########"
+    ],
+    "playerSpawn": {
+      "x": 1,
+      "z": 1,
+      "facing": "N"
+    },
+    "crates": [
+      {
+        "id": "crate_X",
+        "x": 4,
+        "z": 7,
+        "kind": "Cargo"
+      },
+      {
+        "id": "crate_B",
+        "x": 4,
+        "z": 6,
+        "kind": "Energy"
+      },
+      {
+        "id": "crate_A",
+        "x": 3,
+        "z": 2,
+        "kind": "Energy"
+      }
+    ],
+    "sockets": [
+      {
+        "id": "socket_a",
+        "x": 6,
+        "z": 7,
+        "isGoal": true
+      },
+      {
+        "id": "socket_b",
+        "x": 6,
+        "z": 6,
+        "isGoal": true
+      },
+      {
+        "id": "socket_s",
+        "x": 2,
+        "z": 2,
+        "isGoal": false
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_D",
+        "x": 6,
+        "z": 5,
+        "facing": "N",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_s",
+          "socket_a"
+        ]
+      }
+    ],
+    "decorations": [],
+    "redirectors": [
+      {
+        "id": "redirector_1",
+        "x": 4,
+        "z": 4,
+        "facing": "E"
+      }
+    ]
+  },
+  "commands": "NNNNEENNESSSSSWESEENNNNNSSWWSWWWSEESENSEENNNN"
+}

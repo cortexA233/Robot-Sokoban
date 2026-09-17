@@ -1,0 +1,63 @@
+{
+  "scope": "Actual Unity Game View captures, no image edits",
+  "captureMethod": "CoplayDev ScreenCapture, includes HUD",
+  "editor": "2022.3.51f1",
+  "checks": [
+    {
+      "file": "Images/L08BrakeFollow1080.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "994a825875a0f9f2f0e26591130fdc1e9a1a459af9ba23fe1c4f0bfee67b599c"
+    },
+    {
+      "file": "Images/L08BrakeTop1080.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d1cfe58b54e915ecdd687d673176343979170c234bdcaffa2b311a17a55f281e"
+    },
+    {
+      "file": "Images/L12HandoffTop1080.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7ff3eda408b93eaeb841f28dada69461a592226610a555aba4b03a7987eb0312"
+    },
+    {
+      "file": "Images/L12HandoffTop720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1627c4f207f713cbab4bc9c42c9feb11f4acc651e8492e602147dc64bdb95959"
+    },
+    {
+      "file": "Images/L12InitialTop1080.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d5740db0768113e03c8f384a2d55251a0144b73afcba59e892e4457a8ac3bd53"
+    }
+  ],
+  "states": {
+    "L12InitialTop1080": {
+      "prefix": 0
+    },
+    "L12HandoffTop1080": {
+      "prefix": 35,
+      "socket_a": true,
+      "socket_s": false
+    },
+    "L12HandoffTop720": {
+      "prefix": 35,
+      "socket_a": true,
+      "socket_s": false,
+      "labelPlateOverlaps": 0
+    },
+    "L08BrakeTop1080": {
+      "commands": "E"
+    },
+    "L08BrakeFollow1080": {
+      "commands": "E",
+      "cameraYaw": 90,
+      "cameraPitch": 55,
+      "cameraDistance": 4.5
+    }
+  },
+  "note": "L12 milestone staged with the shared session replay and BoardView.Restore; full animated campaign independently passed PlayMode. L08 uses the actual TryMove/presenter route. Initial overlapping-label captures are excluded."
+}

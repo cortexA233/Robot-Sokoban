@@ -1,0 +1,84 @@
+{
+  "definition": {
+    "schemaVersion": 3,
+    "id": "L09",
+    "title": "借电发车",
+    "briefing": "先把一只能源箱放进辅助插槽。箱子在门格停靠后，还要再推到深处接替供电。",
+    "completionText": "运输区已恢复供电",
+    "width": 8,
+    "height": 8,
+    "gridSize": 1.0,
+    "terrainRows": [
+      "########",
+      "######.#",
+      "######.#",
+      "#...##.#",
+      "#..#.~.#",
+      "#....#.#",
+      "#......#",
+      "########"
+    ],
+    "playerSpawn": {
+      "x": 1,
+      "z": 1,
+      "facing": "N"
+    },
+    "crates": [
+      {
+        "id": "crate_B",
+        "x": 2,
+        "z": 3,
+        "kind": "Energy"
+      },
+      {
+        "id": "crate_A",
+        "x": 4,
+        "z": 2,
+        "kind": "Energy"
+      }
+    ],
+    "sockets": [
+      {
+        "id": "socket_a",
+        "x": 6,
+        "z": 6,
+        "isGoal": true
+      },
+      {
+        "id": "socket_b",
+        "x": 6,
+        "z": 5,
+        "isGoal": true
+      },
+      {
+        "id": "socket_s",
+        "x": 2,
+        "z": 2,
+        "isGoal": false
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_D",
+        "x": 6,
+        "z": 4,
+        "facing": "N",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_s",
+          "socket_a"
+        ]
+      }
+    ],
+    "decorations": [],
+    "redirectors": [
+      {
+        "id": "redirector_1",
+        "x": 4,
+        "z": 3,
+        "facing": "E"
+      }
+    ]
+  },
+  "commands": "NNNESWSSEEENSEENNSSWWWWWNEESEEENNNNSSSSWWNSEENNN"
+}

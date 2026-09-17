@@ -1,0 +1,107 @@
+{
+  "version": "v0.3.0",
+  "implementationBase": "43de549",
+  "unity": "2022.3.51f1",
+  "campaign": [
+    {
+      "id": "L04",
+      "title": "借一格",
+      "width": 7,
+      "height": 7,
+      "schemaVersion": 2,
+      "moves": 22,
+      "pushes": 8,
+      "definitionHash": "9cc1bdfa8c3d61c0ddbd161890ba3a5ee7303240839c5a7f21e172a57318c79e",
+      "fileSha256": "b6cba3a0e540ed2d4adbb16268f29e5d252dc4f12590e89d0280052cd585aef4"
+    },
+    {
+      "id": "L05",
+      "title": "三箱锁喉",
+      "width": 7,
+      "height": 8,
+      "schemaVersion": 2,
+      "moves": 42,
+      "pushes": 13,
+      "definitionHash": "e369b38badffd287d67e87b5f00291b9abdac1dd8a3501a7f8d78810002ebc28",
+      "fileSha256": "1ed1da31f84255f98b7cb2bb41f2fa3abbb5e10dc4b3488c1b5e03ff5d8ea577"
+    },
+    {
+      "id": "L06",
+      "title": "先过箱，再交电",
+      "width": 7,
+      "height": 9,
+      "schemaVersion": 2,
+      "moves": 41,
+      "pushes": 15,
+      "definitionHash": "d92fcbe5bcde395da3e462e1eb8ff77e682cb265556b352c2b98169e7a418888",
+      "fileSha256": "bd2fa2a76540d13a9173364461b12fc244fc9f6a62b3b52980cceab7247d77f6"
+    },
+    {
+      "id": "L07",
+      "title": "拐个弯",
+      "width": 7,
+      "height": 7,
+      "schemaVersion": 3,
+      "moves": 10,
+      "pushes": 2,
+      "definitionHash": "d31b71e3f594ff3d5cdefd2f5dc5334bf6a4e412194b1693654549aeae5105f7",
+      "fileSha256": "3f31731a69401753f1e49711859df159a1df19f49842b233f1fe32566a190fe3"
+    },
+    {
+      "id": "L08",
+      "title": "借箱刹车",
+      "width": 7,
+      "height": 7,
+      "schemaVersion": 3,
+      "moves": 5,
+      "pushes": 3,
+      "definitionHash": "0948df2a5da3306758ed2e61c4d4b0958c0b656ab65b7c950be8c574baf17660",
+      "fileSha256": "162b250e95fdce8dd50bf387e4273202d06042ce302cf9870a76aea51c566d9f"
+    },
+    {
+      "id": "L09",
+      "title": "借电发车",
+      "width": 8,
+      "height": 8,
+      "schemaVersion": 3,
+      "moves": 48,
+      "pushes": 10,
+      "definitionHash": "a6838acb30255d9fa91bcea3237508d9dfe8336d74208af18c55e49e0531130d",
+      "fileSha256": "5fe38adac5ea3b4cc25f18703d3d5ae0292f520a6cc9dbdce98981696df97e69"
+    },
+    {
+      "id": "L10",
+      "title": "共用转角",
+      "width": 8,
+      "height": 9,
+      "schemaVersion": 3,
+      "moves": 45,
+      "pushes": 11,
+      "definitionHash": "a84022f1a042312b0f7add0410968a51adb5f114e31aa53a7c795d2ce01c4899",
+      "fileSha256": "d64b3bc9d45b147547c864b041cc6324dd451a74c466d2148687274a483476fa"
+    },
+    {
+      "id": "L11",
+      "title": "刹车要回来",
+      "width": 9,
+      "height": 9,
+      "schemaVersion": 3,
+      "moves": 19,
+      "pushes": 10,
+      "definitionHash": "eca6236fcf0e00eff51f20f48f8ad1c015274f4f60f7ebdefe49533d58a4ddae",
+      "fileSha256": "f5f3dd17ae7853a687d7b213638481939a0dd0fac86beed4b576578ea8496f61"
+    },
+    {
+      "id": "L12",
+      "title": "最后一班",
+      "width": 9,
+      "height": 9,
+      "schemaVersion": 3,
+      "moves": 41,
+      "pushes": 12,
+      "definitionHash": "6692997c566cd4e5f2e86587a5bf1d15dce15d55059427a2f97d0a97fb540061",
+      "fileSha256": "9fd043ba9d3ab3cf92ff80bc8a02e47334c5a62bf949ed041c143e19a68f7536"
+    }
+  ],
+  "unrelatedInitialChangesPreserved": true
+}

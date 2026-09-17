@@ -150,7 +150,8 @@ namespace Sokoban
                 RecordDebug("移动 " + direction + "：" + result.RejectReason);
                 Board.Robot.transform.rotation = Quaternion.Euler(0, (int)direction * 90, 0);
                 if (Time.unscaledTime - rejectedAt >= .5f)
-                { rejectedAt = Time.unscaledTime; Message = "前方受阻。只能推动一个箱子；按 Z 撤销。"; NotifyChanged(); }
+                { rejectedAt = Time.unscaledTime; Message = result.RejectReason == RejectReason.TransportCycle
+                    ? "运输路线形成循环，本次推动已取消。请调整挡停位置。" : "前方受阻。只能推动一个箱子；按 Z 撤销。"; NotifyChanged(); }
                 return false;
             }
             Revision++; RecordDebug("移动 " + direction + "：接受");

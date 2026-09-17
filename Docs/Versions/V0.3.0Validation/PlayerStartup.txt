@@ -1,0 +1,23 @@
+Mono path[0] = 'C:/recent_project/Sokoban_3D_Test/Builds/V0.3.0/StationRestart_Data/Managed'
+Mono config path = 'C:/recent_project/Sokoban_3D_Test/Builds/V0.3.0/MonoBleedingEdge/etc'
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Loading player data from C:/recent_project/Sokoban_3D_Test/Builds/V0.3.0/StationRestart_Data/data.unity3d
+Initialize engine version: 2022.3.51f1 (9f9d16c45e54)
+[Subsystems] Discovering subsystems at path C:/recent_project/Sokoban_3D_Test/Builds/V0.3.0/StationRestart_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=1; jobified=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 5070 Laptop GPU (ID=0x2d18)
+    Vendor:   NVIDIA
+    VRAM:     7891 MB
+    Driver:   32.0.15.9174
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.125 seconds
+- Finished resetting the current domain, in  0.002 seconds
+<RI> Initializing input.
+New input system (experimental) initialized
+Using Windows.Gaming.Input
+<RI> Initialized touch support.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.888900 ms
+<color=yellow>Cortex Log:</color> InitKFramework  

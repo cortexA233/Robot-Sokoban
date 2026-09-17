@@ -119,10 +119,46 @@ namespace Sokoban.Tests
             yield return null;
         }
 
+        [UnityTest] public IEnumerator WindowPaintRotateUndoAndLiveRestorePreserveRedirectors()
+        {
+            var window = ScriptableObject.CreateInstance<LevelEditorWindow>(); window.Show(); yield return null;
+            try
+            {
+                var serialized = new SerializedObject(window); serialized.FindProperty("document").objectReferenceValue = author; serialized.ApplyModifiedPropertiesWithoutUndo();
+                window.RefreshLive(); var original = runner.Session.State; string originalHash = LevelJson.Hash(runner.Definition);
+                yield return Submit(window, "capture-live"); workspaces.Add(window.LiveWorkspace);
+                var floor = FreeCell(window.Document.level);
+                yield return Submit(window, "brush-Redirector");
+                window.rootVisualElement.Q<PopupField<string>>("brush-facing").value = "E";
+                Paint(window, floor); yield return null;
+                Assert.That(window.Document.level.schemaVersion, Is.EqualTo(3));
+                string id = window.Document.level.redirectors.Single().id;
+                var facing = window.rootVisualElement.Q<PopupField<string>>("entity-facing");
+                Assert.That(facing, Is.Not.Null); facing.value = "S"; yield return null;
+                Assert.That(window.Document.level.redirectors.Single().facing, Is.EqualTo("S"));
+                yield return Submit(window, "undo"); Assert.That(window.Document.level.redirectors.Single().facing, Is.EqualTo("E"));
+                yield return Submit(window, "redo"); Assert.That(window.Document.level.redirectors.Single().facing, Is.EqualTo("S"));
+                yield return Submit(window, "validate-level");
+                yield return Submit(window, "apply-live");
+                Assert.That(runner.Definition.redirectors.Single().facing, Is.EqualTo("S"));
+                Assert.That(runner.Board.Redirectors[id].Facing, Is.EqualTo(Direction.S));
+                window.LiveWorkspace.SaveCopy(output);
+                var saved = LevelJson.Read(File.ReadAllText(output));
+                Assert.That(saved.redirectors.Single().facing, Is.EqualTo("S"));
+                var recovered = LiveEditWorkspace.Recover(author); workspaces.Add(recovered);
+                Assert.That(recovered.Draft.level.redirectors.Single().facing, Is.EqualTo("S"));
+                yield return Submit(window, "end-live");
+                Assert.That(runner.Session.State, Is.SameAs(original));
+                Assert.That(LevelJson.Hash(runner.Definition), Is.EqualTo(originalHash));
+                Assert.That(runner.Board.Redirectors, Is.Empty);
+            }
+            finally { window.Close(); }
+        }
+
         private static Cell FreeCell(LevelDefinition level) => Enumerable.Range(0, level.height)
             .SelectMany(z => Enumerable.Range(0, level.width).Select(x => new Cell(x, z)))
             .First(c => level.TerrainAt(c) == Terrain.Floor && level.playerSpawn.Cell != c &&
-                !level.crates.Any(a => a.Cell == c) && !level.sockets.Any(a => a.Cell == c) && !level.gates.Any(a => a.Cell == c));
+                !level.crates.Any(a => a.Cell == c) && !level.sockets.Any(a => a.Cell == c) && !level.gates.Any(a => a.Cell == c) && !level.redirectors.Any(a => a.Cell == c));
         private static IEnumerator Submit(LevelEditorWindow window, string name)
         {
             yield return null;

@@ -48,6 +48,8 @@ namespace Sokoban.Editor
                     var added = (GateDefinition)temporary.Find(temporary.Place(LevelBrush.Gate, gate.Cell, gate.facing));
                     added.id = gate.id; added.powerMode = gate.powerMode; temporary.SetGateSources(gate.id, gate.sourceSocketIds);
                 }
+                foreach (var redirector in source.redirectors)
+                    temporary.Find(temporary.Place(LevelBrush.Redirector, redirector.Cell, redirector.facing)).id = redirector.id;
                 temporary.level.decorations = source.decorations.Select(d => d.Copy()).ToArray();
                 SolutionRecord solution = null;
                 if (!string.IsNullOrEmpty(commands)) solution = SolutionRecord.Capture(temporary.level, SolutionRecord.ReplayCommands(temporary.level, commands));

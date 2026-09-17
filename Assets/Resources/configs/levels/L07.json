@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 3,
+  "id": "L07",
+  "title": "拐个弯",
+  "briefing": "箱子会沿箭头转向；进入普通地板会停下，机器人需要绕到它后面。",
+  "completionText": "运输区已恢复供电",
+  "width": 7,
+  "height": 7,
+  "gridSize": 1.0,
+  "terrainRows": [
+    "#######",
+    "#####.#",
+    "###.~.#",
+    "###~#.#",
+    "#.#.#.#",
+    "#.....#",
+    "#######"
+  ],
+  "playerSpawn": {
+    "x": 1,
+    "z": 2,
+    "facing": "N"
+  },
+  "crates": [
+    {
+      "id": "crate_A",
+      "x": 3,
+      "z": 2,
+      "kind": "Energy"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "socket_a",
+      "x": 5,
+      "z": 5,
+      "isGoal": true
+    }
+  ],
+  "gates": [],
+  "decorations": [],
+  "redirectors": [
+    {
+      "id": "redirector_1",
+      "x": 3,
+      "z": 4,
+      "facing": "E"
+    }
+  ]
+}

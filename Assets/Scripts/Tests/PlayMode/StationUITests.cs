@@ -110,13 +110,13 @@ namespace Sokoban.Tests
         {
             yield return Click<MainMenuPage>("Content/Levels");
             var page = Page<LevelSelectPage>();
-            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level03/Label").GetComponent<Text>().text, Does.Contain("先过箱，再交电"));
+            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level09/Label").GetComponent<Text>().text, Does.Contain("最后一班"));
             page.transform.Find("Content/List").GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
             yield return null;
-            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level03");
+            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level09");
             yield return Click<LevelSelectPage>("Content/Enter");
             yield return WaitForTransition();
-            Assert.That(runner.Definition.id, Is.EqualTo("L06"));
+            Assert.That(runner.Definition.id, Is.EqualTo("L12"));
             Assert.That(runner.GoalCount, Is.EqualTo(2)); Assert.That(runner.PoweredGoalCount, Is.Zero);
         }
 

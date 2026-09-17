@@ -72,7 +72,7 @@ uv tool install --python 3.13 mcpforunityserver==10.2.0
 ## 2022.3 兼容处理与功能边界
 
 - **测试回调恢复**：`Assets/Scripts/Editor/Mcp/SokobanMcpTestCallbacks.cs` 在每次脚本域载入时创建上游测试服务。10.2.0 的服务默认延迟创建；本项目的 EditMode 测试会进入 Play Mode 并重载脚本域，原回调可能丢失，造成测试结束后 MCP job 仍显示 `running`。此文件恢复上游回调注册，不修改 KToolkit 测试或包缓存。
-- **测试结果读取**：跨脚本域重载后，上游 `progress` 计数和逐项 `results` 列表仍可能不完整；最终判定使用 `status` 和 Unity Test Runner 返回的 `result.summary`，不要把中途进度当作最终通过数。
+- **测试结果读取**：跨脚本域重载后，上游 `progress` 计数和逐项 `results` 列表仍可能不完整；最终判定使用 `status` 和 Unity Test Runner 返回的 `result.summary`，不要把中途进度当作最终通过数。 项目回调同时将 Unity 完整 NUnit 结果树保存到 `Library/SokobanTestResults/Run-<UTC时间>.xml` 和 `Latest.xml`；若 MCP 汇总缺失，核对本轮时间、用例和 XML 的最终计数后使用该原始结果。PlayMode 建议设置 `init_timeout=120000`，等待域重载完成。
 - **Cinemachine 2.x**：本项目保留 `2.10.7`。上游相机高级工具探测的是 Cinemachine 3 的 `CinemachineCamera`，因此可能报告未安装 Cinemachine。基础 Camera 和截图仍可使用；2.x 相机通过 `manage_components`、`unity_reflect` 或 `execute_code` 操作，不为启用相机预设升级依赖。
 - **动态 C#**：`execute_code` 默认在可用时使用 Roslyn，否则使用 CodeDom。应检查返回的编译器/错误信息，不能假设动态代码支持项目脚本的全部语言特性。
 - **可选扩展**：ProBuilder、VFX Graph 等需要相应 Unity 包；资产生成工具还需要用户自己的服务凭据。MCP 接入不会自动补装这些开发依赖。

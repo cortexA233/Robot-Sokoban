@@ -54,8 +54,8 @@ namespace Sokoban.Editor
         {
             const string path = "Assets/Resources/configs/CampaignCatalog.asset";
             if (AssetDatabase.LoadAssetAtPath<CampaignCatalog>(path)) return;
-            var levels = new[] { "L04", "L05", "L06" }.Select(id => AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/configs/levels/" + id + ".json")).ToArray();
-            if (levels.Any(level => !level)) throw new InvalidOperationException("请先导入 L04–L06 关卡。");
+            var levels = Enumerable.Range(4, 9).Select(i => AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/configs/levels/L" + i.ToString("00") + ".json")).ToArray();
+            if (levels.Any(level => !level)) throw new InvalidOperationException("请先导入 L04–L12 关卡。");
             var catalog = ScriptableObject.CreateInstance<CampaignCatalog>();
             var serialized = new SerializedObject(catalog);
             var entries = serialized.FindProperty("levels"); entries.arraySize = levels.Length;

@@ -1,0 +1,113 @@
+{
+  "definition": {
+    "schemaVersion": 3,
+    "id": "L12",
+    "title": "最后一班",
+    "briefing": "临时电源先维持发车门；交付首箱后再开放回收路。普通箱一个让路，一个要重复挡停。",
+    "completionText": "所有运输区已恢复供电",
+    "width": 9,
+    "height": 9,
+    "gridSize": 1.0,
+    "terrainRows": [
+      "#########",
+      "#.#######",
+      "#.#######",
+      "#.#....##",
+      "#.......#",
+      "#.#~.#~##",
+      "#.#....##",
+      "#.......#",
+      "#########"
+    ],
+    "playerSpawn": {
+      "x": 2,
+      "z": 1,
+      "facing": "N"
+    },
+    "crates": [
+      {
+        "id": "crate_X",
+        "x": 4,
+        "z": 4,
+        "kind": "Cargo"
+      },
+      {
+        "id": "crate_A",
+        "x": 3,
+        "z": 2,
+        "kind": "Energy"
+      },
+      {
+        "id": "crate_B",
+        "x": 6,
+        "z": 2,
+        "kind": "Energy"
+      },
+      {
+        "id": "crate_Y",
+        "x": 3,
+        "z": 1,
+        "kind": "Cargo"
+      }
+    ],
+    "sockets": [
+      {
+        "id": "socket_a",
+        "x": 1,
+        "z": 7,
+        "isGoal": true
+      },
+      {
+        "id": "socket_b",
+        "x": 7,
+        "z": 4,
+        "isGoal": true
+      },
+      {
+        "id": "socket_s",
+        "x": 6,
+        "z": 2,
+        "isGoal": false
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_F",
+        "x": 5,
+        "z": 4,
+        "facing": "E",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_a"
+        ]
+      },
+      {
+        "id": "gate_D",
+        "x": 4,
+        "z": 3,
+        "facing": "N",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_s",
+          "socket_a"
+        ]
+      }
+    ],
+    "decorations": [],
+    "redirectors": [
+      {
+        "id": "redirector_1",
+        "x": 3,
+        "z": 4,
+        "facing": "E"
+      },
+      {
+        "id": "redirector_2",
+        "x": 6,
+        "z": 4,
+        "facing": "N"
+      }
+    ]
+  },
+  "commands": "ENNENWNEEWSWWESSSWWNNNNNSSEEESSESENWWNNEE"
+}

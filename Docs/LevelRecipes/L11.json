@@ -1,0 +1,90 @@
+{
+  "definition": {
+    "schemaVersion": 3,
+    "id": "L11",
+    "title": "刹车要回来",
+    "briefing": "同一只普通箱要当两次刹车。第一个目标会打开第二段运输线，别把刹车箱提前推入死角。",
+    "completionText": "运输区已恢复供电",
+    "width": 9,
+    "height": 9,
+    "gridSize": 1.0,
+    "terrainRows": [
+      "#########",
+      "######.##",
+      "#.......#",
+      "#.......#",
+      "#..~.####",
+      "####.####",
+      "####.####",
+      "####.####",
+      "#########"
+    ],
+    "playerSpawn": {
+      "x": 1,
+      "z": 4,
+      "facing": "N"
+    },
+    "crates": [
+      {
+        "id": "crate_B",
+        "x": 4,
+        "z": 6,
+        "kind": "Energy"
+      },
+      {
+        "id": "crate_X",
+        "x": 4,
+        "z": 5,
+        "kind": "Cargo"
+      },
+      {
+        "id": "crate_A",
+        "x": 2,
+        "z": 4,
+        "kind": "Energy"
+      }
+    ],
+    "sockets": [
+      {
+        "id": "socket_b",
+        "x": 6,
+        "z": 7,
+        "isGoal": true
+      },
+      {
+        "id": "socket_a",
+        "x": 4,
+        "z": 1,
+        "isGoal": true
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_D",
+        "x": 5,
+        "z": 6,
+        "facing": "E",
+        "powerMode": "Any",
+        "sourceSocketIds": [
+          "socket_a"
+        ]
+      }
+    ],
+    "decorations": [],
+    "redirectors": [
+      {
+        "id": "redirector_1",
+        "x": 6,
+        "z": 6,
+        "facing": "S"
+      },
+      {
+        "id": "redirector_2",
+        "x": 4,
+        "z": 4,
+        "facing": "N"
+      }
+    ]
+  },
+  "commands": "ENEEEWSSSNNNWNEESEN"
+}

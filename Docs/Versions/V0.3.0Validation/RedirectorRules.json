@@ -1,0 +1,260 @@
+{
+  "job_id": "90d12bd4d1564127b8506fedbccd3fc0",
+  "status": "succeeded",
+  "mode": "EditMode",
+  "started_unix_ms": 1789627348589,
+  "finished_unix_ms": 1789627352793,
+  "last_update_unix_ms": 1789627352793,
+  "progress": {
+    "completed": 25,
+    "total": 118,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1789627352508,
+    "last_finished_test_full_name": "Sokoban.Tests.RedirectorTests.V3IsStrictAndCannotBeSilentlySavedAsLegacy",
+    "last_finished_unix_ms": 1789627352512,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 25,
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 1.0003548,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"N\",3,4)",
+        "fullName": "Sokoban.Tests.RedirectorTests.ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"N\",3,4)",
+        "state": "Passed",
+        "durationSeconds": 0.0376677,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"E\",4,3)",
+        "fullName": "Sokoban.Tests.RedirectorTests.ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"E\",4,3)",
+        "state": "Passed",
+        "durationSeconds": 0.0009034,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"S\",3,2)",
+        "fullName": "Sokoban.Tests.RedirectorTests.ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"S\",3,2)",
+        "state": "Passed",
+        "durationSeconds": 0.0006319,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"W\",3,3)",
+        "fullName": "Sokoban.Tests.RedirectorTests.ArrowSetsOutgoingDirectionAndPlayerRemainsAtOldCrate(\"W\",3,3)",
+        "state": "Passed",
+        "durationSeconds": 0.000517,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "AuthoringUpgradeUndoMoveCropAndDraftRecoveryKeepDirections",
+        "fullName": "Sokoban.Tests.RedirectorTests.AuthoringUpgradeUndoMoveCropAndDraftRecoveryKeepDirections",
+        "state": "Passed",
+        "durationSeconds": 0.1489899,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BlockedOutletStopsOnThePlate('#')",
+        "fullName": "Sokoban.Tests.RedirectorTests.BlockedOutletStopsOnThePlate('#')",
+        "state": "Passed",
+        "durationSeconds": 0.0010014,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BlockedOutletStopsOnThePlate('_')",
+        "fullName": "Sokoban.Tests.RedirectorTests.BlockedOutletStopsOnThePlate('_')",
+        "state": "Passed",
+        "durationSeconds": 0.0004332,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BothCrateKindsTurnButOnlyEnergyPowersTheLandingSocket(\"Energy\",True)",
+        "fullName": "Sokoban.Tests.RedirectorTests.BothCrateKindsTurnButOnlyEnergyPowersTheLandingSocket(\"Energy\",True)",
+        "state": "Passed",
+        "durationSeconds": 0.0014726,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BothCrateKindsTurnButOnlyEnergyPowersTheLandingSocket(\"Cargo\",False)",
+        "fullName": "Sokoban.Tests.RedirectorTests.BothCrateKindsTurnButOnlyEnergyPowersTheLandingSocket(\"Cargo\",False)",
+        "state": "Passed",
+        "durationSeconds": 0.0006642,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CanEnterFromEachSideWithoutReorientingTheRobot(N)",
+        "fullName": "Sokoban.Tests.RedirectorTests.CanEnterFromEachSideWithoutReorientingTheRobot(N)",
+        "state": "Passed",
+        "durationSeconds": 0.0016102,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CanEnterFromEachSideWithoutReorientingTheRobot(E)",
+        "fullName": "Sokoban.Tests.RedirectorTests.CanEnterFromEachSideWithoutReorientingTheRobot(E)",
+        "state": "Passed",
+        "durationSeconds": 0.0007465,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CanEnterFromEachSideWithoutReorientingTheRobot(S)",
+        "fullName": "Sokoban.Tests.RedirectorTests.CanEnterFromEachSideWithoutReorientingTheRobot(S)",
+        "state": "Passed",
+        "durationSeconds": 0.0004242,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CanEnterFromEachSideWithoutReorientingTheRobot(W)",
+        "fullName": "Sokoban.Tests.RedirectorTests.CanEnterFromEachSideWithoutReorientingTheRobot(W)",
+        "state": "Passed",
+        "durationSeconds": 0.0003526,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ClearingAnOutletDoesNotRestartAndNextPushMayLeaveInAnotherDirection",
+        "fullName": "Sokoban.Tests.RedirectorTests.ClearingAnOutletDoesNotRestartAndNextPushMayLeaveInAnotherDirection",
+        "state": "Passed",
+        "durationSeconds": 0.0007713,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CycleRejectsTheEntireMoveIncludingPowerHistoryAndCounters",
+        "fullName": "Sokoban.Tests.RedirectorTests.CycleRejectsTheEntireMoveIncludingPowerHistoryAndCounters",
+        "state": "Passed",
+        "durationSeconds": 0.0021527,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ExistingWireFormatHashAndProofStayUnchanged(\"L04\")",
+        "fullName": "Sokoban.Tests.RedirectorTests.ExistingWireFormatHashAndProofStayUnchanged(\"L04\")",
+        "state": "Passed",
+        "durationSeconds": 0.0126482,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ExistingWireFormatHashAndProofStayUnchanged(\"L05\")",
+        "fullName": "Sokoban.Tests.RedirectorTests.ExistingWireFormatHashAndProofStayUnchanged(\"L05\")",
+        "state": "Passed",
+        "durationSeconds": 0.0054433,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ExistingWireFormatHashAndProofStayUnchanged(\"L06\")",
+        "fullName": "Sokoban.Tests.RedirectorTests.ExistingWireFormatHashAndProofStayUnchanged(\"L06\")",
+        "state": "Passed",
+        "durationSeconds": 0.0091507,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ExistingWireFormatHashAndProofStayUnchanged(\"LAB01_LowFriction\")",
+        "fullName": "Sokoban.Tests.RedirectorTests.ExistingWireFormatHashAndProofStayUnchanged(\"LAB01_LowFriction\")",
+        "state": "Passed",
+        "durationSeconds": 0.0147351,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "GateEntryUsesCurrentPowerAndAnOpenGateIsAStop(False)",
+        "fullName": "Sokoban.Tests.RedirectorTests.GateEntryUsesCurrentPowerAndAnOpenGateIsAStop(False)",
+        "state": "Passed",
+        "durationSeconds": 0.0013612,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "GateEntryUsesCurrentPowerAndAnOpenGateIsAStop(True)",
+        "fullName": "Sokoban.Tests.RedirectorTests.GateEntryUsesCurrentPowerAndAnOpenGateIsAStop(True)",
+        "state": "Passed",
+        "durationSeconds": 0.0006083,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "LeavingSupplyBeforeTurningCannotCoastThroughTheClosedGate",
+        "fullName": "Sokoban.Tests.RedirectorTests.LeavingSupplyBeforeTurningCannotCoastThroughTheClosedGate",
+        "state": "Passed",
+        "durationSeconds": 0.0009713,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "MultipleCornersAndTracksUseOneCommandEvenBeyondMapSpan",
+        "fullName": "Sokoban.Tests.RedirectorTests.MultipleCornersAndTracksUseOneCommandEvenBeyondMapSpan",
+        "state": "Passed",
+        "durationSeconds": 0.0027908,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "StandingWalkingSpawningAndGmPlacementNeverTriggerTransport",
+        "fullName": "Sokoban.Tests.RedirectorTests.StandingWalkingSpawningAndGmPlacementNeverTriggerTransport",
+        "state": "Passed",
+        "durationSeconds": 0.0046533,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "V3IsStrictAndCannotBeSilentlySavedAsLegacy",
+        "fullName": "Sokoban.Tests.RedirectorTests.V3IsStrictAndCannotBeSilentlySavedAsLegacy",
+        "state": "Passed",
+        "durationSeconds": 0.0032187,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      }
+    ]
+  }
+}

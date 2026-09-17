@@ -218,6 +218,7 @@ namespace Sokoban
             foreach (var label in labels) protectedRects.Add(ProjectBounds(camera, label.target.position + Vector3.up*.03f,
                 new Vector3(label.gateId == null ? .33f : .45f, 0, label.gateId == null ? .33f : .45f)));
             foreach (var crate in board.Crates.Values) protectedRects.Add(ProjectBounds(camera,crate.position+Vector3.up*.4f,new Vector3(.42f,.4f,.42f)));
+            foreach (var plate in board.Redirectors.Values) protectedRects.Add(ProjectBounds(camera,plate.transform.position+Vector3.up*.03f,new Vector3(.49f,0,.49f)));
             protectedRects.Add(ProjectBounds(camera,board.Robot.transform.position+Vector3.up*.35f,new Vector3(.35f,.35f,.35f)));
             int fontSize = Mathf.Clamp(Mathf.RoundToInt(Screen.height / 60f), 14, 20);
             foreach (var label in labels)
@@ -271,9 +272,15 @@ namespace Sokoban
         private Vector2 PositionLabel(Vector2 preferred, Vector2 size, Rect tile)
         {
             var safe = new Rect(6,Screen.height*.17f,Screen.width-12,Screen.height*.62f);
-            var candidates = new[] { preferred, new Vector2(tile.center.x,tile.yMax+size.y/2+7),
+            var candidates = new List<Vector2> { preferred, new Vector2(tile.center.x,tile.yMax+size.y/2+7),
                 new Vector2(tile.xMax+size.x/2+7,tile.center.y), new Vector2(tile.xMin-size.x/2-7,tile.center.y),
                 new Vector2(tile.center.x,tile.yMin-size.y/2-7) };
+            // Adjacent crates, gates and turn plates may occupy all four direct
+            // neighbours. Try nearby corners before falling back over a glyph.
+            var offset = (tile.size + size) / 2 + Vector2.one * 7;
+            for (int radius = 1; radius <= 2; radius++)
+                foreach (var direction in new[] { new Vector2(-1,1), new Vector2(1,1), new Vector2(-1,-1), new Vector2(1,-1) })
+                    candidates.Add(tile.center + Vector2.Scale(offset, direction) * radius);
             foreach (var point in candidates)
             {
                 var rect = new Rect(point-size/2,size);
