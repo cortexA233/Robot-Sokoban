@@ -1,0 +1,184 @@
+{
+  "version": "v0.2.0",
+  "unityVersion": "2022.3.51f1",
+  "project": "C:/recent_project/Sokoban_3D_Test",
+  "scene": "Assets/Scenes/Bootstrap.unity",
+  "reviewedAtUtc": "2026-09-17T05:26:51.8324077Z",
+  "captureMethod": "Actual Play Mode Game View ScreenCapture through CoplayDev; no image generation or post-editing of these nine captures.",
+  "fixture": "ComparisonFixture.json",
+  "fixtureSource": "Assets/Scripts/Tests/PlayMode/StationCircuitTests.cs:ComparisonFixture",
+  "statePreparation": "Checkpoint directions were accepted through the live GameSession.Move, followed by BoardView.Restore and UI.Refresh. Animated gameplay is separately exercised by the PlayMode suite.",
+  "visualChecks": [
+    "Confirmed B has an empty ring and no plug or gate source port",
+    "Confirmed A combines ring and plug while S has only a plug",
+    "Confirmed two source paths address the same G1 and update independently",
+    "Confirmed actual power handoff leaves A solid/on and S dashed/off",
+    "Confirmed L06 labels avoid goal glyphs in the narrow corridor",
+    "Confirmed 720p Game View has 14 px labels",
+    "Confirmed grayscale through a temporary URP volume, restored after capture",
+    "Confirmed perspective and zoomed orthographic captures"
+  ],
+  "limitations": [
+    "Large custom circuit networks have no exhaustive visual/performance acceptance.",
+    "No new standalone Player build in this iteration.",
+    "The approved generated concept remains a reference only; current screenshots are actual Unity captures."
+  ],
+  "captures": [
+    {
+      "description": "S=plug, A=ring+plug, B=ring; both sources off",
+      "size": 5.5,
+      "level": "CircuitComparison",
+      "file": "ComparisonInitialTopDown1080.png",
+      "view": "TopDown",
+      "commands": "",
+      "height": 1080,
+      "sha256": "8bdf19c43133cfa53b04d0cdca74c3ce5f5e4fb85f8df200a900afdc185712c0",
+      "width": 1920,
+      "capturedAtUtc": "2026-09-17T05:17:21.3890592Z"
+    },
+    {
+      "description": "Native 1280x720 Game View; labels measured at 14 px",
+      "size": 5.5,
+      "level": "CircuitComparison",
+      "file": "ComparisonInitialTopDown720.png",
+      "view": "TopDown",
+      "commands": "",
+      "height": 720,
+      "sha256": "cc3cb5e0ecb136029e5c41a8fb4997782840bc0f4b02665acf12783ef09559a1",
+      "width": 1280,
+      "capturedAtUtc": "2026-09-17T05:18:09.3030080Z"
+    },
+    {
+      "description": "Zoomed orthographic view; glyphs and labels remain separate",
+      "size": 3.1,
+      "level": "CircuitComparison",
+      "file": "ComparisonZoom1080.png",
+      "view": "TopDown",
+      "commands": "",
+      "height": 1080,
+      "sha256": "1d7b00e15fb7b24d94254dc5245a7392860f8dd7e0c5340fa9bc046565bf54d5",
+      "width": 1920,
+      "capturedAtUtc": "2026-09-17T05:22:22.1514358Z"
+    },
+    {
+      "description": "S off, A on, B off; A solid branch and S dashed branch; gate powered/open",
+      "size": 5.5,
+      "level": "CircuitComparison",
+      "file": "ComparisonHandoff1080.png",
+      "view": "TopDown",
+      "commands": "ENWNEEEEEEWWWSSSWN",
+      "height": 1080,
+      "sha256": "e1520a18016545a62bbd5c73081d9fc9abbe4a362be3ef7223cb5c89b153e910",
+      "width": 1920,
+      "capturedAtUtc": "2026-09-17T05:20:03.7707656Z"
+    },
+    {
+      "description": "Same handoff at native 720p; occupied socket labels avoid actors",
+      "size": 5.5,
+      "level": "CircuitComparison",
+      "file": "ComparisonHandoff720.png",
+      "view": "TopDown",
+      "commands": "ENWNEEEEEEWWWSSSWN",
+      "height": 720,
+      "sha256": "4d06793a5a366fb91c648aee8de4652ae86c066c6d0d9643dfb90847f1f55551",
+      "width": 1280,
+      "capturedAtUtc": "2026-09-17T05:18:50.8577763Z"
+    },
+    {
+      "description": "Temporary in-engine URP saturation -100; solid/dashed branches and filled/empty dots remain distinct",
+      "size": 5.5,
+      "level": "CircuitComparison",
+      "file": "ComparisonHandoffGray720.png",
+      "view": "TopDown",
+      "commands": "ENWNEEEEEEWWWSSSWN",
+      "height": 720,
+      "sha256": "eda92bfb5da9537c01159ea6b7dc3d862bcb3e646ac2228a6d04495a7829d7eb",
+      "width": 1280,
+      "capturedAtUtc": "2026-09-17T05:18:59.1266367Z"
+    },
+    {
+      "yaw": 60,
+      "description": "Actual follow camera: A ring+plug and B empty ring; screen-upright labels",
+      "pitch": 55,
+      "level": "CircuitComparison",
+      "file": "ComparisonThirdPerson1080.png",
+      "view": "ThirdPerson",
+      "commands": "ENWNEEEEESE",
+      "height": 1080,
+      "distance": 3.2,
+      "width": 1920,
+      "sha256": "cdae053d0db68a2efe28b0aec55dd575f44158f64bd104eae4d7cd304173e55f",
+      "capturedAtUtc": "2026-09-17T05:20:21.3710176Z"
+    },
+    {
+      "description": "Current campaign narrow layout; A/G1 and B labels placed beside glyphs",
+      "size": 5.5,
+      "level": "L06",
+      "file": "L06InitialTopDown1080.png",
+      "view": "TopDown",
+      "commands": "",
+      "height": 1080,
+      "sha256": "1ca2b79721f4ca4b0a575aba956595f26d142cf59fb5c359a5394ea2b370a1fa",
+      "width": 1920,
+      "capturedAtUtc": "2026-09-17T05:21:11.1068755Z"
+    },
+    {
+      "description": "Actual L06 proof prefix 35; A on and S off; A cable runs along B edge without B source port",
+      "size": 5.5,
+      "level": "L06",
+      "file": "L06Handoff1080.png",
+      "view": "TopDown",
+      "commands": "SSEESEENNNWWSSWWNNEWSSEENNNNSSEESSW",
+      "height": 1080,
+      "sha256": "a11ac30f3501ab1282cc32174e462aebab232c772788ce12db02cd6bca84fa9d",
+      "width": 1920,
+      "capturedAtUtc": "2026-09-17T05:22:01.7043431Z"
+    }
+  ],
+  "sourceFingerprints": [
+    {
+      "sha256": "5110f276f4e61228eea1c89fda7a0e7e0f53343fcc4f38a279d547f6b470aef1",
+      "path": "Assets/Scripts/Presentation/BoardView.cs"
+    },
+    {
+      "sha256": "4d8a1c76f29faa95b1ad3ba3339817438e274cf1f86d169d03a8b71c53e0de7e",
+      "path": "Assets/Scripts/Presentation/StationCircuitLayout.cs"
+    },
+    {
+      "sha256": "57da84d546f1351fa8bb72273bf6e60be6fcaefc4fac69c0ced0065afe04053a",
+      "path": "Assets/Scripts/Presentation/StationCircuitMesh.cs"
+    },
+    {
+      "sha256": "785a2e5c1e5beecfa0479950b199ddc3b9f4c4dd723afa45cd259d3fcb8af79b",
+      "path": "Assets/Scripts/Presentation/StationCircuitView.cs"
+    },
+    {
+      "sha256": "7179ad184987b7cbb852d10958a5f82c755173554f7d4c297856b4d7d3777f07",
+      "path": "Assets/Scripts/Presentation/StationGateView.cs"
+    },
+    {
+      "sha256": "502a23de872aec444bf18f1ee0ce6a350abf7e7cb3745c4186156ba20fc82b3c",
+      "path": "Assets/Scripts/Gameplay/Debug/LevelRunner.Debug.cs"
+    },
+    {
+      "sha256": "687b1cd8be53faa81f04867ba5a063c5c4da8737ea73bb66fa2289ed23c84b7e",
+      "path": "Assets/Scripts/Tests/PlayMode/StationCircuitTests.cs"
+    },
+    {
+      "sha256": "25cd9e45248a97d1d5aa9434a7f23c4c8fa6c86bb6e567474f41ef20bf926329",
+      "path": "Assets/Scripts/Tests/PlayMode/StationKitGameplayTests.cs"
+    },
+    {
+      "sha256": "461738edc5f2387ca3e1ef2946bed0e328a6346c63773136448d0bb34ebc7a97",
+      "path": "Assets/Scripts/Tests/EditMode/StationCircuitLayoutTests.cs"
+    },
+    {
+      "sha256": "bd2fa2a76540d13a9173364461b12fc244fc9f6a62b3b52980cceab7247d77f6",
+      "path": "Assets/Resources/configs/levels/L06.json"
+    },
+    {
+      "sha256": "4ca5ba882c147ae2d970dd298fed615b6573d5debf420687801e586464d582fc",
+      "path": "Assets/Resources/configs/StationKitTheme.asset"
+    }
+  ]
+}

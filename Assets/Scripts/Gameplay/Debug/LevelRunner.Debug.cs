@@ -61,6 +61,7 @@ namespace Sokoban
                 board.Build(copy); board.Restore(session);
                 cameras = new GameObject("Camera rig").AddComponent<CameraRig>(); cameras.transform.SetParent(candidate.transform, false);
                 cameras.Initialize(copy, board.Robot.transform); UI?.Preferences.Apply(cameras);
+                board.Circuits.BindCamera(cameras);
                 cameras.Restore(view); board.SetTopDown(cameras.TopDown);
             }
             catch { Destroy(candidate); throw; }

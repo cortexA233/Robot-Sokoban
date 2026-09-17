@@ -12,7 +12,7 @@
 | --- | --- | --- |
 | Gameplay / 游戏规则 | [游戏设计与 Unity 实现方案](Gameplay/GameDesign.md) | 第 2/4 节为坐标与规则，第 5 节为关卡，第 7/8 节为数据与模块；[普通箱关卡原始方案](History/04-CargoCrates/LevelDifficultyIterationPlan.md) |
 | 美术 / 机器人 | [Blender 建模与动画维护](Art/RobotBlenderGuide.md) | [源文件、导出与资产验收](../ArtSource/Robot/README.md) |
-| 美术 / 空间站 | [资产生产规格](Art/StationArtProduction.md)、[游戏接入与表现维护](Art/StationKitIntegration.md) | [源文件、预览与逐资产证据](../ArtSource/StationKit/README.md)、[插槽与门的可读性审查及改进方案](Art/VisualReadabilityReview.md)（方案尚未实施） |
+| 美术 / 空间站 | [资产生产规格](Art/StationArtProduction.md)、[游戏接入与表现维护](Art/StationKitIntegration.md) | [源文件、预览与逐资产证据](../ArtSource/StationKit/README.md)、[插槽与门的可读性方案](Art/VisualReadabilityReview.md)、[v0.2.0 实机验收](History/08-CircuitReadability/ImplementationReport.md) |
 | UI / 玩家流程 | [UGUI 页面、输入与幕布过渡](UI/UIImplementation.md) | [概念图 v1/v2 与取舍](../ArtSource/UIConcepts/README.md)；采用第二版简约 UI |
 | 编辑器 / 关卡制作 | [关卡编辑器操作指南](Editor/LevelEditorGuide.md) | [作者配方](LevelRecipes/README.md)；GDD 第 6 节为完整编辑器要求 |
 | Debug / GM 与现场编辑 | [行为契约、M1–M4 分期与验收](Debug/GMAndLiveEditingPlan.md) | [GM 与现场编辑操作](Editor/LevelEditorGuide.md#运行时-gm)、[第五轮验证](History/05-GmLiveEditing/ImplementationReport.md) |
@@ -33,6 +33,7 @@
 | 05 · GM 与现场编辑 | Debug / Editor / UI：可撤销调试、现场草稿、M1–M3 | [实现记录](History/05-GmLiveEditing/ImplementationReport.md)、[验证数据](History/05-GmLiveEditing/Validation/GMAndLiveEditingResults.json) | `f4a3bf8`、`2dfc0e9` |
 | 06 · 空间站美术生产 | 美术：11 个主资产、Blender/FBX 与隔离场景验收 | [生产记录入口](History/06-StationKitProduction/ProductionRecord.md)、[逐资产清单](../ArtSource/StationKit/station_kit_asset_manifest.json) | `3841dba` |
 | 07 · 空间站美术接入 | 美术 / Gameplay：BoardView 替换、状态标识、门动画 | [实现记录](History/07-StationKitIntegration/ImplementationReport.md)、[验证汇总](History/07-StationKitIntegration/Validation/StationKitIntegration.json)、[完整回归](History/07-StationKitIntegration/Validation/StationKitGameplayTests.json)、[定向复测](History/07-StationKitIntegration/Validation/StationKitLabelRetest.json) | `0dd9ca2` |
+| 08 · 插槽与门可读性 | 美术 / 表现：组合图形、门编号与连线、双视角标牌 | [实现与实机画面](History/08-CircuitReadability/ImplementationReport.md)、[版本计划](Versions/V0.2.0.md) | `[v0.2.0]` |
 | 工程维护 · Agent 配置 | 文档、技能路由和配置整理，独立于游戏轮次 | [审计记录](History/2026-09-16-AgentConfiguration/AgentConfigurationAudit.md)、[原始验证快照](History/2026-09-16-AgentConfiguration/Validation/AgentConfigurationResults.json) | `5055edf` |
 
 ## 版本含义

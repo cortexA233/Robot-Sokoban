@@ -4,6 +4,8 @@
 
 关卡内容更新：[v0.2.1](Versions/V0.2.1.md) 删除原前三关 L01–L03，当前正式顺序为 L04 → L05 → L06，LAB01 仍为开发测试关。
 
+表现更新：[v0.2.0](Versions/V0.2.0.md) 已实现目标环/门电源插头的独立组合、稳定门编号、供电连线与俯视标牌。EditMode 3/3、完整项目 PlayMode 41/41 通过，包含当前三关参考解法；[实机与验证记录](History/08-CircuitReadability/ImplementationReport.md)。
+
 ## 已实现
 
 | 用途 | 当前能力 | 维护入口 |
@@ -29,6 +31,7 @@
 | 05 · GM 与现场编辑 | 90/90 | 31/31，另有收尾修复复测 | [第五轮报告](History/05-GmLiveEditing/ImplementationReport.md) |
 | 06 · 空间站美术生产 | 不以游戏测试计数 | 11 个资产的 Blender、FBX 与 Unity 隔离场景验收 | [生产记录](History/06-StationKitProduction/ProductionRecord.md) |
 | 07 · 空间站美术接入 | 本轮未记录新的 EditMode 全量结果 | 37/37，文字深度修复后 8/8 定向复测 | [接入报告](History/07-StationKitIntegration/ImplementationReport.md) |
+| 08 · 插槽与门可读性 | 定向 3/3 | 完整项目 PlayMode 41/41；九张实际游戏画面 | [实现与验收](History/08-CircuitReadability/ImplementationReport.md) |
 
 第五轮曾生成 Windows 开发版与非开发版，并验证启动和 GM 类型隔离；第七阶段更新了非开发构建并检查启动。均不等于独立 Player 中的完整交互、通关或性能验收。本地构建产物不进 Git，具体路径与当时范围见报告。
 

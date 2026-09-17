@@ -9,13 +9,13 @@ namespace Sokoban
     public sealed class BoardView : MonoBehaviour
     {
         private readonly Dictionary<string, Transform> crates = new Dictionary<string, Transform>();
-        private readonly Dictionary<string, StationKitRendering.PowerLamps> sockets = new Dictionary<string, StationKitRendering.PowerLamps>();
         private readonly Dictionary<string, StationGateView> gates = new Dictionary<string, StationGateView>();
         private readonly List<Renderer> upperWalls = new List<Renderer>();
         private StationKitTheme theme;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
         public IReadOnlyDictionary<string, StationGateView> Gates => gates;
+        public StationCircuitView Circuits { get; private set; }
         public static Vector3 Position(Cell cell) => new Vector3(cell.x, 0, cell.z);
 
         private GameObject Place(string assetId, string name, Vector3 position, float yaw = 0)
@@ -55,13 +55,16 @@ namespace Sokoban
         {
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
             if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Run Tools > Station Kit > Prepare Gameplay Integration.");
-            gameObject.AddComponent<StationKitLabelMaterials>().Initialize(theme);
+            Circuits = gameObject.AddComponent<StationCircuitView>(); Circuits.Initialize(level, theme);
+            var featureCells = new HashSet<Cell>();
+            foreach (var socket in level.sockets) featureCells.Add(socket.Cell);
+            foreach (var gate in level.gates) featureCells.Add(gate.Cell);
             for (int z = 0; z < level.height; z++)
                 for (int x = 0; x < level.width; x++)
                 {
                     var cell = new Cell(x, z); var terrain = level.TerrainAt(cell); var pos = Position(cell);
                     if (terrain == Terrain.Void) continue;
-                    string deck = terrain != Terrain.Floor ? "FloorPlain" :
+                    string deck = terrain != Terrain.Floor || featureCells.Contains(cell) ? "FloorPlain" :
                         (x * 17 + z * 31) % 13 == 0 ? "FloorService" : (x * 19 + z * 7) % 23 == 0 ? "FloorGrate" : "FloorPlain";
                     var floor = Place(deck, "Floor " + cell, pos);
                     if (terrain == Terrain.LowFriction)
@@ -84,23 +87,15 @@ namespace Sokoban
             {
                 string asset = socket.isGoal ? "GoalSocket" : "UtilitySocket";
                 var obj = Place(asset, socket.id, Position(socket.Cell));
-                var root = StationKitRendering.Part(obj.transform, asset + "Root");
-                var style = theme.Style(level.id, socket.id, out string label);
-                StationKitRendering.Identity(obj, style);
-                StationKitRendering.Part(root, "LinkMarkers/IdentityBands").GetComponent<MeshFilter>().sharedMesh = theme.socketSymbols[style.symbol];
-                for (int side = 0; side < 4; side++)
-                {
-                    var turn = Quaternion.Euler(0, side * 90, 0);
-                    var text = StationKitRendering.Label(root, label, turn * new Vector3(-.23f, .003f, .438f), .043f, theme, true);
-                    text.transform.localRotation = turn * Quaternion.Euler(90, 0, 0);
-                }
-                sockets.Add(socket.id, new StationKitRendering.PowerLamps(obj, theme));
+                Circuits.AddSocket(socket, obj.transform);
             }
             foreach (var gate in level.gates)
             {
                 var obj = Place("PowerGate", gate.id, Position(gate.Cell), (int)Enum.Parse(typeof(Direction), gate.facing) * 90);
                 var view = obj.AddComponent<StationGateView>(); view.Initialize(gate, level, theme); gates.Add(gate.id, view);
+                Circuits.AddGate(gate, obj.transform);
             }
+            Circuits.BuildWires();
             var prefab = Resources.Load<GameObject>("prefabs/gameplay/player/PlayerActor");
             if (!prefab) throw new InvalidOperationException("PlayerActor prefab is missing. Run Tools > Sokoban > Prepare Gameplay Assets.");
             Robot = Instantiate(prefab, transform).GetComponent<RobotPresenter>(); Robot.Initialize();
@@ -108,13 +103,14 @@ namespace Sokoban
 
         public void ApplyPower(PowerState power, bool immediate = false)
         {
-            foreach (var pair in sockets) pair.Value.Set(power.Sockets[pair.Key]);
+            Circuits.Apply(power);
             foreach (var pair in gates) pair.Value.Apply(power.PoweredGates[pair.Key], power.OpenGates[pair.Key], power.Sockets, immediate);
         }
         public void SetTopDown(bool value)
         {
             foreach (var renderer in upperWalls) renderer.enabled = !value;
             foreach (var gate in gates.Values) gate.SetTopDown(value);
+            Circuits.SetTopDown(value);
         }
         public void SetPaused(bool value) { foreach (var gate in gates.Values) gate.SetPaused(value); }
         public void CancelTransitions() { foreach (var gate in gates.Values) if (gate) gate.Cancel(); }

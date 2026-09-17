@@ -1,0 +1,32 @@
+{
+    "unityVersion": "2022.3.51f1",
+    "state": "Passed",
+    "completedAt": "2026-09-17T05:22:53.0568937Z",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.5009161,
+    "tests": [
+        {
+            "name": "Sokoban.Tests.StationCircuitLayoutTests.CircuitIdentitiesAndRoutesSurviveAuthorArrayReordering",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0516106
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitLayoutTests.DisconnectedElectricalSourcesRetainIdentityWithoutInventingThroughWallWires",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0034128
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitLayoutTests.NarrowCorridorWiresAvoidWallsAndTheUnrelatedGoalGlyph",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0079243
+        }
+    ]
+}

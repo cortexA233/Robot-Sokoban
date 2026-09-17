@@ -1,0 +1,74 @@
+{
+    "schemaVersion": 2,
+    "id": "CircuitComparison",
+    "title": "目标与供电 · 视觉验证",
+    "briefing": "S 或 A 通电即可打开 G1；圆环表示通关目标。",
+    "completionText": "完成",
+    "width": 13,
+    "height": 9,
+    "gridSize": 1.0,
+    "terrainRows": [
+        "#############",
+        "#.....#.....#",
+        "#.....#.....#",
+        "#.....#.....#",
+        "#...........#",
+        "#.....#.....#",
+        "#.....#.....#",
+        "#.....#.....#",
+        "#############"
+    ],
+    "playerSpawn": {
+        "x": 2,
+        "z": 2,
+        "facing": "E"
+    },
+    "crates": [
+        {
+            "id": "energy_1",
+            "x": 3,
+            "z": 2,
+            "kind": "Energy"
+        },
+        {
+            "id": "energy_2",
+            "x": 3,
+            "z": 4,
+            "kind": "Energy"
+        }
+    ],
+    "sockets": [
+        {
+            "id": "socket_s",
+            "x": 4,
+            "z": 2,
+            "isGoal": false
+        },
+        {
+            "id": "socket_a",
+            "x": 9,
+            "z": 4,
+            "isGoal": true
+        },
+        {
+            "id": "socket_b",
+            "x": 9,
+            "z": 2,
+            "isGoal": true
+        }
+    ],
+    "gates": [
+        {
+            "id": "gate",
+            "x": 6,
+            "z": 4,
+            "facing": "E",
+            "powerMode": "Any",
+            "sourceSocketIds": [
+                "socket_s",
+                "socket_a"
+            ]
+        }
+    ],
+    "decorations": []
+}

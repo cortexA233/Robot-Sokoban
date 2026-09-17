@@ -1,0 +1,585 @@
+{
+    "unityVersion": "2022.3.51f1",
+    "state": "Passed",
+    "completedAt": "2026-09-17T05:26:06.0747098Z",
+    "passed": 41,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 158.3253335,
+    "tests": [
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.CompletingFirstLevelCanContinueToSecondWithFreshSession",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 28.8656778
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.CompletingFirstLevelCanContinueToSecondWithFreshSession",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 28.8656778
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.EditorPlaytestNeverNavigatesIntoCampaign",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2071997
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.EditorPlaytestNeverNavigatesIntoCampaign",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2071997
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.LastLevelFinishesCampaignAndReturnsToSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 18.9958674
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.LastLevelFinishesCampaignAndReturnsToSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 18.9958674
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.RemainingCampaignContinuesThroughAllThreeCargoLevels",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 47.7745334
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.RemainingCampaignContinuesThroughAllThreeCargoLevels",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 47.7745334
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0848865
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.ReturningFromSelectionPreservesPauseAndRejectsInvalidIndices",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0848865
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7970033
+        },
+        {
+            "name": "Sokoban.Tests.CampaignFlowTests.SelectionPausesThenResumesOrCancelsActiveCommandOnSwitch",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7970033
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.169033
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.169033
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 3.0771087
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 3.0771087
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.PauseFreezesOwnedActionThenResumes",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7721983
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.PauseFreezesOwnedActionThenResumes",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7721983
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RealRobotUsesOnePushClockAndMatchesContactPlane",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.1865155
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RealRobotUsesOnePushClockAndMatchesContactPlane",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.1865155
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2277455
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2277455
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringContact",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.4665819
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringContact",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.4665819
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringExtension",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2218475
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringExtension",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2218475
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringSlide",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.8151796
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.RestartDuringSlide",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.8151796
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringContact",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.465802
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringContact",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.465802
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringExtension",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2197226
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringExtension",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.2197226
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringSlide",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.8215176
+        },
+        {
+            "name": "Sokoban.Tests.GameplayTests.UndoDuringSlide",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.8215176
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.F1AndEscapeAreConsumedWithoutPausingGame",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1157685
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.F1AndEscapeAreConsumedWithoutPausingGame",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1157685
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.InvalidGmDuringAnimationLeavesTweenAndHistoryUntouched",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.9680471
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.InvalidGmDuringAnimationLeavesTweenAndHistoryUntouched",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.9680471
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.LiveApplyRejectsInvalidDraftThenRebuildsTypesAndRestoresOrigin",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0926416
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.LiveApplyRejectsInvalidDraftThenRebuildsTypesAndRestoresOrigin",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0926416
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.RealGmControlsMoveUndoAndBlockUnderlyingGame",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1202603
+        },
+        {
+            "name": "Sokoban.Tests.GmRuntimeTests.RealGmControlsMoveUndoAndBlockUnderlyingGame",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1202603
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.ActualPowerHandoffUpdatesOnlyItsBranchAndUndoRestoresBothSignals",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 8.8796663
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.ActualPowerHandoffUpdatesOnlyItsBranchAndUndoRestoresBothSignals",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 8.8796663
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.GoalAndGateSourceAreIndependentVisualRolesInTheRealCampaign",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0644754
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.GoalAndGateSourceAreIndependentVisualRolesInTheRealCampaign",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0644754
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.LabelsStayUprightAndDoNotInterceptInputOrLeakOnRebuild",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.2196134
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.LabelsStayUprightAndDoNotInterceptInputOrLeakOnRebuild",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.2196134
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.OccupiedUnpoweredGateHasAnOpenPassageAndExplicitReason",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.4278046
+        },
+        {
+            "name": "Sokoban.Tests.StationCircuitTests.OccupiedUnpoweredGateHasAnOpenPassageAndExplicitReason",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.4278046
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CampaignAndAuthoringUseAllElevenAssetsWithOriginalData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1234097
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CampaignAndAuthoringUseAllElevenAssetsWithOriginalData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.1234097
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CargoRobotEmptyHandoffPausesAndUndoCancelsClosing",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.3060518
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.CargoRobotEmptyHandoffPausesAndUndoCancelsClosing",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.3060518
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0726155
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0726155
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.09794
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.09794
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.7752403
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.7752403
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.9984278
+        },
+        {
+            "name": "Sokoban.Tests.StationKitGameplayTests.UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.9984278
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.3910301
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.3910301
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.CompletionButtonAdvancesWithFadeAndFreshCounters",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 11.4780154
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.CompletionButtonAdvancesWithFadeAndFreshCounters",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 11.4780154
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7547081
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.7547081
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.0988225
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.0988225
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.HudUndoAndRestartUseTheRealSession",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.8719733
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.HudUndoAndRestartUseTheRealSession",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.8719733
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.LastLevelIsReachableThroughSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.4170402
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.LastLevelIsReachableThroughSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.4170402
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.7651641
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 2.7651641
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.PauseSelectionBackPreservesSessionAndSettingsPersist",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.6164675
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.PauseSelectionBackPreservesSessionAndSettingsPersist",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.6164675
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.3731274
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 1.3731274
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0653585
+        },
+        {
+            "name": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": "",
+            "seconds": 0.0653585
+        }
+    ]
+}

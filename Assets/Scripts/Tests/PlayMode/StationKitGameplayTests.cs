@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Sokoban.Domain;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace Sokoban.Tests
@@ -32,8 +33,8 @@ namespace Sokoban.Tests
                 crates=new[]{new CrateDefinition{id="cargo",x=2,z=3,kind=CrateDefinition.Cargo},new CrateDefinition{id="energy",x=7,z=5,kind=CrateDefinition.Energy}},
                 sockets=new[]{new SocketDefinition{id="goal",x=6,z=3,isGoal=true}},gates=Array.Empty<GateDefinition>(),decorations=Array.Empty<DecorationDefinition>() };
         }
-        private static bool Lamp(Transform obj) => obj.GetComponentInChildren<Renderer>().sharedMaterials
-            .Where(m=>m.name.StartsWith("M_StationStatusEmission",StringComparison.Ordinal)).Any(m=>m.IsKeywordEnabled("_EMISSION") && m.GetColor("_EmissionColor").r+m.GetColor("_EmissionColor").g+m.GetColor("_EmissionColor").b>.001f);
+        private bool SocketLit(string id) => runner.Board.transform.Find(id+"/Circuit socket/Socket state fill").GetComponent<Renderer>().enabled;
+        private Text GateCaption(string id) => runner.Board.transform.Find("Circuit labels/"+id+" circuit label/Caption").GetComponent<Text>();
         private static Transform Lower(StationGateView gate) => gate.transform.Find("PowerGateRoot/MovingParts/LowerPanel");
         private static IEnumerator WaitFor(Func<bool> predicate)
         {
@@ -61,8 +62,8 @@ namespace Sokoban.Tests
                     Assert.That(runner.Board.Crates[c.id].GetComponentsInChildren<Collider>(),Is.Empty);
                 }
                 Assert.That(LevelJson.Hash(level),Is.EqualTo(hash));
-                foreach (var label in runner.Board.GetComponentsInChildren<TextMesh>())
-                    Assert.That(label.GetComponent<Renderer>().sharedMaterial.shader.name, Is.EqualTo("Universal Render Pipeline/Unlit"));
+                Assert.That(runner.Board.Circuits.Layout.GateLabels.Count, Is.EqualTo(level.gates.Length));
+                foreach (var label in runner.Board.GetComponentsInChildren<Text>(true)) Assert.That(label.raycastTarget, Is.False);
             }
             foreach(string id in new[]{"EnergyCrate","CargoCrate","GoalSocket","UtilitySocket","PowerGate","FloorPlain","FloorService","FloorGrate","WallStraight","WallCorner","WallEnd"})
                 Assert.That(seen.Contains(id+"Root"),Is.True,id);
@@ -80,14 +81,17 @@ namespace Sokoban.Tests
             Assert.That(runner.Board.Gates["any"].IsPowered && runner.Board.Gates["any"].IsOpen,Is.True);
             Assert.That(runner.Board.Gates["all"].IsPowered || runner.Board.Gates["all"].IsOpen,Is.False);
             Assert.That(runner.Board.Gates["shared"].IsPowered,Is.True);
-            Assert.That(Lamp(runner.Board.transform.Find("a/UtilitySocketRoot/PowerStatus")),Is.True);
-            Assert.That(Lamp(runner.Board.transform.Find("b/UtilitySocketRoot/PowerStatus")),Is.False);
+            Assert.That(SocketLit("a"),Is.True);
+            Assert.That(SocketLit("b"),Is.False);
             foreach(var gate in runner.Board.Gates.Values)
             {
-                var inputs=gate.transform.Find("PowerGateRoot").Cast<Transform>().Where(t=>t.name.StartsWith("Input ",StringComparison.Ordinal)).ToArray();
-                foreach(var input in inputs) Assert.That(Lamp(input.Find("SourceBadgeTemplate_SourcePower")),Is.EqualTo(input.name.StartsWith("Input a ",StringComparison.Ordinal)));
+                string caption=GateCaption(gate.name).text;
+                Assert.That(caption,Does.Contain("a ●"));
+                if(gate.name!="shared") Assert.That(caption,Does.Contain("b ○"));
             }
-            Assert.That(runner.Board.Gates["any"].transform.Find("PowerGateRoot").Cast<Transform>().Count(t=>t.name.StartsWith("Input ",StringComparison.Ordinal)),Is.EqualTo(6));
+            Assert.That(GateCaption("any").text,Does.Contain("任一").And.Contain("c ○"));
+            Assert.That(GateCaption("all").text,Does.Contain("全部"));
+            Assert.That(runner.Board.Circuits.Layout.GatesFor("a").Length,Is.EqualTo(3));
             var materials=runner.Board.Crates.Values.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).SelectMany(r=>r.sharedMaterials);
             Assert.That(materials.Any(m=>m.name.Contains("LinkAccent") || m.name.Contains("StatusEmission")),Is.False);
         }
@@ -125,7 +129,7 @@ namespace Sokoban.Tests
                 yield return new WaitForSeconds(.35f);
                 Assert.That(gate.IsOpen || gate.IsPowered || gate.Animating,Is.False);
                 Assert.That(Lower(gate).localPosition.y,Is.EqualTo(.29f).Within(.0001f));
-                Assert.That(Lamp(runner.Board.transform.Find("source/UtilitySocketRoot/PowerStatus")),Is.False);
+                Assert.That(SocketLit("source"),Is.False);
             }
         }
 
@@ -151,12 +155,16 @@ namespace Sokoban.Tests
         [UnityTest] public IEnumerator StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases()
         {
             var level=LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L06").text); runner.LoadLevel(level); yield return null;
-            Func<Dictionary<string,Material>> identity=()=>runner.Definition.sockets.ToDictionary(s=>s.id,s=>runner.Board.transform.Find(s.id).GetComponentsInChildren<Renderer>()
-                .SelectMany(r=>r.sharedMaterials).First(m=>m.name.StartsWith("M_StationLinkAccent",StringComparison.Ordinal)));
-            var before=identity(); var colors=before.ToDictionary(p=>p.Key,p=>p.Value.GetColor("_BaseColor"));
+            var theme=Resources.Load<StationKitTheme>("configs/StationKitTheme");
+            var originalColor=theme.labelMaterial.GetColor("_BaseColor");
+            Func<Dictionary<string,string>> identity=()=>runner.Definition.sockets.ToDictionary(s=>s.id,
+                s=>runner.Board.transform.Find("Circuit labels/"+s.id+" circuit label/Caption").GetComponent<Text>().text);
+            var before=identity(); var gateNumbers=runner.Board.Circuits.Layout.GateLabels.ToDictionary(p=>p.Key,p=>p.Value);
             level.sockets=level.sockets.Reverse().ToArray(); foreach(var g in level.gates) g.sourceSocketIds=g.sourceSocketIds.Reverse().ToArray();
             runner.LoadLevel(level); yield return null;
-            foreach(var pair in identity()) { Assert.That(pair.Value,Is.SameAs(before[pair.Key])); Assert.That(pair.Value.GetColor("_BaseColor"),Is.EqualTo(colors[pair.Key])); }
+            foreach(var pair in identity()) Assert.That(pair.Value,Is.EqualTo(before[pair.Key]));
+            foreach(var pair in runner.Board.Circuits.Layout.GateLabels) Assert.That(pair.Value,Is.EqualTo(gateNumbers[pair.Key]));
+            Assert.That(theme.labelMaterial.GetColor("_BaseColor"),Is.EqualTo(originalColor));
             runner.Restart(); yield return null;
             Assert.That(Object.FindObjectsOfType<BoardView>().Length,Is.EqualTo(1));
         }
