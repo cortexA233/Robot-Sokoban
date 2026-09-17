@@ -63,7 +63,7 @@ namespace Sokoban.UI
             bool hasGame = Runner.Session != null;
             bool choosing = Runner.LevelSelectionOpen;
             bool playing = hasGame && !choosing && !SettingsOpen;
-            bool unlocked = !Runner.NavigationLocked;
+            bool unlocked = !Runner.NavigationLocked && !Runner.DebugInputCaptured;
             if (choosing && !selectionWasOpen) selection.SelectCurrent();
             selectionWasOpen = choosing;
             menu.Present(!hasGame && !choosing && !SettingsOpen, unlocked);
@@ -86,14 +86,14 @@ namespace Sokoban.UI
         }
         public bool EnterLevel(int index)
         {
-            if (Runner.IsPlaytest || index < 0 || index >= Runner.CampaignLevelCount || Runner.NavigationLocked) return false;
+            if (Runner.IsPlaytest || Runner.IsLiveSandbox || Runner.LiveEditing || index < 0 || index >= Runner.CampaignLevelCount || Runner.NavigationLocked) return false;
             var axis = Runner.Session == null ? FadeAxis.Horizontal : FadeAxis.Vertical;
             return Transition(axis, () => Runner.SelectCoveredLevel(index));
         }
         public bool NextLevel() => Runner.CanGoNext && EnterLevel(Runner.CampaignIndex + 1);
         public bool ReturnToMainMenu()
         {
-            if (Runner.IsPlaytest || Runner.NavigationLocked) return false;
+            if (Runner.IsPlaytest || Runner.IsLiveSandbox || Runner.LiveEditing || Runner.NavigationLocked) return false;
             return Transition(FadeAxis.Horizontal, Runner.ReturnToMenu);
         }
         private bool Transition(FadeAxis axis, Action change)

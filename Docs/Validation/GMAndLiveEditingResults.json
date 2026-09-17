@@ -1,0 +1,153 @@
+{
+  "schema": "gm-live-editing-validation-v1",
+  "dateLocal": "2026-09-16",
+  "timezone": "America/New_York",
+  "baselineCommit": "af9a37167bf1d5a3947b0d11d86da83205f5e097",
+  "environment": {
+    "unity": "2022.3.51f1",
+    "urp": "14.0.11",
+    "cinemachine": "2.10.7",
+    "mcp": "CoplayDev 10.2.0",
+    "graphics": "Direct3D 11"
+  },
+  "tests": {
+    "fullEditMode": {
+      "jobId": "d97b92e64dbd4c58a0a2583517ca274e",
+      "mode": "EditMode",
+      "summary": {
+        "total": 90,
+        "passed": 90,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 3.0730725,
+        "resultState": "Passed"
+      }
+    },
+    "fullPlayMode": {
+      "jobId": "a021f6f72c7d407aaf878c82ab9b83d1",
+      "mode": "PlayMode",
+      "summary": {
+        "total": 31,
+        "passed": 31,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 158.2229232,
+        "resultState": "Passed"
+      }
+    },
+    "afterShaderFix": {
+      "jobId": "d0ad7356bc084db28bfb3b106bfc22d6",
+      "mode": "PlayMode",
+      "summary": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 1.778769,
+        "resultState": "Passed"
+      }
+    },
+    "afterEditorExitSync": {
+      "jobId": "59b66c41cbab468d90a460bcd02f2699",
+      "mode": "EditMode",
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 4.2882265,
+        "resultState": "Passed"
+      }
+    }
+  },
+  "builds": {
+    "development": {
+      "job_id": "build-0ba750c8d0",
+      "result": "succeeded",
+      "platform": "StandaloneWindows64",
+      "output_path": "Builds/GMIterationDevelopment/StationRestart.exe",
+      "started_at": "2026-09-17T00:10:13.8484529Z",
+      "duration_seconds": 11.6388465,
+      "completed_at": "2026-09-17T00:10:25.4872994Z",
+      "total_size_mb": 112.69,
+      "errors": 0,
+      "warnings": 0
+    },
+    "nonDevelopment": {
+      "job_id": "build-04f7c2d8b2",
+      "result": "succeeded",
+      "platform": "StandaloneWindows64",
+      "output_path": "Builds/GMIterationRelease/StationRestart.exe",
+      "started_at": "2026-09-17T00:00:37.8774411Z",
+      "duration_seconds": 14.7403924,
+      "completed_at": "2026-09-17T00:00:52.6178335Z",
+      "total_size_mb": 86.13,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "runtimeValidation": {
+    "DevelopmentSmoke": {
+      "AliveAfter8Seconds": true,
+      "KToolkitInitialized": true,
+      "ExceptionOrMissingScript": false
+    },
+    "ReleaseSmoke": {
+      "AliveAfter8Seconds": true,
+      "KToolkitInitialized": true,
+      "ExceptionOrMissingScript": false
+    },
+    "Metadata": [
+      {
+        "Variant": "Development",
+        "GmPagePresent": true,
+        "GmOverlayPresent": true,
+        "UnityEditorReferences": 0,
+        "AssemblySha256": "65B075A1ED153055034FED4AA27C63F712E775D51088B38DA3084318CFC907D9"
+      },
+      {
+        "Variant": "Release",
+        "GmPagePresent": false,
+        "GmOverlayPresent": false,
+        "UnityEditorReferences": 0,
+        "AssemblySha256": "E522B0F919148FC35D416749932576BC0164DC60C0BA862E15C9520960E0DF19"
+      }
+    ],
+    "OriginalDraftSha256": "B2E861A294E0C688CBA1AF7647C0933A51D23E6885F2BBA8043B72ED0A885973",
+    "BackupDraftSha256": "B2E861A294E0C688CBA1AF7647C0933A51D23E6885F2BBA8043B72ED0A885973",
+    "OriginalPlaytestSha256": "D7705DF7052B793CDDEBC9DCD1F925D89F3723504158B59F507FE957A436E0B6",
+    "BackupPlaytestSha256": "D7705DF7052B793CDDEBC9DCD1F925D89F3723504158B59F507FE957A436E0B6"
+  },
+  "editorValidation": {
+    "ugui": "EventSystem raycast plus pointer click; Input System F1/Escape events",
+    "uiToolkit": "NavigationSubmitEvent and pointer painting, type field change, author undo, apply and return; save-copy writer exercised directly",
+    "repeatedApplies": 10,
+    "domainReload": {
+      "method": "EditorUtility.RequestScriptReload during live editing",
+      "draftJsonUnchanged": true,
+      "detachedAfterReload": true,
+      "consoleErrors": 0
+    },
+    "prefabMissingScripts": 0,
+    "finalEditorErrors": 0,
+    "finalEditorWarnings": 0
+  },
+  "screenshots": [
+    "Docs/Images/GmWorkbench.png",
+    "Docs/Images/LiveEditorRecovered.png"
+  ],
+  "resolvedIssues": [
+    "GM undo controls clipped by scroll viewport; pinned common actions outside scroll content.",
+    "Dropdown caption clipped by Chinese font line height; corrected caption/template layout.",
+    "URP Unlit shader stripped in the first development player; explicit prefab material reference now retained.",
+    "Projected labels used the previous camera pose; overlay now updates after CinemachineBrain and separates coordinate and entity labels.",
+    "Ending a live session through GM now restores the open author window as well."
+  ],
+  "limitations": [
+    "Standalone checks cover startup and assembly isolation, not a complete keyboard/mouse playthrough of both executables.",
+    "Editor UI was exercised with equivalent input automation, not an independent human usability review; native save-file dialog interaction was not automated.",
+    "Recovery preserves live draft data; it does not promise to resume the prior runtime session or editor undo history after a domain reload.",
+    "Preparation rollback is covered for invalid drafts and stale sessions; native allocation/resource-failure injection was not independently exercised.",
+    "M4 visual solution playback, microstep stepping and debug-checkpoint replay remain deferred."
+  ]
+}

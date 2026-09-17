@@ -45,7 +45,19 @@ DOTween 过渡采用非缩放时间，暂停或 timeScale 为 0 时仍能完成�
 
 内置 Noto Sans SC Regular，存放于 `Assets/Art/UI/Fonts`，随 Prefab 引用进入构建。来自 [Noto CJK 官方仓库](https://github.com/notofonts/noto-cjk/tree/main/Sans/SubsetOTF/SC)，原始文件名 NotoSansSC-Regular.otf；[OFL 1.1 授权](https://github.com/notofonts/noto-cjk/blob/main/Sans/LICENSE)同目录保存为 LICENSE.txt。避免依赖目标 Windows 的系统中文字体。
 
-## 验证
+## GM 调试工作台增量
+
+`GmPage` 使用 KToolkit KUIPage 与可编辑的 `screens/GM/Gm.prefab`，按 F1 打开，包含分类搜索、坐标/点选移位、交换、朝向、机关状态和诊断导出。常用撤销、重开、视角按钮固定在滚动内容之外；只读监视条不占用游戏输入。
+
+GM 输入占用、现场编辑占用、游戏暂停和动作动画暂停分别管理。StationUIController 在调试工作台占用输入时禁用底层交互；LevelRunner 先消费 F1/Esc 和点选，再处理普通游戏输入。运行时 GM 类型只编译进 Editor/Development Build，Prefab 本身只包含 Unity 内置组件，因此非开发构建不会出现缺失脚本。
+
+叠加线使用 `Assets/Art/UI/Materials/GmOverlay.mat`，由 Prefab 内禁用的 OverlayStyle LineRenderer 显式引用，避免仅用 Shader.Find 导致 Player 构建剔除 URP Unlit Shader。运行时克隆材质并随叠加层销毁。
+
+叠加标签在 CinemachineBrain 更新镜头之后投影；网格坐标与实体 ID 使用不同位置，避免切换镜头时错位或同时显示时重叠。
+
+生成入口为 `Sokoban_Tools > Build GM UGUI Prefab`，只覆盖 GM Prefab。其验证记录见 ImplementationProgress 的 GM/现场编辑迭代；原七页生成器与 KToolkit 源码未改动。
+
+## 原有页面验证
 
 运行时集成用例位于 `Assets/Scripts/Tests/PlayMode/StationUITests.cs`。点击测试在页面渲染后通过 EventSystem 射线确认最上层控件，再派发 PointerClick；覆盖菜单进入、选关、结算下一关、暂停返回、设置保存、撤销重开、零时间缩放与过渡销毁。另有 Input System 键盘用例验证 Esc 和长按隔离。
 

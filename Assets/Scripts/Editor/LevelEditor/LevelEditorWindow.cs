@@ -13,6 +13,8 @@ namespace Sokoban.Editor
     public sealed class LevelEditorWindow : EditorWindow
     {
         [SerializeField] private LevelDocument document;
+        [SerializeField] private LevelDocument authorDocument;
+        [SerializeField] private LiveEditWorkspace liveWorkspace;
         [SerializeField] private LevelBrush brush = LevelBrush.Select;
         [SerializeField] private AuthorLayer layer = AuthorLayer.Actors;
         [SerializeField] private string selectedId;
@@ -25,23 +27,34 @@ namespace Sokoban.Editor
         private int undoGroup;
         private readonly HashSet<Cell> stroke = new HashSet<Cell>();
         public LevelDocument Document => document;
+        public LiveEditWorkspace LiveWorkspace => liveWorkspace;
+        private LevelDocument AuthorDocument => authorDocument ? authorDocument : document;
+        private bool LiveMode => document && document.isLiveDraft;
+        private bool CanEditDocument => !EditorApplication.isPlayingOrWillChangePlaymode || (LiveMode && liveWorkspace && liveWorkspace.Editing);
 
         [MenuItem("Sokoban_Tools/Level Editor")]
         public static LevelEditorWindow OpenWindow() => GetWindow<LevelEditorWindow>("Sokoban Level Editor");
 
         private void OnEnable()
         {
+            if (liveWorkspace) liveWorkspace.RestorePaths();
+            if (authorDocument && File.Exists(LevelDocument.DraftPath))
+            {
+                authorDocument.draftPath = LevelDocument.DraftPath;
+                try { authorDocument.RestoreDraft(); }
+                catch (Exception exception) { Debug.LogWarning("原作者草稿恢复失败，备份保留：" + exception.Message); }
+            }
             if (!document)
             {
                 document = CreateInstance<LevelDocument>(); document.hideFlags = HideFlags.HideAndDontSave;
             }
-            if (File.Exists(LevelDocument.DraftPath))
+            if (!LiveMode && File.Exists(LevelDocument.DraftPath))
             {
                 try { document.RestoreDraft(); }
                 catch (Exception e) { Debug.LogWarning("草稿读取失败，原文件已保留：" + e.Message); }
             }
             if (document.level == null) document.level = LevelDocument.NewLevel();
-            if (!EditorApplication.isPlayingOrWillChangePlaymode) PlaytestBridge.CollectRecording(document);
+            if (!EditorApplication.isPlayingOrWillChangePlaymode) PlaytestBridge.CollectRecording(AuthorDocument);
             minSize = new Vector2(860, 620);
             saveChangesMessage = "此关卡尚未保存。保存后关闭，或放弃本次修改？";
             SceneView.duringSceneGui += DrawScene;
@@ -52,19 +65,21 @@ namespace Sokoban.Editor
         {
             EndStroke();
             if (document && document.level != null) document.Backup();
+            if (liveWorkspace) { liveWorkspace.Backup(); liveWorkspace.ReleaseInput(); }
             SceneView.duringSceneGui -= DrawScene;
             Undo.undoRedoPerformed -= OnUndoRedo;
             EditorApplication.playModeStateChanged -= OnPlayMode;
         }
         private void OnPlayMode(PlayModeStateChange state)
         {
-            rootVisualElement.SetEnabled(state == PlayModeStateChange.EnteredEditMode);
-            if (state == PlayModeStateChange.EnteredEditMode) { PlaytestBridge.CollectRecording(document); Refresh(); }
+            if (state == PlayModeStateChange.EnteredEditMode) { PlaytestBridge.CollectRecording(AuthorDocument); Refresh(); }
+            RefreshMode();
         }
-        private void OnUndoRedo() { if (document) { document.Backup(); Refresh(); } }
+        private void OnUndoRedo() { if (document) { document.Backup(); if (LiveMode && liveWorkspace) liveWorkspace.Backup(); Refresh(); } }
         public override void SaveChanges() { if (Save(false)) base.SaveChanges(); }
         public override void DiscardChanges()
         {
+            if (LiveMode) { liveWorkspace?.Backup(); base.DiscardChanges(); return; }
             if (!string.IsNullOrEmpty(document.filePath) && File.Exists(document.filePath)) document.Open(document.filePath);
             else { document.level = LevelDocument.NewLevel(); document.savedHash = LevelJson.Hash(document.level); document.solution = null; document.Backup(); }
             base.DiscardChanges();
@@ -80,7 +95,14 @@ namespace Sokoban.Editor
             Button(toolbar, "校验", Validate, "validate-level"); Button(toolbar, "试玩并录制", () => Run(() => PlaytestBridge.Play(document)), "playtest");
             Button(toolbar, "回放参考解法", Replay, "replay"); Button(toolbar, "导入配方", ImportRecipe, "import-recipe");
             Button(toolbar, "帮助", () => HelpWindow.OpenHelp(), "help");
-            var body = new VisualElement { style = { flexDirection = FlexDirection.Row, flexGrow = 1, minHeight = 280 } };
+            var liveBar = new VisualElement { style = { flexDirection = FlexDirection.Row, flexWrap = Wrap.Wrap } }; rootVisualElement.Add(liveBar);
+            Button(liveBar, "捕获当前游戏局面", () => CaptureLive(UnityEngine.Object.FindObjectOfType<LevelRunner>()), "capture-live");
+            Button(liveBar, "编辑已有现场草稿", () => Run(() => { ShowLiveDraft(); liveWorkspace.Resume(); RefreshMode(); }), "resume-live");
+            Button(liveBar, "应用并继续试玩", ApplyLive, "apply-live");
+            Button(liveBar, "结束现场试玩", EndLive, "end-live");
+            Button(liveBar, "带回作者文档", () => Run(() => { liveWorkspace.BringBack(); hint.text = "已带回作者文档；尚未写入原文件。"; }), "bring-live");
+            Button(liveBar, "恢复/查看现场草稿", () => Run(() => { ShowLiveDraft(); Refresh(); }), "recover-live");
+            var body = new VisualElement { name = "EditorBody", style = { flexDirection = FlexDirection.Row, flexGrow = 1, minHeight = 280 } };
             rootVisualElement.Add(body);
             var palette = new ScrollView { style = { width = 150, flexShrink = 0, paddingRight = 6 } }; body.Add(palette);
             palette.Add(new Label("画笔 / 当前图层"));
@@ -100,7 +122,7 @@ namespace Sokoban.Editor
             foreach (string name in new[] { "L01", "L02", "L03", "L04", "L05", "L06", "LAB01_LowFriction" })
             {
                 string path = "Assets/Resources/configs/" + (name.StartsWith("LAB") ? "test_levels/" : "levels/") + name + ".json";
-                Button(palette, name.StartsWith("LAB") ? "LAB01（开发测试）" : name, () => { if (ConfirmDiscard()) Run(() => { document.Open(path); Refresh(); FrameBoard(); }); });
+                Button(palette, name.StartsWith("LAB") ? "LAB01（开发测试）" : name, () => { if (ConfirmDiscard()) Run(() => { document.Open(path); Refresh(); FrameBoard(); }); }, "example-" + name);
             }
             var canvas = new ScrollView(ScrollViewMode.VerticalAndHorizontal) { style = { flexGrow = 1, backgroundColor = new Color(.12f, .15f, .19f), paddingTop = 12, paddingLeft = 12 } };
             body.Add(canvas); grid = new VisualElement(); canvas.Add(grid);
@@ -111,16 +133,83 @@ namespace Sokoban.Editor
             status = new Label { style = { whiteSpace = WhiteSpace.Normal } }; rootVisualElement.Add(status);
             rootVisualElement.RegisterCallback<PointerUpEvent>(_ => EndStroke(), TrickleDown.TrickleDown);
             rootVisualElement.RegisterCallback<KeyDownEvent>(OnKey);
-            rootVisualElement.SetEnabled(!EditorApplication.isPlayingOrWillChangePlaymode);
+            RefreshMode();
             Refresh();
         }
         private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层", "普通箱（不供电）" }[(int)value];
         private static void Button(VisualElement parent, string text, Action action, string name = null)
         { var button = new Button(action) { text = text, name = name }; button.style.minHeight = 25; parent.Add(button); }
+        private void OnInspectorUpdate()
+        {
+            // The GM page can end the same runtime session while this window is open.
+            if (LiveMode && liveWorkspace && liveWorkspace.IsAttached && !liveWorkspace.Runner.IsLiveSandbox) EndLive();
+            RefreshMode();
+        }
+        private void RefreshMode()
+        {
+            if (rootVisualElement == null) return;
+            rootVisualElement.SetEnabled(true);
+            rootVisualElement.Q<VisualElement>("EditorBody")?.SetEnabled(CanEditDocument);
+            foreach (string name in new[] { "new-level", "open-level", "playtest", "replay", "import-recipe" })
+                rootVisualElement.Q<Button>(name)?.SetEnabled(!LiveMode && !EditorApplication.isPlayingOrWillChangePlaymode);
+            foreach (string name in new[] { "save-level", "copy-level", "validate-level" })
+                rootVisualElement.Q<Button>(name)?.SetEnabled(LiveMode || !EditorApplication.isPlayingOrWillChangePlaymode);
+            foreach (var button in rootVisualElement.Query<Button>().ToList())
+                if (button.name != null && button.name.StartsWith("example-")) button.SetEnabled(!LiveMode);
+            rootVisualElement.Q<Button>("capture-live")?.SetEnabled(EditorApplication.isPlaying);
+            rootVisualElement.Q<Button>("resume-live")?.SetEnabled(liveWorkspace && liveWorkspace.IsAttached && !liveWorkspace.Editing);
+            rootVisualElement.Q<Button>("apply-live")?.SetEnabled(LiveMode && liveWorkspace && liveWorkspace.Editing);
+            rootVisualElement.Q<Button>("end-live")?.SetEnabled(liveWorkspace && liveWorkspace.IsAttached);
+            rootVisualElement.Q<Button>("bring-live")?.SetEnabled(liveWorkspace);
+            rootVisualElement.Q<Button>("recover-live")?.SetEnabled(liveWorkspace || File.Exists(LiveEditWorkspace.RecoveryPath));
+        }
+        public bool CaptureLive(LevelRunner runner)
+        {
+            try
+            {
+                if (!runner || runner.Session == null) throw new InvalidOperationException("当前游戏没有关卡。");
+                if (liveWorkspace && liveWorkspace.HasUnappliedChanges)
+                {
+                    int choice = EditorUtility.DisplayDialogComplex("现场草稿尚未应用", "可以继续编辑已有草稿，或重新捕获当前局面。旧草稿备份保留。", "继续已有草稿", "取消", "重新捕获并替换");
+                    if (choice == 1) return false;
+                    if (choice == 0) { ShowLiveDraft(); liveWorkspace.Resume(); Refresh(); return true; }
+                }
+                var sourceAuthor = AuthorDocument;
+                var old = liveWorkspace;
+                if (old) { old.Backup(); old.ReleaseInput(); }
+                var next = LiveEditWorkspace.Capture(runner, sourceAuthor);
+                if (!authorDocument) authorDocument = sourceAuthor;
+                liveWorkspace = next; document = next.Draft; selectedId = null; selectedCell = null;
+                if (old) { Undo.ClearUndo(old.Draft); DestroyImmediate(old.Draft); DestroyImmediate(old); }
+                RefreshLive(); Focus(); return true;
+            }
+            catch (Exception exception) { if (hint != null) hint.text = exception.Message; else Debug.LogWarning(exception.Message); return false; }
+        }
+        private void ShowLiveDraft()
+        {
+            if (!authorDocument && !LiveMode) authorDocument = document;
+            if (!liveWorkspace) liveWorkspace = LiveEditWorkspace.Recover(AuthorDocument);
+            document = liveWorkspace.Draft; selectedId = null; selectedCell = null; RefreshLive();
+        }
+        public void RefreshLive() { if (grid == null) CreateGUI(); else Refresh(); }
+        public void ApplyLive()
+        {
+            EndStroke();
+            if (!liveWorkspace) return;
+            if (!liveWorkspace.Apply(out string error)) { Validate(); hint.text = error; return; }
+            Refresh(); hint.text = "已应用新的现场起点，可在 Game View 继续试玩。Z 不跨应用边界。";
+        }
+        public void EndLive()
+        {
+            string error = null;
+            if (!liveWorkspace || !liveWorkspace.End(out error)) { hint.text = error ?? "没有现场会话。"; return; }
+            if (authorDocument) { document = authorDocument; authorDocument = null; }
+            selectedId = null; selectedCell = null; Refresh(); hint.text = "已返回原运行局面。现场草稿仍可查看或另存。";
+        }
         private void Run(Action action)
         { try { action(); } catch (Exception e) { if (hint != null) hint.text = e.Message; } }
         private void Edit(string label, Action change)
-        { Run(() => { document.Change(label, change); Refresh(); }); }
+        { if (CanEditDocument) Run(() => { document.Change(label, change); if (LiveMode) liveWorkspace.Backup(); Refresh(); }); }
         private void Refresh()
         {
             if (grid == null || !document || document.level == null) return;
@@ -147,9 +236,11 @@ namespace Sokoban.Editor
                 }
             }
             DrawProperties();
-            hasUnsavedChanges = document.IsDirty;
+            hasUnsavedChanges = !LiveMode && document.IsDirty;
             status.text = $"{level.width} × {level.height} · {(document.IsDirty ? "● 未保存" : "已保存")} · {(string.IsNullOrEmpty(document.filePath) ? "新草稿" : document.filePath)}\n" +
                 (document.solution == null ? "尚无参考解法" : document.solution.contentHash == LevelJson.Hash(level) ? "参考解法：当前版本" : "参考解法：已过期，需重新回放");
+            if (LiveMode) status.text = "临时现场草稿 · " + (liveWorkspace && liveWorkspace.IsAttached ? liveWorkspace.Editing ? "编辑中，游戏输入已占用" : "游戏运行中，点击编辑或重新捕获" : "来源已结束，可另存副本") + "\n" + status.text;
+            RefreshMode();
             SceneView.RepaintAll();
         }
         private string Symbol(Cell cell)
@@ -176,7 +267,7 @@ namespace Sokoban.Editor
         private bool IsTerrainBrush() => brush >= LevelBrush.Floor && brush <= LevelBrush.LowFriction;
         private void BeginStroke()
         {
-            if (EditorApplication.isPlayingOrWillChangePlaymode || brushing) return;
+            if (!CanEditDocument || brushing) return;
             brushing = true; stroke.Clear(); Undo.IncrementCurrentGroup(); undoGroup = Undo.GetCurrentGroup();
             document.RecordUndo("棋盘画笔");
         }
@@ -184,11 +275,12 @@ namespace Sokoban.Editor
         {
             if (!brushing) return;
             brushing = false; Undo.CollapseUndoOperations(undoGroup); document.Backup();
-            hasUnsavedChanges = document.IsDirty;
+            if (LiveMode && liveWorkspace) liveWorkspace.Backup();
+            hasUnsavedChanges = !LiveMode && document.IsDirty;
         }
         private void Apply(Cell cell, bool erase)
         {
-            if (EditorApplication.isPlayingOrWillChangePlaymode || !document.level.Contains(cell) || !stroke.Add(cell)) return;
+            if (!CanEditDocument || !document.level.Contains(cell) || !stroke.Add(cell)) return;
             Run(() =>
             {
                 selectedCell = cell;
@@ -297,6 +389,21 @@ namespace Sokoban.Editor
         }
         private bool Save(bool copy)
         {
+            if (LiveMode)
+            {
+                try
+                {
+                    if (copy)
+                    {
+                        string target = EditorUtility.SaveFilePanel("另存现场关卡副本", "Assets/Resources/configs/test_levels", document.level.id + "_live", "json");
+                        if (string.IsNullOrEmpty(target)) return false;
+                        liveWorkspace.SaveCopy(target); hint.text = "现场关卡副本已保存（新 ID）。";
+                    }
+                    else { liveWorkspace.SaveDraft(); hint.text = "现场草稿已备份，原关卡文件未改动。"; }
+                    Refresh(); return true;
+                }
+                catch (Exception exception) { hint.text = exception.Message; return false; }
+            }
             string path = document.filePath;
             if (copy || string.IsNullOrEmpty(path)) path = EditorUtility.SaveFilePanel("保存关卡", "Assets/Resources/configs/levels", document.level.id + (copy ? "_copy" : ""), "json");
             if (string.IsNullOrEmpty(path)) return false;
@@ -307,7 +414,7 @@ namespace Sokoban.Editor
         }
         public void Validate()
         {
-            issues.Clear(); var report = LevelValidator.Validate(document.level);
+            issues.Clear(); var report = LiveMode ? LevelValidator.ValidateLive(document.level) : LevelValidator.Validate(document.level);
             issues.Add(new Label(report.IsValid ? "结构校验通过；这不等于有解证明。" : "校验失败：请修复以下错误。"));
             foreach (var issue in report.Issues)
             {
@@ -335,6 +442,7 @@ namespace Sokoban.Editor
         }
         private void OnKey(KeyDownEvent e)
         {
+            if (!CanEditDocument) return;
             if (e.target is UnityEngine.UIElements.TextField || e.target is TextElement) return;
             if (e.ctrlKey && e.keyCode == KeyCode.S) { Save(false); e.StopPropagation(); }
             else if (e.ctrlKey && e.keyCode == KeyCode.Z) { Undo.PerformUndo(); e.StopPropagation(); }
@@ -360,7 +468,7 @@ namespace Sokoban.Editor
         private static void FrameCell(Cell cell) => SceneView.lastActiveSceneView?.LookAt(BoardView.Position(cell), Quaternion.Euler(75, 0, 0), 4);
         private void DrawScene(SceneView view)
         {
-            if (!document || document.level == null || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            if (!document || document.level == null || !CanEditDocument) return;
             var l = document.level;
             for (int z = 0; z < l.height; z++)
                 for (int x = 0; x < l.width; x++)

@@ -14,6 +14,7 @@ namespace Sokoban.Editor
     // Both the window and recipe importer call these author operations.
     public sealed class LevelDocument : ScriptableObject
     {
+        [SerializeField] public bool isLiveDraft;
         // Unity inline serialization fabricates objects for null class fields. Keep Undo
         // snapshots as JSON strings so an absent player/proof stays absent after restore.
         [SerializeField] private string serializedLevel = "";
@@ -106,7 +107,7 @@ namespace Sokoban.Editor
                     throw new InvalidOperationException("玩家与箱子不能重叠。");
                 if (brush == LevelBrush.Player)
                 {
-                    if (level.gates.Any(g => g.Cell == cell)) throw new InvalidOperationException("玩家不能出生在门上。");
+                    if (!isLiveDraft && level.gates.Any(g => g.Cell == cell)) throw new InvalidOperationException("玩家不能出生在门上。");
                     level.playerSpawn = new PlayerSpawn { x = cell.x, z = cell.z, facing = facing }; return "player";
                 }
                 string id = NewId("crate");
@@ -119,7 +120,7 @@ namespace Sokoban.Editor
                 throw new InvalidOperationException("插槽/门必须放在没有其他机关的普通地板上。");
             if (brush == LevelBrush.Gate)
             {
-                if (level.playerSpawn != null && level.playerSpawn.Cell == cell) throw new InvalidOperationException("门不能覆盖玩家出生点。");
+                if (!isLiveDraft && level.playerSpawn != null && level.playerSpawn.Cell == cell) throw new InvalidOperationException("门不能覆盖玩家出生点。");
                 string id = NewId("gate");
                 level.gates = level.gates.Concat(new[] { new GateDefinition { id = id, x = cell.x, z = cell.z, facing = facing, powerMode = "Any", sourceSocketIds = Array.Empty<string>() } }).ToArray();
                 return id;
@@ -158,12 +159,12 @@ namespace Sokoban.Editor
                     throw new InvalidOperationException("目标格已有玩家/箱子。");
                 if (id == "player")
                 {
-                    if (level.gates.Any(g => g.Cell == to)) throw new InvalidOperationException("玩家不能出生在门上。");
+                    if (!isLiveDraft && level.gates.Any(g => g.Cell == to)) throw new InvalidOperationException("玩家不能出生在门上。");
                     level.playerSpawn.x = to.x; level.playerSpawn.z = to.z; return;
                 }
             }
             else if (level.TerrainAt(to) != Terrain.Floor || level.sockets.Any(s => s.id != id && s.Cell == to) || level.gates.Any(g => g.id != id && g.Cell == to) ||
-                (Find(id) is GateDefinition && level.playerSpawn != null && level.playerSpawn.Cell == to))
+                (!isLiveDraft && Find(id) is GateDefinition && level.playerSpawn != null && level.playerSpawn.Cell == to))
                 throw new InvalidOperationException("目标格无法容纳这个机关。");
             var entity = Find(id) ?? throw new InvalidOperationException("选中元素已不存在。");
             entity.x = to.x; entity.z = to.z;

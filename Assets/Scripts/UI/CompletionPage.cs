@@ -26,6 +26,7 @@ namespace Sokoban.UI
             transform.Find("Content/Levels").gameObject.SetActive(!Runner.IsPlaytest && !Runner.IsFinalCampaignLevel);
             transform.Find("Content/Menu").gameObject.SetActive(!Runner.IsPlaytest);
             transform.Find("Content/Save").gameObject.SetActive(Runner.IsPlaytest);
+            Get<Button>("Content/Save").interactable = Runner.Session.ReferenceReplayValid;
         }
     }
 }

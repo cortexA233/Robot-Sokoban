@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace Sokoban
 {
     // Owns the session. UGUI pages consume this API without owning puzzle rules.
-    public sealed class LevelRunner : MonoBehaviour
+    public sealed partial class LevelRunner : MonoBehaviour
     {
         public static LevelDefinition PlaytestDefinition;
         public static event Action<LevelDefinition, GameSession> SaveReferenceRequested;
@@ -32,8 +32,8 @@ namespace Sokoban
         public int InitialCampaignIndex { get; private set; }
         public string Message { get; private set; } = "";
         public string Error { get; private set; }
-        public bool CanSelectLevel => !IsPlaytest && campaign.Length > 0 && !NavigationLocked;
-        public bool CanGoNext => !NavigationLocked && !LevelSelectionOpen && !IsPlaytest && Completed && Presenter != null && !Presenter.Busy && CampaignIndex >= 0 && CampaignIndex + 1 < campaign.Length;
+        public bool CanSelectLevel => !IsPlaytest && !IsLiveSandbox && !LiveEditing && campaign.Length > 0 && !NavigationLocked;
+        public bool CanGoNext => !NavigationLocked && !LevelSelectionOpen && !IsPlaytest && !IsLiveSandbox && Completed && Presenter != null && !Presenter.Busy && CampaignIndex >= 0 && CampaignIndex + 1 < campaign.Length;
         public bool IsFinalCampaignLevel => !IsPlaytest && CampaignIndex >= 0 && CampaignIndex == campaign.Length - 1;
         public string CompletionHeading => IsFinalCampaignLevel ? "空间站已重启！" : Definition?.completionText;
         public int GoalCount => Definition?.sockets.Count(s => s.isGoal) ?? 0;
@@ -68,6 +68,7 @@ namespace Sokoban
                     InitialCampaignIndex = Mathf.Max(0, Array.FindIndex(campaign, level => level.id == initialId));
                 }
                 UI = new StationUIController(this);
+                InitializeDebug();
                 if (IsPlaytest) LoadLevel(PlaytestDefinition);
                 else NotifyChanged();
             }
@@ -78,23 +79,17 @@ namespace Sokoban
 
         public void LoadLevel(LevelDefinition level)
         {
-            if (NavigationLocked) return;
+            if (NavigationLocked || IsLiveSandbox) return;
             ApplyLevel(level);
         }
         private void ApplyLevel(LevelDefinition level)
         {
-            // Validate before tearing down a working level; never mutate author data.
             var session = new GameSession(level);
-            ClearPresentation();
-            Definition = level.Copy(); Session = session;
+            InstallSession(level, session);
+            SessionId = Guid.NewGuid().ToString("N"); Revision++;
             CampaignIndex = IsPlaytest ? -1 : Array.FindIndex(campaign, entry => entry.id == level.id && LevelJson.Hash(entry) == LevelJson.Hash(level));
-            Board = new GameObject("Board").AddComponent<BoardView>(); Board.transform.SetParent(transform);
-            Board.Build(Definition); Board.Restore(Session);
-            Presenter = GetComponent<CommandPresenter>() ?? gameObject.AddComponent<CommandPresenter>(); Presenter.Initialize(Board);
-            Cameras = new GameObject("Camera rig").AddComponent<CameraRig>(); Cameras.transform.SetParent(transform);
-            Cameras.Initialize(Definition, Board.Robot.transform);
-            UI?.Preferences.Apply(Cameras);
             Completed = Session.State.Completed; Paused = false; LevelSelectionOpen = false;
+            DebugAnimationPaused = false;
             idleTime = 0; input.Clear(); Message = level.briefing; Error = null;
             NotifyChanged();
         }
@@ -102,7 +97,7 @@ namespace Sokoban
         // Immediate author/test API. Player navigation uses cover/swap/reveal in StationUIController.
         public bool SelectLevel(int index)
         {
-            if (NavigationLocked || IsPlaytest || index < 0 || index >= campaign.Length) return false;
+            if (NavigationLocked || IsPlaytest || IsLiveSandbox || LiveEditing || index < 0 || index >= campaign.Length) return false;
             ApplyLevel(campaign[index]); return true;
         }
         internal void SelectCoveredLevel(int index) => ApplyLevel(campaign[index]);
@@ -111,6 +106,7 @@ namespace Sokoban
         {
             ClearPresentation();
             Session = null; Definition = null; CampaignIndex = -1;
+            SessionId = Guid.NewGuid().ToString("N"); Revision++;
             Completed = Paused = LevelSelectionOpen = false; Message = ""; input.Clear();
             NotifyChanged();
         }
@@ -128,6 +124,8 @@ namespace Sokoban
 
         private void Update()
         {
+            bool consumed = false; ReadDebugInput(ref consumed);
+            if (consumed || LiveEditing) return;
             UI?.ReadInput();
             if (Session == null || Error != null || NavigationLocked || LevelSelectionOpen || UI?.SettingsOpen == true) return;
             var keyboard = Keyboard.current;
@@ -138,22 +136,24 @@ namespace Sokoban
                 if (keyboard.rKey.wasPressedThisFrame) Restart();
             }
             Cameras.ReadMouse(!Paused && !Completed);
-            if (Paused || Completed) return;
+            if (Paused || Completed || DebugAnimationPaused) return;
             if (!Presenter.Busy) { idleTime += Time.deltaTime; Board.Robot.Sample(0, idleTime % Board.Robot.idle.length); }
             var direction = input.Poll(Presenter.Busy, Cameras.Forward);
             if (direction.HasValue) TryMove(direction.Value);
         }
         public bool TryMove(Direction direction)
         {
-            if (Session == null || NavigationLocked || LevelSelectionOpen || Paused || Presenter.Busy || Completed) return false;
+            if (Session == null || NavigationLocked || LevelSelectionOpen || DebugInputCaptured || DebugAnimationPaused || Paused || Presenter.Busy || Completed) return false;
             var result = Session.Move(direction);
             if (!result.Accepted)
             {
+                RecordDebug("移动 " + direction + "：" + result.RejectReason);
                 Board.Robot.transform.rotation = Quaternion.Euler(0, (int)direction * 90, 0);
                 if (Time.unscaledTime - rejectedAt >= .5f)
                 { rejectedAt = Time.unscaledTime; Message = "前方受阻。只能推动一个箱子；按 Z 撤销。"; NotifyChanged(); }
                 return false;
             }
+            Revision++; RecordDebug("移动 " + direction + "：接受");
             Presenter.Present(result, () =>
             {
                 Board.Restore(Session); idleTime = 0; Completed = Session.State.Completed;
@@ -164,14 +164,16 @@ namespace Sokoban
         }
         public void Undo()
         {
-            if (Session == null || NavigationLocked || LevelSelectionOpen) return;
-            Presenter.Cancel(); input.Clear(); Session.Undo(); Board.Restore(Session);
+            if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing || Session.UndoCount == 0) return;
+            Presenter.Cancel(); input.Clear(); Session.Undo(); Board.Restore(Session); Cameras.Snap(); Revision++;
+            RecordDebug("撤销");
             Completed = Session.State.Completed; Message = Definition.briefing; idleTime = 0; NotifyChanged();
         }
         public void Restart()
         {
-            if (Session == null || NavigationLocked || LevelSelectionOpen) return;
+            if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing) return;
             Presenter.Cancel(); input.Clear(); Session.Restart(); Board.Restore(Session);
+            Cameras.Snap(); Revision++; RecordDebug("重开");
             Completed = Session.State.Completed; Message = Definition.briefing; idleTime = 0; NotifyChanged();
         }
         public void ToggleCamera()
@@ -180,12 +182,13 @@ namespace Sokoban
             Cameras.Toggle(); Board.SetTopDown(Cameras.TopDown); input.Clear(); NotifyChanged();
         }
         public void SetPaused(bool value)
-        { if (NavigationLocked) return; Paused = value; Presenter?.SetPaused(value); input.Clear(); NotifyChanged(); }
+        { if (NavigationLocked) return; Paused = value; ApplyPresentationPause(); input.Clear(); NotifyChanged(); }
         internal void SetNavigationLocked(bool value)
-        { NavigationLocked = value; Presenter?.SetPaused(value || Paused); input.Clear(); NotifyChanged(); }
+        { NavigationLocked = value; ApplyPresentationPause(); input.Clear(); NotifyChanged(); }
         public void SaveReference()
         {
-            if (!IsPlaytest || !Completed || NavigationLocked || Presenter.Busy) return;
+            if (!IsPlaytest || !Completed || NavigationLocked || Presenter.Busy || LiveEditing) return;
+            if (!Session.ReferenceReplayValid) { Message = "当前为 GM 修改或现场起点，不能保存为原关卡参考解法。"; NotifyChanged(); return; }
             try { SaveReferenceRequested?.Invoke(Definition.Copy(), Session); Message = "参考解法已记录；退出 Play Mode 后返回编辑器。"; }
             catch (Exception exception) { Message = exception.Message; }
             NotifyChanged();
@@ -194,18 +197,18 @@ namespace Sokoban
         { Error = exception.Message; Debug.LogException(exception); NotifyChanged(); }
         private void NotifyChanged()
         {
-            bool free = Session == null || NavigationLocked || Paused || Completed || LevelSelectionOpen || (Cameras && Cameras.TopDown);
+            bool free = Session == null || NavigationLocked || DebugInputCaptured || Paused || Completed || LevelSelectionOpen || (Cameras && Cameras.TopDown);
             Cursor.lockState = free ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = free;
             Changed?.Invoke();
         }
         private void ClearPresentation()
         {
             Presenter?.Cancel();
-            if (Board) { Board.gameObject.SetActive(false); Destroy(Board.gameObject); }
-            if (Cameras) { Cameras.gameObject.SetActive(false); Destroy(Cameras.gameObject); }
+            if (presentationRoot) { presentationRoot.SetActive(false); Destroy(presentationRoot); }
+            presentationRoot = null;
             Board = null; Cameras = null;
         }
         private void OnDestroy()
-        { UI?.Dispose(); Presenter?.Cancel(); Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
+        { DisposeDebug(); UI?.Dispose(); Presenter?.Cancel(); Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
     }
 }

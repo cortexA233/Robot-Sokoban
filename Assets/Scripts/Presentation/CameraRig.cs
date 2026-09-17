@@ -22,6 +22,27 @@ namespace Sokoban
         public float MouseSensitivity { get; set; } = 1;
         public bool InvertVertical { get; set; }
 
+        [System.Serializable]
+        public sealed class ViewSettings
+        {
+            public bool topDown, invert;
+            public float yaw, pitch, distance, size, sensitivity;
+        }
+        public ViewSettings Capture() => new ViewSettings { topDown = TopDown, yaw = yaw, pitch = pitch,
+            distance = follow.CameraDistance, size = topSize, sensitivity = MouseSensitivity, invert = InvertVertical };
+        public void Restore(ViewSettings settings)
+        {
+            if (settings == null) return;
+            if (TopDown != settings.topDown) Toggle();
+            yaw = settings.yaw; pitch = settings.pitch; follow.CameraDistance = settings.distance;
+            topSize = Mathf.Clamp(settings.size, 2, FullSize()); sector = (Mathf.RoundToInt(yaw / 90) % 4 + 4) % 4;
+            MouseSensitivity = settings.sensitivity; InvertVertical = settings.invert; Snap();
+        }
+        public void Snap()
+        {
+            UpdateTargets(); followCamera.PreviousStateIsValid = false; topCamera.PreviousStateIsValid = false;
+        }
+
         public void Initialize(LevelDefinition definition, Transform target)
         {
             level = definition; player = target;
