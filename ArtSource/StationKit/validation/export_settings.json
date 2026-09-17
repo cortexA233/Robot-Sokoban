@@ -1,0 +1,47 @@
+{
+  "use_selection": true,
+  "object_types": [
+    "EMPTY",
+    "MESH"
+  ],
+  "global_scale": 1,
+  "apply_unit_scale": true,
+  "apply_scale_options": "FBX_SCALE_UNITS",
+  "axis_forward": "-Z",
+  "axis_up": "Y",
+  "use_space_transform": false,
+  "bake_space_transform": false,
+  "use_mesh_modifiers": true,
+  "use_triangles": true,
+  "add_leaf_bones": false,
+  "bake_anim": false,
+  "path_mode": "RELATIVE",
+  "embed_textures": false,
+  "use_custom_props": true,
+  "rawFbxFromBlender": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ]
+}

@@ -1,0 +1,1826 @@
+{
+    "passed": true,
+    "driver": "Editor presentation fixture, all supply conditions remain false",
+    "fps": 12,
+    "frames": [
+        {
+            "frame": 0,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 1,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 2,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 3,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 4,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 5,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 6,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 7,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 8,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 9,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 10,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 11,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 12,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 13,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 14,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 15,
+            "phase": "CARGO HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 16,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        },
+        {
+            "frame": 17,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.00801866129040718
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.9919813275337219
+            }
+        },
+        {
+            "frame": 18,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.03090829588472843
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.9690917134284973
+            }
+        },
+        {
+            "frame": 19,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.06691937148571015
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.9330806136131287
+            }
+        },
+        {
+            "frame": 20,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.1143023744225502
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.885697603225708
+            }
+        },
+        {
+            "frame": 21,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.1713077872991562
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.8286921977996826
+            }
+        },
+        {
+            "frame": 22,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.23618601262569428
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.7638139724731445
+            }
+        },
+        {
+            "frame": 23,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.30718761682510378
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.6928123831748962
+            }
+        },
+        {
+            "frame": 24,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.382563054561615
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.617436945438385
+            }
+        },
+        {
+            "frame": 25,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.4605627954006195
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.5394371747970581
+            }
+        },
+        {
+            "frame": 26,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.5394372344017029
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.4605627655982971
+            }
+        },
+        {
+            "frame": 27,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.617436945438385
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.382563054561615
+            }
+        },
+        {
+            "frame": 28,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.6928123235702515
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.30718767642974856
+            }
+        },
+        {
+            "frame": 29,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.7638139724731445
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.23618602752685548
+            }
+        },
+        {
+            "frame": 30,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.8286921977996826
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.17130780220031739
+            }
+        },
+        {
+            "frame": 31,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.8856976628303528
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.11430233716964722
+            }
+        },
+        {
+            "frame": 32,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.9330806136131287
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.06691938638687134
+            }
+        },
+        {
+            "frame": 33,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.9690917134284973
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.030908286571502687
+            }
+        },
+        {
+            "frame": 34,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.9919813275337219
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.008018672466278077
+            }
+        },
+        {
+            "frame": 35,
+            "phase": "CARGO TO ROBOT / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 36,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 37,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 38,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 39,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 40,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 41,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 42,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 43,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 44,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 45,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 46,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 47,
+            "phase": "ROBOT HOLDS OPEN / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 48,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 49,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.023290760815143586,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 50,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.08715251833200455,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 51,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.1825695037841797,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 52,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.3005259335041046,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 53,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.43200603127479555,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 54,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.5679939985275269,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 55,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.699474036693573,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 56,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.8174305558204651,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 57,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.9128474593162537,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 58,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 0.976709246635437,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 59,
+            "phase": "ROBOT LEAVES / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 60,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 1.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 61,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.976709246635437,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 62,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.9128474593162537,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 63,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.8174304962158203,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 64,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.6994740962982178,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 65,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.5679939985275269,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 66,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.43200600147247317,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 67,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.300525963306427,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 68,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.1825694441795349,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 69,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.08715254068374634,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 70,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.02329075336456299,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "frame": 71,
+            "phase": "EMPTY - CLOSE / POWER OFF",
+            "powered": false,
+            "openness": 0.0,
+            "cargoPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            "robotPosition": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ],
+    "checks": [
+        {
+            "name": "frame_0/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_0/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_1/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_1/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_2/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_2/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_3/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_3/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_4/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_4/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_5/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_5/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_6/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_6/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_7/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_7/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_8/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_8/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_9/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_9/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_10/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_10/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_11/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_11/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_12/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_12/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_13/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_13/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_14/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_14/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_15/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_15/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_16/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_16/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_17/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_17/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_18/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_18/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_19/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_19/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_20/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_20/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_21/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_21/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_22/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_22/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_23/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_23/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_24/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_24/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_25/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_25/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_26/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_26/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_27/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_27/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_28/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_28/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_29/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_29/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_30/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_30/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_31/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_31/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_32/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_32/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_33/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_33/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_34/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_34/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_35/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_35/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_36/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_36/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_37/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_37/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_38/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_38/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_39/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_39/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_40/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_40/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_41/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_41/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_42/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_42/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_43/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_43/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_44/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_44/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_45/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_45/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_46/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_46/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_47/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_47/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_48/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_48/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_49/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_49/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_50/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_50/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_51/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_51/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_52/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_52/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_53/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_53/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_54/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_54/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_55/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_55/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_56/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_56/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_57/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_57/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_58/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_58/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_59/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_59/occupied_hold_open",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_60/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_61/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_62/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_63/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_64/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_65/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_66/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_67/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_68/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_69/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_70/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "frame_71/all_power_lamps_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "empty_gate_closed",
+            "passed": true,
+            "detail": ""
+        }
+    ]
+}

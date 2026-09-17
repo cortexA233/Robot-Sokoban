@@ -1,0 +1,3609 @@
+{
+  "protocol": "station-kit-v1",
+  "checkedAt": "2026-09-17T01:55:17.765038+00:00",
+  "blenderVersion": "5.2.2 LTS",
+  "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
+  "passed": true,
+  "source": {
+    "EnergyCrate": {
+      "bounds": {
+        "min": [
+          -0.40025,
+          0.0,
+          -0.40025
+        ],
+        "max": [
+          0.40025,
+          0.8,
+          0.40025
+        ],
+        "size": [
+          0.8005,
+          0.8,
+          0.8005
+        ]
+      },
+      "triangles": 3460,
+      "meshCount": 3,
+      "rendererCount": 3,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "EnergyWindow/FixedWindows",
+          "triangles": 432,
+          "bounds": {
+            "min": [
+              -0.4,
+              0.593,
+              -0.4
+            ],
+            "max": [
+              0.4,
+              0.647,
+              0.4
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationEnergyWindow",
+              "role": "FixedEnergy"
+            }
+          ]
+        },
+        {
+          "path": "Geometry/Shell",
+          "triangles": 2788,
+          "bounds": {
+            "min": [
+              -0.40025,
+              0.0,
+              -0.40025
+            ],
+            "max": [
+              0.40025,
+              0.8,
+              0.40025
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/EnergyGlyph",
+          "triangles": 240,
+          "bounds": {
+            "min": [
+              -0.4001,
+              0.361,
+              -0.4001
+            ],
+            "max": [
+              0.4001,
+              0.8,
+              0.4001
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationEnergyWindow",
+              "role": "FixedEnergy"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ]
+    },
+    "CargoCrate": {
+      "bounds": {
+        "min": [
+          -0.4004,
+          0.0,
+          -0.4004
+        ],
+        "max": [
+          0.4004,
+          0.8,
+          0.4004
+        ],
+        "size": [
+          0.8008,
+          0.8,
+          0.8008
+        ]
+      },
+      "triangles": 2540,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Shell",
+          "triangles": 1688,
+          "bounds": {
+            "min": [
+              -0.4,
+              0.0,
+              -0.4
+            ],
+            "max": [
+              0.4,
+              0.8,
+              0.4
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationCargoBody",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/CargoBraces",
+          "triangles": 852,
+          "bounds": {
+            "min": [
+              -0.4004,
+              0.1081397,
+              -0.4004
+            ],
+            "max": [
+              0.4004,
+              0.8,
+              0.4004
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationCargoBrace",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        }
+      ]
+    },
+    "GoalSocket": {
+      "bounds": {
+        "min": [
+          -0.47,
+          -0.052,
+          -0.47
+        ],
+        "max": [
+          0.47,
+          0.005,
+          0.47
+        ],
+        "size": [
+          0.9400001,
+          0.057,
+          0.9400001
+        ]
+      },
+      "triangles": 1120,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Rim",
+          "triangles": 528,
+          "bounds": {
+            "min": [
+              -0.47,
+              -0.052,
+              -0.47
+            ],
+            "max": [
+              0.47,
+              0.005,
+              0.47
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationBody",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "triangles": 96,
+          "bounds": {
+            "min": [
+              -0.458,
+              0.00125,
+              -0.458
+            ],
+            "max": [
+              0.458,
+              0.00235,
+              0.458
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationLinkAccent",
+              "role": "LinkAccent"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.456,
+              0.00175,
+              -0.456
+            ],
+            "max": [
+              0.456,
+              0.00225,
+              0.456
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationStatusEmission",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/TargetRings",
+          "triangles": 320,
+          "bounds": {
+            "min": [
+              -0.462,
+              0.001,
+              -0.462
+            ],
+            "max": [
+              0.462,
+              0.0018,
+              0.462
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ]
+    },
+    "UtilitySocket": {
+      "bounds": {
+        "min": [
+          -0.47,
+          -0.052,
+          -0.47
+        ],
+        "max": [
+          0.47,
+          0.005,
+          0.47
+        ],
+        "size": [
+          0.9400001,
+          0.057,
+          0.9400001
+        ]
+      },
+      "triangles": 1040,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Rim",
+          "triangles": 528,
+          "bounds": {
+            "min": [
+              -0.47,
+              -0.052,
+              -0.47
+            ],
+            "max": [
+              0.47,
+              0.005,
+              0.47
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationBody",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "triangles": 96,
+          "bounds": {
+            "min": [
+              -0.458,
+              0.00125,
+              -0.458
+            ],
+            "max": [
+              0.458,
+              0.00235,
+              0.458
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationLinkAccent",
+              "role": "LinkAccent"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.456,
+              0.00175,
+              -0.456
+            ],
+            "max": [
+              0.456,
+              0.00225,
+              0.456
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationStatusEmission",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/PlugSymbols",
+          "triangles": 240,
+          "bounds": {
+            "min": [
+              -0.45744,
+              0.00065,
+              -0.45744
+            ],
+            "max": [
+              0.45744,
+              0.00215,
+              0.45744
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ]
+    },
+    "PowerGate": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.0135,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.6504999,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.6639999,
+          0.98
+        ]
+      },
+      "triangles": 2865,
+      "meshCount": 11,
+      "rendererCount": 11,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/CornerFeet",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.09,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/LowerPanel/LowerPanelMesh",
+          "triangles": 268,
+          "bounds": {
+            "min": [
+              -0.425,
+              0.01,
+              0.0038
+            ],
+            "max": [
+              0.425,
+              0.57,
+              0.0862
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/UpperPanel/UpperPanelMesh",
+          "triangles": 268,
+          "bounds": {
+            "min": [
+              -0.425,
+              0.59,
+              -0.0862
+            ],
+            "max": [
+              0.425,
+              1.15,
+              -0.0038
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/ConditionLamp",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.05,
+              0.0005,
+              -0.4635
+            ],
+            "max": [
+              0.05,
+              0.0015,
+              -0.4285
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_Identity",
+          "triangles": 57,
+          "bounds": {
+            "min": [
+              0.0425,
+              -0.0135,
+              0.413
+            ],
+            "max": [
+              0.2375,
+              0.002,
+              0.479
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationLinkAccent",
+              "role": "LinkAccent"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_SourcePower",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              0.206,
+              0.001,
+              0.425
+            ],
+            "max": [
+              0.228,
+              0.002,
+              0.467
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_Identity",
+          "triangles": 68,
+          "bounds": {
+            "min": [
+              -0.2375,
+              -0.0135,
+              0.413
+            ],
+            "max": [
+              -0.0425,
+              0.00235,
+              0.479
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationLinkAccent",
+              "role": "LinkAccent"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_SourcePower",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.074,
+              0.001,
+              0.425
+            ],
+            "max": [
+              -0.052,
+              0.002,
+              0.467
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/ClosedMark",
+          "triangles": 24,
+          "bounds": {
+            "min": [
+              -0.27,
+              0.0015,
+              -0.335
+            ],
+            "max": [
+              0.27,
+              0.0025,
+              0.335
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/OpenMark",
+          "triangles": 352,
+          "bounds": {
+            "min": [
+              -0.20971,
+              0.0005,
+              -0.33351
+            ],
+            "max": [
+              0.20971,
+              0.0015,
+              0.33351
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol",
+              "role": "Symbol"
+            }
+          ]
+        },
+        {
+          "path": "UpperStructure/FrameAndCassette",
+          "triangles": 1616,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.09,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.6504999,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        }
+      ]
+    },
+    "FloorPlain": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 88,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 88,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor",
+              "role": "Body"
+            }
+          ]
+        }
+      ]
+    },
+    "FloorService": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 312,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 312,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor",
+              "role": "Body"
+            }
+          ]
+        }
+      ]
+    },
+    "FloorGrate": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 364,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 364,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor",
+              "role": "Body"
+            }
+          ]
+        }
+      ]
+    },
+    "WallStraight": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 732,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 688,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        }
+      ]
+    },
+    "WallCorner": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 732,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 688,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        }
+      ]
+    },
+    "WallEnd": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 856,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 812,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fbx": {
+    "EnergyCrate": {
+      "bounds": {
+        "min": [
+          -0.40025,
+          0.0,
+          -0.40025
+        ],
+        "max": [
+          0.40025,
+          0.8,
+          0.40025
+        ],
+        "size": [
+          0.8005,
+          0.8,
+          0.8005
+        ]
+      },
+      "triangles": 3460,
+      "meshCount": 3,
+      "rendererCount": 3,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "EnergyWindow/FixedWindows",
+          "triangles": 432,
+          "bounds": {
+            "min": [
+              -0.4,
+              0.593,
+              -0.4
+            ],
+            "max": [
+              0.4,
+              0.647,
+              0.4
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationEnergyWindow.001",
+              "role": "FixedEnergy"
+            }
+          ]
+        },
+        {
+          "path": "Geometry/Shell",
+          "triangles": 2788,
+          "bounds": {
+            "min": [
+              -0.40025,
+              0.0,
+              -0.40025
+            ],
+            "max": [
+              0.40025,
+              0.8,
+              0.40025
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.001",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody.001",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal.001",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/EnergyGlyph",
+          "triangles": 240,
+          "bounds": {
+            "min": [
+              -0.4001,
+              0.361,
+              -0.4001
+            ],
+            "max": [
+              0.4001,
+              0.8,
+              0.4001
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.001",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationEnergyWindow.001",
+              "role": "FixedEnergy"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationSymbol.001",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ],
+      "sha256": "23936106cc74fa38e310b793aa66bd99d1eb4691a78ac941f90baff5a53928ce"
+    },
+    "CargoCrate": {
+      "bounds": {
+        "min": [
+          -0.4004,
+          0.0,
+          -0.4004
+        ],
+        "max": [
+          0.4004,
+          0.8,
+          0.4004
+        ],
+        "size": [
+          0.8008,
+          0.8,
+          0.8008
+        ]
+      },
+      "triangles": 2540,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Shell",
+          "triangles": 1688,
+          "bounds": {
+            "min": [
+              -0.4,
+              0.0,
+              -0.4
+            ],
+            "max": [
+              0.4,
+              0.8,
+              0.4
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.002",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.002",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationCargoBody.001",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/CargoBraces",
+          "triangles": 852,
+          "bounds": {
+            "min": [
+              -0.4004,
+              0.1081397,
+              -0.4004
+            ],
+            "max": [
+              0.4004,
+              0.8,
+              0.4004
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationCargoBrace.001",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.002",
+              "role": "Metal"
+            }
+          ]
+        }
+      ],
+      "sha256": "a982dd3ad445501e3112f022ee6849254957e1e708ea9ac28e6ca5d7dceb8592"
+    },
+    "GoalSocket": {
+      "bounds": {
+        "min": [
+          -0.47,
+          -0.052,
+          -0.47
+        ],
+        "max": [
+          0.47,
+          0.005,
+          0.47
+        ],
+        "size": [
+          0.9400001,
+          0.057,
+          0.9400001
+        ]
+      },
+      "triangles": 1120,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Rim",
+          "triangles": 528,
+          "bounds": {
+            "min": [
+              -0.47,
+              -0.052,
+              -0.47
+            ],
+            "max": [
+              0.47,
+              0.005,
+              0.47
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.003",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.003",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationBody.002",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "triangles": 96,
+          "bounds": {
+            "min": [
+              -0.458,
+              0.00125,
+              -0.458
+            ],
+            "max": [
+              0.458,
+              0.00235,
+              0.458
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationLinkAccent.001",
+              "role": "LinkAccent"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationDark.003",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.456,
+              0.00175,
+              -0.456
+            ],
+            "max": [
+              0.456,
+              0.00225,
+              0.456
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.002",
+              "role": "Symbol"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationStatusEmission.001",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/TargetRings",
+          "triangles": 320,
+          "bounds": {
+            "min": [
+              -0.462,
+              0.001,
+              -0.462
+            ],
+            "max": [
+              0.462,
+              0.0018,
+              0.462
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.002",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ],
+      "sha256": "85d79e4590754fde12e8094662d5be02ab6db0f6747af9775222260ded273e65"
+    },
+    "UtilitySocket": {
+      "bounds": {
+        "min": [
+          -0.47,
+          -0.052,
+          -0.47
+        ],
+        "max": [
+          0.47,
+          0.005,
+          0.47
+        ],
+        "size": [
+          0.9400001,
+          0.057,
+          0.9400001
+        ]
+      },
+      "triangles": 1040,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Geometry/Rim",
+          "triangles": 528,
+          "bounds": {
+            "min": [
+              -0.47,
+              -0.052,
+              -0.47
+            ],
+            "max": [
+              0.47,
+              0.005,
+              0.47
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.004",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.004",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationBody.003",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "triangles": 96,
+          "bounds": {
+            "min": [
+              -0.458,
+              0.00125,
+              -0.458
+            ],
+            "max": [
+              0.458,
+              0.00235,
+              0.458
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationLinkAccent.002",
+              "role": "LinkAccent"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationDark.004",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.456,
+              0.00175,
+              -0.456
+            ],
+            "max": [
+              0.456,
+              0.00225,
+              0.456
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.003",
+              "role": "Symbol"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationStatusEmission.002",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/PlugSymbols",
+          "triangles": 240,
+          "bounds": {
+            "min": [
+              -0.45744,
+              0.00065,
+              -0.45744
+            ],
+            "max": [
+              0.45744,
+              0.00215,
+              0.45744
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.003",
+              "role": "Symbol"
+            }
+          ]
+        }
+      ],
+      "sha256": "e04876208de48d50b920626e980c29f0011ff36f8e6ee78228cdcab8aa5ea6ac"
+    },
+    "PowerGate": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.0135,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.6504999,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.6639999,
+          0.98
+        ]
+      },
+      "triangles": 2865,
+      "meshCount": 11,
+      "rendererCount": 11,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/CornerFeet",
+          "triangles": 176,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.09,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/LowerPanel/LowerPanelMesh",
+          "triangles": 268,
+          "bounds": {
+            "min": [
+              -0.425,
+              0.01,
+              0.0038
+            ],
+            "max": [
+              0.425,
+              0.57,
+              0.0862
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody.004",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal.005",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/UpperPanel/UpperPanelMesh",
+          "triangles": 268,
+          "bounds": {
+            "min": [
+              -0.425,
+              0.59,
+              -0.0862
+            ],
+            "max": [
+              0.425,
+              1.15,
+              -0.0038
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody.004",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationMetal.005",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/ConditionLamp",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.05,
+              0.0005,
+              -0.4635
+            ],
+            "max": [
+              0.05,
+              0.0015,
+              -0.4285
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission.003",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_Identity",
+          "triangles": 57,
+          "bounds": {
+            "min": [
+              0.0425,
+              -0.0135,
+              0.413
+            ],
+            "max": [
+              0.2375,
+              0.002,
+              0.479
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationLinkAccent.003",
+              "role": "LinkAccent"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_SourcePower",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              0.206,
+              0.001,
+              0.425
+            ],
+            "max": [
+              0.228,
+              0.002,
+              0.467
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission.003",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_Identity",
+          "triangles": 68,
+          "bounds": {
+            "min": [
+              -0.2375,
+              -0.0135,
+              0.413
+            ],
+            "max": [
+              -0.0425,
+              0.00235,
+              0.479
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationLinkAccent.003",
+              "role": "LinkAccent"
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_SourcePower",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.074,
+              0.001,
+              0.425
+            ],
+            "max": [
+              -0.052,
+              0.002,
+              0.467
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationStatusEmission.003",
+              "role": "StatusEmission"
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/ClosedMark",
+          "triangles": 24,
+          "bounds": {
+            "min": [
+              -0.27,
+              0.0015,
+              -0.335
+            ],
+            "max": [
+              0.27,
+              0.0025,
+              0.335
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.004",
+              "role": "Symbol"
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/OpenMark",
+          "triangles": 352,
+          "bounds": {
+            "min": [
+              -0.20971,
+              0.0005,
+              -0.33351
+            ],
+            "max": [
+              0.20971,
+              0.0015,
+              0.33351
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationSymbol.004",
+              "role": "Symbol"
+            }
+          ]
+        },
+        {
+          "path": "UpperStructure/FrameAndCassette",
+          "triangles": 1616,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.09,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.6504999,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal.005",
+              "role": "Metal"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationBody.004",
+              "role": "Body"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark.005",
+              "role": "Dark"
+            }
+          ]
+        }
+      ],
+      "sha256": "b87051586938a23e215b2b3255e28480d1bd68d6016726c36ba7ca5bdbcf8c12"
+    },
+    "FloorPlain": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 88,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 88,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor.001",
+              "role": "Body"
+            }
+          ]
+        }
+      ],
+      "sha256": "011844bb00968e2c38f9a40b0d07b39e085b2f8d21dcdc9d819aa2d69d7ed868"
+    },
+    "FloorService": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 312,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 312,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor.002",
+              "role": "Body"
+            }
+          ]
+        }
+      ],
+      "sha256": "f6efe14841f7f871072d51e1b8d4ba75ac7a8deb598c19f08d05555342fb7aed"
+    },
+    "FloorGrate": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      },
+      "triangles": 364,
+      "meshCount": 1,
+      "rendererCount": 1,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 364,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor.003",
+              "role": "Body"
+            }
+          ]
+        }
+      ],
+      "sha256": "b021b3206591181ec13c1e695feec3196f575ca8719a16b4b9b25574cc4d0c54"
+    },
+    "WallStraight": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 732,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.006",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 688,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody.005",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.006",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark.006",
+              "role": "Dark"
+            }
+          ]
+        }
+      ],
+      "sha256": "065bba65f16c647b4ba8ab36ee480713e7ca345acacd7583705333be364c6713"
+    },
+    "WallCorner": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 732,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.007",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 688,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody.006",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.007",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark.007",
+              "role": "Dark"
+            }
+          ]
+        }
+      ],
+      "sha256": "c5613b9569a21eaeb85ea33dfdf6ad2f419c231261b4535faa70ccf7162240c5"
+    },
+    "WallEnd": {
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "triangles": 856,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "triangles": 44,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.0,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.24,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.008",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "triangles": 812,
+          "bounds": {
+            "min": [
+              -0.49,
+              0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              1.54,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationBody.007",
+              "role": "Body"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.008",
+              "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark.008",
+              "role": "Dark"
+            }
+          ]
+        }
+      ],
+      "sha256": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194"
+    }
+  },
+  "checks": [
+    {
+      "name": "source/EnergyCrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/triangle_budget",
+      "passed": true,
+      "detail": 3460
+    },
+    {
+      "name": "source/EnergyCrate/0.8m_cube",
+      "passed": true,
+      "detail": [
+        0.8005,
+        0.8,
+        0.8005
+      ]
+    },
+    {
+      "name": "source/EnergyCrate/ground_origin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/EnergyCrate/four_push_faces_36_rays",
+      "passed": true,
+      "detail": {
+        "maxContactError": 3.5762786843029915e-08
+      }
+    },
+    {
+      "name": "source/EnergyCrate/fixed_appearance_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/triangle_budget",
+      "passed": true,
+      "detail": 2540
+    },
+    {
+      "name": "source/CargoCrate/0.8m_cube",
+      "passed": true,
+      "detail": [
+        0.8008,
+        0.8,
+        0.8008
+      ]
+    },
+    {
+      "name": "source/CargoCrate/ground_origin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/four_push_faces_36_rays",
+      "passed": true,
+      "detail": {
+        "maxContactError": 0.0004000425338744895
+      }
+    },
+    {
+      "name": "source/CargoCrate/fixed_appearance_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/CargoCrate/no_energy_window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/GoalSocket/triangle_budget",
+      "passed": true,
+      "detail": 1120
+    },
+    {
+      "name": "source/UtilitySocket/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/UtilitySocket/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/UtilitySocket/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/UtilitySocket/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/UtilitySocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/UtilitySocket/triangle_budget",
+      "passed": true,
+      "detail": 1040
+    },
+    {
+      "name": "source/PowerGate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/PowerGate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/PowerGate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/PowerGate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/PowerGate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/PowerGate/triangle_budget",
+      "passed": true,
+      "detail": 2865
+    },
+    {
+      "name": "source/PowerGate/one_cell_footprint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorPlain/triangle_budget",
+      "passed": true,
+      "detail": 88
+    },
+    {
+      "name": "source/FloorPlain/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "source/FloorService/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorService/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorService/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorService/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorService/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorService/triangle_budget",
+      "passed": true,
+      "detail": 312
+    },
+    {
+      "name": "source/FloorService/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "source/FloorGrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorGrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorGrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorGrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorGrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/FloorGrate/triangle_budget",
+      "passed": true,
+      "detail": 364
+    },
+    {
+      "name": "source/FloorGrate/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "source/WallStraight/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallStraight/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallStraight/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallStraight/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallStraight/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallStraight/triangle_budget",
+      "passed": true,
+      "detail": 732
+    },
+    {
+      "name": "source/WallStraight/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "source/WallCorner/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallCorner/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallCorner/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallCorner/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallCorner/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallCorner/triangle_budget",
+      "passed": true,
+      "detail": 732
+    },
+    {
+      "name": "source/WallCorner/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "source/WallEnd/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallEnd/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallEnd/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallEnd/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallEnd/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/WallEnd/triangle_budget",
+      "passed": true,
+      "detail": 856
+    },
+    {
+      "name": "source/WallEnd/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "source/GoalSocket/sweep_EnergyCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/GoalSocket/sweep_EnergyCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/GoalSocket/sweep_CargoCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/GoalSocket/sweep_CargoCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/GoalSocket/sweep_Robot_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/GoalSocket/sweep_Robot_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_EnergyCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_EnergyCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_CargoCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_CargoCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_Robot_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/UtilitySocket/sweep_Robot_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_EnergyCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_EnergyCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_CargoCrate_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_CargoCrate_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_Robot_EW",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/sweep_Robot_NS",
+      "passed": true,
+      "detail": {
+        "intersectingTriangles": 0,
+        "overlayToleranceMetres": 0.003
+      }
+    },
+    {
+      "name": "source/PowerGate/100_frame_mechanical_clearance",
+      "passed": true,
+      "detail": {
+        "fixedIntersections": 0,
+        "panelOverlaps": 0
+      }
+    },
+    {
+      "name": "fbx/EnergyCrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/triangle_budget",
+      "passed": true,
+      "detail": 3460
+    },
+    {
+      "name": "fbx/EnergyCrate/0.8m_cube",
+      "passed": true,
+      "detail": [
+        0.8005,
+        0.8,
+        0.8005
+      ]
+    },
+    {
+      "name": "fbx/EnergyCrate/ground_origin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/four_push_faces_36_rays",
+      "passed": true,
+      "detail": {
+        "maxContactError": 3.5762786843029915e-08
+      }
+    },
+    {
+      "name": "fbx/EnergyCrate/fixed_appearance_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/EnergyCrate/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/triangle_budget",
+      "passed": true,
+      "detail": 2540
+    },
+    {
+      "name": "fbx/CargoCrate/0.8m_cube",
+      "passed": true,
+      "detail": [
+        0.8008,
+        0.8,
+        0.8008
+      ]
+    },
+    {
+      "name": "fbx/CargoCrate/ground_origin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/four_push_faces_36_rays",
+      "passed": true,
+      "detail": {
+        "maxContactError": 0.0004000425338744895
+      }
+    },
+    {
+      "name": "fbx/CargoCrate/fixed_appearance_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/no_energy_window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/CargoCrate/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/triangle_budget",
+      "passed": true,
+      "detail": 1120
+    },
+    {
+      "name": "fbx/GoalSocket/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/GoalSocket/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/triangle_budget",
+      "passed": true,
+      "detail": 1040
+    },
+    {
+      "name": "fbx/UtilitySocket/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/UtilitySocket/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/triangle_budget",
+      "passed": true,
+      "detail": 2865
+    },
+    {
+      "name": "fbx/PowerGate/one_cell_footprint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/PowerGate/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/triangle_budget",
+      "passed": true,
+      "detail": 88
+    },
+    {
+      "name": "fbx/FloorPlain/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "fbx/FloorPlain/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorPlain/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/triangle_budget",
+      "passed": true,
+      "detail": 312
+    },
+    {
+      "name": "fbx/FloorService/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "fbx/FloorService/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorService/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/triangle_budget",
+      "passed": true,
+      "detail": 364
+    },
+    {
+      "name": "fbx/FloorGrate/floor_contract",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "fbx/FloorGrate/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/FloorGrate/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/triangle_budget",
+      "passed": true,
+      "detail": 732
+    },
+    {
+      "name": "fbx/WallStraight/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "fbx/WallStraight/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallStraight/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/triangle_budget",
+      "passed": true,
+      "detail": 732
+    },
+    {
+      "name": "fbx/WallCorner/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "fbx/WallCorner/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallCorner/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/triangle_budget",
+      "passed": true,
+      "detail": 856
+    },
+    {
+      "name": "fbx/WallEnd/whole_cell_wall",
+      "passed": true,
+      "detail": [
+        0.98,
+        1.54,
+        0.98
+      ]
+    },
+    {
+      "name": "fbx/WallEnd/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/WallEnd/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "method": "Reopened saved source. Independent per-file raw FBX import with manual Y-forward/Z-up, fixed Z reflection to Unity. Triangle-AABB SAT sweeps and raycast contact grids. Visuals reviewed separately."
+}

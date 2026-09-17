@@ -1,0 +1,1511 @@
+{
+    "protocol": "station-kit-v1",
+    "unityVersion": "2022.3.51f1",
+    "checkedAt": "2026-09-17T02:01:31.8549609Z",
+    "passed": true,
+    "assets": [
+        {
+            "assetId": "EnergyCrate",
+            "fbxSha256": "23936106cc74fa38e310b793aa66bd99d1eb4691a78ac941f90baff5a53928ce",
+            "rootPath": "EnergyCrateRoot",
+            "min": {
+                "x": -0.40025001764297488,
+                "y": 0.0,
+                "z": -0.40025001764297488
+            },
+            "max": {
+                "x": 0.40025001764297488,
+                "y": 0.800000011920929,
+                "z": 0.40025001764297488
+            },
+            "size": {
+                "x": 0.8005000352859497,
+                "y": 0.800000011920929,
+                "z": 0.8005000352859497
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 3460,
+            "rendererCount": 3,
+            "meshCount": 3,
+            "renderers": [
+                {
+                    "path": "EnergyWindow/FixedWindows",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationEnergyWindow",
+                            "role": "FixedEnergy"
+                        }
+                    ],
+                    "triangles": 432
+                },
+                {
+                    "path": "Geometry/Shell",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        }
+                    ],
+                    "triangles": 2788
+                },
+                {
+                    "path": "TypeMarker/EnergyGlyph",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationEnergyWindow",
+                            "role": "FixedEnergy"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        }
+                    ],
+                    "triangles": 240
+                }
+            ]
+        },
+        {
+            "assetId": "CargoCrate",
+            "fbxSha256": "a982dd3ad445501e3112f022ee6849254957e1e708ea9ac28e6ca5d7dceb8592",
+            "rootPath": "CargoCrateRoot",
+            "min": {
+                "x": -0.4004000127315521,
+                "y": 0.0,
+                "z": -0.4004000127315521
+            },
+            "max": {
+                "x": 0.40039995312690737,
+                "y": 0.800000011920929,
+                "z": 0.40039995312690737
+            },
+            "size": {
+                "x": 0.8007999658584595,
+                "y": 0.800000011920929,
+                "z": 0.8007999658584595
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 2540,
+            "rendererCount": 2,
+            "meshCount": 2,
+            "renderers": [
+                {
+                    "path": "Geometry/Shell",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationCargoBody",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 1688
+                },
+                {
+                    "path": "TypeMarker/CargoBraces",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationCargoBrace",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        }
+                    ],
+                    "triangles": 852
+                }
+            ]
+        },
+        {
+            "assetId": "GoalSocket",
+            "fbxSha256": "85d79e4590754fde12e8094662d5be02ab6db0f6747af9775222260ded273e65",
+            "rootPath": "GoalSocketRoot",
+            "min": {
+                "x": -0.4700000286102295,
+                "y": -0.052000001072883609,
+                "z": -0.4700000286102295
+            },
+            "max": {
+                "x": 0.4700000286102295,
+                "y": 0.004999998956918716,
+                "z": 0.47000008821487429
+            },
+            "size": {
+                "x": 0.940000057220459,
+                "y": 0.05700000002980232,
+                "z": 0.9400001168251038
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 1120,
+            "rendererCount": 4,
+            "meshCount": 4,
+            "renderers": [
+                {
+                    "path": "Geometry/Rim.008",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 528
+                },
+                {
+                    "path": "LinkMarkers/IdentityBands",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationLinkAccent",
+                            "role": "LinkAccent"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 96
+                },
+                {
+                    "path": "PowerStatus/PowerLamps",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationStatusEmission",
+                            "role": "StatusEmission"
+                        }
+                    ],
+                    "triangles": 176
+                },
+                {
+                    "path": "TypeMarker/TargetRings",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        }
+                    ],
+                    "triangles": 320
+                }
+            ]
+        },
+        {
+            "assetId": "UtilitySocket",
+            "fbxSha256": "e04876208de48d50b920626e980c29f0011ff36f8e6ee78228cdcab8aa5ea6ac",
+            "rootPath": "UtilitySocketRoot",
+            "min": {
+                "x": -0.4700000286102295,
+                "y": -0.052000001072883609,
+                "z": -0.4700000286102295
+            },
+            "max": {
+                "x": 0.4700000286102295,
+                "y": 0.004999998956918716,
+                "z": 0.47000008821487429
+            },
+            "size": {
+                "x": 0.940000057220459,
+                "y": 0.05700000002980232,
+                "z": 0.9400001168251038
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 1040,
+            "rendererCount": 4,
+            "meshCount": 4,
+            "renderers": [
+                {
+                    "path": "Geometry/Rim.008",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 528
+                },
+                {
+                    "path": "LinkMarkers/IdentityBands",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationLinkAccent",
+                            "role": "LinkAccent"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 96
+                },
+                {
+                    "path": "PowerStatus/PowerLamps",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationStatusEmission",
+                            "role": "StatusEmission"
+                        }
+                    ],
+                    "triangles": 176
+                },
+                {
+                    "path": "TypeMarker/PlugSymbols",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        }
+                    ],
+                    "triangles": 240
+                }
+            ]
+        },
+        {
+            "assetId": "PowerGate",
+            "fbxSha256": "b87051586938a23e215b2b3255e28480d1bd68d6016726c36ba7ca5bdbcf8c12",
+            "rootPath": "PowerGateRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": -0.013499975204467774,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 1.650499939918518,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 1.6639999151229859,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 2865,
+            "rendererCount": 11,
+            "meshCount": 11,
+            "renderers": [
+                {
+                    "path": "Base/CornerFeet",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 176
+                },
+                {
+                    "path": "MovingParts/LowerPanel/LowerPanelMesh",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        }
+                    ],
+                    "triangles": 268
+                },
+                {
+                    "path": "MovingParts/UpperPanel/UpperPanelMesh",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        }
+                    ],
+                    "triangles": 268
+                },
+                {
+                    "path": "PowerStatus/ConditionLamp",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationStatusEmission_Off",
+                            "role": "StatusEmission"
+                        }
+                    ],
+                    "triangles": 12
+                },
+                {
+                    "path": "SourceBadge02/SourceBadge02_Identity",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationLinkAccent_Purple",
+                            "role": "LinkAccent"
+                        }
+                    ],
+                    "triangles": 57
+                },
+                {
+                    "path": "SourceBadge02/SourceBadge02_SourcePower",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationStatusEmission_Off",
+                            "role": "StatusEmission"
+                        }
+                    ],
+                    "triangles": 12
+                },
+                {
+                    "path": "SourceBadgeTemplate/SourceBadgeTemplate_Identity",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationLinkAccent_Blue",
+                            "role": "LinkAccent"
+                        }
+                    ],
+                    "triangles": 68
+                },
+                {
+                    "path": "SourceBadgeTemplate/SourceBadgeTemplate_SourcePower",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationStatusEmission_Off",
+                            "role": "StatusEmission"
+                        }
+                    ],
+                    "triangles": 12
+                },
+                {
+                    "path": "TopDownMarkers/ClosedMark",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        }
+                    ],
+                    "triangles": 24
+                },
+                {
+                    "path": "TopDownMarkers/OpenMark",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationSymbol",
+                            "role": "Symbol"
+                        }
+                    ],
+                    "triangles": 352
+                },
+                {
+                    "path": "UpperStructure/FrameAndCassette",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 1616
+                }
+            ]
+        },
+        {
+            "assetId": "FloorPlain",
+            "fbxSha256": "011844bb00968e2c38f9a40b0d07b39e085b2f8d21dcdc9d819aa2d69d7ed868",
+            "rootPath": "FloorPlainRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": -0.24000000953674317,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 0.0,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 0.24000000953674317,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 88,
+            "rendererCount": 1,
+            "meshCount": 1,
+            "renderers": [
+                {
+                    "path": "Deck",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationFloor",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 88
+                }
+            ]
+        },
+        {
+            "assetId": "FloorService",
+            "fbxSha256": "f6efe14841f7f871072d51e1b8d4ba75ac7a8deb598c19f08d05555342fb7aed",
+            "rootPath": "FloorServiceRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": -0.24000000953674317,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 0.0,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 0.24000000953674317,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 312,
+            "rendererCount": 1,
+            "meshCount": 1,
+            "renderers": [
+                {
+                    "path": "Deck",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationFloor",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 312
+                }
+            ]
+        },
+        {
+            "assetId": "FloorGrate",
+            "fbxSha256": "b021b3206591181ec13c1e695feec3196f575ca8719a16b4b9b25574cc4d0c54",
+            "rootPath": "FloorGrateRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": -0.24000000953674317,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 0.0,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 0.24000000953674317,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 364,
+            "rendererCount": 1,
+            "meshCount": 1,
+            "renderers": [
+                {
+                    "path": "Deck",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationFloor",
+                            "role": "Body"
+                        }
+                    ],
+                    "triangles": 364
+                }
+            ]
+        },
+        {
+            "assetId": "WallStraight",
+            "fbxSha256": "065bba65f16c647b4ba8ab36ee480713e7ca345acacd7583705333be364c6713",
+            "rootPath": "WallStraightRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": 0.0,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 1.5399999618530274,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 1.5399999618530274,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 732,
+            "rendererCount": 2,
+            "meshCount": 2,
+            "renderers": [
+                {
+                    "path": "Base/Plinth",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 44
+                },
+                {
+                    "path": "Upper/WallBody",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 688
+                }
+            ]
+        },
+        {
+            "assetId": "WallCorner",
+            "fbxSha256": "c5613b9569a21eaeb85ea33dfdf6ad2f419c231261b4535faa70ccf7162240c5",
+            "rootPath": "WallCornerRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": 0.0,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 1.5399999618530274,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 1.5399999618530274,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 732,
+            "rendererCount": 2,
+            "meshCount": 2,
+            "renderers": [
+                {
+                    "path": "Base/Plinth",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 44
+                },
+                {
+                    "path": "Upper/WallBody",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 688
+                }
+            ]
+        },
+        {
+            "assetId": "WallEnd",
+            "fbxSha256": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194",
+            "rootPath": "WallEndRoot",
+            "min": {
+                "x": -0.49000000953674319,
+                "y": 0.0,
+                "z": -0.49000000953674319
+            },
+            "max": {
+                "x": 0.49000000953674319,
+                "y": 1.5399999618530274,
+                "z": 0.49000000953674319
+            },
+            "size": {
+                "x": 0.9800000190734863,
+                "y": 1.5399999618530274,
+                "z": 0.9800000190734863
+            },
+            "rootPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rootScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "triangles": 856,
+            "rendererCount": 2,
+            "meshCount": 2,
+            "renderers": [
+                {
+                    "path": "Base/Plinth",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 44
+                },
+                {
+                    "path": "Upper/WallBody",
+                    "materials": [
+                        {
+                            "slot": 0,
+                            "material": "M_StationBody",
+                            "role": "Body"
+                        },
+                        {
+                            "slot": 1,
+                            "material": "M_StationMetal",
+                            "role": "Metal"
+                        },
+                        {
+                            "slot": 2,
+                            "material": "M_StationDark",
+                            "role": "Dark"
+                        }
+                    ],
+                    "triangles": 812
+                }
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "M_StationBody",
+            "path": "Assets/Material/Station/M_StationBody.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#D9DFE5",
+            "metallic": 0.11999999731779099,
+            "smoothness": 0.5199999809265137,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationCargoBody",
+            "path": "Assets/Material/Station/M_StationCargoBody.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#796653",
+            "metallic": 0.05000000074505806,
+            "smoothness": 0.32999998331069949,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationCargoBrace",
+            "path": "Assets/Material/Station/M_StationCargoBrace.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#C4AC81",
+            "metallic": 0.25,
+            "smoothness": 0.4599999785423279,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationDark",
+            "path": "Assets/Material/Station/M_StationDark.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#202A35",
+            "metallic": 0.18000000715255738,
+            "smoothness": 0.3799999952316284,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationEnergyWindow",
+            "path": "Assets/Material/Station/M_StationEnergyWindow.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#99DAE1",
+            "metallic": 0.10000000149011612,
+            "smoothness": 0.699999988079071,
+            "emissionColorLinear": {
+                "r": 0.11149138957262039,
+                "g": 0.24538570642471314,
+                "b": 0.26352980732917788,
+                "a": 0.3499999940395355
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationFloor",
+            "path": "Assets/Material/Station/M_StationFloor.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#657580",
+            "metallic": 0.15000000596046449,
+            "smoothness": 0.2799999713897705,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationLinkAccent",
+            "path": "Assets/Material/Station/M_StationLinkAccent.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#FFFFFF",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationLinkAccent_Blue",
+            "path": "Assets/Material/Station/M_StationLinkAccent_Blue.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#559CE8",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationLinkAccent_Lime",
+            "path": "Assets/Material/Station/M_StationLinkAccent_Lime.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#C2D969",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationLinkAccent_Purple",
+            "path": "Assets/Material/Station/M_StationLinkAccent_Purple.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#B88CDF",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationMetal",
+            "path": "Assets/Material/Station/M_StationMetal.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#83939F",
+            "metallic": 0.6499999761581421,
+            "smoothness": 0.6200000047683716,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationStatusEmission",
+            "path": "Assets/Material/Station/M_StationStatusEmission.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#273D40",
+            "metallic": 0.0,
+            "smoothness": 0.550000011920929,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationStatusEmission_Off",
+            "path": "Assets/Material/Station/M_StationStatusEmission_Off.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#273D40",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationStatusEmission_On",
+            "path": "Assets/Material/Station/M_StationStatusEmission_On.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#BDF0D8",
+            "metallic": 0.0,
+            "smoothness": 0.5,
+            "emissionColorLinear": {
+                "r": 0.33077293634414675,
+                "g": 0.5663886666297913,
+                "b": 0.4463455080986023,
+                "a": 0.6499999761581421
+            },
+            "emissionKeyword": false
+        },
+        {
+            "name": "M_StationSymbol",
+            "path": "Assets/Material/Station/M_StationSymbol.mat",
+            "shader": "Universal Render Pipeline/Lit",
+            "baseColorSrgb": "#F2F5EC",
+            "metallic": 0.0,
+            "smoothness": 0.44999998807907107,
+            "emissionColorLinear": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            },
+            "emissionKeyword": false
+        }
+    ],
+    "checks": [
+        {
+            "name": "EnergyCrate/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "EnergyCrate/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "EnergyCrate/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "EnergyCrate/cube_dimensions",
+            "passed": true,
+            "detail": "Center: (0.00, 0.40, 0.00), Extents: (0.40, 0.40, 0.40)"
+        },
+        {
+            "name": "EnergyCrate/axes_N_E",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "EnergyCrate/fixed_material_semantics",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "CargoCrate/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "CargoCrate/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "CargoCrate/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "CargoCrate/cube_dimensions",
+            "passed": true,
+            "detail": "Center: (0.00, 0.40, 0.00), Extents: (0.40, 0.40, 0.40)"
+        },
+        {
+            "name": "CargoCrate/axes_N_E",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "CargoCrate/fixed_material_semantics",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "GoalSocket/EnergyCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/EnergyCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/CargoCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/CargoCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/Robot_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/Robot_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "GoalSocket/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "GoalSocket/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "GoalSocket/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "UtilitySocket/EnergyCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/EnergyCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/CargoCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/CargoCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/Robot_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/Robot_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "UtilitySocket/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "UtilitySocket/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "UtilitySocket/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "PowerGate/EnergyCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/EnergyCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/CargoCrate_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/CargoCrate_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/Robot_EW_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/Robot_NS_sweep",
+            "passed": true,
+            "detail": "0 intersecting triangles; 3 mm graphic overlay tolerance"
+        },
+        {
+            "name": "PowerGate/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "PowerGate/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "PowerGate/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorPlain/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorPlain/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorPlain/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorPlain/deck_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorService/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorService/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorService/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorService/deck_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorGrate/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorGrate/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorGrate/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "FloorGrate/deck_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallStraight/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallStraight/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallStraight/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallStraight/wall_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallCorner/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallCorner/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallCorner/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallCorner/wall_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallEnd/identity_root",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallEnd/urp_materials",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallEnd/no_rule_or_physics_components",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "WallEnd/wall_contract",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "instance_isolation/B_unchanged",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "instance_isolation/fixed_body_unchanged",
+            "passed": true,
+            "detail": ""
+        }
+    ],
+    "stateDriver": "Explicit editor presentation fixtures; no BoardView or rule changes."
+}

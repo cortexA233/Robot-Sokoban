@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-09-17 02:02:31 UTC",
+  "project": "C:/recent_project/Sokoban_3D_Test",
+  "unityVersion": "2022.3.51f1",
+  "query": {
+    "types": [
+      "error",
+      "warning"
+    ],
+    "count": 50
+  },
+  "response": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "activeSceneRestored": "Assets/Scenes/Bootstrap.unity",
+  "activeSceneDirty": false
+}

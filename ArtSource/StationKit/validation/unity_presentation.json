@@ -1,0 +1,116 @@
+{
+    "driver": "Explicit demonstration states, no formal game integration",
+    "passed": true,
+    "checks": [
+        {
+            "name": "A06/extra_independent_badge",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/gate_0_A_on_B_cargo_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/Any_All_0",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/gate_1_A_on_B_cargo_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/Any_All_1",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/gate_2_A_on_B_cargo_off",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A06/Any_All_2",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A08/all_upper_renderers_hidden",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A08/low_boundaries_remain",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/six_occupancy_fixtures",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_0_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_1_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_2_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_3_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_4_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "A04/socket_5_only_energy_powers",
+            "passed": true,
+            "detail": ""
+        },
+        {
+            "name": "U02/not_in_formal_build",
+            "passed": true,
+            "detail": ""
+        }
+    ],
+    "captures": [
+        "ArtSource/StationKit/previews/unity_colors_1080.png",
+        "ArtSource/StationKit/previews/unity_connections_1080.png",
+        "ArtSource/StationKit/previews/unity_corridor_1080.png",
+        "ArtSource/StationKit/previews/unity_corridor_720.png",
+        "ArtSource/StationKit/previews/unity_corridor_gray_720.png",
+        "ArtSource/StationKit/previews/unity_third_person_1080.png",
+        "ArtSource/StationKit/previews/unity_third_person_gray_720.png",
+        "ArtSource/StationKit/previews/unity_crates_1080.png",
+        "ArtSource/StationKit/previews/unity_crates_view_0_720.png",
+        "ArtSource/StationKit/previews/unity_crates_view_1_720.png",
+        "ArtSource/StationKit/previews/unity_crates_view_2_720.png",
+        "ArtSource/StationKit/previews/unity_crates_view_3_720.png",
+        "ArtSource/StationKit/previews/unity_gates_1080.png",
+        "ArtSource/StationKit/previews/unity_gates_front_1080.png",
+        "ArtSource/StationKit/previews/unity_gates_top_1080.png",
+        "ArtSource/StationKit/previews/unity_joins_1080.png",
+        "ArtSource/StationKit/previews/unity_overview_1080.png",
+        "ArtSource/StationKit/previews/unity_overview_720.png",
+        "ArtSource/StationKit/previews/unity_overview_gray_720.png",
+        "ArtSource/StationKit/previews/unity_overview_top_1080.png",
+        "ArtSource/StationKit/previews/unity_sockets_1080.png",
+        "ArtSource/StationKit/previews/unity_sockets_720.png",
+        "ArtSource/StationKit/previews/unity_sockets_gray_720.png"
+    ]
+}

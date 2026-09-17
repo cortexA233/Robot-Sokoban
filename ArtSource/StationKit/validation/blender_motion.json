@@ -1,0 +1,1164 @@
+{
+  "mechanicalSourceFrames": [
+    1,
+    100
+  ],
+  "mechanicalSampleStep": 3,
+  "mechanicalFPS": 10,
+  "occupancyFPS": 12,
+  "driver": "Explicit presentation fixture, all occupancy-sequence source and condition lamps stay off.",
+  "samples": [
+    {
+      "frame": 0,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 1,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 2,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 3,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 4,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 5,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 6,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 7,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 8,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 9,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 10,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 11,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 12,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 13,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 14,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 15,
+      "phase": "CARGO HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 16,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -1.0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 17,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.008018661612479952
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.99198133838752
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 18,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.030908295669922727
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.9690917043300773
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 19,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.06691937600233269
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.9330806239976673
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 20,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.11430237643971422
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.8856976235602858
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 21,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.1713077708120717
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.8286922291879283
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 22,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.23618603294940949
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.7638139670505906
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 23,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.307187636681732
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.692812363318268
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 24,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.38256305583904354
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.6174369441609564
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 25,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.46056276425134857
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.5394372357486514
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 26,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.5394372357486513
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.4605627642513487
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 27,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.6174369441609564
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.3825630558390436
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 28,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.6928123633182679
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.3071876366817321
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 29,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.7638139670505905
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.23618603294940954
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 30,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.8286922291879282
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.17130777081207182
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 31,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.8856976235602858
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.11430237643971419
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 32,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.9330806239976672
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.06691937600233278
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 33,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.9690917043300773
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.030908295669922703
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 34,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        0.99198133838752
+      ],
+      "robotPosition": [
+        0,
+        0,
+        -0.008018661612479994
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 35,
+      "phase": "CARGO TO ROBOT / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1.0
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0.0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 36,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 37,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 38,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 39,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 40,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 41,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 42,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 43,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 44,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 45,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 46,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 47,
+      "phase": "ROBOT HOLDS OPEN / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 48,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 49,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.023290758827948913,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 50,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.08715251690458302,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 51,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.18256949661908337,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 52,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.3005259203606311,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 53,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.43200601051840715,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 54,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.5679939894815927,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 55,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.6994740796393689,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 56,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.8174305033809166,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 57,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.9128474830954171,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 58,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        0.976709241172051,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 59,
+      "phase": "ROBOT LEAVES / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1.0,
+        0,
+        0
+      ],
+      "openFraction": 1
+    },
+    {
+      "frame": 60,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 1.0
+    },
+    {
+      "frame": 61,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.976709241172051
+    },
+    {
+      "frame": 62,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.912847483095417
+    },
+    {
+      "frame": 63,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.8174305033809166
+    },
+    {
+      "frame": 64,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.6994740796393689
+    },
+    {
+      "frame": 65,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.5679939894815929
+    },
+    {
+      "frame": 66,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.43200601051840726
+    },
+    {
+      "frame": 67,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.3005259203606311
+    },
+    {
+      "frame": 68,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.1825694966190834
+    },
+    {
+      "frame": 69,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.08715251690458292
+    },
+    {
+      "frame": 70,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.023290758827948954
+    },
+    {
+      "frame": 71,
+      "phase": "EMPTY - CLOSE / POWER OFF",
+      "powered": false,
+      "cargoPosition": [
+        0,
+        0,
+        1
+      ],
+      "robotPosition": [
+        1,
+        0,
+        0
+      ],
+      "openFraction": 0.0
+    }
+  ]
+}

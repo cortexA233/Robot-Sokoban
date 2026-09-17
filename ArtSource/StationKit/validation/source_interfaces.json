@@ -1,0 +1,160 @@
+{
+  "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
+  "blenderVersion": "5.2.2 LTS",
+  "gate": {
+    "LowerPanel": {
+      "Closed": {
+        "position": [
+          0,
+          0.29,
+          0.045
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "Open": {
+        "position": [
+          0,
+          1.305,
+          0.045
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "action": "PowerGateRoot__MovingParts__LowerPanelAction.003",
+      "frameRange": [
+        1.0,
+        100.0
+      ]
+    },
+    "UpperPanel": {
+      "Closed": {
+        "position": [
+          0,
+          0.87,
+          -0.045
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "Open": {
+        "position": [
+          0,
+          1.305,
+          -0.045
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "action": "PowerGateRoot__MovingParts__UpperPanelAction.003",
+      "frameRange": [
+        1.0,
+        100.0
+      ]
+    }
+  },
+  "materials": {
+    "M_StationBody": {
+      "role": "Body",
+      "sRGB": "#D9DFE5",
+      "roughness": 0.47999998927116394,
+      "metallic": 0.11999999731779099,
+      "emissionStrength": 0.0
+    },
+    "M_StationEnergyWindow": {
+      "role": "FixedEnergy",
+      "sRGB": "#99DAE1",
+      "roughness": 0.30000001192092896,
+      "metallic": 0.10000000149011612,
+      "emissionStrength": 0.3499999940395355
+    },
+    "M_StationCargoBrace": {
+      "role": "Body",
+      "sRGB": "#C4AC81",
+      "roughness": 0.5400000214576721,
+      "metallic": 0.25,
+      "emissionStrength": 0.0
+    },
+    "M_StationLinkAccent": {
+      "role": "LinkAccent",
+      "sRGB": "#FFFFFF",
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "emissionStrength": 0.0
+    },
+    "M_StationStatusEmission": {
+      "role": "StatusEmission",
+      "sRGB": "#273D40",
+      "roughness": 0.44999998807907104,
+      "metallic": 0.0,
+      "emissionStrength": 0.0
+    },
+    "M_StationMetal": {
+      "role": "Metal",
+      "sRGB": "#83939F",
+      "roughness": 0.3799999952316284,
+      "metallic": 0.6499999761581421,
+      "emissionStrength": 0.0
+    },
+    "M_StationDark": {
+      "role": "Dark",
+      "sRGB": "#202A35",
+      "roughness": 0.6200000047683716,
+      "metallic": 0.18000000715255737,
+      "emissionStrength": 0.0
+    },
+    "M_StationSymbol": {
+      "role": "Symbol",
+      "sRGB": "#F2F5EC",
+      "roughness": 0.550000011920929,
+      "metallic": 0.0,
+      "emissionStrength": 0.0
+    },
+    "M_StationCargoBody": {
+      "role": "Body",
+      "sRGB": "#796653",
+      "roughness": 0.6700000166893005,
+      "metallic": 0.05000000074505806,
+      "emissionStrength": 0.0
+    },
+    "M_StationFloor": {
+      "role": "Body",
+      "sRGB": "#657580",
+      "roughness": 0.7200000286102295,
+      "metallic": 0.15000000596046448,
+      "emissionStrength": 0.0
+    }
+  }
+}

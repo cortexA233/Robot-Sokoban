@@ -1,0 +1,13 @@
+{
+  "reviewedAt": "2026-09-17",
+  "method": "Agent visually inspected actual Blender renders, Unity captures and sampled animation frames; geometric checks are reported separately.",
+  "passed": true,
+  "observations": [
+    {"check": "A04", "files": ["previews/blender_sockets.png", "previews/unity_sockets_1080.png", "previews/unity_sockets_gray_720.png"], "finding": "Both socket types show empty/Energy/Cargo. Large central target/plug symbols distinguish empty sockets; repeated perimeter type marks, identity strips and separate power lamps remain outside occupied crate footprints. Only Energy lights the lamps."},
+    {"check": "A05-A06", "files": ["previews/unity_colors_1080.png", "previews/unity_connections_1080.png"], "finding": "Blue square, purple triangle and lime circle are visible. The same blue source appears on multiple gates; Any opens with A only, All remains closed with Cargo on B. A third independent badge is present."},
+    {"check": "A07", "files": ["previews/unity_gates_front_1080.png", "previews/unity_gates_top_1080.png", "previews/unity_gates_1080.png", "previews/blender_mechanical.mp4", "previews/blender_occupancy.mp4", "previews/unity_occupancy.mp4"], "finding": "Two shutter sections rise on separate tracks. Sampled cargo-held, robot-held and empty/closed frames match the continuous staged sequence; identity colors remain while power lamps stay off."},
+    {"check": "A08-A09", "files": ["previews/unity_overview_top_1080.png", "previews/unity_corridor_gray_720.png", "previews/blender_joins.png", "previews/unity_joins_1080.png"], "finding": "Upper gate and wall renderers disappear while full-cell wall plinths, corner feet and passage markers remain. Mixed 3x3 floors, rotated L/straight/end and T/cross wall assemblies meet at the common pitch with no outward protrusions."},
+    {"check": "A10-A12", "files": ["previews/blender_overview.png", "previews/blender_crates.png", "previews/unity_crates_view_0_720.png", "previews/unity_crates_view_1_720.png", "previews/unity_crates_view_2_720.png", "previews/unity_crates_view_3_720.png", "previews/unity_third_person_1080.png", "previews/unity_third_person_gray_720.png", "previews/unity_corridor_720.png"], "finding": "Energy windows and radial top emblem contrast with enclosed cargo panels and X braces, including grayscale and four-sided perspective observation. The current robot reads at the same scale. No bloom or texture dependency is needed for identification."}
+  ],
+  "limits": ["Unity scenes use explicit presentation states, not formal RuleEngine event binding.", "Small source badges are intended for elevated/top-down views and may need short UI labels at full-board zoom.", "No game-wide regression or performance benchmark is claimed."]
+}

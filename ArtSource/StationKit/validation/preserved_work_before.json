@@ -1,0 +1,10 @@
+[
+  {
+    "path": "ArtSource/Robot/Robot.blend",
+    "sha256": "2bee63d77fe04786b38c5c2f106008de59ccd87e66b28d34c335e056a2eeb58c"
+  },
+  {
+    "path": "ProjectSettings/ProjectSettings.asset",
+    "sha256": "1116ad5c92a48ac5678c743e97b054d623790943c67fd6b091283392e5c4941e"
+  }
+]

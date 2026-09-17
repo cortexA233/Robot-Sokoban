@@ -1,0 +1,2875 @@
+{
+  "sheets": [
+    {
+      "name": "Colors",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.4500000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": -1.4500000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 1,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.4500000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": 1.4500000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Lime",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 2,
+          "push": false
+        }
+      ],
+      "labels": [
+        {
+          "text": "SQUARE / IDENTITY",
+          "position": {
+            "x": -1.4500000476837158,
+            "y": -0.20000000298023224,
+            "z": 0.6600000262260437
+          },
+          "size": 0.10999999940395355
+        },
+        {
+          "text": "TRIANGLE / IDENTITY",
+          "position": {
+            "x": 0.0,
+            "y": -0.20000000298023224,
+            "z": 0.6600000262260437
+          },
+          "size": 0.10999999940395355
+        },
+        {
+          "text": "CIRCLE / IDENTITY",
+          "position": {
+            "x": 1.4500000476837158,
+            "y": -0.20000000298023224,
+            "z": 0.6600000262260437
+          },
+          "size": 0.10999999940395355
+        }
+      ]
+    },
+    {
+      "name": "Connections",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.100000023841858,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": -1.100000023841858,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": -1.100000023841858,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.10000000149011612,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "UtilitySocket",
+          "position": {
+            "x": 0.10000000149011612,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 0.10000000149011612,
+            "y": 0.0,
+            "z": 1.600000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.600000023841858,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": -1.600000023841858,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": true,
+          "a": true,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": true,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.600000023841858,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 1.600000023841858,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": true,
+          "a": true,
+          "b": false,
+          "top": false,
+          "extraBadge": true,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": [
+        {
+          "text": "ANY",
+          "position": {
+            "x": -1.600000023841858,
+            "y": -0.20000000298023224,
+            "z": 0.15000000596046448
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "ALL",
+          "position": {
+            "x": 0.0,
+            "y": -0.20000000298023224,
+            "z": 0.15000000596046448
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "ANY / SHARED A",
+          "position": {
+            "x": 1.600000023841858,
+            "y": -0.20000000298023224,
+            "z": 0.15000000596046448
+          },
+          "size": 0.11999999731779099
+        }
+      ]
+    },
+    {
+      "name": "Corridor",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "Robot",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": true,
+          "a": false,
+          "b": false,
+          "top": true,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": []
+    },
+    {
+      "name": "Crates",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -0.8999999761581421,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -0.8999999761581421,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": -0.8999999761581421,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "Robot",
+          "position": {
+            "x": -0.8999999761581421,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.8999999761581421,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.8999999761581421,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 0.8999999761581421,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        },
+        {
+          "assetId": "Robot",
+          "position": {
+            "x": 0.8999999761581421,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": true
+        }
+      ],
+      "labels": [
+        {
+          "text": "EnergyCrate / 0.80 m",
+          "position": {
+            "x": -0.8999999761581421,
+            "y": -0.20000000298023224,
+            "z": 0.7400000095367432
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "CargoCrate / 0.80 m",
+          "position": {
+            "x": 0.8999999761581421,
+            "y": -0.20000000298023224,
+            "z": 0.7400000095367432
+          },
+          "size": 0.11999999731779099
+        }
+      ]
+    },
+    {
+      "name": "Gates",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.7000000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": -1.7000000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": true,
+          "a": true,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.7000000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 1.7000000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": true,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 1.7000000476837158,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": [
+        {
+          "text": "CLOSED / NO POWER",
+          "position": {
+            "x": -1.7000000476837158,
+            "y": -0.20000000298023224,
+            "z": 0.7300000190734863
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "OPEN / POWERED",
+          "position": {
+            "x": 0.0,
+            "y": -0.20000000298023224,
+            "z": 0.7300000190734863
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "OPEN / OCCUPIED",
+          "position": {
+            "x": 1.7000000476837158,
+            "y": -0.20000000298023224,
+            "z": 0.7300000190734863
+          },
+          "size": 0.10499999672174454
+        }
+      ]
+    },
+    {
+      "name": "Joins",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -3.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": 0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -3.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": -3.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": 180.00000500895632,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": 180.00000500895632,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": 270.00000068324533,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "yaw": 180.00000500895632,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": 270.00000068324533,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": 0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallCorner",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 3.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 3.0,
+            "y": 0.0,
+            "z": -0.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 3.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 3.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 3.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 3.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 5.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 5.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "yaw": -90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 4.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "yaw": 180.00000500895632,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": 90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 4.0
+          },
+          "yaw": -90.00000250447816,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 3.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 3.0
+          },
+          "yaw": 180.00000500895632,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": []
+    },
+    {
+      "name": "Overview",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -2.5,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": -2.5,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.149999976158142,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": -1.149999976158142,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.20000000298023224,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": 0.20000000298023224,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "UtilitySocket",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "PowerGate",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": 1.100000023841858
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": true,
+          "a": true,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -2.5,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorService",
+          "position": {
+            "x": -1.149999976158142,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorGrate",
+          "position": {
+            "x": 0.20000000298023224,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallStraight",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallCorner",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "WallEnd",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "Robot",
+          "position": {
+            "x": -1.5,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": [
+        {
+          "text": "EnergyCrate",
+          "position": {
+            "x": -2.5,
+            "y": -0.2199999988079071,
+            "z": 1.7799999713897705
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "CargoCrate",
+          "position": {
+            "x": -1.149999976158142,
+            "y": -0.2199999988079071,
+            "z": 1.7799999713897705
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "GoalSocket",
+          "position": {
+            "x": 0.20000000298023224,
+            "y": -0.2199999988079071,
+            "z": 1.7799999713897705
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "UtilitySocket",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": -0.2199999988079071,
+            "z": 1.7799999713897705
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "PowerGate",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": -0.2199999988079071,
+            "z": 1.7799999713897705
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "FloorPlain",
+          "position": {
+            "x": -2.5,
+            "y": -0.2199999988079071,
+            "z": 0.18000000715255737
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "FloorService",
+          "position": {
+            "x": -1.149999976158142,
+            "y": -0.2199999988079071,
+            "z": 0.18000000715255737
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "FloorGrate",
+          "position": {
+            "x": 0.20000000298023224,
+            "y": -0.2199999988079071,
+            "z": 0.18000000715255737
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "WallStraight",
+          "position": {
+            "x": 1.5499999523162842,
+            "y": -0.2199999988079071,
+            "z": 0.18000000715255737
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "WallCorner",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": -0.2199999988079071,
+            "z": 0.18000000715255737
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "WallEnd",
+          "position": {
+            "x": 2.9000000953674316,
+            "y": -0.2199999988079071,
+            "z": -1.3200000524520874
+          },
+          "size": 0.11999999731779099
+        },
+        {
+          "text": "STATION / 11 MODULES",
+          "position": {
+            "x": -0.800000011920929,
+            "y": -0.2199999988079071,
+            "z": -3.200000047683716
+          },
+          "size": 0.23999999463558197
+        }
+      ]
+    },
+    {
+      "name": "Sockets",
+      "objects": [
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.399999976158142,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": -1.399999976158142,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": true,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "GoalSocket",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": 0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": -1.399999976158142,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "UtilitySocket",
+          "position": {
+            "x": -1.399999976158142,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "UtilitySocket",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": true,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "EnergyCrate",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "FloorPlain",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "UtilitySocket",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Purple",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        },
+        {
+          "assetId": "CargoCrate",
+          "position": {
+            "x": 1.399999976158142,
+            "y": 0.0,
+            "z": -0.8500000238418579
+          },
+          "yaw": -0.0,
+          "color": "Blue",
+          "powered": false,
+          "open": false,
+          "a": false,
+          "b": false,
+          "top": false,
+          "extraBadge": false,
+          "shape": 0,
+          "push": false
+        }
+      ],
+      "labels": [
+        {
+          "text": "EMPTY / OFF",
+          "position": {
+            "x": -1.399999976158142,
+            "y": -0.20000000298023224,
+            "z": 1.5099999904632568
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "ENERGY / ON",
+          "position": {
+            "x": 0.0,
+            "y": -0.20000000298023224,
+            "z": 1.5099999904632568
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "CARGO / OFF",
+          "position": {
+            "x": 1.399999976158142,
+            "y": -0.20000000298023224,
+            "z": 1.5099999904632568
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "EMPTY / OFF",
+          "position": {
+            "x": -1.399999976158142,
+            "y": -0.20000000298023224,
+            "z": -0.1899999976158142
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "ENERGY / ON",
+          "position": {
+            "x": 0.0,
+            "y": -0.20000000298023224,
+            "z": -0.1899999976158142
+          },
+          "size": 0.10499999672174454
+        },
+        {
+          "text": "CARGO / OFF",
+          "position": {
+            "x": 1.399999976158142,
+            "y": -0.20000000298023224,
+            "z": -0.1899999976158142
+          },
+          "size": 0.10499999672174454
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "videos": [
+    {
+      "file": "ArtSource/StationKit/previews/blender_mechanical.mp4",
+      "measured": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 960,
+            "height": 540,
+            "r_frame_rate": "10/1",
+            "nb_frames": "34"
+          }
+        ],
+        "format": {
+          "duration": "3.400000"
+        }
+      }
+    },
+    {
+      "file": "ArtSource/StationKit/previews/blender_occupancy.mp4",
+      "measured": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 960,
+            "height": 540,
+            "r_frame_rate": "12/1",
+            "nb_frames": "72"
+          }
+        ],
+        "format": {
+          "duration": "6.000000"
+        }
+      }
+    },
+    {
+      "file": "ArtSource/StationKit/previews/unity_occupancy.mp4",
+      "measured": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 960,
+            "height": 540,
+            "r_frame_rate": "12/1",
+            "nb_frames": "72"
+          }
+        ],
+        "format": {
+          "duration": "6.000000"
+        }
+      }
+    }
+  ]
+}
