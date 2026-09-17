@@ -11,7 +11,7 @@
 | 用途 | 当前文档 | 配套资料 |
 | --- | --- | --- |
 | Gameplay / 游戏规则 | [游戏设计与 Unity 实现方案](Gameplay/GameDesign.md) | 第 2/4 节为坐标与规则，第 5 节为关卡，第 7/8 节为数据与模块；[普通箱关卡原始方案](History/04-CargoCrates/LevelDifficultyIterationPlan.md) |
-| 美术 / 机器人 | [Blender 建模与动画维护](Art/RobotBlenderGuide.md) | [源文件、导出与资产验收](../ArtSource/Robot/README.md) |
+| 美术 / 机器人 | [Blender 建模与动画维护](Art/RobotBlenderGuide.md) | [源文件、导出与资产验收](../ArtSource/Robot/README.md)；[GSND 6000 课程展示 PPT](Art/GSND6000/GSND6000_Rigging_Weekly.pptx) |
 | 美术 / 空间站 | [资产生产规格](Art/StationArtProduction.md)、[游戏接入与表现维护](Art/StationKitIntegration.md) | [源文件、预览与逐资产证据](../ArtSource/StationKit/README.md)、[插槽与门的可读性方案](Art/VisualReadabilityReview.md)、[v0.2.0 实机验收](History/08-CircuitReadability/ImplementationReport.md) |
 | UI / 玩家流程 | [UGUI 页面、输入与幕布过渡](UI/UIImplementation.md) | [概念图 v1/v2 与取舍](../ArtSource/UIConcepts/README.md)；采用第二版简约 UI |
 | 编辑器 / 关卡制作 | [关卡编辑器操作指南](Editor/LevelEditorGuide.md) | [作者配方](LevelRecipes/README.md)；GDD 第 6 节为完整编辑器要求 |
