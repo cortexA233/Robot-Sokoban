@@ -64,3 +64,5 @@
 - 美术源文件、提示词、导出脚本、清单和原始资产验证继续随 `ArtSource/<资产>/` 保存。第三方文档保留在原包目录。
 - `LevelRecipes/` 是编辑器与测试读取的稳定路径；关卡提案的示意 JSON 随历史方案归档，不作为可导入配方。
 - 文件迁移对照见 [DocumentMap.json](History/DocumentMap.json)。历史 Agent 审计快照保留原路径与原哈希，通过迁移表查找现址；其他证据只修正导航路径，测试结果、时间和实测哈希不改写。
+
+音频：[基础音效来源、触发与生命周期](Audio/Sfx.md) · [v0.7.0 音效子项验收](Versions/V0.7.0SfxValidation.md)。

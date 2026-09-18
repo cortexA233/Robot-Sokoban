@@ -69,7 +69,7 @@ namespace Sokoban
             ClearPresentation();
             Definition = copy; Session = session; Board = board; Cameras = cameras; presentationRoot = candidate;
             Presenter = GetComponent<CommandPresenter>() ?? gameObject.AddComponent<CommandPresenter>();
-            Presenter.Initialize(Board); candidate.SetActive(true); input.Clear(); idleTime = 0;
+            Presenter.Initialize(Board, Audio); candidate.SetActive(true); input.Clear(); idleTime = 0;
             Completed = Session.State.Completed; Error = null; ApplyPresentationPause();
         }
         private void ApplyPresentationPause() => Presenter?.SetPaused(Paused || NavigationLocked || LiveEditing || DebugAnimationPaused);

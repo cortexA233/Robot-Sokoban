@@ -1,0 +1,254 @@
+{
+  "unity": "2022.3.51f1",
+  "baseline": "06e61c1",
+  "runs": [
+    {
+      "file": "Library\\SokobanTestResults\\Run-20260918T064038807.xml",
+      "total": "30",
+      "passed": "28",
+      "failed": "2",
+      "result": "Failed",
+      "tests": [
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.AllEightResourceClipsContainBoundedNonSilentPcm",
+          "result": "Failed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.CancelBeforeContactNeverPlaysOldLandingOrCompletion",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MenuButtonsAndLevelRowsClickWithOneListenerAcrossNavigation",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MovementBlockedInputAndRateLimitUseRealGameCommands",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MutedAudioDoesNotChangeRulesOrCompletion",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.PassingOverSocketPlaysOnAndOffWithoutFalseCompletion",
+          "result": "Failed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.PauseStopsActionsAllowsUiAndResumesOnlyFutureEvents",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.PushPowerLandingAndCompletionFollowPresentation",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.CargoUsesDistinctVisualAndCancelsSlidingWithoutSupplyingPower",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.PauseFreezesOwnedActionThenResumes",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RealRobotUsesOnePushClockAndMatchesContactPlane",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RepeatedLoadAndCancelLeavesOneBoardAndOriginalAuthorData",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringContact",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringExtension",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.RestartDuringSlide",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringContact",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringExtension",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.GameplayTests.UndoDuringSlide",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.BootMenuStartsThroughOpaqueCoverAndRejectsDuplicateNavigation",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.CompletionButtonAdvancesWithFadeAndFreshCounters",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.DestroyDuringFadeLeavesNoPagesOrDelayedLoads",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.DisposingAfterCanvasObjectsAreGoneStillReleasesPageWrappers",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.EscapeResumesAndHeldMoveCannotLeakThroughTransition",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.HudUndoAndRestartUseTheRealSession",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.LastLevelIsReachableThroughSelection",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.MenuReturnWorksAtZeroTimeScaleAndDiscardsOldAction",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.PauseSelectionBackPreservesSessionAndSettingsPersist",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.StationUITests.SettingsSliderGraphicsStayInsideTracksAtBothEnds",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "file": "Library\\SokobanTestResults\\Run-20260918T064220423.xml",
+      "total": "8",
+      "passed": "8",
+      "failed": "0",
+      "result": "Passed",
+      "tests": [
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.AllEightResourceClipsContainBoundedNonSilentPcm",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.CancelBeforeContactNeverPlaysOldLandingOrCompletion",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MenuButtonsAndLevelRowsClickWithOneListenerAcrossNavigation",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MovementBlockedInputAndRateLimitUseRealGameCommands",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MovingOffSocketPlaysOnAndOffWithoutFalseCompletion",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.MutedAudioDoesNotChangeRulesOrCompletion",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.PauseStopsActionsAllowsUiAndResumesOnlyFutureEvents",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.PushPowerLandingAndCompletionFollowPresentation",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "file": "Library\\SokobanTestResults\\Run-20260918T064338772.xml",
+      "total": "2",
+      "passed": "2",
+      "failed": "0",
+      "result": "Passed",
+      "tests": [
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.AuthorPlaytestUsesAudioAndDestroysAllOwnedVoices",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.AudioFeedbackTests.ListenerMixContainsSignalAndMasterMuteSilencesIt",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "file": "Library\\SokobanTestResults\\Run-20260918T064451185.xml",
+      "total": "13",
+      "passed": "13",
+      "failed": "0",
+      "result": "Passed",
+      "tests": [
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.AddReorderRemoveUndoAndSaveKeepRuntimeOrderAndSourceFiles",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.AllShippedEntriesHaveCurrentReplayProofsAndRequiredResources",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.DuplicateAdditionAndInvalidIndicesPreserveCatalog",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.EmptyAndMissingCatalogFailBuildGate",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.MissingMalformedAndDuplicateEntriesAreAllReported",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.MissingStaleOrFalseProofCannotPassPublishingValidation(\"missing\")",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.MissingStaleOrFalseProofCannotPassPublishingValidation(\"stale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.MissingStaleOrFalseProofCannotPassPublishingValidation(\"commands\")",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.MissingStaleOrFalseProofCannotPassPublishingValidation(\"counts\")",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignAuthoringTests.StructuralErrorsKeepCoordinatesAndBlockBuildGuard",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignCatalogTests.CatalogOrderDeterminesNavigationOrder",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignCatalogTests.DefaultCatalogContainsTheRetainedLevelsAndSixTransportLevels",
+          "result": "Passed"
+        },
+        {
+          "name": "Sokoban.Tests.CampaignCatalogTests.MissingAndDuplicateEntriesFailBeforeLoadingAnyBoard",
+          "result": "Passed"
+        }
+      ]
+    }
+  ]
+}

@@ -20,7 +20,7 @@ namespace Sokoban.UI
                 row.name = "Level" + (i + 1).ToString("00");
                 row.SetActive(true);
                 row.transform.Find("Label").GetComponent<Text>().text = $"{i + 1:00}   {Runner.GetCampaignTitle(i)}";
-                row.GetComponent<Button>().onClick.AddListener(() => { selected = index; Refresh(); });
+                Bind(row.GetComponent<Button>(), () => { selected = index; Refresh(); });
                 rows.Add(row);
             }
             template.SetActive(false);

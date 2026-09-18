@@ -25,6 +25,8 @@ namespace Sokoban.Editor
             RequireAsset<SceneAsset>(result, "Assets/Scenes/Bootstrap.unity");
             foreach (string screen in new[] { "MainMenu", "Hud", "Pause", "LevelSelect", "Completion", "Settings", "GeneralFade" })
                 RequireAsset<GameObject>(result, "Assets/Resources/UI_prefabs/screens/" + screen + ".prefab");
+            foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
+                RequireAsset<AudioClip>(result, "Assets/Resources/audio/sfx/" + cue + ".wav");
             var actor = RequireAsset<GameObject>(result, "Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab");
             if (actor && !actor.GetComponent<RobotPresenter>()) result.Problems.Add(new CatalogProblem(-1, AssetDatabase.GetAssetPath(actor), "缺少 RobotPresenter。"));
             var theme = RequireAsset<StationKitTheme>(result, "Assets/Resources/configs/StationKitTheme.asset");

@@ -22,6 +22,7 @@ namespace Sokoban
         public CommandPresenter Presenter { get; private set; }
         public CameraRig Cameras { get; private set; }
         public StationUIController UI { get; private set; }
+        public GameAudio Audio { get; private set; }
         public bool Paused { get; private set; }
         public bool Completed { get; private set; }
         public bool LevelSelectionOpen { get; private set; }
@@ -67,6 +68,7 @@ namespace Sokoban
                     string initialId = initial ? LevelJson.Read(initial.text).id : null;
                     InitialCampaignIndex = Mathf.Max(0, Array.FindIndex(campaign, level => level.id == initialId));
                 }
+                Audio = gameObject.AddComponent<GameAudio>();
                 UI = new StationUIController(this);
                 InitializeDebug();
                 if (IsPlaytest) LoadLevel(PlaytestDefinition);
@@ -144,9 +146,11 @@ namespace Sokoban
         public bool TryMove(Direction direction)
         {
             if (Session == null || NavigationLocked || LevelSelectionOpen || DebugInputCaptured || DebugAnimationPaused || Paused || Presenter.Busy || Completed) return false;
+            var previousPower = Session.Rules.Power(Session.State);
             var result = Session.Move(direction);
             if (!result.Accepted)
             {
+                Audio?.Play(SoundCue.Blocked);
                 RecordDebug("移动 " + direction + "：" + result.RejectReason);
                 Board.Robot.transform.rotation = Quaternion.Euler(0, (int)direction * 90, 0);
                 if (Time.unscaledTime - rejectedAt >= .5f)
@@ -160,7 +164,7 @@ namespace Sokoban
                 Board.Restore(Session, false); idleTime = 0; Completed = Session.State.Completed;
                 if (Completed) Message = Definition.completionText;
                 NotifyChanged();
-            });
+            }, previousPower);
             NotifyChanged(); return true;
         }
         public void Undo()
