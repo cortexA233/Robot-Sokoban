@@ -222,7 +222,7 @@ namespace Sokoban.Art.Editor
             }
         }
 
-        [MenuItem("Tools/Station Kit/Import and Validate Assets")]
+        // [MenuItem("Tools/Station Kit/Import and Validate Assets")]
         public static void ImportAndValidate()
         {
             Checks.Clear(); ConfigureImport(); var records=new List<AssetRecord>(); Scene scene=EditorSceneManager.NewPreviewScene();

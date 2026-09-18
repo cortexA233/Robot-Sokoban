@@ -10,7 +10,7 @@ namespace Sokoban.Editor
     {
         private static Font font;
         private static readonly Color Ink = new Color32(40, 44, 48, 255);
-        [MenuItem("Sokoban_Tools/Build GM UGUI Prefab")]
+        // [MenuItem("Sokoban_Tools/Build GM UGUI Prefab")]
         public static void Build()
         {
             if (EditorApplication.isPlaying) throw new InvalidOperationException("请先退出 Play Mode。");

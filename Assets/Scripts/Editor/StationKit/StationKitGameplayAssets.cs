@@ -14,7 +14,7 @@ namespace Sokoban.Art.Editor
         const string MaterialFolder = "Assets/Material/StationGameplay/";
         const string MeshFolder = "Assets/Art/StationKit/Gameplay/";
 
-        [MenuItem("Tools/Station Kit/Prepare Gameplay Integration")]
+        // [MenuItem("Tools/Station Kit/Prepare Gameplay Integration")]
         public static void Prepare()
         {
             RepairEmissionFlags();

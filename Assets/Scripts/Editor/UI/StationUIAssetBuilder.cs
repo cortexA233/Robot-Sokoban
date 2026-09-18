@@ -17,7 +17,7 @@ namespace Sokoban.Editor
         private static readonly Color Orange = new Color32(218, 120, 72, 255);
         private static Font font;
 
-        [MenuItem("Tools/Sokoban/Build Minimal UGUI Prefabs")]
+        // [MenuItem("Tools/Sokoban/Build Minimal UGUI Prefabs")]
         public static void Build() => BuildTo(Output);
 
         public static void BuildTo(string output)

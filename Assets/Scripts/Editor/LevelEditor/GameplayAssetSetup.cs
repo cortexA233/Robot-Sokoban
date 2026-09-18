@@ -10,7 +10,7 @@ namespace Sokoban.Editor
 {
     public static class GameplayAssetSetup
     {
-        [MenuItem("Tools/Sokoban/Prepare Gameplay Assets")]
+        // [MenuItem("Tools/Sokoban/Prepare Gameplay Assets")]
         public static void Prepare()
         {
             const string actorPath = "Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab";
@@ -49,7 +49,7 @@ namespace Sokoban.Editor
             Debug.Log("PlayerActor 和 Bootstrap 已就绪；原机器人资产与现有场景保留。");
         }
 
-        [MenuItem("Tools/Sokoban/Create Campaign Catalog")]
+        // [MenuItem("Tools/Sokoban/Create Campaign Catalog")]
         public static void PrepareCampaignCatalog()
         {
             const string path = "Assets/Resources/configs/CampaignCatalog.asset";

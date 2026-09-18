@@ -61,7 +61,7 @@ namespace Sokoban.Editor
             finally { UnityEngine.Object.DestroyImmediate(temporary); }
         }
 
-        [MenuItem("Tools/Sokoban/Import Design Recipes")]
+        // [MenuItem("Tools/Sokoban/Import Design Recipes")]
         public static void ImportDesignRecipes()
         {
             foreach (string recipePath in Directory.GetFiles("Docs/LevelRecipes", "*.json").OrderBy(p => p))

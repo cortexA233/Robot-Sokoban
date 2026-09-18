@@ -72,7 +72,8 @@ namespace Sokoban.Editor
                 var details = new VisualElement { style = { flexGrow = 1, minWidth = 320 } }; row.Add(details);
                 details.Add(new Label($"{i + 1}. " + (entry.Level == null ? "无效关卡" : entry.Level.id) +
                     (entry.AssetPath.Contains("/test_levels/") ? "（开发测试关，已显式加入）" : "")) { style = { unityFontStyleAndWeight = FontStyle.Bold } });
-                details.Add(new Label("结构：" + entry.Structure + "  |  解法：" + entry.Solution) { style = { whiteSpace = WhiteSpace.Normal } });
+                // details.Add(new Label("结构：" + entry.Structure + "  |  解法：" + entry.Solution) { style = { whiteSpace = WhiteSpace.Normal } });
+                details.Add(new Label("结构：" + entry.Structure) { style = { whiteSpace = WhiteSpace.Normal } });
                 AddButton(row, "打开", () => LevelEditorWindow.OpenWindow().OpenAsset(entry.AssetPath), "catalog-open-" + i);
                 AddButton(row, "↑", () => { CampaignAuthoring.Move(catalog, index, index - 1); Refresh(); }, "catalog-up-" + i);
                 AddButton(row, "↓", () => { CampaignAuthoring.Move(catalog, index, index + 1); Refresh(); }, "catalog-down-" + i);

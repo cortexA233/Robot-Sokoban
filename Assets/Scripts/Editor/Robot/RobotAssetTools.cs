@@ -136,7 +136,7 @@ namespace Sokoban.Art.Editor
                 return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
         }
 
-        [MenuItem("Tools/Robot/Import and Validate")]
+        // [MenuItem("Tools/Robot/Import and Validate")]
         public static void ImportAndValidate()
         {
             var report = new Report { unityVersion = Application.unityVersion, fbxSha256 = Hash(ModelPath) };

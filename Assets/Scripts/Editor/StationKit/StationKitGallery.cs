@@ -142,7 +142,7 @@ namespace Sokoban.Art.Editor
                 Check(bay.GetComponentsInChildren<Renderer>().Where(r=>r.name=="Plinth" || r.name=="CornerFeet").All(r=>r.enabled),"A08/low_boundaries_remain");
             }
         }
-        [MenuItem("Tools/Station Kit/Build and Capture Gallery")]
+        // [MenuItem("Tools/Station Kit/Build and Capture Gallery")]
         public static void BuildAndCapture()
         {
             if(EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Stop Play mode before asset gallery validation.");
