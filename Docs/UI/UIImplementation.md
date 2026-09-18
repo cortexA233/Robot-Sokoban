@@ -71,7 +71,7 @@ GM 输入占用、现场编辑占用、游戏暂停和动作动画暂停分别�
 
 叠加标签在 CinemachineBrain 更新镜头之后投影；网格坐标与实体 ID 使用不同位置，避免切换镜头时错位或同时显示时重叠。
 
-生成入口为 `Sokoban_Tools > Build GM UGUI Prefab`，只覆盖 GM Prefab。其验证记录见 [第五轮 GM/现场编辑报告](../History/05-GmLiveEditing/ImplementationReport.md)；GM 生成器与玩家页面生成器彼此独立；v0.6.0 玩家生成器扩展为八页，未修改 KToolkit 源码。
+运行时按 F1 显示已有 Prefab，不会重新生成资产。重建方法为 `GmUIAssetBuilder.Build()`，只覆盖 GM Prefab；当前源码已注释 `Sokoban_Tools > Build GM UGUI Prefab` 的菜单注册，不再提供该菜单项。其历史验证记录见 [第五轮 GM/现场编辑报告](../History/05-GmLiveEditing/ImplementationReport.md)；GM 生成器与玩家页面生成器彼此独立；v0.6.0 玩家生成器扩展为八页，未修改 KToolkit 源码。具体用法见 [运行时 GM](../Editor/LevelEditorGuide.md#运行时-gm)。
 
 ## 原有页面验证
 
