@@ -10,6 +10,8 @@
 
 用户指定追加的 [v0.4.1 编辑器简化](Versions/V0.4.1EditorSimplification.md) 也已完成：移除手动回放与擦除入口、修改工具文案并支持同层放置覆盖；实际范围和验收与原文档规划分开记录。
 
+[v0.5.2](Versions/V0.5.2.md) 补充了主菜单、暂停菜单鼠标移入按钮闪烁的静态检查记录；复现、根因验证、修复及鼠标/键盘导航回归已纳入 [v0.6.0](Versions/V0.6.0.md)，仍待实施与实机验收。
+
 当前玩法版本 [v0.3.0 已封版](Versions/V0.3.0.md)：[转向运输关卡与格图](Gameplay/RedirectorLevelPlan.md)、[实现验收](Versions/V0.3.0Validation/README.md)。
 
 ## 按用途查找
