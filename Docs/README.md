@@ -6,11 +6,13 @@
 
 后续迭代先到 [开发版本台账](Versions/README.md) 规划版本号、范围和验收，再开始实现。当前追踪起点为 [v0.1.0 · 文档归类与版本管理](Versions/V0.1.0.md)。
 
-后续工作已按 [迭代路线图](Versions/Roadmap.md) 分配到 v0.4.0–v0.9.0：依次为编辑器与目录、镜头与场景美术、UI 与进度、简单音效/BGM、引导与难度、完整交付验收。[v0.4.0](Versions/V0.4.0.md)、[v0.5.0](Versions/V0.5.0.md) 及 [v0.6.0](Versions/V0.6.0.md) 已完成；下一执行版本为 [v0.7.0](Versions/V0.7.0.md)，v0.7.0–v0.9.0 仍为已规划。默认俯视、V 切换和连接配色的 [v0.5.0 验收与演示](Versions/V0.5.0Validation/README.md) 已记录；后续 [v0.5.1](Versions/V0.5.1.md) 按用户反馈取消第三人称局部剔除。[v0.4.1](Versions/V0.4.1.md) 补充了 v0.6.0 的 UI 简化要求：取消关卡标题、目标提示、完成文案配置及对应 UI。
+后续工作已按 [迭代路线图](Versions/Roadmap.md) 分配到 v0.4.0–v0.9.0：依次为编辑器与目录、镜头与场景美术、UI 与进度、简单音效/BGM、引导与难度、完整交付验收。[v0.4.0](Versions/V0.4.0.md)、[v0.5.0](Versions/V0.5.0.md) 及 [v0.6.0](Versions/V0.6.0.md) 已完成；[v0.7.0](Versions/V0.7.0.md) 已合入音效子项、整版进行中，v0.8.0–v0.9.0 仍为已规划。默认俯视、V 切换和连接配色的 [v0.5.0 验收与演示](Versions/V0.5.0Validation/README.md) 已记录；后续 [v0.5.1](Versions/V0.5.1.md) 按用户反馈取消第三人称局部剔除。[v0.4.1](Versions/V0.4.1.md) 补充了 v0.6.0 的 UI 简化要求：取消关卡标题、目标提示、完成文案配置及对应 UI。
 
 用户指定追加的 [v0.4.1 编辑器简化](Versions/V0.4.1EditorSimplification.md) 也已完成：移除手动回放与擦除入口、修改工具文案并支持同层放置覆盖；实际范围和验收与原文档规划分开记录。
 
 [v0.5.2](Versions/V0.5.2.md) 补充了主菜单、暂停菜单鼠标移入按钮闪烁的静态检查记录；复现、修复及鼠标/键盘导航回归已在 [v0.6.0](Versions/V0.6.0.md) 完成，同时交付关卡文案移除、按需帮助和玩家进度；[验收证据与输入边界](Versions/V0.6.0Validation/README.md)。
+
+[v0.7.1 计划](Versions/V0.7.1.md) 已按新反馈登记：删除“从第一关开始”和门上浮动文字、第 9 关左上插槽外框统一橙色并保留双门供电。排在 v0.7.0 与 v0.8.0 之间，目前尚未实施。
 
 当前玩法版本 [v0.3.0 已封版](Versions/V0.3.0.md)：[转向运输关卡与格图](Gameplay/RedirectorLevelPlan.md)、[实现验收](Versions/V0.3.0Validation/README.md)。
 
