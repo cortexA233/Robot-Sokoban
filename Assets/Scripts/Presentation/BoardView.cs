@@ -118,10 +118,6 @@ namespace Sokoban
             Circuits.Apply(power);
             foreach (var pair in gates) pair.Value.Apply(power.PoweredGates[pair.Key], power.OpenGates[pair.Key], power.Sockets, immediate);
         }
-        public void SetTopDown(bool value)
-        {
-            Circuits.SetTopDown(value);
-        }
         public void PrepareCamera(bool topDown)
         {
             foreach (var occluder in occluders) occluder.Prepare(topDown);

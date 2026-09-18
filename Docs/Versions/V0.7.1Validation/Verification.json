@@ -1,0 +1,124 @@
+{
+  "baseline": "8a5fe80103b4b570df83bc884d71d9471a25026b",
+  "unity": "2022.3.51f1",
+  "editMode": {
+    "passed": 29,
+    "total": 29
+  },
+  "playMode": {
+    "firstPass": 37,
+    "audioAndThirdPerson": 17,
+    "finalCircuit": 7,
+    "uniqueCases": 48
+  },
+  "solutions": {
+    "replayed": 9,
+    "changedDataFiles": 0
+  },
+  "prefabRebuild": {
+    "passed": true,
+    "scope": "eight pages generated in isolated Assets/V071PrefabCheck; MainMenu checked for absence of NewGame; temporary folder removed"
+  },
+  "normalBuild": {
+    "path": "Builds/V0.7.1/Windows/Sokoban.exe",
+    "errors": 0,
+    "warnings": 0,
+    "development": false
+  },
+  "player": {
+    "passed": true,
+    "error": "",
+    "resolutions": [
+      720,
+      1080
+    ],
+    "connections": 3,
+    "primary": "gate_F"
+  },
+  "fileChecks": {
+    "iterationFiles": 46,
+    "markdown": 9,
+    "localLinks": 260,
+    "newBrokenLinks": 0,
+    "existingMissingLinks": [
+      "Docs\\README.md -> Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+    ],
+    "unrelatedFilesPreserved": true,
+    "playerProgressPreserved": true,
+    "mainMenuGuidPreserved": true,
+    "runtimeAssemblySha256": "6ed36a036c2f308e212c31f4167ffc998991428d564682cae3c96ee39f347e77",
+    "normalBuildContainsProbe": false
+  },
+  "screenshots": [
+    {
+      "path": "EditorL12Third1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "EditorL12Top1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "EditorL12Top720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "EditorPowered1080Final.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "EditorSocketConnections.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "EditorThird720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "PlayerL12Powered1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "PlayerL12Powered720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "PlayerL12Third1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "PlayerL12Third720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "PlayerL12Top1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "PlayerL12Top720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "PlayerMenu1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "PlayerMenu720.png",
+      "width": 1280,
+      "height": 720
+    }
+  ]
+}

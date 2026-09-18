@@ -202,7 +202,7 @@ namespace Sokoban
         public void ToggleCamera()
         {
             if (Session == null || NavigationLocked || Paused || LevelSelectionOpen) return;
-            Cameras.Toggle(); Board.SetTopDown(Cameras.TopDown); input.Clear(); NotifyChanged();
+            Cameras.Toggle(); input.Clear(); NotifyChanged();
         }
         public void SetPaused(bool value)
         { if (NavigationLocked) return; Paused = value; ApplyPresentationPause(); input.Clear(); NotifyChanged(); }

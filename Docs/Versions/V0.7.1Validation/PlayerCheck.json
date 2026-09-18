@@ -1,0 +1,10 @@
+{
+    "passed": true,
+    "error": "",
+    "resolutions": [
+        720,
+        1080
+    ],
+    "connections": 3,
+    "primary": "gate_F"
+}

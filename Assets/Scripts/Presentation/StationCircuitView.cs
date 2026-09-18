@@ -4,7 +4,6 @@ using System.Linq;
 using Sokoban.Domain;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Sokoban
 {
@@ -20,11 +19,9 @@ namespace Sokoban
         }
         private sealed class GateMark
         {
-            public GateDefinition definition;
-            public Transform passage;
+            public Transform target;
             public GameObject closed, open;
             public MeshRenderer status;
-            public Label label;
             public string[] sources;
             public MeshRenderer[] sourceLights;
             public GameObject held;
@@ -35,38 +32,19 @@ namespace Sokoban
             public GameObject off, on;
             public MeshRenderer terminal;
         }
-        private sealed class Label
-        {
-            public Transform target;
-            public string socketId, gateId;
-            public RectTransform panel;
-            public RectTransform leader;
-            public Text text;
-        }
-
         private readonly Dictionary<string, SocketMark> sockets = new Dictionary<string, SocketMark>();
         private readonly Dictionary<string, GateMark> gates = new Dictionary<string, GateMark>();
         private readonly List<Wire> wires = new List<Wire>();
-        private readonly List<Label> labels = new List<Label>();
-        private readonly List<Rect> labelRects = new List<Rect>();
-        private readonly List<Rect> protectedRects = new List<Rect>();
         private StationCircuitMesh graphics;
         private StationKitTheme theme;
-        private RectTransform canvasRoot;
         private CameraRig cameras;
         private BoardView board;
-        private PowerState lastPower;
-        private string focusedGate;
-        private string focusedSocket;
         public StationCircuitLayout Layout { get; private set; }
 
         public void Initialize(LevelDefinition level, StationKitTheme palette)
         {
             theme = palette; board = GetComponent<BoardView>();
             Layout = new StationCircuitLayout(level); graphics = new StationCircuitMesh(theme);
-            var obj = new GameObject("Circuit labels", typeof(RectTransform), typeof(Canvas)); obj.transform.SetParent(transform, false);
-            var canvas = obj.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 20;
-            canvasRoot = obj.GetComponent<RectTransform>();
         }
 
         public void BindCamera(CameraRig rig) { cameras = rig; }
@@ -77,15 +55,14 @@ namespace Sokoban
             foreach (var renderer in wrapper.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
             var root = new GameObject("Circuit socket").transform; root.SetParent(wrapper, false);
             graphics.Place(root, "Socket plate", graphics.Quad, new Vector3(0, .001f, 0), graphics.Surface, new Vector3(.93f, 1, .93f));
-            var connected = Layout.Connections.Where(c => c.SocketId == socket.id).Select(c => c.GateId).ToArray();
-            for (int i = 0; i < connected.Length; i++) AddIdentity(root, connected[i], i, connected.Length);
+            var primary = Layout.PrimaryGateFor(socket.id);
+            if (primary != null) AddIdentity(root, primary);
             if (socket.isGoal)
             {
                 graphics.Place(root, "Goal ring", graphics.Ring, new Vector3(0, .0022f, 0), graphics.Ink);
                 graphics.Place(root, "Goal corners", graphics.Corners, new Vector3(0, .0023f, 0), graphics.Ink);
             }
-            if (connected.Length > 0) graphics.Place(root, "Gate power plug", graphics.Plug, new Vector3(0, .0023f, 0),
-                connected.Length == 1 ? Connection(connected[0]) : graphics.Ink);
+            if (primary != null) graphics.Place(root, "Gate power plug", graphics.Plug, new Vector3(0, .0023f, 0), Connection(primary));
             graphics.Place(root, "Socket state outline", graphics.Quad, new Vector3(0, .0022f, -.441f), graphics.Idle, new Vector3(.24f, 1, .031f));
             graphics.Place(root, "Socket state well", graphics.Quad, new Vector3(0, .0023f, -.441f), graphics.Surface, new Vector3(.20f, 1, .015f));
             var fill = graphics.Place(root, "Socket state fill", graphics.Quad, new Vector3(0, .0025f, -.441f), graphics.Power, new Vector3(.20f, 1, .018f));
@@ -95,17 +72,16 @@ namespace Sokoban
 
         private Material Connection(string gateId) => graphics.Connection(theme, Layout.GateStyles[gateId]);
 
-        private void AddIdentity(Transform parent, string gateId, int slot, int count)
+        private void AddIdentity(Transform parent, string gateId)
         {
             var root = new GameObject("Connection " + gateId).transform; root.SetParent(parent, false);
-            float step = .70f / count, offset = (slot - (count - 1) / 2f) * step;
             for (int side = 0; side < 4; side++)
             {
                 var edge = new GameObject("Edge " + side).transform; edge.SetParent(root, false);
                 edge.localRotation = Quaternion.Euler(0, side * 90, 0);
-                graphics.Place(edge, "Connection colour", graphics.Quad, new Vector3(offset,.004f,.44f), Connection(gateId), new Vector3(step*.92f,1,.10f));
-                graphics.Place(edge, "Connection shape", graphics.Symbol(Layout.GateStyles[gateId]), new Vector3(offset,.0045f,.44f), graphics.Surface,
-                    new Vector3(Mathf.Min(.14f,step*.7f),1,.14f));
+                graphics.Place(edge, "Connection colour", graphics.Quad, new Vector3(0,.004f,.44f), Connection(gateId), new Vector3(.644f,1,.10f));
+                graphics.Place(edge, "Connection shape", graphics.Symbol(Layout.GateStyles[gateId]), new Vector3(0,.0045f,.44f), graphics.Surface,
+                    new Vector3(.14f,1,.14f));
             }
         }
 
@@ -137,9 +113,9 @@ namespace Sokoban
                 lights[i] = graphics.Place(passage, "Source powered " + sourceIds[i], graphics.Dot, new Vector3(x,.034f,.34f), graphics.Power, Vector3.one*.58f);
             }
             var held = graphics.Place(passage, "Occupied hold", graphics.Symbol(4), new Vector3(0,.034f,0), graphics.Held, new Vector3(.20f,1,.20f));
-            AddIdentity(passage, gate.id, 0, 1);
-            gates.Add(gate.id, new GateMark { definition = gate, passage = passage, closed = closed.gameObject, open = open,
-                status = status, sources = sourceIds, sourceLights = lights, held = held.gameObject, label = NewLabel(wrapper, null, gate.id) });
+            AddIdentity(passage, gate.id);
+            gates.Add(gate.id, new GateMark { target = wrapper, closed = closed.gameObject, open = open,
+                status = status, sources = sourceIds, sourceLights = lights, held = held.gameObject });
         }
 
         public void BuildWires()
@@ -183,7 +159,6 @@ namespace Sokoban
 
         public void Apply(PowerState power)
         {
-            lastPower = power;
             foreach (var pair in sockets) pair.Value.fill.enabled = power.Sockets[pair.Key];
             foreach (var pair in gates)
             {
@@ -197,133 +172,52 @@ namespace Sokoban
                 bool powered = power.Sockets[wire.connection.SocketId];
                 wire.off.SetActive(!powered); wire.on.SetActive(powered);
             }
-            UpdateGateText();
-        }
-
-        private void UpdateGateText()
-        {
-            if (lastPower == null) return;
-            foreach (var pair in gates)
-            {
-                var gate = pair.Value;
-                bool occupiedOpen = lastPower.OpenGates[pair.Key] && !lastPower.PoweredGates[pair.Key];
-                gate.label.text.text = (gate.definition.powerMode == "All" ? "全部" : "任一") + " · " +
-                    gate.sources.Count(id => lastPower.Sockets[id]) + "/" + gate.sources.Length;
-                if (occupiedOpen) gate.label.text.text += "\n占据保开";
-            }
-        }
-
-        public void SetTopDown(bool value) { UpdateGateText(); }
-
-        private Label NewLabel(Transform target, string socketId, string gateId)
-        {
-            var leaderObject = new GameObject("Label anchor", typeof(RectTransform), typeof(Image)); leaderObject.transform.SetParent(canvasRoot, false);
-            var leader = leaderObject.GetComponent<RectTransform>(); leader.anchorMin = leader.anchorMax = Vector2.zero; leader.pivot = new Vector2(0,.5f);
-            var line = leaderObject.GetComponent<Image>(); line.raycastTarget = false; line.color = new Color(.8f,.85f,.87f,.65f);
-            var panel = new GameObject((socketId ?? gateId) + " circuit label", typeof(RectTransform), typeof(Image));
-            var rect = panel.GetComponent<RectTransform>(); rect.SetParent(canvasRoot, false);
-            rect.anchorMin = rect.anchorMax = Vector2.zero;
-            var background = panel.GetComponent<Image>(); background.color = new Color(.045f, .065f, .085f, .92f); background.raycastTarget = false;
-            var child = new GameObject("Caption", typeof(RectTransform), typeof(Text)); child.transform.SetParent(rect, false);
-            var text = child.GetComponent<Text>(); text.font = theme.labelFont; text.fontSize = 18; text.color = new Color(.96f, .97f, .94f);
-            text.alignment = TextAnchor.MiddleCenter; text.raycastTarget = false;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap; text.verticalOverflow = VerticalWrapMode.Overflow;
-            text.rectTransform.anchorMin = Vector2.zero; text.rectTransform.anchorMax = Vector2.one;
-            text.rectTransform.offsetMin = new Vector2(5, 2); text.rectTransform.offsetMax = new Vector2(-5, -2);
-            var label = new Label { target = target, socketId = socketId, gateId = gateId, panel = rect, leader = leader, text = text };
-            labels.Add(label); return label;
         }
 
         private void LateUpdate()
         {
             if (!cameras || !cameras.Output) return;
-            var camera = cameras.Output; string focus = null, socketFocus = null; float nearest = float.MaxValue;
-            var mouse = Mouse.current;
+            string gateFocus = null, socketFocus = null;
+            float nearest = float.MaxValue;
             foreach (var socket in sockets.Values)
             {
-                var screen = camera.WorldToScreenPoint(socket.target.position);
-                float distance = cameras.TopDown && mouse != null ? Vector2.Distance(mouse.position.ReadValue(), screen) :
-                    Vector3.Distance(board.Robot.transform.position, socket.target.position) * 36;
-                if (screen.z > 0 && distance < 52 && distance < nearest)
-                { socketFocus = socket.definition.id; nearest = distance; }
+                float distance = FocusDistance(socket.target, false);
+                if (distance >= nearest) continue;
+                socketFocus = socket.definition.id; nearest = distance;
             }
-            labelRects.Clear(); protectedRects.Clear();
-            foreach (var label in labels) protectedRects.Add(ProjectBounds(camera, label.target.position + Vector3.up*.03f,
-                new Vector3(label.gateId == null ? .33f : .45f, 0, label.gateId == null ? .33f : .45f)));
-            foreach (var socket in sockets.Values) protectedRects.Add(ProjectBounds(camera,socket.target.position+Vector3.up*.03f,new Vector3(.46f,0,.46f)));
-            foreach (var crate in board.Crates.Values) protectedRects.Add(ProjectBounds(camera,crate.position+Vector3.up*.4f,new Vector3(.42f,.4f,.42f)));
-            foreach (var plate in board.Redirectors.Values) protectedRects.Add(ProjectBounds(camera,plate.transform.position+Vector3.up*.03f,new Vector3(.49f,0,.49f)));
-            protectedRects.Add(ProjectBounds(camera,board.Robot.transform.position+Vector3.up*.35f,new Vector3(.35f,.35f,.35f)));
-            int fontSize = Mathf.Clamp(Mathf.RoundToInt(Screen.height / 60f), 14, 20);
-            foreach (var label in labels)
+            foreach (var gate in gates)
             {
-                var world = label.target.position + (label.gateId != null && !cameras.TopDown ? Vector3.up * 1.72f :
-                    new Vector3(0, .06f, label.gateId != null ? .67f : .55f));
-                var screen = camera.WorldToScreenPoint(world);
-                bool visible = screen.z > 0 && screen.x > 0 && screen.x < Screen.width && screen.y > 0 && screen.y < Screen.height;
-                if (visible && !cameras.TopDown && Physics.Linecast(camera.transform.position, world, out var hit, 1))
-                    visible = hit.transform == label.target || hit.transform.IsChildOf(label.target);
-                label.panel.gameObject.SetActive(visible); label.leader.gameObject.SetActive(false); if (!visible) continue;
-                label.text.fontSize = fontSize;
-                float width = Mathf.Clamp(label.text.preferredWidth + 12, 26, Mathf.Min(240, Screen.width * .35f));
-                label.panel.sizeDelta = new Vector2(width, 100);
-                float height = label.text.preferredHeight + 6;
-                label.panel.sizeDelta = new Vector2(width, height);
-                // HUD lives above this canvas. Keep labels out of its header/message and bottom shortcut bands.
-                var tile = ProjectBounds(camera, label.target.position+Vector3.up*.03f,new Vector3(.48f,0,.48f));
-                var size = new Vector2(width,height);
-                var preferred = new Vector2(screen.x,screen.y);
-                var position = PositionLabel(preferred, size, tile);
-                var bounds = new Rect(position-size/2,size);
-                label.panel.anchoredPosition = position; labelRects.Add(bounds);
-                if ((position-preferred).sqrMagnitude > 16)
-                {
-                    var direction = (position-tile.center).normalized;
-                    float fromDistance = Mathf.Min(tile.width/2/Mathf.Max(.001f,Mathf.Abs(direction.x)),tile.height/2/Mathf.Max(.001f,Mathf.Abs(direction.y)));
-                    float toDistance = Mathf.Min(width/2/Mathf.Max(.001f,Mathf.Abs(direction.x)),height/2/Mathf.Max(.001f,Mathf.Abs(direction.y)));
-                    var start = tile.center+direction*fromDistance; var end = position-direction*toDistance;
-                    if (Vector2.Dot(end-start,direction)>2)
-                    {
-                        label.leader.gameObject.SetActive(true); label.leader.anchoredPosition=start;
-                        label.leader.sizeDelta=new Vector2(Vector2.Distance(start,end),1);
-                        label.leader.localRotation=Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg);
-                    }
-                }
-                float distance = cameras.TopDown && mouse != null ? Vector2.Distance(mouse.position.ReadValue(), position) :
-                    Vector3.Distance(board.Robot.transform.position, label.target.position) * 22;
-                if (distance < 65 && distance < nearest)
-                {
-                    var id = label.gateId ?? Layout.Connections.FirstOrDefault(c => c.SocketId == label.socketId)?.GateId;
-                    if (id != null) { focus = id; socketFocus = label.socketId; nearest = distance; }
-                }
+                float distance = FocusDistance(gate.Value.target, true);
+                if (distance >= nearest) continue;
+                gateFocus = gate.Key; socketFocus = null; nearest = distance;
             }
-            if (focusedGate != focus || focusedSocket != socketFocus) { focusedGate = focus; focusedSocket = socketFocus; UpdateGateText(); }
             foreach (var wire in wires)
-                wire.off.transform.parent.gameObject.SetActive(focusedGate == wire.connection.GateId ||
-                    focusedSocket == wire.connection.SocketId);
+                wire.off.transform.parent.gameObject.SetActive(gateFocus == wire.connection.GateId || socketFocus == wire.connection.SocketId);
         }
 
-        private Vector2 PositionLabel(Vector2 preferred, Vector2 size, Rect tile)
+        // Inspect the device itself. Wire discovery must not depend on a text label.
+        private float FocusDistance(Transform target, bool gate)
         {
-            var safe = new Rect(6,Screen.height*.17f,Screen.width-12,Screen.height*.62f);
-            var candidates = new List<Vector2> { preferred, new Vector2(tile.center.x,tile.yMax+size.y/2+7),
-                new Vector2(tile.xMax+size.x/2+7,tile.center.y), new Vector2(tile.xMin-size.x/2-7,tile.center.y),
-                new Vector2(tile.center.x,tile.yMin-size.y/2-7) };
-            // Adjacent crates, gates and turn plates may occupy all four direct
-            // neighbours. Try nearby corners before falling back over a glyph.
-            var offset = (tile.size + size) / 2 + Vector2.one * 7;
-            for (int radius = 1; radius <= 2; radius++)
-                foreach (var direction in new[] { new Vector2(-1,1), new Vector2(1,1), new Vector2(-1,-1), new Vector2(1,-1) })
-                    candidates.Add(tile.center + Vector2.Scale(offset, direction) * radius);
-            foreach (var point in candidates)
+            var camera = cameras.Output;
+            var world = target.position + Vector3.up * (gate && !cameras.TopDown ? 1.35f : .06f);
+            var screen = camera.WorldToScreenPoint(world);
+            if (screen.z <= 0 || screen.x < 0 || screen.x > Screen.width || screen.y < 0 || screen.y > Screen.height)
+                return float.MaxValue;
+            if (cameras.TopDown)
             {
-                var rect = new Rect(point-size/2,size);
-                if (rect.xMin < safe.xMin || rect.xMax > safe.xMax || rect.yMin < safe.yMin || rect.yMax > safe.yMax) continue;
-                if (labelRects.Any(r=>r.Overlaps(rect)) || protectedRects.Any(r=>r.Overlaps(rect))) continue;
-                return point;
+                var mouse = Mouse.current;
+                if (mouse == null) return float.MaxValue;
+                var pointer = mouse.position.ReadValue();
+                var bounds = ProjectBounds(camera, target.position + Vector3.up * .03f, new Vector3(.48f, 0, .48f));
+                float margin = Mathf.Max(5, Screen.height / 108f);
+                bounds.xMin -= margin; bounds.xMax += margin; bounds.yMin -= margin; bounds.yMax += margin;
+                return bounds.Contains(pointer) ? Vector2.Distance(pointer, screen) : float.MaxValue;
             }
-            return new Vector2(Mathf.Clamp(preferred.x,safe.xMin+size.x/2,safe.xMax-size.x/2),
-                Mathf.Clamp(preferred.y,safe.yMin+size.y/2,safe.yMax-size.y/2));
+            float distance = Vector3.Distance(board.Robot.transform.position, target.position);
+            if (distance > (gate ? 2.9f : 1.45f)) return float.MaxValue;
+            if (Physics.Linecast(camera.transform.position, world, out var hit, 1) &&
+                hit.transform != target && !hit.transform.IsChildOf(target)) return float.MaxValue;
+            return distance;
         }
 
         private static Rect ProjectBounds(Camera camera, Vector3 center, Vector3 extent)

@@ -289,6 +289,28 @@ namespace Sokoban.Tests
             Assert.That(runner.Session.UndoCount, Is.Zero);
         }
 
+        [UnityTest] public IEnumerator MenuRemovesFirstLevelShortcutButKeepsContinueSelectionAndSaveRetry()
+        {
+            var menu = Page<MainMenuPage>();
+            Assert.That(menu.transform.Find("Content/Actions/NewGame"), Is.Null);
+            Assert.That(menu.transform.Find("Content/Actions/Start/Label").GetComponent<Text>().text, Is.EqualTo("开始游戏"));
+            var level = LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L07").text);
+            bool failSave = true;
+            runner.Progress = new PlayerProgress(() => null, _ => { if (failSave) throw new System.IO.IOException("Fixture"); });
+            runner.Progress.Complete(level, SolutionRecord.ReplayCommands(level, "SEENSEENNN"));
+            runner.UI.Refresh(); yield return null;
+            Assert.That(menu.transform.Find("Content/Actions/NewGame"), Is.Null);
+            Assert.That(menu.transform.Find("Content/Actions/Start/Label").GetComponent<Text>().text, Is.EqualTo("继续游戏"));
+            Assert.That(menu.transform.Find("Content/Actions/Retry").gameObject.activeSelf, Is.True);
+            failSave = false; yield return Click<MainMenuPage>("Content/Actions/Retry");
+            Assert.That(menu.transform.Find("Content/Actions/Retry").gameObject.activeSelf, Is.False);
+            yield return Click<MainMenuPage>("Content/Actions/Levels");
+            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level01");
+            yield return Click<LevelSelectPage>("Content/Enter"); yield return WaitForTransition();
+            Assert.That(runner.CampaignIndex, Is.Zero);
+            Assert.That(runner.Progress.Best(level).moves, Is.EqualTo(10));
+        }
+
         [UnityTest] public IEnumerator MainMenuHoverDoesNotFlashDarkerThanItsEndpoints()
         { yield return HoverDoesNotFlash(Page<MainMenuPage>().transform.Find("Content/Actions/Settings").GetComponent<Button>()); }
 

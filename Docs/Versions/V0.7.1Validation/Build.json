@@ -1,0 +1,12 @@
+{
+  "job_id": "build-9fb5da9fdb",
+  "result": "succeeded",
+  "platform": "StandaloneWindows64",
+  "output_path": "Builds/V0.7.1/Windows/Sokoban.exe",
+  "started_at": "2026-09-18T19:56:41.1025684Z",
+  "duration_seconds": 22.082839999999997,
+  "completed_at": "2026-09-18T19:57:03.1854084Z",
+  "total_size_mb": 87.75,
+  "errors": 0,
+  "warnings": 0
+}

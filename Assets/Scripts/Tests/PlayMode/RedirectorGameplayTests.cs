@@ -99,7 +99,7 @@ namespace Sokoban.Tests
             Assert.That(Resources.FindObjectsOfTypeAll<Mesh>().Count(m => m.name == "Fixed redirector arrows"), Is.EqualTo(2));
         }
 
-        [UnityTest] public IEnumerator CircuitLabelsAvoidArrowPlatesBeforeAndAfterPowerHandoff()
+        [UnityTest] public IEnumerator CircuitTextIsAbsentBeforeAndAfterPowerHandoff()
         {
             foreach (int prefix in new[] { 0, 35 })
             {
@@ -109,18 +109,9 @@ namespace Sokoban.Tests
                     Assert.That(runner.Session.Move((Direction)Enum.Parse(typeof(Direction), command.ToString())).Accepted, Is.True);
                 runner.Board.Restore(runner.Session); runner.Cameras.Snap();
                 yield return new WaitForSeconds(.4f);
-                foreach (var plate in runner.Board.Redirectors.Values)
-                {
-                    var points = new[] { new Vector3(-.49f,.03f,-.49f), new Vector3(.49f,.03f,.49f) }
-                        .Select(p => runner.Cameras.Output.WorldToScreenPoint(plate.transform.position + p)).ToArray();
-                    var protectedRect = Rect.MinMaxRect(points.Min(p => p.x), points.Min(p => p.y), points.Max(p => p.x), points.Max(p => p.y));
-                    foreach (var caption in runner.Board.Circuits.GetComponentsInChildren<UnityEngine.UI.Text>())
-                    {
-                        var corners = new Vector3[4]; ((RectTransform)caption.transform.parent).GetWorldCorners(corners);
-                        var rect = Rect.MinMaxRect(corners.Min(p => p.x), corners.Min(p => p.y), corners.Max(p => p.x), corners.Max(p => p.y));
-                        Assert.That(rect.Overlaps(protectedRect), Is.False, caption.text + " covers " + plate.name);
-                    }
-                }
+                Assert.That(runner.Board.Circuits.GetComponentsInChildren<UnityEngine.UI.Text>(true), Is.Empty);
+                Assert.That(runner.Board.Circuits.GetComponentsInChildren<Canvas>(true), Is.Empty);
+                Assert.That(runner.Board.Redirectors.Count, Is.EqualTo(2));
             }
         }
     }

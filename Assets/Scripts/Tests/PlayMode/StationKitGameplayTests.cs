@@ -34,7 +34,6 @@ namespace Sokoban.Tests
                 sockets=new[]{new SocketDefinition{id="goal",x=6,z=3,isGoal=true}},gates=Array.Empty<GateDefinition>(),decorations=Array.Empty<DecorationDefinition>() };
         }
         private bool SocketLit(string id) => runner.Board.transform.Find(id+"/Circuit socket/Socket state fill").GetComponent<Renderer>().enabled;
-        private Text GateCaption(string id) => runner.Board.transform.Find("Circuit labels/"+id+" circuit label/Caption").GetComponent<Text>();
         private static Transform Lower(StationGateView gate) => gate.transform.Find("PowerGateRoot/MovingParts/LowerPanel");
         private static IEnumerator WaitFor(Func<bool> predicate)
         {
@@ -85,21 +84,23 @@ namespace Sokoban.Tests
             Assert.That(SocketLit("b"),Is.False);
             foreach(var gate in runner.Board.Gates.Values)
             {
-                string caption=GateCaption(gate.name).text;
                 Assert.That(gate.transform.Find("Circuit passage/Source powered a").GetComponent<Renderer>().enabled,Is.True);
                 if(gate.name!="shared") Assert.That(gate.transform.Find("Circuit passage/Source powered b").GetComponent<Renderer>().enabled,Is.False);
             }
-            Assert.That(GateCaption("any").text,Is.EqualTo("任一 · 1/3"));
-            Assert.That(GateCaption("all").text,Is.EqualTo("全部 · 1/2"));
+            Assert.That(runner.Board.Circuits.GetComponentsInChildren<Text>(true), Is.Empty);
             Assert.That(runner.Board.Circuits.Layout.GatesFor("a").Length,Is.EqualTo(3));
             var identities = new HashSet<Material>();
             foreach (var gate in runner.Board.Gates.Values)
             {
-                var colour=runner.Board.transform.Find("a/Circuit socket/Connection "+gate.name+"/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial;
+                var colour=runner.Board.transform.Find("Circuit a to "+gate.name+"/Unpowered branch").GetComponent<Renderer>().sharedMaterial;
                 Assert.That(gate.transform.Find("Circuit passage/Gate left post").GetComponent<Renderer>().sharedMaterial,Is.SameAs(colour));
                 identities.Add(colour);
             }
-            Assert.That(identities.Count,Is.EqualTo(3),"One source retains every independent gate identity.");
+            Assert.That(identities.Count,Is.EqualTo(3),"Every actual connection retains its gate colour on the wire.");
+            Assert.That(runner.Board.Circuits.Layout.PrimaryGateFor("a"), Is.EqualTo("shared"));
+            Assert.That(runner.Board.transform.Find("a/Circuit socket/Connection all"), Is.Null);
+            Assert.That(runner.Board.transform.Find("a/Circuit socket/Connection any"), Is.Null);
+            Assert.That(runner.Board.transform.Find("a/Circuit socket/Connection shared"), Is.Not.Null);
             var materials=runner.Board.Crates.Values.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).SelectMany(r=>r.sharedMaterials);
             Assert.That(materials.Any(m=>m.name.Contains("LinkAccent") || m.name.Contains("StatusEmission")),Is.False);
         }
@@ -167,8 +168,8 @@ namespace Sokoban.Tests
             var level=LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L06").text); runner.LoadLevel(level); yield return null;
             var theme=Resources.Load<StationKitTheme>("configs/StationKitTheme");
             var originalColor=theme.labelMaterial.GetColor("_BaseColor");
-            Func<Dictionary<string,string>> identity=()=>runner.Board.Circuits.Layout.Connections.ToDictionary(c=>c.SocketId+"/"+c.GateId,
-                c=>runner.Board.transform.Find(c.SocketId+"/Circuit socket/Connection "+c.GateId+"/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial.GetColor("_BaseColor").ToString());
+            Func<Dictionary<string,string>> identity=()=>runner.Definition.sockets.Where(s=>runner.Board.Circuits.Layout.PrimaryGateFor(s.id)!=null).ToDictionary(s=>s.id,
+                s=>runner.Board.transform.Find(s.id+"/Circuit socket/Connection "+runner.Board.Circuits.Layout.PrimaryGateFor(s.id)+"/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial.GetColor("_BaseColor").ToString());
             var before=identity(); var gateNumbers=runner.Board.Circuits.Layout.GateLabels.ToDictionary(p=>p.Key,p=>p.Value);
             level.sockets=level.sockets.Reverse().ToArray(); foreach(var g in level.gates) g.sourceSocketIds=g.sourceSocketIds.Reverse().ToArray();
             runner.LoadLevel(level); yield return null;

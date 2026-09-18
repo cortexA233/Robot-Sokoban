@@ -1,0 +1,128 @@
+// Temporary verification component compiled only in WindowsValidation.
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using KToolkit;
+using Sokoban.Domain;
+using Sokoban.UI;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
+
+namespace Sokoban
+{
+    public sealed class V071Check : MonoBehaviour
+    {
+        [Serializable] private sealed class Report { public bool passed; public string error; public int[] resolutions; public int connections; public string primary; }
+        private readonly string output = "C:/recent_project/Sokoban_3D_Test/Docs/Versions/V0.7.1Validation";
+        private readonly Report report = new Report { resolutions = new[] { 720, 1080 } };
+        private LevelRunner runner;
+        private Mouse mouse;
+        private bool finished;
+        private float deadline;
+        [RuntimeInitializeOnLoadMethod]
+        private static void Boot()
+        {
+            if (!Application.isEditor) DontDestroyOnLoad(new GameObject("Temporary visual verification", typeof(V071Check)));
+        }
+        private IEnumerator Start()
+        {
+            Directory.CreateDirectory(output); deadline = Time.realtimeSinceStartup + 90;
+            Application.runInBackground = true;
+            InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            mouse = InputSystem.AddDevice<Mouse>();
+            var stack = new Stack<IEnumerator>(); stack.Push(Exercise());
+            while (stack.Count > 0)
+            {
+                bool more = false; object current = null; Exception error = null;
+                try { more = stack.Peek().MoveNext(); if (more) current = stack.Peek().Current; }
+                catch (Exception e) { error = e; }
+                if (error != null) { Finish(false, error.ToString()); yield break; }
+                if (!more) stack.Pop(); else if (current is IEnumerator child) stack.Push(child); else yield return current;
+            }
+            Finish(true, "");
+        }
+        private void Update() { if (!finished && deadline > 0 && Time.realtimeSinceStartup > deadline) Finish(false, "Timed out"); }
+        private void Finish(bool passed, string error)
+        {
+            if (finished) return; finished = true; report.passed = passed; report.error = error;
+            if (mouse != null) InputSystem.RemoveDevice(mouse);
+            File.WriteAllText(Path.Combine(output, "PlayerCheck.json"), JsonUtility.ToJson(report, true));
+            Application.Quit(passed ? 0 : 1);
+        }
+        private static void Require(bool yes, string reason) { if (!yes) throw new InvalidOperationException(reason); }
+        private T Page<T>() where T : KUIBase => (T)KUIManager.instance.GetFirstUIWithType<T>();
+        private IEnumerator Click<T>(string path) where T : KUIBase
+        {
+            yield return null; Canvas.ForceUpdateCanvases();
+            var button = Page<T>().transform.Find(path).GetComponent<Button>(); var rect = (RectTransform)button.transform;
+            var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left,
+                position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center)) };
+            var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
+            Require(button.IsInteractable() && hits.Count > 0 && hits[0].gameObject.GetComponentInParent<Button>() == button, "Button obscured: " + path);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerDownHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerClickHandler);
+            yield return null;
+        }
+        private IEnumerator Capture(string name)
+        {
+            yield return new WaitForSecondsRealtime(.3f); yield return new WaitForEndOfFrame();
+            ScreenCapture.CaptureScreenshot(Path.Combine(output, name + ".png"));
+            yield return new WaitForEndOfFrame(); yield return null;
+        }
+        private void InspectCircuit()
+        {
+            var circuit = runner.Board.Circuits; report.primary = circuit.Layout.PrimaryGateFor("socket_a"); report.connections = circuit.Layout.Connections.Count;
+            Require(report.primary == "gate_F" && report.connections == 3, "Incorrect identity or connection count");
+            Require(circuit.GetComponentsInChildren<Text>(true).Length == 0 && circuit.GetComponentsInChildren<Canvas>(true).Length == 0, "Gate text survived");
+            var root = runner.Board.transform.Find("socket_a/Circuit socket");
+            Require(root.Find("Connection gate_D") == null, "Blue identity remains on the orange socket");
+            var orange = runner.Board.Gates["gate_F"].transform.Find("Circuit passage/Gate left post").GetComponent<Renderer>().sharedMaterial;
+            for (int side = 0; side < 4; side++) Require(root.Find("Connection gate_F/Edge " + side + "/Connection colour").GetComponent<Renderer>().sharedMaterial == orange, "Frame colour mismatch");
+        }
+        private IEnumerator Exercise()
+        {
+            yield return new WaitForSecondsRealtime(.5f);
+            runner = FindObjectOfType<LevelRunner>(); Require(runner && runner.Error == null, "Bootstrap error");
+            runner.Progress = new PlayerProgress(() => null, _ => { }); runner.UI.Refresh();
+            foreach (int height in report.resolutions)
+            {
+                Screen.SetResolution(height == 720 ? 1280 : 1920, height, FullScreenMode.Windowed);
+                yield return new WaitForSecondsRealtime(.5f);
+                Require(Screen.height == height, "Resolution did not change");
+                if (runner.Session != null) { runner.UI.ReturnToMainMenu(); while (runner.NavigationLocked) yield return null; }
+                var menu = Page<MainMenuPage>(); Require(menu.transform.Find("Content/Actions/NewGame") == null, "Removed menu item survived");
+                yield return Capture("PlayerMenu" + height);
+                yield return Click<MainMenuPage>("Content/Actions/Levels");
+                var row = Page<LevelSelectPage>().transform.Find("Content/List/Viewport/Rows/Level09").GetComponent<Button>(); row.Select();
+                yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level09");
+                yield return Click<LevelSelectPage>("Content/Enter"); while (runner.NavigationLocked) yield return null;
+                Require(runner.Definition.id == "L12", "Wrong level"); InspectCircuit();
+                InputSystem.QueueStateEvent(mouse, new MouseState { position = new Vector2(2, 2) });
+                yield return Capture("PlayerL12Top" + height);
+                var point = runner.Cameras.Output.WorldToScreenPoint(runner.Board.transform.Find("socket_a").position);
+                float end = Time.realtimeSinceStartup + .3f;
+                while (Time.realtimeSinceStartup < end) { InputSystem.QueueStateEvent(mouse, new MouseState { position = point }); yield return null; }
+                Require(runner.Board.transform.Find("Circuit socket_a to gate_D").gameObject.activeSelf && runner.Board.transform.Find("Circuit socket_a to gate_F").gameObject.activeSelf, "Socket inspection lost a connection");
+                yield return Capture("PlayerL12Links" + height);
+                InputSystem.QueueStateEvent(mouse, new MouseState { position = new Vector2(2, 2) });
+                var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/L12.solution").text);
+                foreach (char c in proof.commands.Take(35)) Require(runner.Session.Move((Direction)Enum.Parse(typeof(Direction), c.ToString())).Accepted, "Reference step rejected");
+                runner.Board.Restore(runner.Session); runner.Cameras.Snap(); runner.UI.Refresh(); InspectCircuit();
+                Require(runner.Board.Gates.Values.All(g => g.IsPowered), "Power handoff changed");
+                yield return Capture("PlayerL12Powered" + height);
+                runner.ToggleCamera(); var settings = runner.Cameras.Capture(); settings.yaw = 0; settings.pitch = 60; settings.distance = 6; runner.Cameras.Restore(settings);
+                yield return new WaitForSecondsRealtime(.5f); InspectCircuit();
+                yield return Capture("PlayerL12Third" + height);
+                yield return Click<HudPage>("Header/Pause"); yield return Click<PausePage>("Content/Menu"); while (runner.NavigationLocked) yield return null;
+                Require(Page<MainMenuPage>().transform.Find("Content/Actions/Start/Label").GetComponent<Text>().text == "继续游戏", "Continue flow regressed");
+            }
+        }
+    }
+}

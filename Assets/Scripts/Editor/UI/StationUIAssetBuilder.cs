@@ -123,10 +123,10 @@ namespace Sokoban.Editor
             var layout = actions.gameObject.AddComponent<VerticalLayoutGroup>();
             layout.spacing = 12; layout.childControlWidth = layout.childControlHeight = true;
             layout.childForceExpandWidth = true; layout.childForceExpandHeight = false;
-            foreach (string name in new[] { "Start", "Levels", "Settings", "Help", "NewGame", "Retry", "Quit" })
+            foreach (string name in new[] { "Start", "Levels", "Settings", "Help", "Retry", "Quit" })
             {
                 string text = name == "Start" ? "开始游戏" : name == "Levels" ? "选择关卡" : name == "Settings" ? "设置" :
-                    name == "Help" ? "操作说明" : name == "NewGame" ? "从第一关开始" : name == "Retry" ? "重试保存进度" : "退出";
+                    name == "Help" ? "操作说明" : name == "Retry" ? "重试保存进度" : "退出";
                 var button = Button(actions, name, text, 0, 0, 480, 64, name == "Start");
                 button.gameObject.AddComponent<LayoutElement>().preferredHeight = name == "Start" ? 76 : 64;
             }

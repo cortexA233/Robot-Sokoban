@@ -21,6 +21,7 @@ namespace Sokoban.Tests
             foreach (var gate in level.gates) gate.sourceSocketIds = gate.sourceSocketIds.Reverse().ToArray();
             var after = new StationCircuitLayout(level);
             CollectionAssert.AreEquivalent(before.GateLabels, after.GateLabels);
+            foreach (var socket in level.sockets) Assert.That(after.PrimaryGateFor(socket.id), Is.EqualTo(before.PrimaryGateFor(socket.id)));
             Assert.That(after.GatesFor("socket_a").Length, Is.EqualTo(2));
             Assert.That(after.GatesFor("socket_b"), Is.Empty, "A goal alone must not become a gate source.");
             for (int i = 0; i < before.Connections.Count; i++)
@@ -66,6 +67,34 @@ namespace Sokoban.Tests
             var layout = new StationCircuitLayout(level);
             Assert.That(layout.GatesFor("socket_s"), Is.EqualTo(new[] { "G1" }));
             Assert.That(layout.Connections.All(c=>c.Points.Length==0), Is.True);
+        }
+
+        [Test] public void NinthLevelHasOneOrangeSocketIdentityAndAllOriginalConnections()
+        {
+            var level = LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L12").text);
+            string hash = LevelJson.Hash(level);
+            var layout = new StationCircuitLayout(level);
+            Assert.That(layout.PrimaryGateFor("socket_a"), Is.EqualTo("gate_F"));
+            Assert.That(layout.GateStyles["gate_F"], Is.EqualTo(1));
+            Assert.That(layout.PrimaryGateFor("socket_s"), Is.EqualTo("gate_D"));
+            Assert.That(layout.PrimaryGateFor("socket_b"), Is.Null);
+            CollectionAssert.AreEquivalent(new[] { "socket_a/gate_F", "socket_a/gate_D", "socket_s/gate_D" },
+                layout.Connections.Select(c => c.SocketId + "/" + c.GateId));
+            Assert.That(LevelJson.Hash(level), Is.EqualTo(hash));
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void PrimaryIdentityUsesStableIdToBreakTies(bool exclusive)
+        {
+            var level = Level();
+            var a = level.gates[0].Copy(); a.id = "a_gate";
+            var z = a.Copy(); z.id = "z_gate"; z.x = 1;
+            a.sourceSocketIds = z.sourceSocketIds = exclusive ? new[] { "socket_a" } : new[] { "socket_a", "socket_s" };
+            level.gates = new[] { z, a };
+            Assert.That(new StationCircuitLayout(level).PrimaryGateFor("socket_a"), Is.EqualTo("a_gate"));
+            level.gates = level.gates.Reverse().ToArray();
+            foreach (var gate in level.gates) gate.sourceSocketIds = gate.sourceSocketIds.Reverse().ToArray();
+            Assert.That(new StationCircuitLayout(level).PrimaryGateFor("socket_a"), Is.EqualTo("a_gate"));
         }
     }
 }

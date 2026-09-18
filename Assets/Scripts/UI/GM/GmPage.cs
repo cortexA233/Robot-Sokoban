@@ -45,7 +45,7 @@ namespace Sokoban.UI
             Bind("Place", Place); Bind("Swap", Swap); Bind("Rotate", Rotate);
             Bind("Pick", () => { Picking = !Picking; status.text = Picking ? "点击面板外的棋盘格；Esc 取消。" : "点选已取消。"; });
             Bind("Undo", runner.Undo); Bind("Restart", runner.Restart);
-            Bind("View", () => { runner.Cameras?.Toggle(); if (runner.Board) runner.Board.SetTopDown(runner.Cameras.TopDown); });
+            Bind("View", () => { runner.Cameras?.Toggle(); });
             Bind("Load", () =>
             {
                 if (!int.TryParse(Find<InputField>("LevelIndex").text, out int index)) { status.text = "请输入关卡序号。"; return; }

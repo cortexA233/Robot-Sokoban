@@ -21,6 +21,7 @@ namespace Sokoban
         public IReadOnlyDictionary<string, string> GateLabels { get; }
         public IReadOnlyDictionary<string, int> GateStyles { get; }
         public IReadOnlyList<Connection> Connections { get; }
+        private readonly Dictionary<string, string> primaryGates = new Dictionary<string, string>(StringComparer.Ordinal);
 
         public StationCircuitLayout(LevelDefinition level)
         {
@@ -47,7 +48,17 @@ namespace Sokoban
             GateLabels = labels;
             GateStyles = styles;
             Connections = connections.AsReadOnly();
+            foreach (var socket in level.sockets)
+            {
+                var primary = level.gates.Where(g => g.sourceSocketIds.Contains(socket.id))
+                    .OrderBy(g => g.sourceSocketIds.Length == 1 ? 0 : 1)
+                    .ThenBy(g => g.id, StringComparer.Ordinal).FirstOrDefault();
+                if (primary != null) primaryGates.Add(socket.id, primary.id);
+            }
         }
+
+        // The frame expresses one stable identity; Connections retains every powered gate.
+        public string PrimaryGateFor(string socketId) => primaryGates.TryGetValue(socketId, out var id) ? id : null;
 
         public string[] GatesFor(string socketId) => Connections.Where(c => c.SocketId == socketId).Select(c => GateLabels[c.GateId]).ToArray();
 
