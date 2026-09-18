@@ -1,0 +1,24 @@
+{
+  "diagnosticIncludedInMainPlayer": false,
+  "mouseChecks": [
+    "Main menu Start enters L04 in overhead view",
+    "HUD View enters third person"
+  ],
+  "scene": "Assets/Scenes/Bootstrap.unity",
+  "standaloneInputChecks": [
+    "V050_CHECK default=True, ortho=True",
+    "V050_CHECK key=V, top=False, ortho=False, paused=False, cursor=Locked, sameSession=True, moves=0, pushes=0",
+    "V050_CHECK key=V, top=True, ortho=True, paused=False, cursor=None, sameSession=True, moves=0, pushes=0",
+    "V050_CHECK key=Escape, top=True, ortho=True, paused=True, cursor=None, sameSession=True, moves=0, pushes=0",
+    "V050_CHECK key=Escape, top=True, ortho=True, paused=False, cursor=None, sameSession=True, moves=0, pushes=0",
+    "V050_CHECK done"
+  ],
+  "renderSize": "1280x720",
+  "inputMethod": "Temporary standalone validation build queues V and Escape states through Input System for 0.1 seconds after navigation completes; LevelRunner reads them normally.",
+  "nativeKeyboardAutomation": "Windows automation key injection did not produce a V press in the observed control; it is not counted as physical-keyboard verification.",
+  "runtimeErrors": 0,
+  "mainPlayer": "Builds/V0.5.0/Windows/Sokoban.exe",
+  "physicalKeyboardConfirmation": "Not received",
+  "mainRuntimeDllSha256": "C98800050AB284E5AE0AA9DB99C7D2B1AF3D901FE691BB7A752075CB9D1CEB0E",
+  "inputProbeMarkerAbsent": true
+}

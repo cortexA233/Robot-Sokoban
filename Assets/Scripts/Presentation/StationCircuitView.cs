@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Sokoban
 {
-    /// <summary>Readable socket roles, circuit branches and camera-facing labels. Consumes the rule engine's three power signals.</summary>
+    /// <summary>Socket roles and persistent connection identities, with independent power and passage signals.</summary>
     [DefaultExecutionOrder(210)]
     public sealed class StationCircuitView : MonoBehaviour
     {
@@ -16,6 +16,7 @@ namespace Sokoban
         {
             public SocketDefinition definition;
             public MeshRenderer fill;
+            public Transform target;
         }
         private sealed class GateMark
         {
@@ -25,6 +26,8 @@ namespace Sokoban
             public MeshRenderer status;
             public Label label;
             public string[] sources;
+            public MeshRenderer[] sourceLights;
+            public GameObject held;
         }
         private sealed class Wire
         {
@@ -43,7 +46,6 @@ namespace Sokoban
 
         private readonly Dictionary<string, SocketMark> sockets = new Dictionary<string, SocketMark>();
         private readonly Dictionary<string, GateMark> gates = new Dictionary<string, GateMark>();
-        private readonly Dictionary<string, string> sourceLabels = new Dictionary<string, string>();
         private readonly List<Wire> wires = new List<Wire>();
         private readonly List<Label> labels = new List<Label>();
         private readonly List<Rect> labelRects = new List<Rect>();
@@ -62,10 +64,6 @@ namespace Sokoban
         {
             theme = palette; board = GetComponent<BoardView>();
             Layout = new StationCircuitLayout(level); graphics = new StationCircuitMesh(theme);
-            foreach (var socket in level.sockets)
-            {
-                theme.Style(level.id, socket.id, out string label); sourceLabels.Add(socket.id, label);
-            }
             var obj = new GameObject("Circuit labels", typeof(RectTransform), typeof(Canvas)); obj.transform.SetParent(transform, false);
             var canvas = obj.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 20;
             canvasRoot = obj.GetComponent<RectTransform>();
@@ -79,20 +77,36 @@ namespace Sokoban
             foreach (var renderer in wrapper.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
             var root = new GameObject("Circuit socket").transform; root.SetParent(wrapper, false);
             graphics.Place(root, "Socket plate", graphics.Quad, new Vector3(0, .001f, 0), graphics.Surface, new Vector3(.93f, 1, .93f));
-            var connected = Layout.GatesFor(socket.id);
+            var connected = Layout.Connections.Where(c => c.SocketId == socket.id).Select(c => c.GateId).ToArray();
+            for (int i = 0; i < connected.Length; i++) AddIdentity(root, connected[i], i, connected.Length);
             if (socket.isGoal)
             {
                 graphics.Place(root, "Goal ring", graphics.Ring, new Vector3(0, .0022f, 0), graphics.Ink);
                 graphics.Place(root, "Goal corners", graphics.Corners, new Vector3(0, .0023f, 0), graphics.Ink);
             }
-            if (connected.Length > 0) graphics.Place(root, "Gate power plug", graphics.Plug, new Vector3(0, .0023f, 0), graphics.Ink);
+            if (connected.Length > 0) graphics.Place(root, "Gate power plug", graphics.Plug, new Vector3(0, .0023f, 0),
+                connected.Length == 1 ? Connection(connected[0]) : graphics.Ink);
             graphics.Place(root, "Socket state outline", graphics.Quad, new Vector3(0, .0022f, -.441f), graphics.Idle, new Vector3(.24f, 1, .031f));
             graphics.Place(root, "Socket state well", graphics.Quad, new Vector3(0, .0023f, -.441f), graphics.Surface, new Vector3(.20f, 1, .015f));
             var fill = graphics.Place(root, "Socket state fill", graphics.Quad, new Vector3(0, .0025f, -.441f), graphics.Power, new Vector3(.20f, 1, .018f));
             fill.enabled = false;
-            sockets.Add(socket.id, new SocketMark { definition = socket, fill = fill });
-            var caption = sourceLabels[socket.id] + (connected.Length == 0 ? "" : " · " + string.Join(" / ", connected));
-            var label = NewLabel(wrapper, socket.id, null); label.text.text = caption;
+            sockets.Add(socket.id, new SocketMark { definition = socket, fill = fill, target = wrapper });
+        }
+
+        private Material Connection(string gateId) => graphics.Connection(theme, Layout.GateStyles[gateId]);
+
+        private void AddIdentity(Transform parent, string gateId, int slot, int count)
+        {
+            var root = new GameObject("Connection " + gateId).transform; root.SetParent(parent, false);
+            float step = .70f / count, offset = (slot - (count - 1) / 2f) * step;
+            for (int side = 0; side < 4; side++)
+            {
+                var edge = new GameObject("Edge " + side).transform; edge.SetParent(root, false);
+                edge.localRotation = Quaternion.Euler(0, side * 90, 0);
+                graphics.Place(edge, "Connection colour", graphics.Quad, new Vector3(offset,.004f,.44f), Connection(gateId), new Vector3(step*.92f,1,.10f));
+                graphics.Place(edge, "Connection shape", graphics.Symbol(Layout.GateStyles[gateId]), new Vector3(offset,.0045f,.44f), graphics.Surface,
+                    new Vector3(Mathf.Min(.14f,step*.7f),1,.14f));
+            }
         }
 
         public void AddGate(GateDefinition gate, Transform wrapper)
@@ -100,16 +114,32 @@ namespace Sokoban
             var imported = wrapper.Find("PowerGateRoot");
             foreach (string part in new[] { "SourceBadgeTemplate", "SourceBadge02", "PowerStatus", "TopDownMarkers" }) imported.Find(part).gameObject.SetActive(false);
             var passage = new GameObject("Circuit passage").transform; passage.SetParent(wrapper, false);
-            graphics.Place(passage, "Gate left post", graphics.Quad, new Vector3(-.40f, .03f, 0), graphics.Ink, new Vector3(.07f, 1, .80f));
-            graphics.Place(passage, "Gate right post", graphics.Quad, new Vector3(.40f, .03f, 0), graphics.Ink, new Vector3(.07f, 1, .80f));
-            var closed = graphics.Place(passage, "Closed barrier", graphics.Quad, new Vector3(0, .031f, 0), graphics.Ink, new Vector3(.75f, 1, .12f));
+            var identity = Connection(gate.id);
+            foreach (var renderer in imported.GetComponentsInChildren<Renderer>(true))
+            {
+                var materials = renderer.sharedMaterials;
+                for (int i = 0; i < materials.Length; i++) if (StationKitRendering.HasRole(materials[i], "LinkAccent")) materials[i] = identity;
+                renderer.sharedMaterials = materials;
+            }
+            graphics.Place(passage, "Gate left post", graphics.Quad, new Vector3(-.40f, .03f, 0), identity, new Vector3(.07f, 1, .80f));
+            graphics.Place(passage, "Gate right post", graphics.Quad, new Vector3(.40f, .03f, 0), identity, new Vector3(.07f, 1, .80f));
+            var closed = graphics.Place(passage, "Closed barrier", graphics.Quad, new Vector3(0, .031f, 0), identity, new Vector3(.75f, 1, .12f));
             var open = new GameObject("Open passage"); open.transform.SetParent(passage, false);
             foreach (int side in new[] { -1, 1 }) graphics.Place(open.transform, "Open end", graphics.Quad, new Vector3(side * .345f, .031f, 0), graphics.Ink, new Vector3(.13f, 1, .06f));
             var status = graphics.Place(passage, "Gate condition", graphics.Quad, new Vector3(0, .032f, -.41f), graphics.Idle, new Vector3(.28f, 1, .028f));
             var sourceIds = Layout.Connections.Where(c => c.GateId == gate.id).Select(c => c.SocketId).ToArray();
+            var lights = new MeshRenderer[sourceIds.Length];
+            for (int i = 0; i < sourceIds.Length; i++)
+            {
+                float x = (i - (sourceIds.Length-1)/2f) * Mathf.Min(.15f,.6f/sourceIds.Length);
+                graphics.Place(passage, "Source outline " + sourceIds[i], graphics.Dot, new Vector3(x,.033f,.34f), identity);
+                graphics.Place(passage, "Source well " + sourceIds[i], graphics.Dot, new Vector3(x,.0335f,.34f), graphics.Surface, Vector3.one*.72f);
+                lights[i] = graphics.Place(passage, "Source powered " + sourceIds[i], graphics.Dot, new Vector3(x,.034f,.34f), graphics.Power, Vector3.one*.58f);
+            }
+            var held = graphics.Place(passage, "Occupied hold", graphics.Symbol(4), new Vector3(0,.034f,0), graphics.Held, new Vector3(.20f,1,.20f));
+            AddIdentity(passage, gate.id, 0, 1);
             gates.Add(gate.id, new GateMark { definition = gate, passage = passage, closed = closed.gameObject, open = open,
-                status = status, sources = sourceIds, label = NewLabel(wrapper, null, gate.id) });
-            passage.gameObject.SetActive(false);
+                status = status, sources = sourceIds, sourceLights = lights, held = held.gameObject, label = NewLabel(wrapper, null, gate.id) });
         }
 
         public void BuildWires()
@@ -120,11 +150,12 @@ namespace Sokoban
                 if (points.Length == 0) continue;
                 var gaps = Crossings(index);
                 var root = new GameObject("Circuit " + connection.SocketId + " to " + connection.GateId).transform; root.SetParent(transform, false);
-                var off = graphics.Place(root, "Unpowered branch", graphics.Wire(points, true, gaps), Vector3.zero, graphics.Idle);
-                var on = graphics.Place(root, "Powered branch", graphics.Wire(points, false, gaps), Vector3.zero, graphics.Power);
-                var terminal = graphics.Place(root, "Source port", graphics.Dot, points[0] + Vector3.up * .0003f, graphics.Idle);
+                var off = graphics.Place(root, "Unpowered branch", graphics.Wire(points, true, gaps), Vector3.zero, Connection(connection.GateId));
+                var on = graphics.Place(root, "Powered branch", graphics.Wire(points, false, gaps), Vector3.zero, Connection(connection.GateId));
+                var terminal = graphics.Place(root, "Source port", graphics.Dot, points[0] + Vector3.up * .0003f, Connection(connection.GateId));
                 wires.Add(new Wire { connection = connection, off = off.gameObject, on = on.gameObject, terminal = terminal });
                 on.gameObject.SetActive(false);
+                root.gameObject.SetActive(false);
             }
         }
 
@@ -158,11 +189,13 @@ namespace Sokoban
             {
                 pair.Value.closed.SetActive(!power.OpenGates[pair.Key]); pair.Value.open.SetActive(power.OpenGates[pair.Key]);
                 pair.Value.status.sharedMaterial = power.PoweredGates[pair.Key] ? graphics.Power : graphics.Idle;
+                pair.Value.held.SetActive(power.OpenGates[pair.Key] && !power.PoweredGates[pair.Key]);
+                for (int i = 0; i < pair.Value.sources.Length; i++) pair.Value.sourceLights[i].enabled = power.Sockets[pair.Value.sources[i]];
             }
             foreach (var wire in wires)
             {
                 bool powered = power.Sockets[wire.connection.SocketId];
-                wire.off.SetActive(!powered); wire.on.SetActive(powered); wire.terminal.sharedMaterial = powered ? graphics.Power : graphics.Idle;
+                wire.off.SetActive(!powered); wire.on.SetActive(powered);
             }
             UpdateGateText();
         }
@@ -173,22 +206,14 @@ namespace Sokoban
             foreach (var pair in gates)
             {
                 var gate = pair.Value;
-                string title = Layout.GateLabels[pair.Key] + " · " + (gate.definition.powerMode == "All" ? "全部" : "任一");
                 bool occupiedOpen = lastPower.OpenGates[pair.Key] && !lastPower.PoweredGates[pair.Key];
-                if (gate.sources.Length > 4 && focusedGate != pair.Key && !gate.sources.Contains(focusedSocket))
-                    gate.label.text.text = title + "\n" + gate.sources.Count(id => lastPower.Sockets[id]) + "/" + gate.sources.Length + " 通电";
-                else
-                {
-                    var rows = new List<string>();
-                    for (int i = 0; i < gate.sources.Length; i += 3)
-                        rows.Add(string.Join("   ", gate.sources.Skip(i).Take(3).Select(id => sourceLabels[id] + (lastPower.Sockets[id] ? " ●" : " ○"))));
-                    gate.label.text.text = title + "\n" + string.Join("\n", rows);
-                }
+                gate.label.text.text = (gate.definition.powerMode == "All" ? "全部" : "任一") + " · " +
+                    gate.sources.Count(id => lastPower.Sockets[id]) + "/" + gate.sources.Length;
                 if (occupiedOpen) gate.label.text.text += "\n占据保开";
             }
         }
 
-        public void SetTopDown(bool value) { foreach (var gate in gates.Values) gate.passage.gameObject.SetActive(value); }
+        public void SetTopDown(bool value) { UpdateGateText(); }
 
         private Label NewLabel(Transform target, string socketId, string gateId)
         {
@@ -214,9 +239,18 @@ namespace Sokoban
             if (!cameras || !cameras.Output) return;
             var camera = cameras.Output; string focus = null, socketFocus = null; float nearest = float.MaxValue;
             var mouse = Mouse.current;
+            foreach (var socket in sockets.Values)
+            {
+                var screen = camera.WorldToScreenPoint(socket.target.position);
+                float distance = cameras.TopDown && mouse != null ? Vector2.Distance(mouse.position.ReadValue(), screen) :
+                    Vector3.Distance(board.Robot.transform.position, socket.target.position) * 36;
+                if (screen.z > 0 && distance < 52 && distance < nearest)
+                { socketFocus = socket.definition.id; nearest = distance; }
+            }
             labelRects.Clear(); protectedRects.Clear();
             foreach (var label in labels) protectedRects.Add(ProjectBounds(camera, label.target.position + Vector3.up*.03f,
                 new Vector3(label.gateId == null ? .33f : .45f, 0, label.gateId == null ? .33f : .45f)));
+            foreach (var socket in sockets.Values) protectedRects.Add(ProjectBounds(camera,socket.target.position+Vector3.up*.03f,new Vector3(.46f,0,.46f)));
             foreach (var crate in board.Crates.Values) protectedRects.Add(ProjectBounds(camera,crate.position+Vector3.up*.4f,new Vector3(.42f,.4f,.42f)));
             foreach (var plate in board.Redirectors.Values) protectedRects.Add(ProjectBounds(camera,plate.transform.position+Vector3.up*.03f,new Vector3(.49f,0,.49f)));
             protectedRects.Add(ProjectBounds(camera,board.Robot.transform.position+Vector3.up*.35f,new Vector3(.35f,.35f,.35f)));
@@ -265,8 +299,8 @@ namespace Sokoban
             }
             if (focusedGate != focus || focusedSocket != socketFocus) { focusedGate = focus; focusedSocket = socketFocus; UpdateGateText(); }
             foreach (var wire in wires)
-                wire.off.transform.parent.gameObject.SetActive(wires.Count <= 8 || focusedGate == wire.connection.GateId ||
-                    (focusedSocket != null && gates[wire.connection.GateId].sources.Contains(focusedSocket)));
+                wire.off.transform.parent.gameObject.SetActive(focusedGate == wire.connection.GateId ||
+                    focusedSocket == wire.connection.SocketId);
         }
 
         private Vector2 PositionLabel(Vector2 preferred, Vector2 size, Rect tile)

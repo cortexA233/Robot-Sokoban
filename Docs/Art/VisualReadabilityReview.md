@@ -8,6 +8,8 @@
 
 **实现已完成：** [v0.2.0 实机画面与验收报告](../History/08-CircuitReadability/ImplementationReport.md)。下方旧截图与问题分析作为修改前证据保留。
 
+后续 [v0.5.0](../Versions/V0.5.0.md) 将运行时更新为默认俯视、按门配色/图形、无插槽文字和按需连线；当前维护契约见 [空间站接入](StationKitIntegration.md)。本文的编号和常驻标牌属于 v0.2.0 历史方案。
+
 **建议先在 Unity 内完成视觉信息重排，以俯视全图为首要验收画面。当前证据不支持把重做 Blender 模型作为前置条件。**
 
 ## 1. 对齐问题

@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Build Succeeded.",
+    "data": {
+      "job_id": "build-dddc4c1481",
+      "result": "succeeded",
+      "platform": "StandaloneWindows64",
+      "output_path": "Builds/V0.5.0/Windows/Sokoban.exe",
+      "started_at": "2026-09-18T04:09:18.3975414Z",
+      "duration_seconds": 7.909489499999999,
+      "completed_at": "2026-09-18T04:09:26.3070309Z",
+      "total_size_mb": 87.55,
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+}

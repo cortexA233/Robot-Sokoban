@@ -51,8 +51,15 @@ namespace Sokoban.Tests
             Assert.That(Mark("socket_a","Goal ring"),Is.Not.Null); Assert.That(Mark("socket_a","Gate power plug"),Is.Not.Null);
             Assert.That(Mark("socket_b","Goal ring"),Is.Not.Null); Assert.That(Mark("socket_b","Gate power plug"),Is.Null);
             Assert.That(Mark("socket_s","Goal ring"),Is.Null); Assert.That(Mark("socket_s","Gate power plug"),Is.Not.Null);
-            Assert.That(Caption("socket_b").text,Is.EqualTo("B"));
-            Assert.That(Caption("socket_a").text,Does.Contain("G1")); Assert.That(Caption("socket_s").text,Does.Contain("G1"));
+            Assert.That(runner.Board.transform.Find("Circuit labels/socket_b circuit label"),Is.Null);
+            foreach (var socket in runner.Definition.sockets)
+                Assert.That(runner.Board.transform.Find("Circuit labels/"+socket.id+" circuit label"),Is.Null);
+            var source = Mark("socket_s","Connection gate_D/Edge 0/Connection colour").GetComponent<Renderer>();
+            var goal = Mark("socket_a","Connection gate_D/Edge 0/Connection colour").GetComponent<Renderer>();
+            var gate = runner.Board.Gates["gate_D"].transform.Find("Circuit passage/Gate left post").GetComponent<Renderer>();
+            Assert.That(source.sharedMaterial,Is.SameAs(goal.sharedMaterial));
+            Assert.That(source.sharedMaterial,Is.SameAs(gate.sharedMaterial));
+            Assert.That(Mark("socket_b","Connection gate_D"),Is.Null);
             Assert.That(runner.Board.Circuits.Layout.Connections.All(c=>c.SocketId!="socket_b"),Is.True);
             foreach(var socket in runner.Definition.sockets)
                 Assert.That(runner.Board.transform.Find(socket.id).GetComponentsInChildren<Collider>(),Is.Empty);
@@ -60,7 +67,8 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator ActualPowerHandoffUpdatesOnlyItsBranchAndUndoRestoresBothSignals()
         {
-            runner.LoadLevel(ComparisonFixture()); yield return null; runner.ToggleCamera();
+            runner.LoadLevel(ComparisonFixture()); yield return null;
+            var identity = Mark("socket_s","Connection gate/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial;
             Assert.That(Branch("socket_s",false)&&Branch("socket_a",false),Is.True);
             yield return Move('E');
             Assert.That(Lit("socket_s")&&!Lit("socket_a"),Is.True);
@@ -69,7 +77,10 @@ namespace Sokoban.Tests
             Assert.That(runner.Session.State.Moves,Is.EqualTo(18));
             Assert.That(!Lit("socket_s")&&Lit("socket_a")&&!Lit("socket_b"),Is.True);
             Assert.That(Branch("socket_s",false)&&Branch("socket_a",true),Is.True);
-            Assert.That(Caption("gate").text,Does.Contain("S ○").And.Contain("A ●"));
+            Assert.That(Caption("gate").text,Is.EqualTo("任一 · 1/2"));
+            Assert.That(runner.Board.Gates["gate"].transform.Find("Circuit passage/Source powered socket_s").GetComponent<Renderer>().enabled,Is.False);
+            Assert.That(runner.Board.Gates["gate"].transform.Find("Circuit passage/Source powered socket_a").GetComponent<Renderer>().enabled,Is.True);
+            Assert.That(Mark("socket_s","Connection gate/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial,Is.SameAs(identity));
             Assert.That(runner.Board.Gates["gate"].IsPowered && runner.Board.Gates["gate"].IsOpen,Is.True);
             runner.Undo(); yield return null;
             Assert.That(Lit("socket_s")&&Lit("socket_a"),Is.True);
@@ -82,31 +93,33 @@ namespace Sokoban.Tests
         {
             var level=ComparisonFixture(); level.crates[1].kind=CrateDefinition.Cargo; level.crates[1].x=6;
             level.crates=level.crates.Concat(new[]{new CrateDefinition{id="spare_energy",x=10,z=6,kind=CrateDefinition.Energy}}).ToArray();
-            runner.LoadLevel(level); yield return null; runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
-            Assert.That(Caption("gate").text,Does.Contain("占据保开").And.Contain("S ○").And.Contain("A ○"));
+            runner.LoadLevel(level); yield return new WaitForSeconds(.35f);
+            Assert.That(Caption("gate").text,Does.Contain("占据保开").And.Contain("0/2"));
             var passage=runner.Board.Gates["gate"].transform.Find("Circuit passage");
             Assert.That(passage.Find("Open passage").gameObject.activeInHierarchy,Is.True);
             Assert.That(passage.Find("Closed barrier").gameObject.activeSelf,Is.False);
             Assert.That(passage.Find("Gate condition").GetComponent<Renderer>().sharedMaterial.name,Does.EndWith("Idle"));
+            Assert.That(passage.Find("Occupied hold").gameObject.activeSelf,Is.True);
         }
 
         [UnityTest] public IEnumerator LabelsStayUprightAndDoNotInterceptInputOrLeakOnRebuild()
         {
             for(int i=0;i<3;i++)
             {
-                runner.LoadLevel(ComparisonFixture()); yield return null; runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
+                runner.LoadLevel(ComparisonFixture()); yield return new WaitForSeconds(.35f);
                 var texts=runner.Board.Circuits.GetComponentsInChildren<Text>();
-                Assert.That(texts.Length,Is.EqualTo(4));
+                Assert.That(texts.Length,Is.EqualTo(1), "Only the compact gate condition remains; sockets have no text labels.");
                 foreach(var text in texts)
                 {
                     Assert.That(text.fontSize,Is.GreaterThanOrEqualTo(14)); Assert.That(text.raycastTarget,Is.False);
                     Assert.That(Quaternion.Angle(text.transform.rotation,Quaternion.identity),Is.LessThan(.01f));
                 }
                 Assert.That(runner.Board.Circuits.GetComponentsInChildren<GraphicRaycaster>(),Is.Empty);
-                Assert.That(Resources.FindObjectsOfTypeAll<Material>().Count(m=>m.name.StartsWith("Station circuit ",StringComparison.Ordinal)),Is.EqualTo(4));
+                Assert.That(Resources.FindObjectsOfTypeAll<Material>().Count(m=>m.name.StartsWith("Station circuit ",StringComparison.Ordinal)),Is.EqualTo(6));
                 Assert.That(Object.FindObjectsOfType<StationCircuitView>().Length,Is.EqualTo(1));
                 runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
-                Assert.That(runner.Board.Gates["gate"].transform.Find("Circuit passage").gameObject.activeSelf,Is.False);
+                Assert.That(runner.Board.Gates["gate"].transform.Find("Circuit passage").gameObject.activeSelf,Is.True,
+                    "Low passage and connection marks stay available when a gate's upper structure is occluded.");
             }
         }
     }

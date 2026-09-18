@@ -1,0 +1,52 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+
+namespace Sokoban
+{
+    public sealed class V050InputProbe : MonoBehaviour
+    {
+        private float next;
+        private int events;
+        private bool started;
+        [RuntimeInitializeOnLoadMethod]
+        private static void Boot()
+        {
+            if (Application.isEditor || Array.IndexOf(Environment.GetCommandLineArgs(), "-v050-input-probe") < 0) return;
+            DontDestroyOnLoad(new GameObject("Temporary input probe", typeof(V050InputProbe)));
+        }
+        private void OnEnable() { InputSystem.onEvent += Observe; }
+        private void OnDisable() { InputSystem.onEvent -= Observe; }
+        private void Observe(InputEventPtr input, InputDevice device) { if (device is Keyboard) events++; }
+        private void Update()
+        {
+            var runner = FindObjectOfType<LevelRunner>();
+            if (!started && runner && runner.Session != null) { started = true; StartCoroutine(Exercise(runner)); }
+            var keyboard = Keyboard.current;
+            if (keyboard != null && (keyboard.vKey.wasPressedThisFrame || keyboard.escapeKey.wasPressedThisFrame))
+                Debug.Log("V050_INPUT key: V="+keyboard.vKey.wasPressedThisFrame+", Esc="+keyboard.escapeKey.wasPressedThisFrame);
+            if (Time.unscaledTime < next) return; next = Time.unscaledTime+2;
+            var r = FindObjectOfType<LevelRunner>();
+            Debug.Log("V050_INPUT frame="+Time.frameCount+", focused="+Application.isFocused+", keyboard="+(keyboard==null?"null":keyboard.name+"/"+keyboard.enabled)
+                +", events="+events+", mode="+InputSystem.settings.updateMode+", runner="+(r?r.enabled:false)
+                +", settings="+(r&&r.UI!=null?r.UI.SettingsOpen:false)+", paused="+(r?r.Paused:false)+", top="+(r&&r.Cameras?r.Cameras.TopDown:false));
+        }
+        private System.Collections.IEnumerator Exercise(LevelRunner r)
+        {
+            while (r.NavigationLocked) yield return null;
+            yield return new WaitForSeconds(.3f);
+            var session = r.Session; var input = InputSystem.AddDevice<Keyboard>("V050 validation keyboard");
+            Debug.Log("V050_CHECK default="+r.Cameras.TopDown+", ortho="+r.Cameras.Output.orthographic);
+            var keys = new[]{Key.V,Key.V,Key.Escape,Key.Escape};
+            foreach (var key in keys)
+            {
+                InputSystem.QueueStateEvent(input,new KeyboardState(key)); yield return new WaitForSecondsRealtime(.1f);
+                InputSystem.QueueStateEvent(input,new KeyboardState()); yield return new WaitForSecondsRealtime(.35f);
+                Debug.Log("V050_CHECK key="+key+", top="+r.Cameras.TopDown+", ortho="+r.Cameras.Output.orthographic+", paused="+r.Paused
+                    +", cursor="+Cursor.lockState+", sameSession="+(session==r.Session)+", moves="+r.Session.State.Moves+", pushes="+r.Session.State.Pushes);
+            }
+            InputSystem.RemoveDevice(input); Debug.Log("V050_CHECK done");
+        }
+    }
+}

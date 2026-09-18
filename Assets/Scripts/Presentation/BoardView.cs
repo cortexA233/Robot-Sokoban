@@ -11,7 +11,9 @@ namespace Sokoban
         private readonly Dictionary<string, Transform> crates = new Dictionary<string, Transform>();
         private readonly Dictionary<string, StationGateView> gates = new Dictionary<string, StationGateView>();
         private readonly Dictionary<string, RedirectorView> redirectors = new Dictionary<string, RedirectorView>();
-        private readonly List<Renderer> upperWalls = new List<Renderer>();
+        private readonly List<CameraOcclusion> occluders = new List<CameraOcclusion>();
+        private readonly Vector3[] sightTargets = new Vector3[6];
+        private LevelDefinition definition;
         private StationKitTheme theme;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
@@ -55,6 +57,7 @@ namespace Sokoban
 
         public void Build(LevelDefinition level)
         {
+            definition = level;
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
             if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Run Tools > Station Kit > Prepare Gameplay Integration.");
             Circuits = gameObject.AddComponent<StationCircuitView>(); Circuits.Initialize(level, theme);
@@ -79,9 +82,10 @@ namespace Sokoban
                     {
                         string asset = WallAsset(level, cell, out float yaw);
                         var wall = Place(asset, "Wall " + cell, pos, yaw);
-                        upperWalls.AddRange(StationKitRendering.Part(wall.transform, asset + "Root/Upper").GetComponentsInChildren<Renderer>());
+                        var upper = StationKitRendering.Part(wall.transform, asset + "Root/Upper").GetComponentsInChildren<Renderer>();
                         // Camera obstruction only; logical collision is owned by RuleEngine.
                         var obstacle = wall.AddComponent<BoxCollider>(); obstacle.center = new Vector3(0, .77f, 0); obstacle.size = new Vector3(.98f, 1.54f, .98f);
+                        occluders.Add(new CameraOcclusion(upper, obstacle));
                     }
                 }
             foreach (var crate in level.crates)
@@ -96,6 +100,7 @@ namespace Sokoban
             {
                 var obj = Place("PowerGate", gate.id, Position(gate.Cell), (int)Enum.Parse(typeof(Direction), gate.facing) * 90);
                 var view = obj.AddComponent<StationGateView>(); view.Initialize(gate, level, theme); gates.Add(gate.id, view);
+                occluders.Add(view.Occlusion);
                 Circuits.AddGate(gate, obj.transform);
             }
             Circuits.BuildWires();
@@ -118,9 +123,20 @@ namespace Sokoban
         }
         public void SetTopDown(bool value)
         {
-            foreach (var renderer in upperWalls) renderer.enabled = !value;
-            foreach (var gate in gates.Values) gate.SetTopDown(value);
             Circuits.SetTopDown(value);
+        }
+        public void PrepareCamera(bool topDown, Vector3 eye, Vector3 playerPosition)
+        {
+            int count = 0;
+            sightTargets[count++] = playerPosition + Vector3.up * .55f;
+            sightTargets[count++] = playerPosition + Vector3.up * .1f;
+            var cell = new Cell(Mathf.RoundToInt(playerPosition.x), Mathf.RoundToInt(playerPosition.z));
+            for (int i = 0; i < 4; i++)
+            {
+                var next = cell.Step((Direction)i); var terrain = definition.TerrainAt(next);
+                if (terrain != Terrain.Wall && terrain != Terrain.Void) sightTargets[count++] = Position(next) + Vector3.up * .12f;
+            }
+            foreach (var occluder in occluders) occluder.Prepare(topDown, eye, sightTargets, count);
         }
         public void SetPaused(bool value) { foreach (var gate in gates.Values) gate.SetPaused(value); }
         public void CancelTransitions() { foreach (var gate in gates.Values) if (gate) gate.Cancel(); }

@@ -47,11 +47,13 @@ namespace Sokoban.Tests
         [UnityTest, Timeout(120000)] public IEnumerator CompletingFirstLevelCanContinueToSecondWithFreshSession()
         {
             Assert.That(runner.Definition.id, Is.EqualTo("L04"));
+            Assert.That(runner.Cameras.TopDown, Is.True); runner.ToggleCamera();
             yield return SolveCurrentLevel();
             Assert.That(runner.CanGoNext, Is.True);
             Assert.That(runner.NextLevel(), Is.True);
             yield return null;
             Assert.That(runner.Definition.id, Is.EqualTo("L05"));
+            Assert.That(runner.Cameras.TopDown, Is.True);
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Session.UndoCount, Is.Zero);
             Assert.That(runner.Session.Commands, Is.Empty);

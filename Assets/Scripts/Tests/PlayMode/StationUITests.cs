@@ -277,7 +277,7 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator HudUndoAndRestartUseTheRealSession()
         {
-            runner.SelectLevel(0); runner.ToggleCamera();
+            runner.SelectLevel(0); Assert.That(runner.Cameras.TopDown, Is.True);
             runner.TryMove(Direction.E);
             yield return new WaitForSecondsRealtime(.4f);
             Assert.That(Page<HudPage>().transform.Find("Header/Moves").GetComponent<Text>().text, Does.Contain("1"));

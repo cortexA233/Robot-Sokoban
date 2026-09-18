@@ -21,7 +21,7 @@ namespace Sokoban.UI
             Get<Text>("Header/Moves").text = $"移动  {Runner.Session.State.Moves}";
             Get<Text>("Header/Pushes").text = $"推动  {Runner.Session.State.Pushes}";
             Get<Text>("Message").text = Runner.Message;
-            Get<Text>("ViewLabel").text = Runner.Cameras.TopDown ? "N ↑  俯视 · 方向键为世界方向" : "跟随视角 · 鼠标环绕 · WASD 移动";
+            Get<Text>("ViewLabel").text = Runner.Cameras.TopDown ? "N ↑  俯视 · V 第三人称" : "第三人称 · 鼠标环绕 · V 俯视";
             Get<Button>("Shortcuts/Undo").interactable = Runner.Session.UndoCount > 0;
         }
     }

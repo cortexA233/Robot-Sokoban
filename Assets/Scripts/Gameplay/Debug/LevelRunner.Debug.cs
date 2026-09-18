@@ -60,7 +60,7 @@ namespace Sokoban
                 board = new GameObject("Board").AddComponent<BoardView>(); board.transform.SetParent(candidate.transform, false);
                 board.Build(copy); board.Restore(session);
                 cameras = new GameObject("Camera rig").AddComponent<CameraRig>(); cameras.transform.SetParent(candidate.transform, false);
-                cameras.Initialize(copy, board.Robot.transform); UI?.Preferences.Apply(cameras);
+                cameras.Initialize(copy, board.Robot.transform, board); UI?.Preferences.Apply(cameras);
                 board.Circuits.BindCamera(cameras);
                 cameras.Restore(view); board.SetTopDown(cameras.TopDown);
             }

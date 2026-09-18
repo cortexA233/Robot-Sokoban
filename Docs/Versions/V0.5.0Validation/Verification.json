@@ -1,0 +1,57 @@
+{
+  "markdownFiles": 11,
+  "localLinksChecked": 255,
+  "baselineMissingLinks": [
+    {
+      "source": "Docs/README.md",
+      "target": "Docs/Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+    }
+  ],
+  "testSummaryXmlAgreement": "passed",
+  "imageSizes": {
+    "BeforeWall.png": [
+      1920,
+      1080
+    ],
+    "CandidateAWall.png": [
+      1920,
+      1080
+    ],
+    "CandidateBWall.png": [
+      1920,
+      1080
+    ],
+    "CandidateCWall.png": [
+      1920,
+      1080
+    ],
+    "Connections1080.png": [
+      1920,
+      1080
+    ],
+    "Connections720.png": [
+      1280,
+      720
+    ],
+    "ConnectionsGray720.png": [
+      1280,
+      720
+    ],
+    "ConnectionsThird720.png": [
+      1280,
+      720
+    ],
+    "L06Third1080.png": [
+      1920,
+      1080
+    ],
+    "L12Top1080.png": [
+      1920,
+      1080
+    ]
+  },
+  "newGuidsUnique": true,
+  "levelsSolutionsArtScenesPackagesUnchanged": true,
+  "versionStates": "v0.5.0 complete; v0.6.0-v0.9.0 planned",
+  "filesToCommit": 55
+}

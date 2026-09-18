@@ -19,11 +19,13 @@ namespace Sokoban
         }
 
         public IReadOnlyDictionary<string, string> GateLabels { get; }
+        public IReadOnlyDictionary<string, int> GateStyles { get; }
         public IReadOnlyList<Connection> Connections { get; }
 
         public StationCircuitLayout(LevelDefinition level)
         {
             var labels = new Dictionary<string, string>();
+            var styles = new Dictionary<string, int>();
             var connections = new List<Connection>();
             var sockets = level.sockets.ToDictionary(s => s.id);
             var occupied = new HashSet<Cell>(level.sockets.Select(s => s.Cell).Concat(level.gates.Select(g => g.Cell)).Concat(level.redirectors.Select(r => r.Cell)));
@@ -32,6 +34,7 @@ namespace Sokoban
             foreach (var gate in level.gates.OrderBy(g => g.id, StringComparer.Ordinal))
             {
                 labels.Add(gate.id, "G" + (labels.Count + 1));
+                styles.Add(gate.id, styles.Count);
                 foreach (var id in gate.sourceSocketIds.OrderBy(id => sockets[id].isGoal).ThenBy(id => id, StringComparer.Ordinal))
                 {
                     var cells = Route(level, sockets[id].Cell, gate.Cell, occupied);
@@ -42,6 +45,7 @@ namespace Sokoban
                 }
             }
             GateLabels = labels;
+            GateStyles = styles;
             Connections = connections.AsReadOnly();
         }
 

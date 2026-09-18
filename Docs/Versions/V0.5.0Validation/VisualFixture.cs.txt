@@ -1,0 +1,12 @@
+var r=UnityEngine.Object.FindObjectOfType<Sokoban.LevelRunner>();
+var level=new Sokoban.Domain.LevelDefinition {
+ schemaVersion=2,id="V050VisualFixture",title="连接身份与状态检查",briefing="颜色与图形标记连接；目标环和插头可组合。",completionText="完成",width=13,height=9,gridSize=1,
+ terrainRows=new[]{"#############","#...........#","#...........#","#...........#","#...........#","#...........#","#...........#","#...........#","#############"},
+ playerSpawn=new Sokoban.Domain.PlayerSpawn{x=2,z=2,facing="E"},
+ crates=new[]{new Sokoban.Domain.CrateDefinition{id="energy_s",x=4,z=2,kind="Energy"},new Sokoban.Domain.CrateDefinition{id="energy_a",x=9,z=4,kind="Energy"},new Sokoban.Domain.CrateDefinition{id="cargo",x=6,z=4,kind="Cargo"}},
+ sockets=new[]{new Sokoban.Domain.SocketDefinition{id="s",x=4,z=2},new Sokoban.Domain.SocketDefinition{id="a",x=9,z=4,isGoal=true},new Sokoban.Domain.SocketDefinition{id="b",x=9,z=2,isGoal=true},new Sokoban.Domain.SocketDefinition{id="t",x=9,z=6}},
+ gates=new[]{new Sokoban.Domain.GateDefinition{id="held",x=6,z=4,facing="E",powerMode="Any",sourceSocketIds=new[]{"t"}},new Sokoban.Domain.GateDefinition{id="any",x=7,z=6,facing="N",powerMode="Any",sourceSocketIds=new[]{"s","a"}},new Sokoban.Domain.GateDefinition{id="all",x=9,z=7,facing="E",powerMode="All",sourceSocketIds=new[]{"s","t"}}},
+ decorations=System.Array.Empty<Sokoban.Domain.DecorationDefinition>()
+};
+r.LoadLevel(level);r.enabled=false;
+return new {level=level.id,top=r.Cameras.TopDown};

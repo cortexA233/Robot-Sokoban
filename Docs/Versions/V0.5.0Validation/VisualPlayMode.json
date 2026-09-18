@@ -1,0 +1,42 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "ec9868c886da4695ac4794f34e615a85",
+      "status": "succeeded",
+      "mode": "PlayMode",
+      "started_unix_ms": 1789704010946,
+      "finished_unix_ms": 1789704030132,
+      "last_update_unix_ms": 1789704030132,
+      "progress": {
+        "completed": 10,
+        "total": 53,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1789704028080,
+        "last_finished_test_full_name": "Sokoban.Tests.StationKitGameplayTests.UndoAndRestartDuringPoweredOpeningRestorePoseAndLamps",
+        "last_finished_unix_ms": 1789704030015,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "PlayMode",
+        "summary": {
+          "total": 10,
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 17.6324115,
+          "resultState": "Passed"
+        },
+        "results": []
+      }
+    },
+    "hint": null
+  }
+}

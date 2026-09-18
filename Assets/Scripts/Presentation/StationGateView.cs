@@ -10,7 +10,7 @@ namespace Sokoban
     {
         private Transform lower, upper;
         private GameObject openMark, closedMark;
-        private Renderer[] upperRenderers;
+        internal CameraOcclusion Occlusion { get; private set; }
         private BoxCollider cameraObstacle;
         private Tween motion;
         private float openness, seconds;
@@ -33,7 +33,7 @@ namespace Sokoban
             cameraObstacle.center = new Vector3(0, .575f, 0); cameraObstacle.size = new Vector3(.86f, 1.15f, .16f);
 
             // Source identities and condition labels are owned by StationCircuitView in both camera modes.
-            upperRenderers = hidden.ToArray();
+            Occlusion = new CameraOcclusion(hidden.ToArray(), cameraObstacle);
         }
 
         public void Apply(bool powered, bool open, IReadOnlyDictionary<string, bool> socketPower, bool immediate)
@@ -54,7 +54,6 @@ namespace Sokoban
             lower.localPosition = new Vector3(0, Mathf.Lerp(.29f, 1.305f, value), .045f);
             upper.localPosition = new Vector3(0, Mathf.Lerp(.87f, 1.305f, value), -.045f);
         }
-        public void SetTopDown(bool value) { foreach (var renderer in upperRenderers) renderer.enabled = !value; }
         public void SetPaused(bool value) { paused = value; if (value) motion?.Pause(); else motion?.Play(); }
         public void Cancel() { motion?.Kill(false); motion = null; if (lower) SetPose(IsOpen ? 1 : 0); }
         private void OnDestroy() { motion?.Kill(false); motion = null; }

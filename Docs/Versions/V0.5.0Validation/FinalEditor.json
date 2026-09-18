@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": {
+      "utc": "2026-09-18T04:32:55.4468011Z",
+      "project": "C:/recent_project/Sokoban_3D_Test/Assets",
+      "unity": "2022.3.51f1",
+      "ready": true,
+      "playing": false,
+      "scene": "Assets/Scenes/Bootstrap.unity",
+      "dirty": false
+    },
+    "compiler": "codedom"
+  }
+}

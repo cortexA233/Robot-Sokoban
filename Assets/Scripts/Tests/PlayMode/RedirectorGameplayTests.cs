@@ -72,6 +72,7 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator PauseAndCameraSwitchDuringTurnResumeToTheSameGoal()
         {
+            runner.ToggleCamera();
             yield return Walk("SEE"); runner.TryMove(Direction.N); yield return new WaitForSeconds(.75f);
             runner.ToggleCamera(); // Camera input belongs to gameplay, before the pause menu takes input.
             runner.SetPaused(true); var position = runner.Board.Crates["crate_A"].position;
@@ -88,7 +89,7 @@ namespace Sokoban.Tests
         [UnityTest] public IEnumerator LargestBoardFitsTopViewAndRepeatedRebuildReleasesMeshes()
         {
             for (int i = 0; i < 5; i++) { runner.LoadLevel(Load("L12")); yield return null; }
-            runner.ToggleCamera(); yield return new WaitForSeconds(.4f);
+            Assert.That(runner.Cameras.TopDown, Is.True); yield return new WaitForSeconds(.4f);
             foreach (var corner in new[] { new Vector3(-.5f, 0, -.5f), new Vector3(8.5f, 0, -.5f), new Vector3(-.5f, 0, 8.5f), new Vector3(8.5f, 0, 8.5f) })
             {
                 var viewport = runner.Cameras.Output.WorldToViewportPoint(corner);
@@ -106,7 +107,7 @@ namespace Sokoban.Tests
                 var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/L12.solution").text);
                 foreach (char command in proof.commands.Take(prefix))
                     Assert.That(runner.Session.Move((Direction)Enum.Parse(typeof(Direction), command.ToString())).Accepted, Is.True);
-                runner.Board.Restore(runner.Session); runner.ToggleCamera(); runner.Cameras.Snap();
+                runner.Board.Restore(runner.Session); runner.Cameras.Snap();
                 yield return new WaitForSeconds(.4f);
                 foreach (var plate in runner.Board.Redirectors.Values)
                 {

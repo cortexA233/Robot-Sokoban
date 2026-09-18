@@ -10,15 +10,18 @@ namespace Sokoban
     internal sealed class StationCircuitMesh : IDisposable
     {
         private readonly List<Object> owned = new List<Object>();
-        public readonly Material Ink, Surface, Idle, Power;
+        private readonly Dictionary<int, Material> connections = new Dictionary<int, Material>();
+        private readonly Dictionary<int, Mesh> symbols = new Dictionary<int, Mesh>();
+        public readonly Material Ink, Surface, Idle, Power, Held;
         public readonly Mesh Quad, Ring, Plug, Corners, Dot;
 
         public StationCircuitMesh(StationKitTheme theme)
         {
             Ink = Material(theme, "Ink", new Color(.94f, .96f, .92f));
-            Surface = Material(theme, "Surface", new Color(.24f, .31f, .36f));
+            Surface = Material(theme, "Surface", new Color(.065f, .10f, .13f));
             Idle = Material(theme, "Idle", new Color(.49f, .62f, .68f));
             Power = Material(theme, "Power", new Color(.35f, .91f, .84f));
+            Held = Material(theme, "Occupied", new Color(1f, .64f, .18f));
             Quad = Own(new Shape().Rect(0, 0, 1, 1).Build("Circuit quad"));
             Ring = Own(new Shape().Ring(.255f, .033f).Build("Goal ring"));
             Dot = Own(new Shape().Ring(.045f, .045f).Build("Circuit terminal"));
@@ -27,10 +30,37 @@ namespace Sokoban
             var corners = new Shape();
             foreach (int x in new[] { -1, 1 }) foreach (int z in new[] { -1, 1 })
             {
-                corners.Rect(x * .39f, z * .443f, .13f, .026f);
-                corners.Rect(x * .443f, z * .39f, .026f, .13f);
+                corners.Rect(x * .396f, z * .472f, .16f, .040f);
+                corners.Rect(x * .472f, z * .396f, .040f, .16f);
             }
             Corners = Own(corners.Build("Goal perimeter corners"));
+        }
+
+        public Material Connection(StationKitTheme theme, int index)
+        {
+            if (connections.TryGetValue(index, out var material)) return material;
+            var palette = new[] { new Color(.20f,.66f,1f), new Color(.98f,.53f,.26f), new Color(.80f,.40f,.92f),
+                new Color(.94f,.79f,.22f), new Color(.30f,.83f,.52f), new Color(.96f,.40f,.62f) };
+            material = Material(theme, "Connection " + index, palette[index % palette.Length]);
+            connections.Add(index, material); return material;
+        }
+
+        public Mesh Symbol(int index)
+        {
+            if (symbols.TryGetValue(index, out var mesh)) return mesh;
+            var shape = new Shape();
+            // A different silhouette for every palette member; extra bars distinguish later cycles.
+            switch (index % 6)
+            {
+                case 0: shape.Ring(.38f, .12f); break;
+                case 1: shape.Polygon(3, .42f); break;
+                case 2: shape.Polygon(4, .42f); break;
+                case 3: shape.Rect(0,0,.62f,.62f); break;
+                case 4: shape.Rect(0,0,.22f,.8f).Rect(0,0,.8f,.22f); break;
+                default: shape.Rect(-.23f,0,.18f,.75f).Rect(.23f,0,.18f,.75f); break;
+            }
+            for (int i = 0; i < index / 6; i++) shape.Rect(-.4f + i * .13f, -.48f, .08f, .1f);
+            mesh = Own(shape.Build("Circuit identity " + index)); symbols.Add(index, mesh); return mesh;
         }
 
         private T Own<T>(T item) where T : Object { owned.Add(item); return item; }
@@ -100,6 +130,18 @@ namespace Sokoban
                     float a = i * Mathf.PI / 32, b = (i + 1) * Mathf.PI / 32;
                     var first = new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)); var next = new Vector3(Mathf.Cos(b), 0, Mathf.Sin(b));
                     Face(first * radius, next * radius, next * (radius - width), first * (radius - width));
+                }
+                return this;
+            }
+            public Shape Polygon(int sides, float radius)
+            {
+                for (int i = 0; i < sides; i++)
+                {
+                    float a = Mathf.PI * .5f + i * Mathf.PI * 2 / sides;
+                    float b = Mathf.PI * .5f + (i + 1) * Mathf.PI * 2 / sides;
+                    var first = new Vector3(Mathf.Cos(a),0,Mathf.Sin(a))*radius;
+                    var next = new Vector3(Mathf.Cos(b),0,Mathf.Sin(b))*radius;
+                    Face(Vector3.zero, first, next, Vector3.zero);
                 }
                 return this;
             }

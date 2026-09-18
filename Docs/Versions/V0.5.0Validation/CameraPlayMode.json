@@ -1,0 +1,42 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "ff9fb193fdba446287e6b61d1b06983a",
+      "status": "succeeded",
+      "mode": "PlayMode",
+      "started_unix_ms": 1789703733438,
+      "finished_unix_ms": 1789703786378,
+      "last_update_unix_ms": 1789703786378,
+      "progress": {
+        "completed": 22,
+        "total": 53,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1789703784234,
+        "last_finished_test_full_name": "Sokoban.Tests.RedirectorGameplayTests.VisibleBoxFollowsEveryCornerAndRobotStopsAfterFirstStep",
+        "last_finished_unix_ms": 1789703786241,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "PlayMode",
+        "summary": {
+          "total": 22,
+          "passed": 22,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 50.553976,
+          "resultState": "Passed"
+        },
+        "results": []
+      }
+    },
+    "hint": null
+  }
+}

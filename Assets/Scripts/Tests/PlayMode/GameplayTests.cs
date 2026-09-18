@@ -70,6 +70,7 @@ namespace Sokoban.Tests
         }
         [UnityTest] public IEnumerator CameraSwitchDuringSlidePreservesCommandAndNorthUpProjection()
         {
+            Assert.That(runner.Cameras.TopDown, Is.True); runner.ToggleCamera();
             runner.TryMove(Direction.E); yield return new WaitForSeconds(.65f); runner.ToggleCamera();
             yield return new WaitForSeconds(.45f);
             Assert.That(runner.Completed, Is.True); Assert.That(runner.Session.State.Pushes, Is.EqualTo(1));
@@ -83,6 +84,7 @@ namespace Sokoban.Tests
             level.crates[0].kind = CrateDefinition.Cargo;
             level.crates = new[] { level.crates[0], new CrateDefinition { id = "extra_energy", x = 1, z = 1 } };
             runner.LoadLevel(level); yield return null;
+            runner.ToggleCamera(); // Start this cancellation check in third person, then return to default top view.
             Assert.That(runner.Board.Crates["crate_01"].Find("CargoCrateRoot/Geometry/Shell"), Is.Not.Null);
             Assert.That(runner.Board.Crates["crate_01"].Find("CargoCrateRoot/TypeMarker/CargoBraces"), Is.Not.Null);
             Assert.That(runner.Board.Crates["crate_01"].GetComponentsInChildren<Renderer>().Length, Is.EqualTo(2));

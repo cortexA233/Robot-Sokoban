@@ -86,12 +86,20 @@ namespace Sokoban.Tests
             foreach(var gate in runner.Board.Gates.Values)
             {
                 string caption=GateCaption(gate.name).text;
-                Assert.That(caption,Does.Contain("a ●"));
-                if(gate.name!="shared") Assert.That(caption,Does.Contain("b ○"));
+                Assert.That(gate.transform.Find("Circuit passage/Source powered a").GetComponent<Renderer>().enabled,Is.True);
+                if(gate.name!="shared") Assert.That(gate.transform.Find("Circuit passage/Source powered b").GetComponent<Renderer>().enabled,Is.False);
             }
-            Assert.That(GateCaption("any").text,Does.Contain("任一").And.Contain("c ○"));
-            Assert.That(GateCaption("all").text,Does.Contain("全部"));
+            Assert.That(GateCaption("any").text,Is.EqualTo("任一 · 1/3"));
+            Assert.That(GateCaption("all").text,Is.EqualTo("全部 · 1/2"));
             Assert.That(runner.Board.Circuits.Layout.GatesFor("a").Length,Is.EqualTo(3));
+            var identities = new HashSet<Material>();
+            foreach (var gate in runner.Board.Gates.Values)
+            {
+                var colour=runner.Board.transform.Find("a/Circuit socket/Connection "+gate.name+"/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial;
+                Assert.That(gate.transform.Find("Circuit passage/Gate left post").GetComponent<Renderer>().sharedMaterial,Is.SameAs(colour));
+                identities.Add(colour);
+            }
+            Assert.That(identities.Count,Is.EqualTo(3),"One source retains every independent gate identity.");
             var materials=runner.Board.Crates.Values.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).SelectMany(r=>r.sharedMaterials);
             Assert.That(materials.Any(m=>m.name.Contains("LinkAccent") || m.name.Contains("StatusEmission")),Is.False);
         }
@@ -138,7 +146,7 @@ namespace Sokoban.Tests
             runner.SelectLevel(2); yield return null;
             var walls=runner.Board.GetComponentsInChildren<Transform>().Where(t=>t.name=="Upper").ToArray();
             var colliders=runner.Board.GetComponentsInChildren<Collider>(); var enabled=colliders.Select(c=>c.enabled).ToArray();
-            runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
+            Assert.That(runner.Cameras.TopDown,Is.True); yield return new WaitForSeconds(.35f);
             Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).All(r=>!r.enabled),Is.True);
             foreach(var gate in runner.Board.Gates.Values)
             {
@@ -149,7 +157,9 @@ namespace Sokoban.Tests
             }
             CollectionAssert.AreEqual(enabled,colliders.Select(c=>c.enabled).ToArray());
             runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
-            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).All(r=>r.enabled),Is.True);
+            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).Any(r=>r.enabled),Is.True,
+                "Only foreground occluders are hidden in third person.");
+            Assert.That(runner.Session.Rules.Resolve(runner.Session.State,Direction.W).Accepted,Is.False);
         }
 
         [UnityTest] public IEnumerator StableIdentitySurvivesReorderedDataAndDoesNotModifySharedBases()
@@ -157,8 +167,8 @@ namespace Sokoban.Tests
             var level=LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L06").text); runner.LoadLevel(level); yield return null;
             var theme=Resources.Load<StationKitTheme>("configs/StationKitTheme");
             var originalColor=theme.labelMaterial.GetColor("_BaseColor");
-            Func<Dictionary<string,string>> identity=()=>runner.Definition.sockets.ToDictionary(s=>s.id,
-                s=>runner.Board.transform.Find("Circuit labels/"+s.id+" circuit label/Caption").GetComponent<Text>().text);
+            Func<Dictionary<string,string>> identity=()=>runner.Board.Circuits.Layout.Connections.ToDictionary(c=>c.SocketId+"/"+c.GateId,
+                c=>runner.Board.transform.Find(c.SocketId+"/Circuit socket/Connection "+c.GateId+"/Edge 0/Connection colour").GetComponent<Renderer>().sharedMaterial.GetColor("_BaseColor").ToString());
             var before=identity(); var gateNumbers=runner.Board.Circuits.Layout.GateLabels.ToDictionary(p=>p.Key,p=>p.Value);
             level.sockets=level.sockets.Reverse().ToArray(); foreach(var g in level.gates) g.sourceSocketIds=g.sourceSocketIds.Reverse().ToArray();
             runner.LoadLevel(level); yield return null;
