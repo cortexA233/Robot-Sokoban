@@ -20,7 +20,7 @@ namespace Sokoban.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             LevelRunner.PlaytestDefinition = null;
-            runner = new GameObject("GM test runner").AddComponent<LevelRunner>(); yield return null;
+            runner = new GameObject("GM test runner").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { }); yield return null;
             runner.enabled = false; runner.SelectLevel(0); yield return null;
         }
         [UnityTearDown] public IEnumerator TearDown()

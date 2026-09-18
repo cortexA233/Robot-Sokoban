@@ -41,7 +41,7 @@ namespace Sokoban
             if (level.schemaVersion < 1 || level.schemaVersion > 3) throw new FormatException("仅支持 schemaVersion=1、2 或 3。");
             if (level.schemaVersion < 3 && level.redirectors != null && level.redirectors.Length > 0)
                 throw new FormatException("转向板需要 schemaVersion=3，不能保存为旧版数据。");
-            // Retain v1 bytes/hashes for existing energy-only levels and their proofs.
+            // Preserve the mechanism schema; retired UI copy is no longer serialized.
             // Never silently discard a cargo type while serializing a v1 definition.
             if (level.schemaVersion == 1 && level.crates != null && level.crates.Any(c => c != null && !c.IsEnergy))
                 throw new FormatException("普通箱需要 schemaVersion=2，不能保存为旧版能源箱数据。");
@@ -67,6 +67,15 @@ namespace Sokoban
                     if (item.Property("kind") != null) throw new FormatException("schemaVersion=1 的箱子不能包含 kind；请使用版本 2。");
                     item.Add("kind", CrateDefinition.Energy);
                 }
+            // Narrow legacy compatibility: only the three retired UI fields are ignored.
+            // All gameplay fields and other unknown keys retain strict validation.
+            foreach (string retired in new[] { "title", "briefing", "completionText" })
+            {
+                var property = ((JObject)token).Property(retired);
+                if (property == null) continue;
+                CheckShape(typeof(string), property.Value, "$." + retired, false);
+                property.Remove();
+            }
             CheckShape(typeof(LevelDefinition), token, "$", false);
             return token.ToObject<LevelDefinition>(JsonSerializer.Create(Settings));
         }

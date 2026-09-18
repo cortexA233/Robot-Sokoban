@@ -2,9 +2,6 @@
   "definition": {
     "schemaVersion": 3,
     "id": "L12",
-    "title": "最后一班",
-    "briefing": "临时电源先维持发车门；交付首箱后再开放回收路。普通箱一个让路，一个要重复挡停。",
-    "completionText": "所有运输区已恢复供电",
     "width": 9,
     "height": 9,
     "gridSize": 1.0,

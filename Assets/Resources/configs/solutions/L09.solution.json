@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "levelId": "L09",
-    "contentHash": "a6838acb30255d9fa91bcea3237508d9dfe8336d74208af18c55e49e0531130d",
+    "contentHash": "26e45874a84fcfff60e758b072b0a0a4ce41ae5308de599705846f38da232667",
     "commands": "NNNESWSSEEENSEENNSSWWWWWNEESEEENNNNSSSSWWNSEENNN",
     "expectedMoves": 48,
     "expectedPushes": 10,

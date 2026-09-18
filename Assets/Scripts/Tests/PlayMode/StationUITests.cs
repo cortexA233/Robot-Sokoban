@@ -31,7 +31,7 @@ namespace Sokoban.Tests
                     ? PlayerPrefs.GetInt(full).ToString() : PlayerPrefs.GetFloat(full).ToString(System.Globalization.CultureInfo.InvariantCulture);
             }
             LevelRunner.PlaytestDefinition = null;
-            runner = new GameObject("UGUI integration test").AddComponent<LevelRunner>();
+            runner = new GameObject("UGUI integration test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return null;
             runner.enabled = false;
         }
@@ -79,7 +79,7 @@ namespace Sokoban.Tests
             Assert.That(Page<MainMenuPage>().gameObject.activeSelf, Is.True);
             Assert.That(Page<HudPage>().gameObject.activeSelf, Is.False);
             Assert.That(Page<MainMenuPage>().transform.Find("Content/Title").GetComponent<Text>().font.HasCharacter('空'), Is.True);
-            yield return Click<MainMenuPage>("Content/Start");
+            yield return Click<MainMenuPage>("Content/Actions/Start");
             Assert.That(runner.NavigationLocked, Is.True);
             Assert.That(runner.UI.EnterLevel(2), Is.False);
             Assert.That(runner.SelectLevel(2), Is.False);
@@ -96,21 +96,21 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator SelectingRowUsesCatalogAndStartsOnlyAfterEnterButton()
         {
-            yield return Click<MainMenuPage>("Content/Levels");
+            yield return Click<MainMenuPage>("Content/Actions/Levels");
             yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level02");
             Assert.That(runner.Session, Is.Null);
             yield return Click<LevelSelectPage>("Content/Enter");
             yield return WaitForTransition();
             Assert.That(runner.Definition.id, Is.EqualTo("L05"));
             Assert.That(runner.Session.State.Moves, Is.Zero);
-            Assert.That(Page<HudPage>().transform.Find("Header/Title").GetComponent<Text>().text, Does.Contain("三箱锁喉"));
+            Assert.That(Page<HudPage>().transform.Find("Header/Stage").GetComponent<Text>().text, Is.EqualTo("关卡 02"));
         }
 
         [UnityTest] public IEnumerator LastLevelIsReachableThroughSelection()
         {
-            yield return Click<MainMenuPage>("Content/Levels");
+            yield return Click<MainMenuPage>("Content/Actions/Levels");
             var page = Page<LevelSelectPage>();
-            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level09/Label").GetComponent<Text>().text, Does.Contain("最后一班"));
+            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level09/Label").GetComponent<Text>().text, Is.EqualTo("关卡 09"));
             page.transform.Find("Content/List").GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
             yield return null;
             yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level09");
@@ -182,7 +182,7 @@ namespace Sokoban.Tests
             Assert.That(Object.FindObjectsOfType<BoardView>().Length, Is.Zero);
             Assert.That(Cursor.lockState, Is.EqualTo(CursorLockMode.None));
             Time.timeScale = 1;
-            yield return Click<MainMenuPage>("Content/Start");
+            yield return Click<MainMenuPage>("Content/Actions/Start");
             yield return WaitForTransition();
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Completed, Is.False);
@@ -191,7 +191,7 @@ namespace Sokoban.Tests
         [UnityTest] public IEnumerator DestroyDuringFadeLeavesNoPagesOrDelayedLoads()
         {
             var controller = runner.UI;
-            yield return Click<MainMenuPage>("Content/Start");
+            yield return Click<MainMenuPage>("Content/Actions/Start");
             yield return new WaitForSecondsRealtime(.2f);
             Object.Destroy(runner.gameObject); runner = null;
             yield return new WaitForSecondsRealtime(1.5f);
@@ -218,7 +218,7 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator SettingsSliderGraphicsStayInsideTracksAtBothEnds()
         {
-            yield return Click<MainMenuPage>("Content/Settings");
+            yield return Click<MainMenuPage>("Content/Actions/Settings");
             yield return null;
             foreach (string name in new[] { "Volume", "Sensitivity" })
             {
@@ -287,6 +287,113 @@ namespace Sokoban.Tests
             yield return Click<HudPage>("Shortcuts/Restart");
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Session.UndoCount, Is.Zero);
+        }
+
+        [UnityTest] public IEnumerator MainMenuHoverDoesNotFlashDarkerThanItsEndpoints()
+        { yield return HoverDoesNotFlash(Page<MainMenuPage>().transform.Find("Content/Actions/Settings").GetComponent<Button>()); }
+
+        [UnityTest] public IEnumerator HelpRestoresTheCallerPauseStateAndRemovedCopyHasNoControls()
+        {
+            yield return Click<MainMenuPage>("Content/Actions/Help");
+            Assert.That(Page<HelpPage>().gameObject.activeSelf, Is.True);
+            yield return Click<HelpPage>("Content/Back");
+            Assert.That(Page<MainMenuPage>().gameObject.activeSelf, Is.True);
+            runner.SelectLevel(0); runner.UI.OpenHelp();
+            Assert.That(runner.Paused, Is.True); runner.UI.CloseHelp();
+            Assert.That(runner.Paused, Is.False);
+            runner.SetPaused(true); yield return Click<PausePage>("Content/Help");
+            yield return Click<HelpPage>("Content/Back");
+            Assert.That(runner.Paused, Is.True);
+            Assert.That(Page<PausePage>().gameObject.activeSelf, Is.True);
+            Assert.That(Page<PausePage>().transform.Find("Content/Subtitle"), Is.Null);
+            Assert.That(Page<HudPage>().transform.Find("Header/Title"), Is.Null);
+            Assert.That(Page<HudPage>().transform.Find("MessageBacking"), Is.Null);
+            Assert.That(Page<CompletionPage>().transform.Find("Content/Title"), Is.Null);
+        }
+
+        [UnityTest] public IEnumerator PointerAndKeyboardFocusRemainStableAcrossRefreshAndPageChanges()
+        {
+            var module = EventSystem.current.currentInputModule;
+            bool enabled = module && module.enabled; if (module) module.enabled = false;
+            try
+            {
+                var start = Page<MainMenuPage>().transform.Find("Content/Actions/Start").GetComponent<Button>();
+                var settings = Page<MainMenuPage>().transform.Find("Content/Actions/Settings").GetComponent<Button>();
+                start.Select();
+                ExecuteEvents.Execute(start.gameObject, new AxisEventData(EventSystem.current) { moveDir = MoveDirection.Down, moveVector = Vector2.down }, ExecuteEvents.moveHandler);
+                var keyboardFocus = EventSystem.current.currentSelectedGameObject;
+                Assert.That(keyboardFocus.name, Is.EqualTo("Levels"));
+                var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+                ExecuteEvents.Execute(settings.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+                for (int i = 0; i < 6; i++) { runner.UI.Refresh(); yield return null; Assert.That(EventSystem.current.currentSelectedGameObject, Is.SameAs(keyboardFocus)); }
+                ExecuteEvents.Execute(settings.gameObject, pointer, ExecuteEvents.pointerDownHandler);
+                ExecuteEvents.Execute(settings.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+                ExecuteEvents.Execute(settings.gameObject, pointer, ExecuteEvents.pointerClickHandler);
+                Assert.That(runner.UI.SettingsOpen, Is.True);
+                Assert.That(EventSystem.current.currentSelectedGameObject.transform.IsChildOf(Page<SettingsPage>().transform), Is.True);
+                runner.UI.CloseSettings(); yield return null;
+                Assert.That(EventSystem.current.currentSelectedGameObject, Is.SameAs(start.gameObject));
+                runner.OpenLevelSelect(); yield return null;
+                var row = Page<LevelSelectPage>().transform.Find("Content/List/Viewport/Rows/Level09").GetComponent<Button>();
+                row.Select(); yield return null;
+                var viewport = Page<LevelSelectPage>().transform.Find("Content/List/Viewport").GetComponent<RectTransform>();
+                var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(viewport, row.transform);
+                Assert.That(bounds.min.y, Is.GreaterThanOrEqualTo(viewport.rect.yMin - 1));
+                Assert.That(bounds.max.y, Is.LessThanOrEqualTo(viewport.rect.yMax + 1));
+            }
+            finally { if (module) module.enabled = enabled; }
+        }
+
+        [UnityTest] public IEnumerator PauseHoverDoesNotFlashDarkerThanItsEndpoints()
+        {
+            runner.SelectLevel(0); runner.SetPaused(true);
+            yield return HoverDoesNotFlash(Page<PausePage>().transform.Find("Content/Restart").GetComponent<Button>());
+        }
+
+        private IEnumerator HoverDoesNotFlash(Button button)
+        {
+            var module = EventSystem.current.currentInputModule;
+            bool moduleEnabled = module && module.enabled;
+            if (module) module.enabled = false;
+            var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+            try
+            {
+                ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerExitHandler);
+                yield return new WaitForSecondsRealtime(.2f);
+                Canvas.ForceUpdateCanvases();
+                var rect = (RectTransform)button.transform;
+                var point = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center));
+                var hits = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = point }, hits);
+                Assert.That(hits[0].gameObject.GetComponentInParent<Button>(), Is.SameAs(button));
+                var paper = new Color32(247, 247, 244, 255);
+                float start = VisibleBrightness(button.targetGraphic, paper);
+                pointer.position = point;
+                ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+                float minimum = start;
+                float until = Time.realtimeSinceStartup + 1.3f;
+                while (Time.realtimeSinceStartup < until)
+                {
+                    yield return null;
+                    minimum = Mathf.Min(minimum, VisibleBrightness(button.targetGraphic, paper));
+                }
+                float end = VisibleBrightness(button.targetGraphic, paper);
+                TestContext.WriteLine($"{button.name}: start={start:F4}, minimum={minimum:F4}, end={end:F4}");
+                Assert.That(button.targetGraphic.canvasRenderer.GetColor().a, Is.GreaterThan(.99f), "Pointer must reach the actual hover state.");
+                Assert.That(minimum, Is.GreaterThanOrEqualTo(Mathf.Min(start, end) - .015f), "Hover briefly darkened below both displayed endpoint colors.");
+            }
+            finally
+            {
+                ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerExitHandler);
+                if (module) module.enabled = moduleEnabled;
+            }
+        }
+
+        private static float VisibleBrightness(Graphic graphic, Color background)
+        {
+            Color tint = graphic.canvasRenderer.GetColor() * graphic.color;
+            Color visible = Color.Lerp(background, tint, tint.a);
+            return (visible.r + visible.g + visible.b) / 3f;
         }
     }
 }

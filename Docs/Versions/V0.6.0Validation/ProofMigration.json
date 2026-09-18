@@ -1,0 +1,82 @@
+[
+  {
+    "id": "L04",
+    "oldHash": "9cc1bdfa8c3d61c0ddbd161890ba3a5ee7303240839c5a7f21e172a57318c79e",
+    "newHash": "be72335c00f5ad6993ecd16704e5892868848f8e031464e73fe754eb4e948f08",
+    "moves": 22,
+    "pushes": 8,
+    "result": "回放通过：22 步 / 8 次推动。"
+  },
+  {
+    "id": "L05",
+    "oldHash": "e369b38badffd287d67e87b5f00291b9abdac1dd8a3501a7f8d78810002ebc28",
+    "newHash": "c7e57098265eeda419faaac1c86eb75af4739014adabd80ca30e79435dc90ca2",
+    "moves": 42,
+    "pushes": 13,
+    "result": "回放通过：42 步 / 13 次推动。"
+  },
+  {
+    "id": "L06",
+    "oldHash": "d92fcbe5bcde395da3e462e1eb8ff77e682cb265556b352c2b98169e7a418888",
+    "newHash": "6b0f2e7c43cb716bc2ec03c2345d162d2eb893a9883bc45e0f250903396a0ac5",
+    "moves": 41,
+    "pushes": 15,
+    "result": "回放通过：41 步 / 15 次推动。"
+  },
+  {
+    "id": "L07",
+    "oldHash": "d31b71e3f594ff3d5cdefd2f5dc5334bf6a4e412194b1693654549aeae5105f7",
+    "newHash": "3ae15c6c4f6fa62530adb64980b9ea14638a0b3cf66c11dac0addc61aef6e948",
+    "moves": 10,
+    "pushes": 2,
+    "result": "回放通过：10 步 / 2 次推动。"
+  },
+  {
+    "id": "L08",
+    "oldHash": "0948df2a5da3306758ed2e61c4d4b0958c0b656ab65b7c950be8c574baf17660",
+    "newHash": "a7323d7b965972bcdd5a8343a811c0be72721297e90a11ebc1c5b825dc55e620",
+    "moves": 5,
+    "pushes": 3,
+    "result": "回放通过：5 步 / 3 次推动。"
+  },
+  {
+    "id": "L09",
+    "oldHash": "a6838acb30255d9fa91bcea3237508d9dfe8336d74208af18c55e49e0531130d",
+    "newHash": "26e45874a84fcfff60e758b072b0a0a4ce41ae5308de599705846f38da232667",
+    "moves": 48,
+    "pushes": 10,
+    "result": "回放通过：48 步 / 10 次推动。"
+  },
+  {
+    "id": "L10",
+    "oldHash": "a84022f1a042312b0f7add0410968a51adb5f114e31aa53a7c795d2ce01c4899",
+    "newHash": "40de2e3b3a5cea9807d01bb5b6608a57410b6bd3735e8ad4d4fc5e6633fd0276",
+    "moves": 45,
+    "pushes": 11,
+    "result": "回放通过：45 步 / 11 次推动。"
+  },
+  {
+    "id": "L11",
+    "oldHash": "eca6236fcf0e00eff51f20f48f8ad1c015274f4f60f7ebdefe49533d58a4ddae",
+    "newHash": "795fc7324690b977e86a2605eafdbcddf56e3ae0a62e843376fcc75a5df81022",
+    "moves": 19,
+    "pushes": 10,
+    "result": "回放通过：19 步 / 10 次推动。"
+  },
+  {
+    "id": "L12",
+    "oldHash": "6692997c566cd4e5f2e86587a5bf1d15dce15d55059427a2f97d0a97fb540061",
+    "newHash": "436b2ffb508c0ab920b6288503ad538f2abb8e7952e1b5b30993c085491fbf6e",
+    "moves": 41,
+    "pushes": 12,
+    "result": "回放通过：41 步 / 12 次推动。"
+  },
+  {
+    "id": "LAB01_LowFriction",
+    "oldHash": "34e7f9f3107578a3ae271d784321848d9779f97745aa1daccb387c1fbaec2d5b",
+    "newHash": "23ad33a71831a693b399b79be51eb4af20dcf9e80300d37fabebe98c58ab7bb1",
+    "moves": 1,
+    "pushes": 1,
+    "result": "回放通过：1 步 / 1 次推动。"
+  }
+]

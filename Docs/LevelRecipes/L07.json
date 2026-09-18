@@ -2,9 +2,6 @@
   "definition": {
     "schemaVersion": 3,
     "id": "L07",
-    "title": "拐个弯",
-    "briefing": "箱子会沿箭头转向；进入普通地板会停下，机器人需要绕到它后面。",
-    "completionText": "运输区已恢复供电",
     "width": 7,
     "height": 7,
     "gridSize": 1.0,

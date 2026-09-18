@@ -1,0 +1,149 @@
+{
+  "baseline": "06e61c15c6a859350780832cacc5f4868ec86ef0",
+  "unity": "2022.3.51f1",
+  "playMode": {
+    "passed": 57,
+    "total": 57,
+    "evidence": "PlayMode.xml"
+  },
+  "progressFlow": {
+    "passed": 3,
+    "total": 3,
+    "evidence": "PlayerProgressFlow.xml"
+  },
+  "initialEditMode": {
+    "passed": 162,
+    "total": 163,
+    "failure": "Framework singleton reset test loaded alongside Bootstrap; rerun in empty scene passed 3/3"
+  },
+  "referenceSolutions": {
+    "replayed": 10,
+    "gameplayChanges": 0,
+    "evidence": "ProofMigration.json"
+  },
+  "hover": {
+    "originalState": "Highlighted; selection stayed Resume",
+    "originalMinimumBrightness": 0.7072,
+    "minimumAllowed": 0.8883,
+    "rootCause": "RGB and alpha interpolated from transparent black over light Paper background",
+    "fix": "transparent normal tint retains hover RGB",
+    "regression": "MainMenu and Pause hover endpoint brightness tests passed",
+    "afterMinimumBrightness": 0.9033,
+    "afterActualInputSamples": 311
+  },
+  "editMode": {
+    "passed": 163,
+    "total": 163,
+    "evidence": "EditMode.xml"
+  },
+  "build": {
+    "path": "Builds/V0.6.0/Windows/Sokoban.exe",
+    "errors": 0,
+    "warnings": 0,
+    "scene": "Assets/Scenes/Bootstrap.unity",
+    "development": false,
+    "runtimeAssemblySha256": "9b2f10a58c7766e004e2c6a5ddc804937c0a88b3780a01a15ce5de6c7fd56c4b",
+    "containsValidationProbe": false
+  },
+  "prefabRebuild": {
+    "pages": 8,
+    "result": "passed in isolated asset folder",
+    "evidence": "PrefabRebuild.json"
+  },
+  "screenshots": [
+    {
+      "file": "Help720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "Hud1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "LevelSelect720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "MainMenu1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "Pause720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerCompletion720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerContinued1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "PlayerHelp720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerHud720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerMenu720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerPause720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "PlayerResume1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "PlayerScores1080.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "PlayerSettings720.png",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "Settings720.png",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "player": {
+    "check": "PlayerCheck720.json",
+    "restart": "PlayerReload1080.json",
+    "passed": true,
+    "inputBoundary": "Native mouse paths inspected; keyboard automation uses InputSystem simulated devices in a separate validation Player."
+  },
+  "fileChecks": {
+    "markdown": 10,
+    "localLinks": 250,
+    "json": 38,
+    "newMetaGuids": 7,
+    "newBrokenLinks": 0,
+    "preExistingMissingLinks": [
+      "Docs\\README.md -> Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+    ],
+    "unrelatedGmPrefabUnchanged": true,
+    "testProgressRestored": true,
+    "sourceWhitespaceCheck": "passed; original Unity XML log whitespace preserved"
+  }
+}

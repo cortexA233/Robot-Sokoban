@@ -1,14 +1,15 @@
 # 简约 UGUI 与页面过渡
 
-日期：2026-09-16。设计依据：`ArtSource/UIConcepts/minimal_ui_v2.png`，采用浅色底、深灰文字、细线、橙色主操作。所有页面由真实 UGUI 控件组成，没有使用概念图充当游戏背景。
+更新：2026-09-18（v0.6.0）。设计依据：`ArtSource/UIConcepts/minimal_ui_v2.png`，采用浅色底、深灰文字、细线、橙色主操作。所有页面由真实 UGUI 控件组成，没有使用概念图充当游戏背景。
 
 ## 玩家流程
 
-- Bootstrap → 主菜单 → 开始游戏 / 选关 → 关卡 → 结算 → 下一关 / 重玩 / 选关 / 主菜单。
-- 选关列表由 CampaignCatalog 生成，全部关卡可选；选中条目后点击“进入关卡”。返回选关前的游戏局面和暂停状态会保留。
-- 进入关卡默认俯视，按 V 切换第三人称，再按 V 返回俯视；HUD 显示当前视角及 V 的切换目标。第三人称保持鼠标锁定并支持键盘快捷键；俯视释放鼠标，可直接点击 HUD 的撤销、重开和视角按钮。Esc 打开暂停菜单。
+- Bootstrap → 主菜单 → 开始 / 继续 / 选关 → 关卡 → 成绩结算 → 下一关 / 重开 / 选关 / 主菜单。主菜单显示完成数量，“继续游戏”从最近关卡的起点进入；“从第一关开始”保留已有成绩。
+- 选关列表由 CampaignCatalog 生成，全部关卡可选，以顺序号显示关卡，附完成标记和最佳成绩。键盘焦点进入屏外条目时自动滚动到可见区域；选中条目后点击“进入关卡”。返回选关前的游戏局面和暂停状态会保留。
+- 进入关卡默认俯视，按 V 切换第三人称，再按 V 返回俯视；HUD 的 V 按钮显示切换目标。第三人称保持鼠标锁定并支持键盘快捷键；俯视释放鼠标，可直接点击 HUD 的撤销、重开和视角按钮。Esc 打开暂停菜单。
 - 设置可调整主音量、鼠标灵敏度、反转垂直镜头，立即生效；完成设置、导航与退出时保存 PlayerPrefs。当前还没有新增游戏音效，主音量控制 AudioListener。
-- 编辑器试玩直接进入原测试关，保留“保存参考解法”与撤销，不进入主菜单或正式关卡导航。
+- 编辑器试玩直接进入原测试关，保留“保存参考解法”与撤销，不进入主菜单或正式关卡导航，不打开正式进度文件。非正式 LoadLevel、GM 修改后及现场试玩的完成不会写入正式成绩。
+- 三项逐关文案及其数据/输入框已取消。HUD 显示关卡序号、目标供电、移动/推动数和必要操作；受阻提示约 4 秒后隐藏，平时无提示条占位。主菜单、暂停和 HUD 的“操作说明”打开通用帮助，关闭后恢复原暂停状态。
 
 ## KToolkit 集成
 
@@ -17,14 +18,15 @@
 | 页面 | Prefab（相对 Assets/Resources/UI_prefabs/screens） | 作用 |
 | --- | --- | --- |
 | MainMenuPage | MainMenu.prefab | 开始、选关、设置、退出 |
-| HudPage | Hud.prefab | 关卡、真实供电/移动/推动统计、提示、快捷键 |
+| HudPage | Hud.prefab | 关卡序号、目标供电/移动/推动统计、临时提示、快捷键 |
 | LevelSelectPage | LevelSelect.prefab | 可滚动的目录列表与进入按钮 |
 | PausePage | Pause.prefab | 恢复、重开、选关、设置、主菜单 |
 | CompletionPage | Completion.prefab | 真实结算统计；末关主按钮变为返回选关 |
 | SettingsPage | Settings.prefab | 音量、灵敏度、反转镜头 |
+| HelpPage | Help.prefab | 按需查看的通用操作与规则说明 |
 | GeneralFadePage | GeneralFade.prefab | 覆盖画面的转场幕布 |
 
-页面布局保存在可编辑的 Prefab 中，运行时只绑定控件与刷新状态。菜单 `Tools > Sokoban > Build Minimal UGUI Prefabs` 可从 `Assets/Scripts/Editor/UI/StationUIAssetBuilder.cs` 重建它们；此操作会覆盖这七个 Prefab 的手工布局修改。
+页面布局保存在可编辑的 Prefab 中，运行时只绑定控件与刷新状态。菜单 `Tools > Sokoban > Build Minimal UGUI Prefabs` 可从 `Assets/Scripts/Editor/UI/StationUIAssetBuilder.cs` 重建它们；此操作会覆盖这八个 Prefab 的手工布局修改。
 
 运行时 UI 代码在 `Assets/Scripts/UI`，通过 asmref 归入 Sokoban.Runtime。UGUI 使用 1920×1080 参考分辨率，CanvasScaler 同时匹配宽高；界面中没有屏幕截图或运行时生成的装饰贴图。
 
@@ -43,6 +45,18 @@ v0.4.0 的作者试玩往返检查补充了退出时的清理保护：Unity 可�
 
 `LevelRunner.LoadLevel/SelectLevel/NextLevel` 保留同步作者/测试 API；玩家按钮统一通过 StationUIController 的过渡入口，不绕过遮盖阶段。规则仍在原 GameSession 中，页面不复制推箱、供电或通关判定。
 
+## 按钮状态与导航
+
+v0.6.0 的实机采样和回归发现，次要按钮从 `Color.clear`（透明黑色）渐变到不透明灰色时，RGB 与 alpha 同时插值，合成结果会先暗后亮。透明常态现在保留悬停 RGB，仅将 alpha 设为 0；仍采用 0.12 秒渐变，选中、悬停、按下、禁用分别可识别。指针进入不夺取键盘焦点；点击选择按钮，键盘移动继续使用 EventSystem 焦点。
+
+页面仅在打开或转场解锁时设置初始焦点；先刷新可见性和可用状态，再选择首个可交互控件。选关使用明确的行间/进入/返回导航并自动显露焦点行。普通页面 Refresh 不重置当前焦点。Hover 回归通过实际 UGUI 指针事件及逐帧 CanvasRenderer 颜色检查暗闪；完整输入模块的实机采样单独保留，避免把只派发点击的旧用例当作悬停验收。
+
+## 玩家进度
+
+`PlayerProgress` 将最近关卡、完成记录及同一次通关的最佳步数/推动数保存到 `Application.persistentDataPath/player-progress.json`。先比较步数，同步数再比较推动数。稳定 ID 对应关卡身份，规范内容哈希区分版本；目录重排不影响记录，内容改变后旧成绩不用于新版，目录中已移除的关卡不作为继续入口。所有关卡仍可选择。
+
+写入使用原子替换及上一份有效 `.bak`；不可读文件在覆盖前保留为 `.unreadable-*`。损坏时回退备份或空记录，写入失败保留内存进度，主菜单显示“重试保存进度”；导航、退出和应用暂停时也尝试保存。主音量、灵敏度和镜头反转继续沿用 `Sokoban.Settings.*` PlayerPrefs，不迁移或清空旧设置。
+
 ## 字体
 
 内置 Noto Sans SC Regular，存放于 `Assets/Art/UI/Fonts`，随 Prefab 引用进入构建。来自 [Noto CJK 官方仓库](https://github.com/notofonts/noto-cjk/tree/main/Sans/SubsetOTF/SC)，原始文件名 NotoSansSC-Regular.otf；[OFL 1.1 授权](https://github.com/notofonts/noto-cjk/blob/main/Sans/LICENSE)同目录保存为 LICENSE.txt。避免依赖目标 Windows 的系统中文字体。
@@ -57,7 +71,7 @@ GM 输入占用、现场编辑占用、游戏暂停和动作动画暂停分别�
 
 叠加标签在 CinemachineBrain 更新镜头之后投影；网格坐标与实体 ID 使用不同位置，避免切换镜头时错位或同时显示时重叠。
 
-生成入口为 `Sokoban_Tools > Build GM UGUI Prefab`，只覆盖 GM Prefab。其验证记录见 [第五轮 GM/现场编辑报告](../History/05-GmLiveEditing/ImplementationReport.md)；原七页生成器与 KToolkit 源码未改动。
+生成入口为 `Sokoban_Tools > Build GM UGUI Prefab`，只覆盖 GM Prefab。其验证记录见 [第五轮 GM/现场编辑报告](../History/05-GmLiveEditing/ImplementationReport.md)；GM 生成器与玩家页面生成器彼此独立；v0.6.0 玩家生成器扩展为八页，未修改 KToolkit 源码。
 
 ## 原有页面验证
 

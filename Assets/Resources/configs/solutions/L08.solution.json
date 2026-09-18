@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "levelId": "L08",
-    "contentHash": "0948df2a5da3306758ed2e61c4d4b0958c0b656ab65b7c950be8c574baf17660",
+    "contentHash": "a7323d7b965972bcdd5a8343a811c0be72721297e90a11ebc1c5b825dc55e620",
     "commands": "ENEES",
     "expectedMoves": 5,
     "expectedPushes": 3,

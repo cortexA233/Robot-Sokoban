@@ -15,7 +15,7 @@ namespace Sokoban.Tests
         private LevelRunner runner;
         public static LevelDefinition ComparisonFixture() => new LevelDefinition
         {
-            schemaVersion=2, id="CircuitComparison", title="目标与供电 · 视觉验证", briefing="S 或 A 通电即可打开 G1；圆环表示通关目标。", completionText="完成",
+            schemaVersion=2, id="CircuitComparison",
             width=13,height=9,gridSize=1,
             terrainRows=new[]{"#############","#.....#.....#","#.....#.....#","#.....#.....#","#...........#","#.....#.....#","#.....#.....#","#.....#.....#","#############"},
             playerSpawn=new PlayerSpawn{x=2,z=2,facing="E"},
@@ -28,7 +28,7 @@ namespace Sokoban.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             LevelRunner.PlaytestDefinition=null;
-            runner=new GameObject("Circuit test runner").AddComponent<LevelRunner>(); yield return null;
+            runner=new GameObject("Circuit test runner").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { }); yield return null;
             runner.enabled=false;
         }
         [UnityTearDown] public IEnumerator TearDown()

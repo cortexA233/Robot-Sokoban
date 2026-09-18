@@ -23,7 +23,7 @@ namespace Sokoban.Editor
         {
             var result = CampaignAuthoring.Validate(catalog);
             RequireAsset<SceneAsset>(result, "Assets/Scenes/Bootstrap.unity");
-            foreach (string screen in new[] { "MainMenu", "Hud", "Pause", "LevelSelect", "Completion", "Settings", "GeneralFade" })
+            foreach (string screen in new[] { "MainMenu", "Hud", "Pause", "LevelSelect", "Completion", "Settings", "Help", "GeneralFade" })
                 RequireAsset<GameObject>(result, "Assets/Resources/UI_prefabs/screens/" + screen + ".prefab");
             var actor = RequireAsset<GameObject>(result, "Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab");
             if (actor && !actor.GetComponent<RobotPresenter>()) result.Problems.Add(new CatalogProblem(-1, AssetDatabase.GetAssetPath(actor), "缺少 RobotPresenter。"));

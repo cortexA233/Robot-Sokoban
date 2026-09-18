@@ -1,0 +1,425 @@
+[
+  {
+    "frame": 19751,
+    "t": 0.09598529999857419,
+    "phase": 0,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.000)"
+  },
+  {
+    "frame": 19796,
+    "t": 0.3154155999982322,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.000)"
+  },
+  {
+    "frame": 19797,
+    "t": 0.32314380000025267,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.179)"
+  },
+  {
+    "frame": 19798,
+    "t": 0.32716639999853214,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.239)"
+  },
+  {
+    "frame": 19799,
+    "t": 0.3317791000008583,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.273)"
+  },
+  {
+    "frame": 19800,
+    "t": 0.33545260000028065,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.311)"
+  },
+  {
+    "frame": 19801,
+    "t": 0.3386132000014186,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.341)"
+  },
+  {
+    "frame": 19802,
+    "t": 0.3418309999979101,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.368)"
+  },
+  {
+    "frame": 19803,
+    "t": 0.3470152000008966,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.395)"
+  },
+  {
+    "frame": 19804,
+    "t": 0.3519495000000461,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.438)"
+  },
+  {
+    "frame": 19805,
+    "t": 0.3561129000008805,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.479)"
+  },
+  {
+    "frame": 19806,
+    "t": 0.36039489999893703,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.514)"
+  },
+  {
+    "frame": 19807,
+    "t": 0.3663803999988886,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.550)"
+  },
+  {
+    "frame": 19808,
+    "t": 0.3715889999984938,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.600)"
+  },
+  {
+    "frame": 19809,
+    "t": 0.37711660000059055,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.644)"
+  },
+  {
+    "frame": 19810,
+    "t": 0.38302439999824855,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.689)"
+  },
+  {
+    "frame": 19811,
+    "t": 0.3893723000001046,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.738)"
+  },
+  {
+    "frame": 19812,
+    "t": 0.3952458999992814,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.791)"
+  },
+  {
+    "frame": 19813,
+    "t": 0.4000546999996004,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.840)"
+  },
+  {
+    "frame": 19814,
+    "t": 0.4045044999984384,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.880)"
+  },
+  {
+    "frame": 19815,
+    "t": 0.40918539999984205,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.917)"
+  },
+  {
+    "frame": 19816,
+    "t": 0.4139936999999918,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.956)"
+  },
+  {
+    "frame": 19817,
+    "t": 0.4181736999998975,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.996)"
+  },
+  {
+    "frame": 19818,
+    "t": 0.4224642999979551,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 1.000)"
+  },
+  {
+    "frame": 20108,
+    "t": 1.8050159999984317,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 1.000)"
+  },
+  {
+    "frame": 20109,
+    "t": 1.811134799998399,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.954)"
+  },
+  {
+    "frame": 20110,
+    "t": 1.8164924000011524,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.903)"
+  },
+  {
+    "frame": 20111,
+    "t": 1.822334199998295,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.859)"
+  },
+  {
+    "frame": 20112,
+    "t": 1.8276584000013827,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.810)"
+  },
+  {
+    "frame": 20113,
+    "t": 1.833785099999659,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.764)"
+  },
+  {
+    "frame": 20114,
+    "t": 1.8388181000009354,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.713)"
+  },
+  {
+    "frame": 20115,
+    "t": 1.8445004999994126,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.672)"
+  },
+  {
+    "frame": 20116,
+    "t": 1.8492985000011686,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.625)"
+  },
+  {
+    "frame": 20117,
+    "t": 1.8551097999988997,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.585)"
+  },
+  {
+    "frame": 20118,
+    "t": 1.8603483000006236,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.537)"
+  },
+  {
+    "frame": 20119,
+    "t": 1.8669552999999723,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.493)"
+  },
+  {
+    "frame": 20120,
+    "t": 1.8729536999999254,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.436)"
+  },
+  {
+    "frame": 20121,
+    "t": 1.877774100001261,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.388)"
+  },
+  {
+    "frame": 20122,
+    "t": 1.882804099997884,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.348)"
+  },
+  {
+    "frame": 20123,
+    "t": 1.8887566000012157,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.306)"
+  },
+  {
+    "frame": 20124,
+    "t": 1.8963487000000896,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.256)"
+  },
+  {
+    "frame": 20125,
+    "t": 1.9018410999997286,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.193)"
+  },
+  {
+    "frame": 20126,
+    "t": 1.9072756999994454,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.147)"
+  },
+  {
+    "frame": 20127,
+    "t": 1.91392740000083,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.102)"
+  },
+  {
+    "frame": 20128,
+    "t": 1.9197232000005897,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.047)"
+  },
+  {
+    "frame": 20129,
+    "t": 1.9262898999986646,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.902, 0.910, 0.898, 0.000)"
+  },
+  {
+    "frame": 20159,
+    "t": 2.100578300000052,
+    "phase": 3,
+    "button": "Resume",
+    "selected": "Resume",
+    "state": "Selected",
+    "color": "RGBA(0.776, 0.400, 0.220, 1.000)"
+  }
+]

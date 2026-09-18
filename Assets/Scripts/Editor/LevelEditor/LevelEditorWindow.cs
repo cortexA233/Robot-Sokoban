@@ -466,9 +466,6 @@ namespace Sokoban.Editor
             var levelFields = new Foldout { text = "关卡属性与尺寸", value = levelPropertiesExpanded, name = "level-properties" }; properties.Add(levelFields);
             levelFields.RegisterValueChangedCallback(e => levelPropertiesExpanded = e.newValue);
             levelFields.Add(new Label("ID: " + level.id));
-            TextField(levelFields, "标题", level.title, text => Edit("修改标题", () => level.title = text));
-            TextField(levelFields, "目标提示", level.briefing, text => Edit("修改提示", () => level.briefing = text));
-            TextField(levelFields, "完成文案", level.completionText, text => Edit("修改完成文案", () => level.completionText = text));
             var width = new IntegerField("宽 5–32") { value = level.width, isDelayed = true };
             var height = new IntegerField("高 5–32") { value = level.height, isDelayed = true }; levelFields.Add(width); levelFields.Add(height);
             Button(levelFields, "应用尺寸", () =>

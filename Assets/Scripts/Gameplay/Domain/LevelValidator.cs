@@ -37,7 +37,6 @@ namespace Sokoban.Domain
             if (level == null) { report.Error("关卡数据为空。"); return report; }
             if (level.schemaVersion < 1 || level.schemaVersion > 3) report.Error("仅支持 schemaVersion=1、2 或 3。");
             if (string.IsNullOrWhiteSpace(level.id)) report.Error("关卡 ID 不能为空。");
-            if (string.IsNullOrWhiteSpace(level.title)) report.Error("关卡标题不能为空。");
             if (level.width < 5 || level.width > 32 || level.height < 5 || level.height > 32)
                 report.Error("宽高必须为 5–32 格。");
             if (level.gridSize != 1f) report.Error("gridSize 必须为 1.0。");

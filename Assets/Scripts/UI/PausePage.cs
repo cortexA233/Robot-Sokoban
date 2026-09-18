@@ -12,11 +12,12 @@ namespace Sokoban.UI
             Bind("Content/Restart", UI.Replay);
             Bind("Content/Levels", UI.OpenLevelSelection);
             Bind("Content/Settings", UI.OpenSettings);
+            Bind("Content/Help", UI.OpenHelp);
             Bind("Content/Menu", () => UI.ReturnToMainMenu());
         }
         public override void Refresh()
         {
-            Get<Text>("Content/Subtitle").text = Runner.Definition?.title ?? "";
+            Get<Text>("Content/Title").text = "暂停 · " + Runner.LevelLabel;
             transform.Find("Content/Levels").gameObject.SetActive(!Runner.IsPlaytest);
             transform.Find("Content/Menu").gameObject.SetActive(!Runner.IsPlaytest);
             transform.Find("Content/PlaytestHint").gameObject.SetActive(Runner.IsPlaytest);

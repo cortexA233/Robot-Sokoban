@@ -1,9 +1,6 @@
 {
   "schemaVersion": 3,
   "id": "L11",
-  "title": "刹车要回来",
-  "briefing": "同一只普通箱要当两次刹车。第一个目标会打开第二段运输线，别把刹车箱提前推入死角。",
-  "completionText": "运输区已恢复供电",
   "width": 9,
   "height": 9,
   "gridSize": 1.0,

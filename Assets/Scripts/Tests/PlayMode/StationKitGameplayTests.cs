@@ -17,7 +17,7 @@ namespace Sokoban.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             LevelRunner.PlaytestDefinition = null;
-            runner = new GameObject("Station integration test").AddComponent<LevelRunner>();
+            runner = new GameObject("Station integration test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return null; runner.enabled = false;
         }
         [UnityTearDown] public IEnumerator TearDown()
@@ -27,7 +27,7 @@ namespace Sokoban.Tests
         }
         private static LevelDefinition Fixture()
         {
-            return new LevelDefinition { schemaVersion=2, id="StationKit_Test", title="Station integration", briefing="", completionText="Complete",
+            return new LevelDefinition { schemaVersion=2, id="StationKit_Test",
                 width=9,height=7,gridSize=1,terrainRows=Enumerable.Repeat(".........",7).ToArray(),
                 playerSpawn=new PlayerSpawn{x=1,z=3,facing="E"},
                 crates=new[]{new CrateDefinition{id="cargo",x=2,z=3,kind=CrateDefinition.Cargo},new CrateDefinition{id="energy",x=7,z=5,kind=CrateDefinition.Energy}},

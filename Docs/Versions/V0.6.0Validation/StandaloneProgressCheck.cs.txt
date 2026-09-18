@@ -1,0 +1,181 @@
+// Temporary verification component. Compiled only into WindowsValidation, never the delivery Player.
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using KToolkit;
+using Sokoban.Domain;
+using Sokoban.UI;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
+
+namespace Sokoban
+{
+    public sealed class V060PlayerCheck : MonoBehaviour
+    {
+        [Serializable] private sealed class Report
+        {
+            public bool passed, reload, nativeKeyboardConfirmed;
+            public string input = "InputSystem simulated keyboard/mouse; real runner and UI event handlers";
+            public string error, progressPath;
+            public int width, height, moves, pushes;
+            public float mainHoverMinimum, pauseHoverMinimum, volume, sensitivity;
+            public bool invertY;
+        }
+        private readonly Report report = new Report();
+        private string output;
+        private Keyboard keyboard;
+        private Mouse mouse;
+        private LevelRunner runner;
+        private float deadline;
+        private bool finished;
+        [RuntimeInitializeOnLoadMethod]
+        private static void Boot()
+        {
+            if (Application.isEditor || Array.IndexOf(Environment.GetCommandLineArgs(), "-v060-check") < 0) return;
+            DontDestroyOnLoad(new GameObject("Temporary v0.6.0 Player check", typeof(V060PlayerCheck)));
+        }
+        private IEnumerator Start()
+        {
+            var args = Environment.GetCommandLineArgs();
+            int index = Array.IndexOf(args, "-v060-output");
+            output = index >= 0 ? args[index + 1] : Path.Combine(Application.persistentDataPath, "V060Validation");
+            Directory.CreateDirectory(output); deadline = Time.realtimeSinceStartup + 90;
+            report.reload = Array.IndexOf(args, "-v060-reload") >= 0;
+            Application.runInBackground = true;
+            InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            Screen.SetResolution(report.reload ? 1920 : 1280, report.reload ? 1080 : 720, FullScreenMode.Windowed);
+            keyboard = InputSystem.AddDevice<Keyboard>("V060 validation keyboard");
+            mouse = InputSystem.AddDevice<Mouse>("V060 validation mouse");
+            var stack = new Stack<IEnumerator>(); stack.Push(Exercise());
+            while (stack.Count > 0)
+            {
+                bool moved = false; object current = null; Exception failure = null;
+                try { moved = stack.Peek().MoveNext(); if (moved) current = stack.Peek().Current; }
+                catch (Exception e) { failure = e; }
+                if (failure != null) { Finish(false, failure.ToString()); yield break; }
+                if (!moved) stack.Pop();
+                else if (current is IEnumerator nested) stack.Push(nested);
+                else yield return current;
+            }
+            Finish(true, "");
+        }
+        private void Update() { if (!finished && deadline > 0 && Time.realtimeSinceStartup > deadline) Finish(false, "Verification timed out"); }
+        private void Finish(bool passed, string error)
+        {
+            if (finished) return; finished = true;
+            report.passed = passed; report.error = error;
+            report.width = Screen.width; report.height = Screen.height; report.progressPath = PlayerProgress.DefaultPath;
+            if (keyboard != null) InputSystem.RemoveDevice(keyboard);
+            if (mouse != null) InputSystem.RemoveDevice(mouse);
+            File.WriteAllText(Path.Combine(output, report.reload ? "PlayerReload1080.json" : "PlayerCheck720.json"), JsonUtility.ToJson(report, true));
+            Debug.Log("V060_PLAYER_CHECK " + JsonUtility.ToJson(report));
+            Application.Quit(passed ? 0 : 1);
+        }
+        private static void Require(bool condition, string reason) { if (!condition) throw new InvalidOperationException(reason); }
+        private T Page<T>() where T : KUIBase => (T)KUIManager.instance.GetFirstUIWithType<T>();
+        private IEnumerator Click<T>(string path) where T : KUIBase
+        {
+            yield return null; Canvas.ForceUpdateCanvases();
+            var button = Page<T>().transform.Find(path).GetComponent<Button>();
+            var rect = (RectTransform)button.transform;
+            var data = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left,
+                position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center)) };
+            var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(data, hits);
+            Require(button.IsInteractable() && hits.Count > 0 && hits[0].gameObject.GetComponentInParent<Button>() == button, "Button obscured: " + path);
+            ExecuteEvents.Execute(button.gameObject, data, ExecuteEvents.pointerEnterHandler);
+            ExecuteEvents.Execute(button.gameObject, data, ExecuteEvents.pointerDownHandler);
+            ExecuteEvents.Execute(button.gameObject, data, ExecuteEvents.pointerUpHandler);
+            ExecuteEvents.Execute(button.gameObject, data, ExecuteEvents.pointerClickHandler);
+            yield return null;
+        }
+        private IEnumerator Capture(string name)
+        {
+            yield return new WaitForEndOfFrame();
+            ScreenCapture.CaptureScreenshot(Path.Combine(output, name + ".png"));
+            yield return new WaitForEndOfFrame(); yield return null;
+        }
+        private IEnumerator Tap(Key key)
+        {
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(key));
+            yield return new WaitForSecondsRealtime(.1f);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return new WaitForSecondsRealtime(.2f);
+        }
+        private IEnumerator Hover(Button button, bool pause)
+        {
+            InputSystem.QueueStateEvent(mouse, new MouseState { position = new Vector2(2, 2) });
+            yield return new WaitForSecondsRealtime(.2f); Canvas.ForceUpdateCanvases();
+            var rect = (RectTransform)button.transform;
+            var position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center));
+            float min = 1, end = Time.realtimeSinceStartup + 1.3f;
+            while (Time.realtimeSinceStartup < end)
+            {
+                InputSystem.QueueStateEvent(mouse, new MouseState { position = position }); yield return null;
+                Color tint = button.targetGraphic.canvasRenderer.GetColor() * button.targetGraphic.color;
+                Color color = Color.Lerp(new Color32(247, 247, 244, 255), tint, tint.a);
+                min = Mathf.Min(min, (color.r + color.g + color.b) / 3);
+            }
+            Require(button.targetGraphic.canvasRenderer.GetColor().a > .99f, "Actual pointer did not reach hover");
+            Require(min >= .8883f, "Hover dark flash: " + min);
+            if (pause) report.pauseHoverMinimum = min; else report.mainHoverMinimum = min;
+            InputSystem.QueueStateEvent(mouse, new MouseState { position = new Vector2(2, 2) }); yield return null;
+        }
+        private IEnumerator Exercise()
+        {
+            yield return new WaitForSecondsRealtime(.5f);
+            runner = FindObjectOfType<LevelRunner>(); Require(runner && runner.Error == null && runner.UI != null, "Bootstrap failed");
+            report.volume = runner.UI.Preferences.Volume; report.sensitivity = runner.UI.Preferences.Sensitivity; report.invertY = runner.UI.Preferences.InvertY;
+            if (report.reload)
+            {
+                Require(runner.ContinueIndex == 3 && runner.CompletedLevelCount == 1, "Progress did not survive process restart");
+                Require(Page<MainMenuPage>().transform.Find("Content/Actions/Start/Label").GetComponent<Text>().text == "继续游戏", "Continue label missing");
+                yield return Capture("PlayerResume1080");
+                yield return Click<MainMenuPage>("Content/Actions/Start");
+            }
+            else
+            {
+                yield return Hover(Page<MainMenuPage>().transform.Find("Content/Actions/Settings").GetComponent<Button>(), false);
+                yield return Capture("PlayerMenu720");
+                yield return Click<MainMenuPage>("Content/Actions/Levels");
+                yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level04");
+                yield return Click<LevelSelectPage>("Content/Enter");
+            }
+            while (runner.NavigationLocked) yield return null;
+            Require(runner.Definition.id == "L07" && runner.Session.State.Moves == 0 && !runner.Completed, "Not at the recent level's starting state");
+            if (report.reload)
+            {
+                Require(runner.Progress.Best(runner.Definition).moves == 10 && runner.Progress.Best(runner.Definition).pushes == 2, "Best score changed");
+                yield return Capture("PlayerContinued1080");
+                yield return Click<HudPage>("Header/Pause"); yield return Click<PausePage>("Content/Levels");
+                yield return Capture("PlayerScores1080"); yield break;
+            }
+            yield return Capture("PlayerHud720");
+            yield return Tap(Key.V); Require(!runner.Cameras.TopDown, "V did not select third person");
+            yield return Tap(Key.Escape); Require(runner.Paused && Cursor.lockState == CursorLockMode.None, "Esc did not pause/release cursor");
+            yield return Hover(Page<PausePage>().transform.Find("Content/Restart").GetComponent<Button>(), true);
+            yield return Capture("PlayerPause720");
+            yield return Click<PausePage>("Content/Settings"); yield return Capture("PlayerSettings720");
+            yield return Click<SettingsPage>("Content/Back"); Require(runner.Paused, "Settings lost pause state");
+            yield return Click<PausePage>("Content/Help"); yield return Capture("PlayerHelp720");
+            yield return Click<HelpPage>("Content/Back"); Require(runner.Paused, "Help lost pause state");
+            yield return Tap(Key.Escape); Require(!runner.Paused, "Esc did not resume");
+            yield return Tap(Key.V); Require(runner.Cameras.TopDown, "V did not restore top down");
+            int expected = 0;
+            foreach (char direction in "SEENSEENNN")
+            {
+                yield return Tap(direction == 'S' ? Key.DownArrow : direction == 'E' ? Key.RightArrow : Key.UpArrow);
+                while (runner.Presenter.Busy) yield return null;
+                Require(runner.Session.State.Moves == ++expected, "Movement input missing or repeated");
+            }
+            Require(runner.Completed, "Completion did not appear");
+            var best = new PlayerProgress(PlayerProgress.DefaultPath).Best(runner.Definition);
+            Require(best != null && best.moves == 10 && best.pushes == 2, "Completed score not written to disk");
+            report.moves = best.moves; report.pushes = best.pushes;
+            yield return Capture("PlayerCompletion720");
+        }
+    }
+}

@@ -2,9 +2,6 @@
   "definition": {
     "schemaVersion": 3,
     "id": "L08",
-    "title": "借箱刹车",
-    "briefing": "先借普通箱挡停能源箱，再清走它。停稳的箱子可以从另一侧推走。",
-    "completionText": "运输区已恢复供电",
     "width": 7,
     "height": 7,
     "gridSize": 1.0,

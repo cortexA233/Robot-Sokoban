@@ -34,8 +34,7 @@ namespace Sokoban.Editor
                 temporary.level = LevelDocument.NewLevel(source.width, source.height);
                 temporary.level.schemaVersion = source.schemaVersion;
                 temporary.draftPath = document.draftPath;
-                temporary.level.id = source.id; temporary.level.title = source.title;
-                temporary.level.briefing = source.briefing; temporary.level.completionText = source.completionText;
+                temporary.level.id = source.id;
                 for (int z = 0; z < source.height; z++)
                     for (int x = 0; x < source.width; x++) temporary.Paint(new Cell(x, z), source.terrainRows[source.height - z - 1][x]);
                 temporary.Place(LevelBrush.Player, source.playerSpawn.Cell, source.playerSpawn.facing);

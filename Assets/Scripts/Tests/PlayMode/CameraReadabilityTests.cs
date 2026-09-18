@@ -18,7 +18,7 @@ namespace Sokoban.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             LevelRunner.PlaytestDefinition = null;
-            runner = new GameObject("Camera readability test").AddComponent<LevelRunner>();
+            runner = new GameObject("Camera readability test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return null; runner.enabled = false;
         }
         [UnityTearDown] public IEnumerator TearDown()
@@ -80,7 +80,7 @@ namespace Sokoban.Tests
         {
             Object.Destroy(runner.gameObject); yield return null;
             LevelRunner.PlaytestDefinition = StationCircuitTests.ComparisonFixture();
-            runner = new GameObject("Author camera test").AddComponent<LevelRunner>();
+            runner = new GameObject("Author camera test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return new WaitForSeconds(.3f); runner.enabled = false;
             Assert.That(runner.IsPlaytest && runner.Cameras.TopDown, Is.True);
             runner.ToggleCamera(); yield return new WaitForSeconds(.3f);

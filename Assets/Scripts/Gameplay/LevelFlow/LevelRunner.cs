@@ -22,6 +22,7 @@ namespace Sokoban
         public CommandPresenter Presenter { get; private set; }
         public CameraRig Cameras { get; private set; }
         public StationUIController UI { get; private set; }
+        public PlayerProgress Progress { get; set; }
         public bool Paused { get; private set; }
         public bool Completed { get; private set; }
         public bool LevelSelectionOpen { get; private set; }
@@ -35,7 +36,10 @@ namespace Sokoban
         public bool CanSelectLevel => !IsPlaytest && !IsLiveSandbox && !LiveEditing && campaign.Length > 0 && !NavigationLocked;
         public bool CanGoNext => !NavigationLocked && !LevelSelectionOpen && !IsPlaytest && !IsLiveSandbox && Completed && Presenter != null && !Presenter.Busy && CampaignIndex >= 0 && CampaignIndex + 1 < campaign.Length;
         public bool IsFinalCampaignLevel => !IsPlaytest && CampaignIndex >= 0 && CampaignIndex == campaign.Length - 1;
-        public string CompletionHeading => IsFinalCampaignLevel ? "空间站已重启！" : Definition?.completionText;
+        public string CompletionHeading => "关卡完成";
+        public string LevelLabel => IsPlaytest || CampaignIndex < 0 ? "试玩 · " + Definition?.id : $"关卡 {CampaignIndex + 1:00}";
+        public int ContinueIndex => Progress?.RecentIndex(campaign) ?? -1;
+        public int CompletedLevelCount => campaign.Count(level => Progress?.Best(level) != null);
         public int GoalCount => Definition?.sockets.Count(s => s.isGoal) ?? 0;
         public int PoweredGoalCount
         {
@@ -49,7 +53,7 @@ namespace Sokoban
         private readonly GridInput input = new GridInput();
         private LevelDefinition[] campaign = Array.Empty<LevelDefinition>();
         private float idleTime, rejectedAt = -1;
-        private bool pausedBeforeSelection;
+        private bool pausedBeforeSelection, officialSession;
 
         private void Start()
         {
@@ -67,6 +71,7 @@ namespace Sokoban
                     string initialId = initial ? LevelJson.Read(initial.text).id : null;
                     InitialCampaignIndex = Mathf.Max(0, Array.FindIndex(campaign, level => level.id == initialId));
                 }
+                Progress = Progress ?? (IsPlaytest ? new PlayerProgress(() => null, _ => { }) : new PlayerProgress(PlayerProgress.DefaultPath));
                 UI = new StationUIController(this);
                 InitializeDebug();
                 if (IsPlaytest) LoadLevel(PlaytestDefinition);
@@ -75,22 +80,35 @@ namespace Sokoban
             catch (Exception exception) { ReportError(exception); }
         }
 
-        public string GetCampaignTitle(int index) => campaign[index].title;
+        public string GetCampaignId(int index) => campaign[index].id;
+        public string GetCampaignStatus(int index)
+        {
+            var best = Progress.Best(campaign[index]);
+            return best != null ? $"已完成 · {best.moves} 步 / {best.pushes} 推" : Progress.HasOlderScore(campaign[index]) ? "关卡已更新 · 待完成" : "待完成";
+        }
+        public void RetryProgressSave() { Progress.TrySave(); NotifyChanged(); }
+        private void RecordCompletion()
+        {
+            if (officialSession && !IsPlaytest && !IsLiveSandbox && !LiveEditing && CampaignIndex >= 0 && Completed)
+                Progress.Complete(Definition, Session);
+        }
 
         public void LoadLevel(LevelDefinition level)
         {
             if (NavigationLocked || IsLiveSandbox) return;
             ApplyLevel(level);
         }
-        private void ApplyLevel(LevelDefinition level)
+        private void ApplyLevel(LevelDefinition level, bool official = false)
         {
             var session = new GameSession(level);
             InstallSession(level, session);
+            officialSession = official;
             SessionId = Guid.NewGuid().ToString("N"); Revision++;
             CampaignIndex = IsPlaytest ? -1 : Array.FindIndex(campaign, entry => entry.id == level.id && LevelJson.Hash(entry) == LevelJson.Hash(level));
             Completed = Session.State.Completed; Paused = false; LevelSelectionOpen = false;
             DebugAnimationPaused = false;
-            idleTime = 0; input.Clear(); Message = level.briefing; Error = null;
+            idleTime = 0; input.Clear(); Message = ""; Error = null;
+            if (officialSession && !IsPlaytest && CampaignIndex >= 0) { Progress.Visit(Definition); RecordCompletion(); }
             NotifyChanged();
         }
 
@@ -98,14 +116,14 @@ namespace Sokoban
         public bool SelectLevel(int index)
         {
             if (NavigationLocked || IsPlaytest || IsLiveSandbox || LiveEditing || index < 0 || index >= campaign.Length) return false;
-            ApplyLevel(campaign[index]); return true;
+            ApplyLevel(campaign[index], true); return true;
         }
-        internal void SelectCoveredLevel(int index) => ApplyLevel(campaign[index]);
+        internal void SelectCoveredLevel(int index) => ApplyLevel(campaign[index], true);
         public bool NextLevel() => CanGoNext && SelectLevel(CampaignIndex + 1);
         internal void ReturnToMenu()
         {
             ClearPresentation();
-            Session = null; Definition = null; CampaignIndex = -1;
+            Session = null; Definition = null; CampaignIndex = -1; officialSession = false;
             SessionId = Guid.NewGuid().ToString("N"); Revision++;
             Completed = Paused = LevelSelectionOpen = false; Message = ""; input.Clear();
             NotifyChanged();
@@ -127,7 +145,7 @@ namespace Sokoban
             bool consumed = false; ReadDebugInput(ref consumed);
             if (consumed || LiveEditing) return;
             UI?.ReadInput();
-            if (Session == null || Error != null || NavigationLocked || LevelSelectionOpen || UI?.SettingsOpen == true) return;
+            if (Session == null || Error != null || NavigationLocked || LevelSelectionOpen || (UI?.SettingsOpen == true || UI?.HelpOpen == true)) return;
             var keyboard = Keyboard.current;
             if (keyboard != null && !Paused)
             {
@@ -158,7 +176,7 @@ namespace Sokoban
             Presenter.Present(result, () =>
             {
                 Board.Restore(Session, false); idleTime = 0; Completed = Session.State.Completed;
-                if (Completed) Message = Definition.completionText;
+                Message = ""; RecordCompletion();
                 NotifyChanged();
             });
             NotifyChanged(); return true;
@@ -168,14 +186,14 @@ namespace Sokoban
             if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing || Session.UndoCount == 0) return;
             Presenter.Cancel(); input.Clear(); Session.Undo(); Board.Restore(Session); Cameras.Snap(); Revision++;
             RecordDebug("撤销");
-            Completed = Session.State.Completed; Message = Definition.briefing; idleTime = 0; NotifyChanged();
+            Completed = Session.State.Completed; Message = ""; idleTime = 0; NotifyChanged();
         }
         public void Restart()
         {
             if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing) return;
             Presenter.Cancel(); input.Clear(); Session.Restart(); Board.Restore(Session);
             Cameras.Snap(); Revision++; RecordDebug("重开");
-            Completed = Session.State.Completed; Message = Definition.briefing; idleTime = 0; NotifyChanged();
+            Completed = Session.State.Completed; Message = ""; idleTime = 0; NotifyChanged();
         }
         public void ToggleCamera()
         {
@@ -209,7 +227,9 @@ namespace Sokoban
             presentationRoot = null;
             Board = null; Cameras = null;
         }
+        private void OnApplicationPause(bool paused) { if (paused && !IsPlaytest && !IsLiveSandbox) Progress?.TrySave(); }
+        private void OnApplicationQuit() { if (!IsPlaytest && !IsLiveSandbox) Progress?.TrySave(); }
         private void OnDestroy()
-        { DisposeDebug(); UI?.Dispose(); Presenter?.Cancel(); Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
+        { if (!IsPlaytest && !IsLiveSandbox) Progress?.TrySave(); DisposeDebug(); UI?.Dispose(); Presenter?.Cancel(); Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
     }
 }

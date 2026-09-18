@@ -1,9 +1,6 @@
 {
   "schemaVersion": 3,
   "id": "L09",
-  "title": "借电发车",
-  "briefing": "先把一只能源箱放进辅助插槽。箱子在门格停靠后，还要再推到深处接替供电。",
-  "completionText": "运输区已恢复供电",
   "width": 8,
   "height": 8,
   "gridSize": 1.0,

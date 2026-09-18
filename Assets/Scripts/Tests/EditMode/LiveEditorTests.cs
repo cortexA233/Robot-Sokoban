@@ -28,7 +28,8 @@ namespace Sokoban.Tests
             output = "Library/SokobanDrafts/Live/Test_" + Guid.NewGuid().ToString("N") + ".json";
             LevelRunner.PlaytestDefinition = null;
             runner = Object.FindObjectOfType<LevelRunner>();
-            if (!runner) { runner = new GameObject("Live editing test").AddComponent<LevelRunner>(); yield return null; }
+            if (!runner) { runner = new GameObject("Live editing test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { }); yield return null; }
+            runner.Progress = new PlayerProgress(() => null, _ => { });
             runner.enabled = false; runner.SelectLevel(1);
             author = ScriptableObject.CreateInstance<LevelDocument>(); author.draftPath = output + ".author";
             author.level = runner.Definition.Copy(); author.savedHash = LevelJson.Hash(author.level);
@@ -60,7 +61,7 @@ namespace Sokoban.Tests
         {
             runner.LoadLevel(LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text));
             author.level = runner.Definition.Copy(); author.savedHash = LevelJson.Hash(author.level);
-            author.Change("未保存作者修改", () => author.level.title += " 作者草稿");
+            author.Change("未保存作者修改", () => author.level.playerSpawn.facing = "W");
             string original = LevelJson.Write(author.level); string sourceHash = LevelJson.Hash(runner.Definition);
             var workspace = Capture(); var draft = workspace.Draft;
             Assert.That(workspace.SourceHash, Is.EqualTo(sourceHash)); Assert.That(draft.level.schemaVersion, Is.EqualTo(1));
@@ -112,7 +113,7 @@ namespace Sokoban.Tests
             Assert.That(File.Exists(output), Is.False);
             Undo.PerformUndo(); workspace.SaveCopy(output);
             var copy = LevelJson.Read(File.ReadAllText(output)); Assert.That(copy.id, Is.Not.EqualTo(author.level.id));
-            author.Change("独立作者修改", () => author.level.title += " 新版"); string changed = LevelJson.Write(author.level);
+            author.Change("独立作者修改", () => author.level.playerSpawn.facing = "S"); string changed = LevelJson.Write(author.level);
             Assert.Throws<InvalidOperationException>(() => workspace.BringBack());
             Assert.That(LevelJson.Write(author.level), Is.EqualTo(changed));
             Assert.That(runner.TryApplyLiveDraft(workspace.Draft.level, BoardSnapshot.FromDefinition(workspace.Draft.level), "stale", runner.Revision, out _), Is.False);

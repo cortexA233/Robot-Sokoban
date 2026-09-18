@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "levelId": "LAB01_LowFriction",
-    "contentHash": "34e7f9f3107578a3ae271d784321848d9779f97745aa1daccb387c1fbaec2d5b",
+    "contentHash": "23ad33a71831a693b399b79be51eb4af20dcf9e80300d37fabebe98c58ab7bb1",
     "commands": "E",
     "expectedMoves": 1,
     "expectedPushes": 1,

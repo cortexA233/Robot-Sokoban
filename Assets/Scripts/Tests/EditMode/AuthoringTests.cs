@@ -181,17 +181,17 @@ namespace Sokoban.Tests
         }
         [Test] public void DraftSurvivesSerializationAndIsIsolated()
         {
-            document.level.title = "尚未保存的中文标题"; document.Backup();
+            document.level.playerSpawn.facing = "W"; document.Backup();
             var recovered = ScriptableObject.CreateInstance<LevelDocument>();
             recovered.draftPath = document.draftPath;
-            try { recovered.RestoreDraft(); Assert.That(LevelJson.Hash(recovered.level), Is.EqualTo(LevelJson.Hash(document.level))); recovered.level.title = "other"; Assert.That(document.level.title, Is.EqualTo("尚未保存的中文标题")); }
+            try { recovered.RestoreDraft(); Assert.That(LevelJson.Hash(recovered.level), Is.EqualTo(LevelJson.Hash(document.level))); recovered.level.playerSpawn.facing = "E"; Assert.That(document.level.playerSpawn.facing, Is.EqualTo("W")); }
             finally { UnityEngine.Object.DestroyImmediate(recovered); }
         }
         [Test] public void ProofExpiresOnEditAndCanBeReplayedAndRebound()
         {
             document.level = LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text);
             var proof = SolutionRecord.Capture(document.level, SolutionRecord.ReplayCommands(document.level, "E"));
-            document.level.title += " 改名";
+            document.level.playerSpawn.facing = document.level.playerSpawn.facing == "N" ? "S" : "N";
             Assert.Throws<InvalidOperationException>(() => proof.Verify(document.level, true));
             Assert.DoesNotThrow(() => proof.Verify(document.level, false));
             proof.contentHash = LevelJson.Hash(document.level); Assert.DoesNotThrow(() => proof.Verify(document.level, true));
@@ -226,10 +226,11 @@ namespace Sokoban.Tests
             try
             {
                 document.Save(path, false);
-                document.Change("更改标题", () => document.level.title = "已保存的新标题");
+                string facing = document.level.playerSpawn.facing == "N" ? "S" : "N";
+                document.Change("更改朝向", () => document.level.playerSpawn.facing = facing);
                 document.Save(path, false); Assert.That(document.IsDirty, Is.False);
                 Undo.PerformUndo(); Assert.That(document.IsDirty, Is.True);
-                Assert.That(LevelJson.Read(File.ReadAllText(path)).title, Is.EqualTo("已保存的新标题"));
+                Assert.That(LevelJson.Read(File.ReadAllText(path)).playerSpawn.facing, Is.EqualTo(facing));
             }
             finally { File.Delete(path); }
         }

@@ -94,9 +94,6 @@ namespace Sokoban.Domain
     {
         public int schemaVersion;
         public string id;
-        public string title;
-        public string briefing;
-        public string completionText;
         public int width;
         public int height;
         public float gridSize;

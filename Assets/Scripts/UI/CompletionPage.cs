@@ -18,9 +18,12 @@ namespace Sokoban.UI
         public override void Refresh()
         {
             if (Runner.Session == null) return;
-            Get<Text>("Content/Title").text = Runner.CompletionHeading;
+            Get<Text>("Content/Heading").text = Runner.CompletionHeading;
             Get<Text>("Content/Stats").text = $"移动 {Runner.Session.State.Moves}  ·  推动 {Runner.Session.State.Pushes}";
-            Get<Text>("Content/Message").text = Runner.Message == Runner.Definition.completionText ? "" : Runner.Message;
+            var best = Runner.Progress.Best(Runner.Definition);
+            Get<Text>("Content/Best").text = Runner.IsPlaytest || !Runner.Session.ReferenceReplayValid ? "试玩成绩不计入正式记录" :
+                best == null ? "" : $"最佳  {best.moves} 步 · {best.pushes} 推";
+            Get<Text>("Content/Notice").text = string.IsNullOrEmpty(Runner.Message) ? Runner.Progress.Status : Runner.Message;
             transform.Find("Content/Next").gameObject.SetActive(!Runner.IsPlaytest);
             Get<Text>("Content/Next/Label").text = Runner.IsFinalCampaignLevel ? "返回选关" : "下一关";
             transform.Find("Content/Levels").gameObject.SetActive(!Runner.IsPlaytest && !Runner.IsFinalCampaignLevel);

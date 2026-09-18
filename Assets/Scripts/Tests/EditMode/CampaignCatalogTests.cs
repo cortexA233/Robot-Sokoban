@@ -13,8 +13,8 @@ namespace Sokoban.Tests
             var catalog = Resources.Load<CampaignCatalog>("configs/CampaignCatalog");
             Assert.That(catalog, Is.Not.Null);
             Assert.That(catalog.ReadLevels().Select(level => level.id), Is.EqualTo(Enumerable.Range(4, 9).Select(i => "L" + i.ToString("00"))));
-            var copy = catalog.ReadLevels(); copy[0].title = "changed";
-            Assert.That(catalog.ReadLevels()[0].title, Is.EqualTo("借一格"));
+            var copy = catalog.ReadLevels(); copy[0].id = "changed";
+            Assert.That(catalog.ReadLevels()[0].id, Is.EqualTo("L04"));
         }
         [Test] public void CatalogOrderDeterminesNavigationOrder()
         {

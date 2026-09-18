@@ -1,0 +1,443 @@
+[
+  {
+    "frame": 446693,
+    "t": 0.01921570000195061,
+    "phase": 0,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.000, 0.000, 0.000, 0.000)"
+  },
+  {
+    "frame": 446753,
+    "t": 0.304624700002023,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.000, 0.000, 0.000, 0.000)"
+  },
+  {
+    "frame": 446754,
+    "t": 0.31539669999983744,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.059, 0.060, 0.059, 0.066)"
+  },
+  {
+    "frame": 446755,
+    "t": 0.3207366999995429,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.118, 0.119, 0.118, 0.131)"
+  },
+  {
+    "frame": 446756,
+    "t": 0.32605790000161505,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.159, 0.160, 0.158, 0.176)"
+  },
+  {
+    "frame": 446757,
+    "t": 0.33123129999876255,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.198, 0.200, 0.197, 0.219)"
+  },
+  {
+    "frame": 446758,
+    "t": 0.33543139999892446,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.237, 0.239, 0.236, 0.263)"
+  },
+  {
+    "frame": 446759,
+    "t": 0.33914980000190553,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.268, 0.271, 0.267, 0.297)"
+  },
+  {
+    "frame": 446760,
+    "t": 0.34310310000000754,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.296, 0.299, 0.295, 0.328)"
+  },
+  {
+    "frame": 446761,
+    "t": 0.34839239999928395,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.326, 0.329, 0.324, 0.361)"
+  },
+  {
+    "frame": 446762,
+    "t": 0.3538007999995898,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.366, 0.369, 0.364, 0.406)"
+  },
+  {
+    "frame": 446763,
+    "t": 0.35875769999984186,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.407, 0.411, 0.405, 0.451)"
+  },
+  {
+    "frame": 446764,
+    "t": 0.3637312999999267,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.444, 0.448, 0.442, 0.492)"
+  },
+  {
+    "frame": 446765,
+    "t": 0.36841139999887673,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.481, 0.485, 0.479, 0.533)"
+  },
+  {
+    "frame": 446766,
+    "t": 0.3745903000017279,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.516, 0.521, 0.514, 0.572)"
+  },
+  {
+    "frame": 446767,
+    "t": 0.3815552000014577,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.563, 0.568, 0.560, 0.624)"
+  },
+  {
+    "frame": 446768,
+    "t": 0.38749770000140416,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.616, 0.621, 0.613, 0.683)"
+  },
+  {
+    "frame": 446769,
+    "t": 0.3940427000015916,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.660, 0.666, 0.657, 0.732)"
+  },
+  {
+    "frame": 446770,
+    "t": 0.3995543000019097,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.709, 0.716, 0.706, 0.787)"
+  },
+  {
+    "frame": 446771,
+    "t": 0.40378010000131326,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.750, 0.757, 0.747, 0.832)"
+  },
+  {
+    "frame": 446772,
+    "t": 0.40855759999976726,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.782, 0.789, 0.779, 0.867)"
+  },
+  {
+    "frame": 446773,
+    "t": 0.4145883000019239,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.818, 0.825, 0.815, 0.907)"
+  },
+  {
+    "frame": 446774,
+    "t": 0.4190770000022894,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.863, 0.871, 0.860, 0.957)"
+  },
+  {
+    "frame": 446775,
+    "t": 0.4234790000009525,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.897, 0.905, 0.893, 0.995)"
+  },
+  {
+    "frame": 446776,
+    "t": 0.42850840000028256,
+    "phase": 1,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 1.000)"
+  },
+  {
+    "frame": 447033,
+    "t": 1.8026955999994243,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Highlighted",
+    "color": "RGBA(0.902, 0.910, 0.898, 1.000)"
+  },
+  {
+    "frame": 447034,
+    "t": 1.8087525000009919,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.855, 0.862, 0.851, 0.948)"
+  },
+  {
+    "frame": 447035,
+    "t": 1.8147422000001825,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.810, 0.817, 0.806, 0.898)"
+  },
+  {
+    "frame": 447036,
+    "t": 1.8208448000004864,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.764, 0.771, 0.761, 0.847)"
+  },
+  {
+    "frame": 447037,
+    "t": 1.8257150999997975,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.719, 0.725, 0.715, 0.797)"
+  },
+  {
+    "frame": 447038,
+    "t": 1.8320892000010645,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.682, 0.688, 0.679, 0.756)"
+  },
+  {
+    "frame": 447039,
+    "t": 1.8379988000015146,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.633, 0.639, 0.631, 0.702)"
+  },
+  {
+    "frame": 447040,
+    "t": 1.8437935000001744,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.590, 0.595, 0.587, 0.654)"
+  },
+  {
+    "frame": 447041,
+    "t": 1.8499903000010818,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.544, 0.548, 0.541, 0.603)"
+  },
+  {
+    "frame": 447042,
+    "t": 1.8557834999992338,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.499, 0.504, 0.497, 0.554)"
+  },
+  {
+    "frame": 447043,
+    "t": 1.8605000999996264,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.456, 0.460, 0.454, 0.505)"
+  },
+  {
+    "frame": 447044,
+    "t": 1.8657994000022882,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.421, 0.424, 0.419, 0.466)"
+  },
+  {
+    "frame": 447045,
+    "t": 1.870887600001879,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.381, 0.384, 0.379, 0.422)"
+  },
+  {
+    "frame": 447046,
+    "t": 1.8755802000014228,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.343, 0.346, 0.341, 0.380)"
+  },
+  {
+    "frame": 447047,
+    "t": 1.8803040999991936,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.307, 0.310, 0.306, 0.341)"
+  },
+  {
+    "frame": 447048,
+    "t": 1.88442280000163,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.272, 0.274, 0.271, 0.301)"
+  },
+  {
+    "frame": 447049,
+    "t": 1.8890558000020974,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.241, 0.243, 0.240, 0.267)"
+  },
+  {
+    "frame": 447050,
+    "t": 1.8941874000011012,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.206, 0.208, 0.205, 0.228)"
+  },
+  {
+    "frame": 447051,
+    "t": 1.9004021000000648,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.167, 0.168, 0.166, 0.185)"
+  },
+  {
+    "frame": 447052,
+    "t": 1.907887400000618,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.119, 0.120, 0.119, 0.132)"
+  },
+  {
+    "frame": 447053,
+    "t": 1.913140900000144,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.064, 0.065, 0.064, 0.071)"
+  },
+  {
+    "frame": 447054,
+    "t": 1.9181222000006528,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.025, 0.025, 0.025, 0.028)"
+  },
+  {
+    "frame": 447055,
+    "t": 1.9239115999989735,
+    "phase": 2,
+    "button": "Restart",
+    "selected": "Resume",
+    "state": "Normal",
+    "color": "RGBA(0.000, 0.000, 0.000, 0.000)"
+  },
+  {
+    "frame": 447086,
+    "t": 2.1023903000022983,
+    "phase": 3,
+    "button": "Resume",
+    "selected": "Resume",
+    "state": "Selected",
+    "color": "RGBA(0.776, 0.400, 0.220, 1.000)"
+  }
+]

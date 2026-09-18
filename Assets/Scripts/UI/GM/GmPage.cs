@@ -173,7 +173,7 @@ namespace Sokoban.UI
             Find<Button>("EndLive").gameObject.SetActive(runner.IsLiveSandbox);
             foreach (string name in new[] { "AddEnergy", "AddCargo", "RemoveCrate" }) Find<Button>(name).gameObject.SetActive(LevelRunner.HasLiveEditor && game);
             Find<Text>("AdditionHint").gameObject.SetActive(LevelRunner.HasLiveEditor && game);
-            Find<Text>("LevelInfo").text = game ? runner.Definition.title + "\nID: " + runner.Definition.id + "\n" +
+            Find<Text>("LevelInfo").text = game ? runner.LevelLabel + "\nID: " + runner.Definition.id + "\n" +
                 (runner.IsLiveSandbox ? "现场试玩" : runner.IsPlaytest ? "作者试玩" : "正式关卡") + " · " + LevelJson.Hash(runner.Definition).Substring(0, 12) +
                 "\n能源箱 " + runner.Definition.crates.Count(c => c.IsEnergy) + " · 普通箱 " + runner.Definition.crates.Count(c => !c.IsEnergy) : "当前没有关卡，可输入序号进入。";
             Find<Text>("BoardInfo").text = !game ? "请先进入关卡。" : "逻辑玩家 " + runner.Session.State.Player +

@@ -1,9 +1,6 @@
 {
   "schemaVersion": 2,
   "id": "L05",
-  "title": "三箱锁喉",
-  "briefing": "不能连推：先拆开窄道中的箱子，再先送深处、后送浅处。",
-  "completionText": "仓储通道已疏通",
   "width": 7,
   "height": 8,
   "gridSize": 1.0,

@@ -13,6 +13,7 @@ namespace Sokoban.UI
         public LevelRunner Runner { get; }
         public GamePreferences Preferences { get; } = new GamePreferences();
         public bool SettingsOpen { get; private set; }
+        public bool HelpOpen { get; private set; }
         public bool IsTransitioning => Fade.IsFading;
         public GeneralFadePage Fade { get; private set; }
         private readonly List<StationPage> pages = new List<StationPage>();
@@ -22,8 +23,9 @@ namespace Sokoban.UI
         private PausePage pause;
         private CompletionPage completion;
         private SettingsPage settings;
+        private HelpPage help;
         private Camera menuCamera;
-        private bool pausedBeforeSettings, disposed, selectionWasOpen;
+        private bool pausedBeforeHelp, pausedBeforeSettings, disposed, selectionWasOpen;
 
         public StationUIController(LevelRunner runner)
         {
@@ -43,7 +45,7 @@ namespace Sokoban.UI
                 menuCamera.cullingMask = 0; menuCamera.depth = -10;
                 menu = Create<MainMenuPage>(); hud = Create<HudPage>();
                 selection = Create<LevelSelectPage>(); pause = Create<PausePage>();
-                completion = Create<CompletionPage>(); settings = Create<SettingsPage>();
+                completion = Create<CompletionPage>(); settings = Create<SettingsPage>(); help = Create<HelpPage>();
                 Fade = KUIManager.instance.CreateUI<GeneralFadePage>();
                 if (Fade == null) throw new InvalidOperationException("GeneralFade UI prefab is missing.");
                 Runner.Changed += Refresh;
@@ -62,17 +64,18 @@ namespace Sokoban.UI
             if (disposed) return;
             bool hasGame = Runner.Session != null;
             bool choosing = Runner.LevelSelectionOpen;
-            bool playing = hasGame && !choosing && !SettingsOpen;
+            bool overlay = SettingsOpen || HelpOpen;
+            bool playing = hasGame && !choosing && !overlay;
             bool unlocked = !Runner.NavigationLocked && !Runner.DebugInputCaptured;
             if (choosing && !selectionWasOpen) selection.SelectCurrent();
             selectionWasOpen = choosing;
-            menu.Present(!hasGame && !choosing && !SettingsOpen, unlocked);
+            menu.Present(!hasGame && !choosing && !overlay, unlocked);
             hud.Present(playing, unlocked && !Runner.Paused && !Runner.Completed);
-            selection.Present(choosing && !SettingsOpen, unlocked);
+            selection.Present(choosing && !overlay, unlocked);
             pause.Present(playing && Runner.Paused && !Runner.Completed, unlocked);
             completion.Present(playing && Runner.Completed, unlocked);
             settings.Present(SettingsOpen, unlocked);
-            foreach (var page in pages) if (page.gameObject.activeSelf) page.Refresh();
+            help.Present(HelpOpen, unlocked);
             menuCamera.enabled = !hasGame;
             if (Fade?.gameObject && Fade.gameObject.activeSelf) Fade.transform.SetAsLastSibling();
         }
@@ -80,7 +83,8 @@ namespace Sokoban.UI
         {
             if (disposed || Runner.NavigationLocked) return;
             if (Keyboard.current == null || !Keyboard.current.escapeKey.wasPressedThisFrame) return;
-            if (SettingsOpen) CloseSettings();
+            if (HelpOpen) CloseHelp();
+            else if (SettingsOpen) CloseSettings();
             else if (Runner.LevelSelectionOpen) Runner.CloseLevelSelect();
             else if (Runner.Session != null && !Runner.Completed) Runner.SetPaused(!Runner.Paused);
         }
@@ -99,7 +103,7 @@ namespace Sokoban.UI
         private bool Transition(FadeAxis axis, Action change)
         {
             if (disposed || Runner.NavigationLocked) return false;
-            Preferences.Save(); SettingsOpen = false;
+            Preferences.Save(); Runner.Progress.TrySave(); SettingsOpen = HelpOpen = false;
             Runner.SetNavigationLocked(true);
             if (EventSystem.current) EventSystem.current.SetSelectedGameObject(null);
             Fade.Play(axis, () =>
@@ -116,7 +120,7 @@ namespace Sokoban.UI
             });
             return true;
         }
-        public void OpenLevelSelection() { if (!disposed && !SettingsOpen) Runner.OpenLevelSelect(); }
+        public void OpenLevelSelection() { if (!disposed && !SettingsOpen && !HelpOpen) Runner.OpenLevelSelect(); }
         public void Replay()
         {
             if (Runner.NavigationLocked) return;
@@ -124,19 +128,29 @@ namespace Sokoban.UI
         }
         public void OpenSettings()
         {
-            if (Runner.NavigationLocked || SettingsOpen) return;
+            if (Runner.NavigationLocked || SettingsOpen || HelpOpen) return;
             pausedBeforeSettings = Runner.Paused; SettingsOpen = true;
             Runner.SetPaused(true);
         }
         public void CloseSettings()
         {
             if (!SettingsOpen || Runner.NavigationLocked) return;
-            Preferences.Save(); SettingsOpen = false; Runner.SetPaused(pausedBeforeSettings);
+            Preferences.Save(); Runner.Progress.TrySave(); SettingsOpen = HelpOpen = false; Runner.SetPaused(pausedBeforeSettings);
+        }
+        public void OpenHelp()
+        {
+            if (Runner.NavigationLocked || HelpOpen || SettingsOpen) return;
+            pausedBeforeHelp = Runner.Paused; HelpOpen = true; Runner.SetPaused(true);
+        }
+        public void CloseHelp()
+        {
+            if (!HelpOpen || Runner.NavigationLocked) return;
+            HelpOpen = false; Runner.SetPaused(pausedBeforeHelp);
         }
         public void Quit()
         {
             if (Runner.NavigationLocked) return;
-            Preferences.Save();
+            Preferences.Save(); Runner.Progress.TrySave();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

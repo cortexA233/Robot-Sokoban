@@ -1,0 +1,42 @@
+[
+  {
+    "name": "MainMenu",
+    "buttons": 7,
+    "valid": true
+  },
+  {
+    "name": "Hud",
+    "buttons": 5,
+    "valid": true
+  },
+  {
+    "name": "Pause",
+    "buttons": 6,
+    "valid": true
+  },
+  {
+    "name": "LevelSelect",
+    "buttons": 3,
+    "valid": true
+  },
+  {
+    "name": "Completion",
+    "buttons": 6,
+    "valid": true
+  },
+  {
+    "name": "Settings",
+    "buttons": 1,
+    "valid": true
+  },
+  {
+    "name": "Help",
+    "buttons": 1,
+    "valid": true
+  },
+  {
+    "name": "GeneralFade",
+    "buttons": 0,
+    "valid": true
+  }
+]

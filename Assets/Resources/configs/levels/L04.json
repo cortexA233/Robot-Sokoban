@@ -1,9 +1,6 @@
 {
   "schemaVersion": 2,
   "id": "L04",
-  "title": "借一格",
-  "briefing": "普通箱有交叉支架，不供电；先给它腾位置，再把能源箱送到目标。",
-  "completionText": "货物整备完成",
   "width": 7,
   "height": 7,
   "gridSize": 1.0,

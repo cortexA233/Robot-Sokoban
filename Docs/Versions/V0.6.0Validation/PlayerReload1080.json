@@ -1,0 +1,17 @@
+{
+    "passed": true,
+    "reload": true,
+    "nativeKeyboardConfirmed": false,
+    "input": "InputSystem simulated keyboard/mouse; real runner and UI event handlers",
+    "error": "",
+    "progressPath": "C:/Users/corte/AppData/LocalLow/DefaultCompany/Sokoban_3D_Test\\player-progress.json",
+    "width": 1920,
+    "height": 1080,
+    "moves": 0,
+    "pushes": 0,
+    "mainHoverMinimum": 0.0,
+    "pauseHoverMinimum": 0.0,
+    "volume": 1.0,
+    "sensitivity": 1.0,
+    "invertY": false
+}

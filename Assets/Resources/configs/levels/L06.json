@@ -1,9 +1,6 @@
 {
   "schemaVersion": 2,
   "id": "L06",
-  "title": "先过箱，再交电",
-  "briefing": "下方辅助插槽与最深处目标都能开门；先交接供电，再回收临时能源箱。",
-  "completionText": "全部区域已恢复供电",
   "width": 7,
   "height": 9,
   "gridSize": 1.0,

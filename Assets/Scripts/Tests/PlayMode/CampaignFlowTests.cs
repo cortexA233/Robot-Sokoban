@@ -13,7 +13,7 @@ namespace Sokoban.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             LevelRunner.PlaytestDefinition = null;
-            runner = new GameObject("Campaign flow test").AddComponent<LevelRunner>();
+            runner = new GameObject("Campaign flow test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return null;
             runner.enabled = false;
             Assert.That(runner.Session, Is.Null, "正式启动应先显示主菜单。");
@@ -71,7 +71,7 @@ namespace Sokoban.Tests
             Assert.That(runner.SelectLevel(runner.CampaignLevelCount - 1), Is.True);
             yield return SolveCurrentLevel();
             Assert.That(runner.IsFinalCampaignLevel, Is.True);
-            Assert.That(runner.CompletionHeading, Is.EqualTo("空间站已重启！"));
+            Assert.That(runner.CompletionHeading, Is.EqualTo("关卡完成"));
             Assert.That(runner.CanGoNext, Is.False); Assert.That(runner.NextLevel(), Is.False);
             Assert.That(runner.OpenLevelSelect(), Is.True);
             Assert.That(runner.LevelSelectionOpen, Is.True);
@@ -140,7 +140,7 @@ namespace Sokoban.Tests
             UnityEngine.Object.Destroy(runner.gameObject); yield return null;
             LevelRunner.PlaytestDefinition = LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text);
             string hash = LevelJson.Hash(LevelRunner.PlaytestDefinition);
-            runner = new GameObject("Preview flow test").AddComponent<LevelRunner>(); yield return null;
+            runner = new GameObject("Preview flow test").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { }); yield return null;
             runner.enabled = false; runner.TryMove(Direction.E); yield return new WaitForSeconds(1.1f);
             Assert.That(runner.Completed, Is.True); Assert.That(runner.IsPlaytest, Is.True);
             Assert.That(runner.NextLevel(), Is.False); Assert.That(runner.OpenLevelSelect(), Is.False);

@@ -21,15 +21,17 @@ namespace Sokoban.UI
         public void Present(bool visible, bool interactive)
         {
             bool opening = visible && !gameObject.activeSelf;
-            gameObject.SetActive(visible);
-            group.interactable = interactive;
-            group.blocksRaycasts = interactive;
+            if (gameObject.activeSelf != visible) gameObject.SetActive(visible);
+            if (visible) Refresh();
+            if (group.interactable != interactive) group.interactable = interactive;
+            if (group.blocksRaycasts != interactive) group.blocksRaycasts = interactive;
             if (opening && interactive && !(this is HudPage)) FocusFirst();
         }
-        public void FocusFirst()
+        public virtual void FocusFirst()
         {
-            var button = gameObject.GetComponentInChildren<Selectable>();
-            if (button && button.IsInteractable() && EventSystem.current) button.Select();
+            if (!EventSystem.current) return;
+            foreach (var control in gameObject.GetComponentsInChildren<Selectable>())
+                if (control.IsInteractable() && control.navigation.mode != Navigation.Mode.None) { control.Select(); return; }
         }
         public virtual void Refresh() { }
     }

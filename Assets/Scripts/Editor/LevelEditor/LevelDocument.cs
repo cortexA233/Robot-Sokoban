@@ -62,8 +62,7 @@ namespace Sokoban.Editor
             if (width < 5 || width > 32 || height < 5 || height > 32) throw new ArgumentOutOfRangeException("尺寸必须是 5–32。");
             return new LevelDefinition
             {
-                schemaVersion = 3, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), title = "新关卡",
-                briefing = "把能源箱送入目标插槽。", completionText = "区域已恢复供电", width = width, height = height,
+                schemaVersion = 3, id = "level_" + Guid.NewGuid().ToString("N").Substring(0, 8), width = width, height = height,
                 gridSize = 1, terrainRows = Enumerable.Repeat(new string('.', width), height).ToArray(),
                 crates = Array.Empty<CrateDefinition>(), sockets = Array.Empty<SocketDefinition>(),
                 gates = Array.Empty<GateDefinition>(), decorations = Array.Empty<DecorationDefinition>()

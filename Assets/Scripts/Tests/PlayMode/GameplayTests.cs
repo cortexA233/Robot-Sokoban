@@ -15,7 +15,7 @@ namespace Sokoban.Tests
         {
             LevelRunner.PlaytestDefinition = null;
             lab = LevelJson.Read(Resources.Load<TextAsset>("configs/test_levels/LAB01_LowFriction").text);
-            runner = new GameObject("Test runner").AddComponent<LevelRunner>();
+            runner = new GameObject("Test runner").AddComponent<LevelRunner>(); runner.Progress = new PlayerProgress(() => null, _ => { });
             yield return null;
             runner.enabled = false; // Commands below exercise the public game API deterministically.
             runner.LoadLevel(lab);
