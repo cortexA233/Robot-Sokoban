@@ -16,7 +16,6 @@ namespace Sokoban.Editor
         [SerializeField] private LevelDocument authorDocument;
         [SerializeField] private LiveEditWorkspace liveWorkspace;
         [SerializeField] private LevelBrush brush = LevelBrush.Select;
-        [SerializeField] private AuthorLayer layer = AuthorLayer.Actors;
         [SerializeField] private string selectedId;
         [SerializeField] private string facing = "N";
         private Cell? selectedCell;
@@ -45,6 +44,7 @@ namespace Sokoban.Editor
 
         private void OnEnable()
         {
+            if (!Enum.IsDefined(typeof(LevelBrush), brush)) brush = LevelBrush.Select;
             if (liveWorkspace) liveWorkspace.RestorePaths();
             if (authorDocument && File.Exists(LevelDocument.DraftPath))
             {
@@ -107,7 +107,6 @@ namespace Sokoban.Editor
             Button(editing, "撤销", Undo.PerformUndo, "undo"); Button(editing, "重做", Undo.PerformRedo, "redo");
             var testing = ToolbarGroup(toolbar, "校验与试玩");
             Button(testing, "校验", Validate, "validate-level"); Button(testing, "试玩并录制", Play, "playtest");
-            Button(testing, "回放解法", Replay, "replay");
             var publishing = ToolbarGroup(toolbar, "目录与帮助");
             Button(publishing, "关卡目录", () => CampaignCatalogWindow.OpenWindow(), "campaign-catalog");
             Button(publishing, "帮助", () => HelpWindow.OpenHelp(), "help");
@@ -124,19 +123,15 @@ namespace Sokoban.Editor
             var body = new VisualElement { name = "EditorBody", style = { flexDirection = FlexDirection.Row, flexGrow = 1, minHeight = 220 } };
             rootVisualElement.Add(body);
             var palette = new ScrollView { style = { width = 182, flexShrink = 0, paddingRight = 6 } }; body.Add(palette);
-            AddBrushes(palette, "工具", LevelBrush.Select, LevelBrush.Erase);
+            AddBrushes(palette, "工具", LevelBrush.Select);
             AddBrushes(palette, "地形", LevelBrush.Floor, LevelBrush.Wall, LevelBrush.Void, LevelBrush.LowFriction);
             AddBrushes(palette, "角色与箱子", LevelBrush.Player, LevelBrush.Crate, LevelBrush.CargoCrate);
             AddBrushes(palette, "机关", LevelBrush.GoalSocket, LevelBrush.UtilitySocket, LevelBrush.Gate, LevelBrush.Redirector);
-            var layerNames = new List<string> { "地形", "机关", "角色与箱子" };
-            var layerField = new PopupField<string>("右键擦除", layerNames, (int)layer) { name = "erase-layer" }; palette.Add(layerField);
-            layerField.labelElement.style.minWidth = 64; layerField.labelElement.style.width = 64;
-            layerField.RegisterValueChangedCallback(e => { layer = (AuthorLayer)layerNames.IndexOf(e.newValue); UpdateToolStatus(); });
             var facingField = new PopupField<string>("朝向", new List<string> { "N", "E", "S", "W" }, facing) { name = "brush-facing" }; palette.Add(facingField);
             facingField.labelElement.style.minWidth = 64; facingField.labelElement.style.width = 64;
             facingField.RegisterValueChangedCallback(e => { facing = e.newValue; UpdateToolStatus(); });
-            Button(palette, "外围墙", () => Edit("建立外围墙", document.Border), "border");
-            Button(palette, "SceneView 聚焦", FrameBoard, "frame-board");
+            Button(palette, "一键生成边界墙", () => Edit("建立外围墙", document.Border), "border");
+            Button(palette, "场景内相机聚焦", FrameBoard, "frame-board");
             var examples = new Foldout { text = "示例关卡", value = false, viewDataKey = "examples" }; palette.Add(examples);
             foreach (string name in new[] { "L04", "L05", "L06", "L07", "L08", "L09", "L10", "L11", "L12", "LAB01_LowFriction" })
             {
@@ -146,7 +141,7 @@ namespace Sokoban.Editor
             var canvas = new ScrollView(ScrollViewMode.VerticalAndHorizontal) { style = { flexGrow = 1, backgroundColor = new Color(.12f, .15f, .19f), paddingTop = 12, paddingLeft = 12 } };
             body.Add(canvas); grid = new VisualElement { focusable = true, name = "board-grid" }; canvas.Add(grid);
             properties = new ScrollView { style = { width = 280, flexShrink = 0, paddingLeft = 8 } }; body.Add(properties);
-            hint = new Label("左键放置/选取，地形可拖刷；右键擦除当前图层。SceneView 的 Alt/中键导航保留。") { style = { whiteSpace = WhiteSpace.Normal } };
+            hint = new Label("左键放置/选取，同层对象直接替换，地形可拖刷。SceneView 的 Alt/中键导航保留。") { style = { whiteSpace = WhiteSpace.Normal } };
             rootVisualElement.Add(hint);
             issues = new ScrollView { name = "validation-issues", style = { height = 130, flexShrink = 0, borderTopWidth = 1, borderTopColor = Color.gray } }; rootVisualElement.Add(issues);
             status = new Label { style = { whiteSpace = WhiteSpace.Normal } }; rootVisualElement.Add(status);
@@ -191,20 +186,19 @@ namespace Sokoban.Editor
                 case LevelBrush.Gate: return "受电门：放置后在右侧选择供电插槽和开启条件。";
                 case LevelBrush.Redirector: return "固定转向板：箱子进入后沿箭头继续移动。";
                 case LevelBrush.LowFriction: return "两类箱子沿推动方向滑行，受阻停下。";
-                case LevelBrush.Erase: return "只擦除当前擦除层；地形擦除会恢复地板。";
                 default: return "左键连续放置；Esc 回到选择。";
             }
         }
         public void SetBrush(LevelBrush value)
         {
-            EndStroke(); brush = value; UpdateToolStatus();
+            EndStroke(); brush = Enum.IsDefined(typeof(LevelBrush), value) ? value : LevelBrush.Select; UpdateToolStatus();
             if (hint != null) hint.text = BrushDescription(value);
         }
         private void UpdateToolStatus()
         {
             if (toolStatus == null) return;
-            toolStatus.text = (brush == LevelBrush.Select ? "选择模式" : "画笔：" + BrushName(brush)) + "  ·  右键擦除：" +
-                new[] { "地形", "机关", "角色与箱子" }[(int)layer] + "  ·  放置朝向：" + facing + "  ·  Esc 选择 / Q E 旋转";
+            toolStatus.text = (brush == LevelBrush.Select ? "选择模式" : "画笔：" + BrushName(brush) + "（同层覆盖）") +
+                "  ·  放置朝向：" + facing + "  ·  Esc 选择 / Q E 旋转";
             foreach (LevelBrush value in Enum.GetValues(typeof(LevelBrush)))
             {
                 var button = rootVisualElement.Q<Button>("brush-" + value);
@@ -213,7 +207,24 @@ namespace Sokoban.Editor
                 button.style.unityFontStyleAndWeight = brush == value ? FontStyle.Bold : FontStyle.Normal;
             }
         }
-        private static string BrushName(LevelBrush value) => new[] { "选择", "地板 Floor", "墙 Wall", "虚空 Void", "低摩擦轨道", "玩家", "能源箱", "辅助插槽", "目标插槽", "受电门", "擦除当前层", "普通箱（不供电）", "固定转向板" }[(int)value];
+        private static string BrushName(LevelBrush value)
+        {
+            switch (value)
+            {
+                case LevelBrush.Floor: return "地板 Floor";
+                case LevelBrush.Wall: return "墙 Wall";
+                case LevelBrush.Void: return "虚空 Void";
+                case LevelBrush.LowFriction: return "低摩擦轨道";
+                case LevelBrush.Player: return "玩家";
+                case LevelBrush.Crate: return "能源箱";
+                case LevelBrush.CargoCrate: return "普通箱（不供电）";
+                case LevelBrush.UtilitySocket: return "辅助插槽";
+                case LevelBrush.GoalSocket: return "目标插槽";
+                case LevelBrush.Gate: return "受电门";
+                case LevelBrush.Redirector: return "固定转向板";
+                default: return "选择";
+            }
+        }
         private static void Button(VisualElement parent, string text, Action action, string name = null)
         { var button = new Button(action) { text = text, name = name }; button.style.minHeight = 25; parent.Add(button); }
         private void OnInspectorUpdate()
@@ -227,7 +238,7 @@ namespace Sokoban.Editor
             if (rootVisualElement == null) return;
             rootVisualElement.SetEnabled(true);
             rootVisualElement.Q<VisualElement>("EditorBody")?.SetEnabled(CanEditDocument);
-            foreach (string name in new[] { "new-level", "open-level", "playtest", "replay", "import-recipe" })
+            foreach (string name in new[] { "new-level", "open-level", "playtest", "import-recipe" })
                 rootVisualElement.Q<Button>(name)?.SetEnabled(!LiveMode && !EditorApplication.isPlayingOrWillChangePlaymode);
             foreach (string name in new[] { "save-level", "copy-level", "validate-level" })
                 rootVisualElement.Q<Button>(name)?.SetEnabled(LiveMode || !EditorApplication.isPlayingOrWillChangePlaymode);
@@ -324,14 +335,14 @@ namespace Sokoban.Editor
                     row.Add(tile);
                     tile.RegisterCallback<PointerDownEvent>(e =>
                     {
-                        if (e.altKey || (e.button != 0 && e.button != 1)) return;
+                        if (e.altKey || e.button != 0) return;
                         grid.Focus(); EndStroke();
-                        if (brush == LevelBrush.Select && e.button == 0) SelectCell(cell);
-                        else { BeginStroke(); Apply(cell, e.button == 1); }
+                        if (brush == LevelBrush.Select) SelectCell(cell);
+                        else { BeginStroke(); Apply(cell); }
                         e.StopPropagation();
                     });
                     tile.RegisterCallback<PointerEnterEvent>(e =>
-                    { hint.text = "格 " + cell + " · " + BrushName(brush) + (brush == LevelBrush.Wall || brush == LevelBrush.Void ? "（删除此格实体）" : ""); if (brushing && e.pressedButtons != 0 && IsTerrainBrush()) Apply(cell, e.pressedButtons == 2); });
+                    { hint.text = "格 " + cell + " · " + BrushName(brush) + (brush == LevelBrush.Wall || brush == LevelBrush.Void ? "（删除此格实体）" : ""); if (brushing && e.pressedButtons == 1 && IsTerrainBrush()) Apply(cell); });
                     tile.RegisterCallback<PointerUpEvent>(_ => { EndStroke(); Refresh(); });
                 }
             }
@@ -345,7 +356,7 @@ namespace Sokoban.Editor
             }
             hasUnsavedChanges = !LiveMode && document.IsDirty;
             status.text = $"{level.width} × {level.height} · {(document.IsDirty ? "● 未保存" : "已保存")} · {(string.IsNullOrEmpty(document.filePath) ? "新草稿" : document.filePath)}\n" +
-                (document.solution == null ? "尚无参考解法" : document.solution.contentHash == LevelJson.Hash(level) ? "参考解法：当前版本" : "参考解法：已过期，需重新回放");
+                (document.solution == null ? "尚无参考解法" : document.solution.contentHash == LevelJson.Hash(level) ? "参考解法：当前版本" : "参考解法：已过期，需重新试玩录制");
             if (LiveMode) status.text = "临时现场草稿 · " + (liveWorkspace && liveWorkspace.IsAttached ? liveWorkspace.Editing ? "编辑中，游戏输入已占用" : "游戏运行中，点击编辑或重新捕获" : "来源已结束，可另存副本") + "\n" + status.text;
             RefreshMode();
             SceneView.RepaintAll();
@@ -432,15 +443,14 @@ namespace Sokoban.Editor
             if (LiveMode && liveWorkspace) liveWorkspace.Backup();
             hasUnsavedChanges = !LiveMode && document.IsDirty;
         }
-        private void Apply(Cell cell, bool erase)
+        private void Apply(Cell cell)
         {
             if (!CanEditDocument || !document.level.Contains(cell) || !stroke.Add(cell)) return;
             if (selectedCell != cell) selectedId = null;
             selectedCell = cell;
             try
             {
-                if (erase || brush == LevelBrush.Erase) document.Erase(cell, layer);
-                else if (IsTerrainBrush()) document.Paint(cell, new[] { '.', '#', '_', '~' }[(int)brush - (int)LevelBrush.Floor]);
+                if (IsTerrainBrush()) document.Paint(cell, new[] { '.', '#', '_', '~' }[(int)brush - (int)LevelBrush.Floor]);
                 else if (brush != LevelBrush.Select) selectedId = document.Place(brush, cell, facing);
                 else selectedId = document.level.playerSpawn != null && document.level.playerSpawn.Cell == cell ? "player" :
                     document.level.crates.Cast<PlacedEntity>().Concat(document.level.sockets).Concat(document.level.gates).Concat(document.level.redirectors).FirstOrDefault(e => e.Cell == cell)?.id;
@@ -620,16 +630,6 @@ namespace Sokoban.Editor
             string reason = report.Issues.FirstOrDefault(i => i.IsError)?.Message;
             Notify(summary + (reason == null ? "" : "\n" + reason + "\n完整问题见底部列表，点击坐标可定位。"), !report.IsValid);
         }
-        private void Replay()
-        {
-            Run(() =>
-            {
-                if (document.solution == null) throw new InvalidOperationException("请先试玩通关并保存参考解法。");
-                string result = document.solution.Verify(document.level, false);
-                document.Change("验证参考解法", () => document.solution.contentHash = LevelJson.Hash(document.level));
-                Refresh(); Notify(result);
-            });
-        }
         private void ImportRecipe()
         {
             if (!ConfirmDiscard()) return;
@@ -704,14 +704,14 @@ namespace Sokoban.Editor
             if (evt.type == EventType.Layout) HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
             Handles.color = Color.yellow; Handles.DrawWireCube(BoardView.Position(hover), new Vector3(.95f, .03f, .95f));
             if (brush == LevelBrush.Redirector) Handles.Label(BoardView.Position(hover) + Vector3.up * .06f, "转向 " + Arrow(facing));
-            if (evt.type == EventType.MouseDown && (evt.button == 0 || evt.button == 1))
+            if (evt.type == EventType.MouseDown && evt.button == 0)
             {
                 EndStroke();
-                if (brush == LevelBrush.Select && evt.button == 0) SelectCell(hover);
-                else { BeginStroke(); Apply(hover, evt.button == 1); }
+                if (brush == LevelBrush.Select) SelectCell(hover);
+                else { BeginStroke(); Apply(hover); }
                 evt.Use();
             }
-            if (evt.type == EventType.MouseDrag && brushing && IsTerrainBrush()) { Apply(hover, evt.button == 1); evt.Use(); }
+            if (evt.type == EventType.MouseDrag && evt.button == 0 && brushing && IsTerrainBrush()) { Apply(hover); evt.Use(); }
             if (evt.type == EventType.MouseMove) view.Repaint();
         }
     }
@@ -723,7 +723,7 @@ namespace Sokoban.Editor
         {
             rootVisualElement.Clear(); minSize = new Vector2(430, 430);
             var scroll = new ScrollView(); rootVisualElement.Add(scroll);
-            scroll.Add(new Label("制作与试玩\n1. 新建 → 展开右侧关卡属性与尺寸 → 外围墙。\n2. 按地形、角色与箱子、机关分类选择画笔。P 玩家 / C 能源箱 / X 普通箱 / ◎ 目标插槽 / s 辅助插槽 / D 门。\n3. 门在右侧选择供电来源；转向板用朝向或 Q/E 旋转。\n4. 点击试玩会自动校验；有错误时侧边提示，完整列表保留在底部，带坐标的问题可以点击定位。\n5. 通关后保存参考解法，退出 Play Mode，保存关卡；修改后需回放解法并重新保存。\n\n选择与放置\n选择模式下点击其他格，会同步切换格子和对象；空格会清空旧对象。箱子和插槽同格时，右侧可切换正在编辑的对象。再次点击同格保留当前对象。\n点右侧对象按钮或按 Esc 回到选择；画笔模式可以连续放置。右键只擦除选定层，Wall/Void 会删除该格所有对象。\n\n正式关卡目录\n打开关卡目录，使用当前已保存作者关卡或拖入 JSON，加入前须通过结构与当前解法校验。上移/下移/移出支持撤销，最后保存目录；移出保留关卡和解法文件。开发测试关须显式加入。构建会重新检查正式目录和参考解法，错误会阻止构建。\n\n快捷键\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Esc 选择，Q/E 旋转。SceneView Alt/中键保留导航。试玩中方向键为世界方向，V 切视角，Z 撤销，R 重开。\n\n现场编辑\n展开顶栏现场编辑工具。捕获 → 编辑草稿 → 应用并继续 → 结束现场试玩；保存草稿不会覆盖原作者文件。\n\nL04–L12 为九张正式关卡，LAB01 为开发实验关。坐标从左下角 (0,0) 开始，北方在上。")
+            scroll.Add(new Label("制作与试玩\n1. 新建 → 展开右侧关卡属性与尺寸 → 一键生成边界墙。\n2. 按地形、角色与箱子、机关分类选择画笔。P 玩家 / C 能源箱 / X 普通箱 / ◎ 目标插槽 / s 辅助插槽 / D 门。\n3. 门在右侧选择供电来源；转向板用朝向或 Q/E 旋转。\n4. 点击试玩会自动校验；有错误时侧边提示，完整列表保留在底部，带坐标的问题可以点击定位。\n5. 通关后保存参考解法，退出 Play Mode，保存关卡；修改后需重新试玩通关、录制并保存。\n\n选择与放置\n选择模式下点击其他格，会同步切换格子和对象；空格会清空旧对象。箱子和插槽同格时，右侧可切换正在编辑的对象。再次点击同格保留当前对象。\n点右侧对象按钮或按 Esc 回到选择；画笔模式可以连续放置。放置会替换同层对象，箱子与机关可合法叠放；删除对象使用右侧“删除选中元素”。Wall/Void 会删除该格所有对象。\n\n正式关卡目录\n打开关卡目录，使用当前已保存作者关卡或拖入 JSON，加入前须通过结构与当前解法校验。上移/下移/移出支持撤销，最后保存目录；移出保留关卡和解法文件。开发测试关须显式加入。构建会重新检查正式目录和参考解法，错误会阻止构建。\n\n快捷键\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Esc 选择，Q/E 旋转。“场景内相机聚焦”会对准整张地图，SceneView Alt/中键保留导航。试玩中方向键为世界方向，V 切视角，Z 撤销，R 重开。\n\n现场编辑\n展开顶栏现场编辑工具。捕获 → 编辑草稿 → 应用并继续 → 结束现场试玩；保存草稿不会覆盖原作者文件。\n\nL04–L12 为九张正式关卡，LAB01 为开发实验关。坐标从左下角 (0,0) 开始，北方在上。")
             { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingRight = 16, paddingTop = 16, paddingBottom = 16 } });
         }
     }

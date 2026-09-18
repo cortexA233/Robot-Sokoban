@@ -37,7 +37,7 @@ namespace Sokoban.Tests
         [Test] public void CargoBrushUpgradesLegacyDataAndUndoRestoresOriginalVersion()
         {
             string before = LevelJson.Hash(document.level); string id = null;
-            Assert.Throws<InvalidOperationException>(() => document.Place(LevelBrush.CargoCrate, document.level.playerSpawn.Cell, "N"));
+            Assert.Throws<InvalidOperationException>(() => document.Place(LevelBrush.CargoCrate, new Cell(-1, 0), "N"));
             document.Change("放普通箱", () => id = document.Place(LevelBrush.CargoCrate, new Cell(1, 1), "N"));
             Assert.That(document.level.schemaVersion, Is.EqualTo(2));
             Assert.That(((CrateDefinition)document.Find(id)).kind, Is.EqualTo(CrateDefinition.Cargo));

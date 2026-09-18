@@ -47,7 +47,7 @@ namespace Sokoban
         public string Verify(LevelDefinition level, bool requireCurrentHash)
         {
             if (schemaVersion != 1 || levelId != level.id) throw new InvalidOperationException("解法版本或关卡 ID 不匹配。");
-            if (requireCurrentHash && contentHash != LevelJson.Hash(level)) throw new InvalidOperationException("参考解法已过期，请重新回放。");
+            if (requireCurrentHash && contentHash != LevelJson.Hash(level)) throw new InvalidOperationException("参考解法已过期，请重新试玩通关并录制。");
             var replay = ReplayCommands(level, commands);
             if (!replay.State.Completed) throw new InvalidOperationException("全部命令结束后仍未通关。");
             if (replay.State.Moves != expectedMoves || replay.State.Pushes != expectedPushes || replay.State.Player != expectedPlayer ||

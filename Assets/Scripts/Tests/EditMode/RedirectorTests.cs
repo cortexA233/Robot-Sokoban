@@ -187,7 +187,10 @@ namespace Sokoban.Tests
                 document.SetCrateKind(document.level.crates[0].id, CrateDefinition.Cargo);
                 Assert.That(document.level.schemaVersion, Is.EqualTo(3));
                 Assert.Throws<InvalidOperationException>(() => document.Paint(new Cell(4, 2), '~'));
-                Assert.Throws<InvalidOperationException>(() => document.Place(LevelBrush.GoalSocket, new Cell(4, 2), "N"));
+                document.Change("用目标插槽覆盖转向板", () => document.Place(LevelBrush.GoalSocket, new Cell(4, 2), "N"));
+                Assert.That(document.Find(id), Is.Null);
+                Assert.That(document.level.sockets.Any(s => s.Cell == new Cell(4, 2) && s.isGoal), Is.True);
+                Undo.PerformUndo(); Assert.That(((RedirectorDefinition)document.Find(id)).facing, Is.EqualTo("E"));
                 Assert.Throws<InvalidOperationException>(() => document.Move(id, document.level.sockets[0].Cell));
                 document.Change("移动转向板", () => { document.Resize(9, 9); document.Paint(new Cell(7, 7), '.'); document.Move(id, new Cell(7, 7)); });
                 Assert.That(document.CroppedCount(7, 7), Is.EqualTo(1));

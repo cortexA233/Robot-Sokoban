@@ -105,6 +105,80 @@ namespace Sokoban.Tests
             document.Move("crate_01", new Cell(4, 2)); document.Erase(new Cell(4, 2), AuthorLayer.Actors);
             Assert.That(document.level.sockets.Any(s => s.id == "socket_s"), Is.True);
         }
+        [Test] public void CrateReplacementKeepsIdentityAndSocketAndSupportsUndoRedo()
+        {
+            var cell = new Cell(4, 2); document.Move("crate_01", cell);
+            string before = LevelJson.Hash(document.level); string id = null;
+            document.Change("覆盖箱型", () => id = document.Place(LevelBrush.CargoCrate, cell, "N"));
+            Assert.That(id, Is.EqualTo("crate_01")); Assert.That(document.level.crates.Length, Is.EqualTo(2));
+            Assert.That(((CrateDefinition)document.Find(id)).kind, Is.EqualTo(CrateDefinition.Cargo));
+            Assert.That(document.level.sockets.Any(s => s.id == "socket_s" && s.Cell == cell), Is.True);
+            Assert.That(document.level.schemaVersion, Is.EqualTo(2));
+            Undo.PerformUndo(); Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+            Undo.PerformRedo(); Assert.That(((CrateDefinition)document.Find(id)).kind, Is.EqualTo(CrateDefinition.Cargo));
+        }
+        [Test] public void PlayerAndCrateReplacementOnlyChangesActorLayer()
+        {
+            var cell = new Cell(4, 2); document.Place(LevelBrush.Player, cell, "E");
+            string crate = document.Place(LevelBrush.Crate, cell, "N");
+            Assert.That(document.level.playerSpawn, Is.Null);
+            Assert.That(document.Find(crate).Cell, Is.EqualTo(cell));
+            Assert.That(document.Find("socket_s"), Is.Not.Null);
+            document.Place(LevelBrush.Player, cell, "S");
+            Assert.That(document.Find(crate), Is.Null);
+            Assert.That(document.level.playerSpawn.Cell, Is.EqualTo(cell));
+            Assert.That(document.level.playerSpawn.facing, Is.EqualTo("S"));
+            Assert.That(document.Find("socket_s"), Is.Not.Null);
+        }
+        [Test] public void SocketRoleReplacementPreservesIdAndGateConnections()
+        {
+            var cell = new Cell(4, 2); string[] sources = document.level.gates[0].sourceSocketIds.ToArray();
+            string goal = document.Place(LevelBrush.GoalSocket, cell, "N");
+            Assert.That(goal, Is.EqualTo("socket_s")); Assert.That(((SocketDefinition)document.Find(goal)).isGoal, Is.True);
+            string utility = document.Place(LevelBrush.UtilitySocket, cell, "N");
+            Assert.That(utility, Is.EqualTo(goal)); Assert.That(((SocketDefinition)document.Find(utility)).isGoal, Is.False);
+            Assert.That(document.level.gates[0].sourceSocketIds, Is.EqualTo(sources));
+            Assert.That(document.level.sockets.Count(s => s.Cell == cell), Is.EqualTo(1));
+        }
+        [Test] public void DifferentDeviceReplacementRemovesSocketReferencesAndUndoRestoresThem()
+        {
+            var cell = new Cell(4, 2); document.Move("crate_01", cell);
+            string before = LevelJson.Hash(document.level); string id = null;
+            document.Change("覆盖机关", () => id = document.Place(LevelBrush.Redirector, cell, "E"));
+            Assert.That(document.Find("socket_s"), Is.Null);
+            Assert.That(document.Find("crate_01").Cell, Is.EqualTo(cell));
+            Assert.That(document.level.gates[0].sourceSocketIds, Is.EqualTo(new[] { "socket_a" }));
+            Assert.That(((RedirectorDefinition)document.Find(id)).facing, Is.EqualTo("E"));
+            Undo.PerformUndo(); Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+            Undo.PerformRedo(); Assert.That(document.Find("socket_s"), Is.Null);
+        }
+        [Test] public void RepaintingGateAndRedirectorPreservesTheirIdentityAndSettings()
+        {
+            var gate = document.level.gates[0]; gate.powerMode = "All"; string[] sources = gate.sourceSocketIds.ToArray();
+            Assert.That(document.Place(LevelBrush.Gate, gate.Cell, "S"), Is.EqualTo(gate.id));
+            Assert.That(gate.facing, Is.EqualTo("S")); Assert.That(gate.powerMode, Is.EqualTo("All"));
+            Assert.That(gate.sourceSocketIds, Is.EqualTo(sources));
+            var cell = new Cell(1, 1); string id = document.Place(LevelBrush.Redirector, cell, "N");
+            Assert.That(document.Place(LevelBrush.Redirector, cell, "W"), Is.EqualTo(id));
+            Assert.That(document.level.redirectors.Length, Is.EqualTo(1));
+            Assert.That(((RedirectorDefinition)document.Find(id)).facing, Is.EqualTo("W"));
+        }
+        [Test] public void RejectedReplacementLeavesExistingObjectsAndReferencesUntouched()
+        {
+            var cell = new Cell(4, 2); document.Place(LevelBrush.Player, cell, "E");
+            string before = LevelJson.Hash(document.level);
+            Assert.Throws<InvalidOperationException>(() => document.Place(LevelBrush.Gate, cell, "N"));
+            Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+            Assert.Throws<InvalidOperationException>(() => document.Place(LevelBrush.Redirector, cell, "invalid"));
+            Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+        }
+        [Test] public void RecipeValidationRejectsOverlapsBeforeReplacementOperationsRun()
+        {
+            string before = LevelJson.Hash(document.level); var invalid = document.level.Copy();
+            invalid.crates[0].x = invalid.crates[1].x; invalid.crates[0].z = invalid.crates[1].z;
+            Assert.Throws<FormatException>(() => RecipeImporter.ImportInto(document, "{\"definition\":" + LevelJson.Write(invalid) + "}"));
+            Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+        }
         [Test] public void DraftSurvivesSerializationAndIsIsolated()
         {
             document.level.title = "尚未保存的中文标题"; document.Backup();

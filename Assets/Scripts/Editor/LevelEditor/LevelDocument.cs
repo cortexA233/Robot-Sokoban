@@ -8,7 +8,8 @@ using Terrain = Sokoban.Domain.Terrain;
 
 namespace Sokoban.Editor
 {
-    public enum LevelBrush { Select, Floor, Wall, Void, LowFriction, Player, Crate, UtilitySocket, GoalSocket, Gate, Erase, CargoCrate, Redirector }
+    // Keep serialized brush values stable; value 10 was the removed eraser.
+    public enum LevelBrush { Select = 0, Floor = 1, Wall = 2, Void = 3, LowFriction = 4, Player = 5, Crate = 6, UtilitySocket = 7, GoalSocket = 8, Gate = 9, CargoCrate = 11, Redirector = 12 }
     public enum AuthorLayer { Terrain, Devices, Actors }
 
     // Both the window and recipe importer call these author operations.
@@ -101,14 +102,23 @@ namespace Sokoban.Editor
         {
             var ground = level.TerrainAt(cell);
             if (ground == Terrain.Void || ground == Terrain.Wall) throw new InvalidOperationException("请先放置地板。");
+            if ((brush == LevelBrush.Player || brush == LevelBrush.Gate || brush == LevelBrush.Redirector) && !LevelValidator.IsFacing(facing))
+                throw new InvalidOperationException("朝向必须是 N/E/S/W。");
             if (brush == LevelBrush.Player || brush == LevelBrush.Crate || brush == LevelBrush.CargoCrate)
             {
-                if (level.crates.Any(c => c.Cell == cell) || (brush != LevelBrush.Player && level.playerSpawn != null && level.playerSpawn.Cell == cell))
-                    throw new InvalidOperationException("玩家与箱子不能重叠。");
                 if (brush == LevelBrush.Player)
                 {
                     if (!isLiveDraft && level.gates.Any(g => g.Cell == cell)) throw new InvalidOperationException("玩家不能出生在门上。");
+                    level.crates = level.crates.Where(c => c.Cell != cell).ToArray();
                     level.playerSpawn = new PlayerSpawn { x = cell.x, z = cell.z, facing = facing }; return "player";
+                }
+                // Repainting a crate changes its kind without churning its identity or the device below it.
+                var existingCrate = level.crates.FirstOrDefault(c => c.Cell == cell);
+                if (level.playerSpawn != null && level.playerSpawn.Cell == cell) level.playerSpawn = null;
+                if (existingCrate != null)
+                {
+                    SetCrateKind(existingCrate.id, brush == LevelBrush.CargoCrate ? CrateDefinition.Cargo : CrateDefinition.Energy);
+                    return existingCrate.id;
                 }
                 string id = NewId("crate");
                 if (brush == LevelBrush.CargoCrate) level.schemaVersion = Math.Max(2, level.schemaVersion);
@@ -116,23 +126,38 @@ namespace Sokoban.Editor
                     kind = brush == LevelBrush.CargoCrate ? CrateDefinition.Cargo : CrateDefinition.Energy } }).ToArray();
                 return id;
             }
-            if (ground != Terrain.Floor || level.sockets.Any(s => s.Cell == cell) || level.gates.Any(g => g.Cell == cell) || level.redirectors.Any(r => r.Cell == cell))
-                throw new InvalidOperationException("插槽/门/转向板必须放在没有其他机关的普通地板上。");
+            if (brush != LevelBrush.Redirector && brush != LevelBrush.Gate && brush != LevelBrush.GoalSocket && brush != LevelBrush.UtilitySocket)
+                throw new InvalidOperationException("请选择实体画笔。");
+            if (ground != Terrain.Floor) throw new InvalidOperationException("插槽/门/转向板必须放在普通地板上。");
+            if (brush == LevelBrush.Gate && !isLiveDraft && level.playerSpawn != null && level.playerSpawn.Cell == cell)
+                throw new InvalidOperationException("门不能覆盖玩家出生点。");
+
+            var existingSocket = level.sockets.FirstOrDefault(s => s.Cell == cell);
+            if ((brush == LevelBrush.GoalSocket || brush == LevelBrush.UtilitySocket) && existingSocket != null)
+            {
+                existingSocket.isGoal = brush == LevelBrush.GoalSocket;
+                return existingSocket.id;
+            }
+            var existingGate = level.gates.FirstOrDefault(g => g.Cell == cell);
+            if (brush == LevelBrush.Gate && existingGate != null) { existingGate.facing = facing; return existingGate.id; }
+            var existingRedirector = level.redirectors.FirstOrDefault(r => r.Cell == cell);
+            if (brush == LevelBrush.Redirector && existingRedirector != null)
+            { level.schemaVersion = Math.Max(3, level.schemaVersion); existingRedirector.facing = facing; return existingRedirector.id; }
+
+            // All rejection checks precede replacement. Removing a socket also clears its gate references.
+            if (existingSocket != null || existingGate != null || existingRedirector != null) Erase(cell, AuthorLayer.Devices);
             if (brush == LevelBrush.Redirector)
             {
-                if (!LevelValidator.IsFacing(facing)) throw new InvalidOperationException("转向板方向必须是 N/E/S/W。");
                 string id = NewId("redirector"); level.schemaVersion = 3;
                 level.redirectors = level.redirectors.Concat(new[] { new RedirectorDefinition { id = id, x = cell.x, z = cell.z, facing = facing } }).ToArray();
                 return id;
             }
             if (brush == LevelBrush.Gate)
             {
-                if (!isLiveDraft && level.playerSpawn != null && level.playerSpawn.Cell == cell) throw new InvalidOperationException("门不能覆盖玩家出生点。");
                 string id = NewId("gate");
                 level.gates = level.gates.Concat(new[] { new GateDefinition { id = id, x = cell.x, z = cell.z, facing = facing, powerMode = "Any", sourceSocketIds = Array.Empty<string>() } }).ToArray();
                 return id;
             }
-            if (brush != LevelBrush.GoalSocket && brush != LevelBrush.UtilitySocket) throw new InvalidOperationException("请选择实体画笔。");
             string socketId = NewId("socket");
             level.sockets = level.sockets.Concat(new[] { new SocketDefinition { id = socketId, x = cell.x, z = cell.z, isGoal = brush == LevelBrush.GoalSocket } }).ToArray();
             return socketId;

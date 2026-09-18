@@ -89,14 +89,44 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator IllegalPlacementDoesNotLeaveSelectionOnPreviousCell()
         {
-            Click(2, 2); yield return Submit("brush-Crate"); Click(4, 2);
-            Assert.That(window.SelectedCell, Is.EqualTo(new Cell(4, 2)));
-            Assert.That(window.SelectedObjectId, Is.EqualTo("crate_b"));
-            Assert.That(window.rootVisualElement.Q<Label>("selected-cell").text, Does.Contain(new Cell(4, 2).ToString()));
+            Click(2, 2); yield return Submit("brush-Gate"); Click(1, 2);
+            Assert.That(window.SelectedCell, Is.EqualTo(new Cell(1, 2)));
+            Assert.That(window.SelectedObjectId, Is.EqualTo("player"));
+            Assert.That(window.rootVisualElement.Q<Label>("selected-cell").text, Does.Contain(new Cell(1, 2).ToString()));
+            Assert.That(document.level.gates, Is.Empty);
             Assert.That(document.level.crates.Length, Is.EqualTo(2));
-            yield return Submit("select-crate_b"); Click(2, 2); Click(4, 2);
+            yield return Submit("select-player"); Click(2, 2); Click(4, 2);
             Assert.That(window.SelectedObjectId, Is.EqualTo("crate_b"));
             yield return null;
+        }
+
+        [UnityTest] public IEnumerator RemovedToolsStayAbsentAndRightClickDoesNotEdit()
+        {
+            Assert.That(window.rootVisualElement.Q<Button>("replay"), Is.Null);
+            Assert.That(window.rootVisualElement.Q<Button>("brush-Erase"), Is.Null);
+            Assert.That(window.rootVisualElement.Q("erase-layer"), Is.Null);
+            Assert.That(window.rootVisualElement.Q<Button>("border").text, Is.EqualTo("一键生成边界墙"));
+            Assert.That(window.rootVisualElement.Q<Button>("frame-board").text, Is.EqualTo("场景内相机聚焦"));
+            window.SetBrush((LevelBrush)10); Assert.That(window.CurrentBrush, Is.EqualTo(LevelBrush.Select));
+            yield return Submit("brush-Wall");
+            string before = LevelJson.Hash(document.level); int group = Undo.GetCurrentGroup();
+            Click(2, 2, button: 1); yield return null;
+            Assert.That(LevelJson.Hash(document.level), Is.EqualTo(before));
+            Assert.That(Undo.GetCurrentGroup(), Is.EqualTo(group));
+            Assert.That(document.IsDirty, Is.False);
+        }
+
+        [UnityTest] public IEnumerator PaintingOverBoxKeepsSocketAndUndoRedoRestoresKinds()
+        {
+            yield return Submit("brush-CargoCrate"); Click(2, 2); yield return null;
+            Assert.That(window.SelectedObjectId, Is.EqualTo("crate_a"));
+            Assert.That(((CrateDefinition)document.Find("crate_a")).kind, Is.EqualTo(CrateDefinition.Cargo));
+            Assert.That(document.Find("socket_a"), Is.Not.Null);
+            Assert.That(document.level.crates.Length, Is.EqualTo(2));
+            yield return Submit("undo"); Assert.That(((CrateDefinition)document.Find("crate_a")).kind, Is.EqualTo(CrateDefinition.Energy));
+            yield return Submit("redo"); Assert.That(((CrateDefinition)document.Find("crate_a")).kind, Is.EqualTo(CrateDefinition.Cargo));
+            yield return Submit("select-crate_a"); yield return Submit("delete-entity");
+            Assert.That(document.Find("crate_a"), Is.Null); Assert.That(document.Find("socket_a"), Is.Not.Null);
         }
 
         [UnityTest] public IEnumerator ObjectButtonReleasesPointerBeforePropertiesAreRebuilt()

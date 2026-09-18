@@ -8,6 +8,8 @@
 
 后续工作已按 [迭代路线图](Versions/Roadmap.md) 分配到 v0.4.0–v0.9.0：依次为编辑器与目录、镜头与场景美术、UI 与进度、简单音效/BGM、引导与难度、完整交付验收。[v0.4.0](Versions/V0.4.0.md) 已完成，其余五个版本仍为已规划；下一执行版本为 [v0.5.0](Versions/V0.5.0.md)。[v0.4.1](Versions/V0.4.1.md) 补充了 v0.6.0 的 UI 简化要求：取消关卡标题、目标提示、完成文案配置及对应 UI。[v0.4.2](Versions/V0.4.2.md) 补充了 v0.5.0 的默认俯视与 V 键双向切换要求。
 
+用户指定追加的 [v0.4.1 编辑器简化](Versions/V0.4.1EditorSimplification.md) 也已完成：移除手动回放与擦除入口、修改工具文案并支持同层放置覆盖；实际范围和验收与原文档规划分开记录。
+
 当前玩法版本 [v0.3.0 已封版](Versions/V0.3.0.md)：[转向运输关卡与格图](Gameplay/RedirectorLevelPlan.md)、[实现验收](Versions/V0.3.0Validation/README.md)。
 
 ## 按用途查找

@@ -12,12 +12,14 @@
 
 作者工具更新：[v0.4.0](Versions/V0.4.0.md) 已实现分组入口、画笔分类、同步跨格/同格对象选择、直接试玩完整校验与临时提示、目录管理和自动构建校验；修复拖刷重做和退出试玩清理。EditMode 140/140、PlayMode 47/47及后续 UI 专项 12/12，实际作者/目录流程、坏目录构建拒绝、合法 Windows 构建与启动通过；[验收证据](Versions/V0.4.0Validation/README.md)。
 
+作者工具简化：[v0.4.1](Versions/V0.4.1EditorSimplification.md) 已删除手动回放和擦除入口，重命名边界墙/场景相机聚焦按钮，补齐同层放置覆盖并保留合法叠放、原位 ID 与引用处理。EditMode 149/149、实机覆盖/撤销/校验反馈/保存重开通过，Console 零错误；目录和构建继续自动验证参考解法。
+
 ## 已实现
 
 | 用途 | 当前能力 | 维护入口 |
 | --- | --- | --- |
 | Gameplay | 共享规则、供电门、低摩擦、固定转向板、Energy/Cargo 两类箱子、撤销/重开、L04–L12 连续游玩与参考解法 | [GDD](Gameplay/GameDesign.md) |
-| 编辑器 | 分类画笔与对象选择、直接试玩校验、原子保存/草稿、试玩录制/回放、正式目录管理与构建前解法校验 | [操作指南](Editor/LevelEditorGuide.md) |
+| 编辑器 | 分类画笔与对象选择、同层放置覆盖、直接试玩校验、原子保存/草稿、试玩录制、正式目录管理与自动解法校验 | [操作指南](Editor/LevelEditorGuide.md) |
 | UI | KToolkit UGUI 主菜单、HUD、选关、暂停、结算、设置保存及幕布过渡 | [UI 实现](UI/UIImplementation.md) |
 | Debug | Editor / 开发版 F1 GM、可撤销移位、状态诊断；Editor 内捕获、编辑、应用及恢复现场草稿 | [GM 与现场编辑契约](Debug/GMAndLiveEditingPlan.md) |
 | 美术 | 已交付机器人；空间站首批 11 个资产接入正式关卡、作者试玩及现场重建，包含来源标识、状态灯与门动画 | [机器人](Art/RobotBlenderGuide.md)、[空间站接入](Art/StationKitIntegration.md) |

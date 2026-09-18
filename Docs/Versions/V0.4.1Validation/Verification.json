@@ -1,0 +1,64 @@
+{
+  "version": "v0.4.1",
+  "unity": "2022.3.51f1",
+  "transport": "stdio",
+  "baseline": "08c4797",
+  "editMode": {
+    "assembly": "Sokoban.Tests.EditMode",
+    "jobId": "f0cdbe24e50b49418f9015aba6eae8fe",
+    "status": "succeeded",
+    "total": 149,
+    "passed": 149,
+    "failed": 0,
+    "startedUtc": "2026-09-18 01:47:30Z",
+    "endedUtc": "2026-09-18 01:47:37Z"
+  },
+  "consoleErrors": 0,
+  "uiChecks": [
+    "Removed replay, eraser and layer selector",
+    "Renamed border and scene-camera buttons",
+    "Border encloses 7x7 grid",
+    "Cargo replaces Energy; crate_a and socket_a retained",
+    "Undo and redo preserve the socket",
+    "Right-click leaves the grid unchanged",
+    "Redirector replaces socket; crate retained; gate source removed",
+    "Direct playtest blocks with located missing-source error",
+    "Undo restores socket_a and gate source",
+    "Scene camera targets (3,0,3), size 4.2"
+  ],
+  "savedAndReopenedHash": "47247cff5470c7c74138358d0cb50ace54050ecec1a05f6908e1220243e3eb3b",
+  "probeWindowClosed": true,
+  "bootstrapSceneClean": true,
+  "authorDraftUnchangedDuringUiAcceptance": true,
+  "protectedFiles": [
+    {
+      "unchanged": true,
+      "path": "ArtSource/Robot/Robot.blend"
+    },
+    {
+      "unchanged": true,
+      "path": "Assets/Resources/UI_prefabs/screens/GM/Gm.prefab"
+    },
+    {
+      "unchanged": true,
+      "path": "ProjectSettings/EditorSettings.asset"
+    },
+    {
+      "unchanged": true,
+      "path": "ProjectSettings/ProjectSettings.asset"
+    },
+    {
+      "unchanged": true,
+      "path": "Assets/Resources/configs/levels/self_test.json"
+    },
+    {
+      "unchanged": true,
+      "path": "Assets/Resources/configs/CampaignCatalog.asset"
+    }
+  ],
+  "limitations": [
+    "No separate full PlayMode run or Player build in this patch",
+    "Live-edit lifecycle covered by EditMode integration tests that enter Play Mode",
+    "Independent designer usability evaluation remains outstanding"
+  ]
+}
