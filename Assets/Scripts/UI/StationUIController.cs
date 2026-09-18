@@ -25,6 +25,7 @@ namespace Sokoban.UI
         private SettingsPage settings;
         private HelpPage help;
         private Camera menuCamera;
+        private AudioListener menuListener;
         private bool pausedBeforeHelp, pausedBeforeSettings, disposed, selectionWasOpen;
 
         public StationUIController(LevelRunner runner)
@@ -37,9 +38,10 @@ namespace Sokoban.UI
                 var scaler = canvas.GetComponent<CanvasScaler>();
                 scaler.referenceResolution = new Vector2(1920, 1080);
                 scaler.matchWidthOrHeight = .5f;
-                var cameraObject = new GameObject("Menu background camera", typeof(Camera));
+                var cameraObject = new GameObject("Menu background camera", typeof(Camera), typeof(AudioListener));
                 cameraObject.transform.SetParent(runner.transform, false);
                 menuCamera = cameraObject.GetComponent<Camera>();
+                menuListener = cameraObject.GetComponent<AudioListener>();
                 menuCamera.clearFlags = CameraClearFlags.SolidColor;
                 menuCamera.backgroundColor = new Color(.969f, .969f, .957f);
                 menuCamera.cullingMask = 0; menuCamera.depth = -10;
@@ -77,6 +79,7 @@ namespace Sokoban.UI
             settings.Present(SettingsOpen, unlocked);
             help.Present(HelpOpen, unlocked);
             menuCamera.enabled = !hasGame;
+            menuListener.enabled = !hasGame;
             if (Fade?.gameObject && Fade.gameObject.activeSelf) Fade.transform.SetAsLastSibling();
         }
         public void ReadInput()

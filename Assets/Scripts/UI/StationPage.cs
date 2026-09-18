@@ -17,7 +17,9 @@ namespace Sokoban.UI
             group = gameObject.GetComponent<CanvasGroup>();
         }
         protected T Get<T>(string path) where T : Component => transform.Find(path).GetComponent<T>();
-        protected void Bind(string path, UnityAction action) => Get<Button>(path).onClick.AddListener(action);
+        protected void Bind(string path, UnityAction action) => Bind(Get<Button>(path), action);
+        protected void Bind(Button button, UnityAction action) => button.onClick.AddListener(() =>
+        { Runner.Audio?.Play(SoundCue.Click); action(); });
         public void Present(bool visible, bool interactive)
         {
             bool opening = visible && !gameObject.activeSelf;

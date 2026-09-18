@@ -9,16 +9,20 @@ namespace Sokoban
     {
         private Tween command;
         private BoardView board;
+        private GameAudio audio;
         private int generation;
         public bool Busy => command != null && command.IsActive();
-        public void Initialize(BoardView view) => board = view;
+        public void Initialize(BoardView view, GameAudio feedback) { board = view; audio = feedback; }
 
-        public void Present(MoveResolution result, Action completed)
+        public void Present(MoveResolution result, Action completed, PowerState initialPower)
         {
             Cancel();
             int ticket = generation;
             var first = result.Microsteps[0];
             bool pushing = first.CrateId != null;
+            audio?.BeginCommand(initialPower);
+            if (!pushing) audio?.Play(SoundCue.Move);
+            bool contactPlayed = false;
             float duration = pushing ? Mathf.Max(.6f, .5f + .12f * (result.Microsteps.Count - 1)) : .25f;
             Quaternion fromRotation = board.Robot.transform.rotation;
             Quaternion toRotation = Quaternion.Euler(0, (int)result.NextState.Facing * 90, 0);
@@ -30,6 +34,8 @@ namespace Sokoban
                 clock = t;
                 board.Robot.transform.rotation = Quaternion.Slerp(fromRotation, toRotation, Mathf.Clamp01(t / .08f));
                 float actionTime = Mathf.Max(0, t - .08f);
+                if (pushing && !contactPlayed && actionTime >= .1f)
+                { contactPlayed = true; audio?.Play(SoundCue.Push); }
                 float u = Mathf.SmoothStep(0, 1, Mathf.Clamp01(pushing ? (actionTime - .1f) / .4f : actionTime / .25f));
                 board.Robot.transform.position = Vector3.Lerp(BoardView.Position(first.PlayerFrom), BoardView.Position(first.PlayerTo), u);
                 board.Robot.Sample(pushing ? 2 : 1, actionTime);
@@ -48,13 +54,22 @@ namespace Sokoban
                 {
                     float arrival = pushing ? .5f + .12f * i : .25f;
                     if (actionTime + .0001f < arrival) break;
-                    board.ApplyPower(result.Microsteps[i].Power); appliedStep = i;
+                    board.ApplyPower(result.Microsteps[i].Power);
+                    audio?.ApplyPower(result.Microsteps[i].Power);
+                    if (pushing && i == result.Microsteps.Count - 1) audio?.Play(SoundCue.Land);
+                    appliedStep = i;
                 }
             }, duration + .08f, duration + .08f).SetEase(Ease.Linear).SetTarget(this).SetLink(gameObject)
-                .OnComplete(() => { if (ticket != generation) return; command = null; board.Robot.Sample(0, 0); completed?.Invoke(); });
+                .OnComplete(() =>
+                {
+                    if (ticket != generation) return;
+                    command = null; board.Robot.Sample(0, 0);
+                    if (result.NextState.Completed) audio?.Play(SoundCue.Complete);
+                    completed?.Invoke();
+                });
         }
-        public void SetPaused(bool paused) { if (paused) command?.Pause(); else command?.Play(); if (board) board.SetPaused(paused); }
-        public void Cancel() { generation++; command?.Kill(false); command = null; if (board) board.CancelTransitions(); }
+        public void SetPaused(bool paused) { audio?.SetPaused(paused); if (paused) command?.Pause(); else command?.Play(); if (board) board.SetPaused(paused); }
+        public void Cancel() { audio?.ResetActions(); generation++; command?.Kill(false); command = null; if (board) board.CancelTransitions(); }
         private void OnDestroy() => Cancel();
     }
 }
