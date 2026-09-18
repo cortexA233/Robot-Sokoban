@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 3,
+  "id": "level_2c6f546d",
+  "title": "新关卡",
+  "briefing": "把能源箱送入目标插槽。",
+  "completionText": "区域已恢复供电",
+  "width": 9,
+  "height": 9,
+  "gridSize": 1.0,
+  "terrainRows": [
+    "#########",
+    "#.......#",
+    "#.......#",
+    "#.......#",
+    "##......#",
+    "##......#",
+    "##......#",
+    "##......#",
+    "#########"
+  ],
+  "playerSpawn": {
+    "x": 4,
+    "z": 1,
+    "facing": "E"
+  },
+  "crates": [
+    {
+      "id": "crate_814ee088",
+      "x": 7,
+      "z": 5,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_1c9cfd3e",
+      "x": 6,
+      "z": 3,
+      "kind": "Energy"
+    },
+    {
+      "id": "crate_bd33989c",
+      "x": 6,
+      "z": 4,
+      "kind": "Energy"
+    }
+  ],
+  "sockets": [
+    {
+      "id": "socket_4662db7b",
+      "x": 5,
+      "z": 7,
+      "isGoal": true
+    },
+    {
+      "id": "socket_425abdde",
+      "x": 2,
+      "z": 5,
+      "isGoal": true
+    },
+    {
+      "id": "socket_2b0bba58",
+      "x": 3,
+      "z": 2,
+      "isGoal": false
+    },
+    {
+      "id": "socket_38d4e207",
+      "x": 6,
+      "z": 3,
+      "isGoal": false
+    },
+    {
+      "id": "socket_ebfb3e15",
+      "x": 3,
+      "z": 3,
+      "isGoal": false
+    },
+    {
+      "id": "socket_b39dae66",
+      "x": 7,
+      "z": 5,
+      "isGoal": false
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate_8009ed76",
+      "x": 4,
+      "z": 4,
+      "facing": "N",
+      "powerMode": "Any",
+      "sourceSocketIds": []
+    }
+  ],
+  "decorations": [],
+  "redirectors": []
+}

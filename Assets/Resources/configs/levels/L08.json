@@ -21,7 +21,7 @@
   "crates": [
     {
       "id": "crate_X",
-      "x": 4,
+      "x": 2,
       "z": 4,
       "kind": "Cargo"
     },
