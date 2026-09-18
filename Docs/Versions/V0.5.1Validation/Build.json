@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Build Succeeded.",
+    "data": {
+      "job_id": "build-723769a2ec",
+      "result": "succeeded",
+      "platform": "StandaloneWindows64",
+      "output_path": "Builds/V0.5.1/Windows/Sokoban.exe",
+      "started_at": "2026-09-18T04:54:44.8068973Z",
+      "duration_seconds": 5.1350003,
+      "completed_at": "2026-09-18T04:54:49.9418976Z",
+      "total_size_mb": 87.55,
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+}

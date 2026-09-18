@@ -157,8 +157,8 @@ namespace Sokoban.Tests
             }
             CollectionAssert.AreEqual(enabled,colliders.Select(c=>c.enabled).ToArray());
             runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
-            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).Any(r=>r.enabled),Is.True,
-                "Only foreground occluders are hidden in third person.");
+            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).All(r=>r.enabled),Is.True,
+                "Third person always restores the complete wall geometry.");
             Assert.That(runner.Session.Rules.Resolve(runner.Session.State,Direction.W).Accepted,Is.False);
         }
 

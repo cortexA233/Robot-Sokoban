@@ -12,8 +12,6 @@ namespace Sokoban
         private readonly Dictionary<string, StationGateView> gates = new Dictionary<string, StationGateView>();
         private readonly Dictionary<string, RedirectorView> redirectors = new Dictionary<string, RedirectorView>();
         private readonly List<CameraOcclusion> occluders = new List<CameraOcclusion>();
-        private readonly Vector3[] sightTargets = new Vector3[6];
-        private LevelDefinition definition;
         private StationKitTheme theme;
         public RobotPresenter Robot { get; private set; }
         public IReadOnlyDictionary<string, Transform> Crates => crates;
@@ -57,7 +55,6 @@ namespace Sokoban
 
         public void Build(LevelDefinition level)
         {
-            definition = level;
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
             if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Run Tools > Station Kit > Prepare Gameplay Integration.");
             Circuits = gameObject.AddComponent<StationCircuitView>(); Circuits.Initialize(level, theme);
@@ -125,18 +122,9 @@ namespace Sokoban
         {
             Circuits.SetTopDown(value);
         }
-        public void PrepareCamera(bool topDown, Vector3 eye, Vector3 playerPosition)
+        public void PrepareCamera(bool topDown)
         {
-            int count = 0;
-            sightTargets[count++] = playerPosition + Vector3.up * .55f;
-            sightTargets[count++] = playerPosition + Vector3.up * .1f;
-            var cell = new Cell(Mathf.RoundToInt(playerPosition.x), Mathf.RoundToInt(playerPosition.z));
-            for (int i = 0; i < 4; i++)
-            {
-                var next = cell.Step((Direction)i); var terrain = definition.TerrainAt(next);
-                if (terrain != Terrain.Wall && terrain != Terrain.Void) sightTargets[count++] = Position(next) + Vector3.up * .12f;
-            }
-            foreach (var occluder in occluders) occluder.Prepare(topDown, eye, sightTargets, count);
+            foreach (var occluder in occluders) occluder.Prepare(topDown);
         }
         public void SetPaused(bool value) { foreach (var gate in gates.Values) gate.SetPaused(value); }
         public void CancelTransitions() { foreach (var gate in gates.Values) if (gate) gate.Cancel(); }

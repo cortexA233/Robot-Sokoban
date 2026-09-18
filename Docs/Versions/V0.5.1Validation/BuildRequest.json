@@ -1,0 +1,15 @@
+{
+  "tools": [
+    {
+      "arguments": {
+        "development": "false",
+        "target": "windows64",
+        "action": "build",
+        "output_path": "Builds/V0.5.1/Windows/Sokoban.exe",
+        "scenes": "[\"Assets/Scenes/Bootstrap.unity\"]"
+      },
+      "name": "manage_build",
+      "save": ".utmp/V051/build-job.json"
+    }
+  ]
+}

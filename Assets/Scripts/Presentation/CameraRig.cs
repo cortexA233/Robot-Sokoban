@@ -121,7 +121,7 @@ namespace Sokoban
             float fullSize = FullSize();
             topSize = Mathf.Approximately(topSize, lastFullSize) ? fullSize : Mathf.Clamp(topSize, 2, fullSize);
             lastFullSize = fullSize;
-            board.PrepareCamera(TopDown, orbit.position - orbit.forward * follow.CameraDistance, player.position);
+            board.PrepareCamera(TopDown);
             float halfX = topSize * output.aspect, halfZ = topSize;
             float x = halfX * 2 >= level.width ? (level.width - 1) / 2f : Mathf.Clamp(player.position.x, halfX - .5f, level.width - .5f - halfX);
             float z = halfZ * 2 >= level.height ? (level.height - 1) / 2f : Mathf.Clamp(player.position.z, halfZ - .5f, level.height - .5f - halfZ);

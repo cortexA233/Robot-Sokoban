@@ -1,0 +1,11 @@
+{
+  "level": "L06",
+  "top": false,
+  "wallUpperCount": 40,
+  "visibleWallUpper": 40,
+  "gateUpperCount": 3,
+  "visibleGateUpper": 3,
+  "minWallColliderHeight": 1.54,
+  "requestedDistance": 4.8,
+  "actualDistance": 0.5828457
+}

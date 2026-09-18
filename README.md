@@ -4,7 +4,7 @@
 
 当前已具备作者工具基础、九关连续游玩、KToolkit 简约 UGUI、可撤销 GM 和 Play Mode 现场关卡编辑，空间站首批美术套件已接入游戏；尚未达到 GDD 的完整 Take-home 交付标准。
 
-**v0.3.0 已封版**：固定转向板与六张新关卡已接入，正式目录 L04–L12，共九关。[封版记录与验证](Docs/Versions/V0.3.0.md)。最新 Windows 验收包为 `Builds/V0.5.0/Windows/Sokoban.exe`，默认俯视与镜头/连接表现见 [v0.5.0 验收](Docs/Versions/V0.5.0Validation/README.md)。本包显式使用 Bootstrap；默认 Build Settings 仍为原有 SampleScene，重新构建时需指定 `Assets/Scenes/Bootstrap.unity`。
+**v0.3.0 已封版**：固定转向板与六张新关卡已接入，正式目录 L04–L12，共九关。[封版记录与验证](Docs/Versions/V0.3.0.md)。最新 Windows 验收包为 `Builds/V0.5.1/Windows/Sokoban.exe`；默认俯视与 V 切换保留，第三人称局部剔除已按反馈移除，见 [v0.5.1 验收](Docs/Versions/V0.5.1Validation/README.md)。本包显式使用 Bootstrap；默认 Build Settings 仍为原有 SampleScene，重新构建时需指定 `Assets/Scenes/Bootstrap.unity`。
 
 文档从 [分类索引](Docs/README.md) 进入，可按 Gameplay、美术、UI、编辑器、Debug、工程维护或开发阶段查找；最新范围见 [当前实现状态](Docs/ImplementationProgress.md)。
 

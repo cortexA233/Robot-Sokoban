@@ -91,27 +91,38 @@ namespace Sokoban.Tests
             CheckFraming();
         }
 
-        [UnityTest] public IEnumerator FullOrbitKeepsTheRobotVisibleWithoutChangingWallRules()
+        [UnityTest] public IEnumerator FullOrbitKeepsWallsAndGateStructureVisibleWithoutChangingRules()
         {
             runner.SelectLevel(2); yield return null;
             string hash = LevelJson.Hash(runner.Definition);
             var state = runner.Session.State;
+            var walls = runner.Board.GetComponentsInChildren<Transform>().Where(t=>t.name=="Upper")
+                .SelectMany(t=>t.GetComponentsInChildren<Renderer>()).ToArray();
+            var gateStructure = runner.Board.Gates.Values.SelectMany(g=>g.transform.Find("PowerGateRoot/UpperStructure")
+                .GetComponentsInChildren<Renderer>().Concat(g.transform.Find("PowerGateRoot/MovingParts").GetComponentsInChildren<Renderer>())).ToArray();
+            var wallColliders = runner.Board.GetComponentsInChildren<BoxCollider>().Where(c=>c.name.StartsWith("Wall ")).ToArray();
+            Assert.That(walls, Is.Not.Empty); Assert.That(gateStructure, Is.Not.Empty);
+            Assert.That(walls.Concat(gateStructure).All(r=>!r.enabled), Is.True);
             var view = runner.Cameras.Capture(); view.topDown = false;
             foreach (float pitch in new[] { 30f, 48f, 65f })
                 for (int yaw = 0; yaw < 360; yaw += 30)
                 {
                     view.pitch = pitch; view.yaw = yaw; view.distance = pitch == 30 ? 3 : 6;
                     runner.Cameras.Restore(view); yield return new WaitForSeconds(.3f);
-                    var target = runner.Board.Robot.transform.position + Vector3.up * .55f;
-                    Assert.That(Vector3.Distance(runner.Cameras.Output.transform.position,target), Is.GreaterThan(view.distance*.85f),
-                        "Camera compressed against a wall at yaw="+yaw+", pitch="+pitch);
-                    Assert.That(Physics.Linecast(runner.Cameras.Output.transform.position,target), Is.False,
-                        "A visible camera obstacle still covers the robot.");
+                    Assert.That(walls.Concat(gateStructure).All(r=>r.enabled), Is.True,
+                        "Third person must never cull upper geometry, including at yaw="+yaw+", pitch="+pitch);
+                    Assert.That(wallColliders.All(c=>c.enabled && c.size.y>1), Is.True,
+                        "Complete walls must retain their full camera obstacles.");
+                    Assert.That(Physics.CheckSphere(runner.Cameras.Output.transform.position,.025f), Is.False,
+                        "Cinemachine should avoid the restored obstacles.");
                     Assert.That(runner.Session.Rules.Resolve(state,Direction.W).Accepted, Is.False);
                 }
             Assert.That(runner.Session.State, Is.SameAs(state)); Assert.That(LevelJson.Hash(runner.Definition), Is.EqualTo(hash));
-            Assert.That(runner.Board.GetComponentsInChildren<Transform>().Where(t=>t.name=="Upper")
-                .SelectMany(t=>t.GetComponentsInChildren<Renderer>()).Any(r=>r.enabled), Is.True);
+            runner.ToggleCamera();
+            Assert.That(walls.Concat(gateStructure).All(r=>!r.enabled), Is.True);
+            runner.ToggleCamera();
+            Assert.That(walls.Concat(gateStructure).All(r=>r.enabled), Is.True,
+                "Returning to third person must restore every upper renderer immediately, without an occlusion delay.");
         }
 
         [UnityTest] public IEnumerator ActualVKeyClearsBufferedMovementAndTogglesWithoutResettingTheCommand()

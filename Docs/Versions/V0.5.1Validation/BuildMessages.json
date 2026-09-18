@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": {
+      "output": "C:/recent_project/Sokoban_3D_Test/Builds/V0.5.1/Windows/Sokoban.exe",
+      "messages": [
+        {
+          "type": "Warning",
+          "text": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+        }
+      ]
+    },
+    "compiler": "codedom"
+  }
+}
