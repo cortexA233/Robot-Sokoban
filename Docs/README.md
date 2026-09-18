@@ -6,7 +6,7 @@
 
 后续迭代先到 [开发版本台账](Versions/README.md) 规划版本号、范围和验收，再开始实现。当前追踪起点为 [v0.1.0 · 文档归类与版本管理](Versions/V0.1.0.md)。
 
-后续工作已按 [迭代路线图](Versions/Roadmap.md) 分配到 v0.4.0–v0.9.0：依次为编辑器与目录、镜头与场景美术、UI 与进度、简单音效/BGM、引导与难度、完整交付验收。六个版本均已有正式计划，当前状态为已规划；下一执行版本为 [v0.4.0](Versions/V0.4.0.md)。
+后续工作已按 [迭代路线图](Versions/Roadmap.md) 分配到 v0.4.0–v0.9.0：依次为编辑器与目录、镜头与场景美术、UI 与进度、简单音效/BGM、引导与难度、完整交付验收。[v0.4.0](Versions/V0.4.0.md) 已完成，其余五个版本仍为已规划；下一执行版本为 [v0.5.0](Versions/V0.5.0.md)。[v0.4.1](Versions/V0.4.1.md) 补充了 v0.6.0 的 UI 简化要求：取消关卡标题、目标提示、完成文案配置及对应 UI。
 
 当前玩法版本 [v0.3.0 已封版](Versions/V0.3.0.md)：[转向运输关卡与格图](Gameplay/RedirectorLevelPlan.md)、[实现验收](Versions/V0.3.0Validation/README.md)。
 
