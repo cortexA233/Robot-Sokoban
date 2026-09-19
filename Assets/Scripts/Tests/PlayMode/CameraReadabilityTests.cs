@@ -40,7 +40,7 @@ namespace Sokoban.Tests
                 CheckFraming();
                 runner.ToggleCamera(); // A prior choice must not replace the next level's default.
             }
-            runner.SelectLevel(8);
+            runner.SelectLevel(runner.CampaignLevelCount - 1);
             foreach (float aspect in new[] { .75f, 16f/9, 2.4f })
             {
                 runner.Cameras.Output.aspect = aspect; runner.Cameras.Snap();
@@ -91,38 +91,38 @@ namespace Sokoban.Tests
             CheckFraming();
         }
 
-        [UnityTest] public IEnumerator FullOrbitKeepsWallsAndGateStructureVisibleWithoutChangingRules()
+        [UnityTest] public IEnumerator FullOrbitLeavesWallCellsEmptyAndKeepsGateStructureWithoutChangingRules()
         {
-            runner.SelectLevel(2); yield return null;
-            string hash = LevelJson.Hash(runner.Definition);
-            var state = runner.Session.State;
-            var walls = runner.Board.GetComponentsInChildren<Transform>().Where(t=>t.name=="Upper")
-                .SelectMany(t=>t.GetComponentsInChildren<Renderer>()).ToArray();
-            var gateStructure = runner.Board.Gates.Values.SelectMany(g=>g.transform.Find("PowerGateRoot/UpperStructure")
-                .GetComponentsInChildren<Renderer>().Concat(g.transform.Find("PowerGateRoot/MovingParts").GetComponentsInChildren<Renderer>())).ToArray();
-            var wallColliders = runner.Board.GetComponentsInChildren<BoxCollider>().Where(c=>c.name.StartsWith("Wall ")).ToArray();
-            Assert.That(walls, Is.Not.Empty); Assert.That(gateStructure, Is.Not.Empty);
-            Assert.That(walls.Concat(gateStructure).All(r=>!r.enabled), Is.True);
-            var view = runner.Cameras.Capture(); view.topDown = false;
-            foreach (float pitch in new[] { 30f, 48f, 65f })
-                for (int yaw = 0; yaw < 360; yaw += 30)
-                {
-                    view.pitch = pitch; view.yaw = yaw; view.distance = pitch == 30 ? 3 : 6;
-                    runner.Cameras.Restore(view); yield return new WaitForSeconds(.3f);
-                    Assert.That(walls.Concat(gateStructure).All(r=>r.enabled), Is.True,
-                        "Third person must never cull upper geometry, including at yaw="+yaw+", pitch="+pitch);
-                    Assert.That(wallColliders.All(c=>c.enabled && c.size.y>1), Is.True,
-                        "Complete walls must retain their full camera obstacles.");
-                    Assert.That(Physics.CheckSphere(runner.Cameras.Output.transform.position,.025f), Is.False,
-                        "Cinemachine should avoid the restored obstacles.");
-                    Assert.That(runner.Session.Rules.Resolve(state,Direction.W).Accepted, Is.False);
-                }
-            Assert.That(runner.Session.State, Is.SameAs(state)); Assert.That(LevelJson.Hash(runner.Definition), Is.EqualTo(hash));
-            runner.ToggleCamera();
-            Assert.That(walls.Concat(gateStructure).All(r=>!r.enabled), Is.True);
-            runner.ToggleCamera();
-            Assert.That(walls.Concat(gateStructure).All(r=>r.enabled), Is.True,
-                "Returning to third person must restore every upper renderer immediately, without an occlusion delay.");
+            foreach (string id in new[] { "L04", "L06" })
+            {
+                runner.LoadLevel(LevelJson.Read(Resources.Load<TextAsset>("configs/levels/" + id).text)); yield return null;
+                string hash = LevelJson.Hash(runner.Definition);
+                var state = runner.Session.State;
+                Assert.That(runner.Board.GetComponentsInChildren<Transform>().Any(t=>t.name.StartsWith("Wall ")), Is.False);
+                var gateStructure = runner.Board.Gates.Values.SelectMany(g=>g.transform.Find("PowerGateRoot/UpperStructure")
+                    .GetComponentsInChildren<Renderer>().Concat(g.transform.Find("PowerGateRoot/MovingParts").GetComponentsInChildren<Renderer>())).ToArray();
+                if (id == "L06") Assert.That(gateStructure, Is.Not.Empty);
+                Assert.That(gateStructure.All(r=>!r.enabled), Is.True);
+                var view = runner.Cameras.Capture(); view.topDown = false;
+                foreach (float pitch in new[] { 30f, 48f, 65f })
+                    for (int yaw = 0; yaw < 360; yaw += 30)
+                    {
+                        view.pitch = pitch; view.yaw = yaw; view.distance = pitch == 30 ? 3 : 6;
+                        runner.Cameras.Restore(view); yield return new WaitForSeconds(.3f);
+                        Assert.That(gateStructure.All(r=>r.enabled), Is.True,
+                            "Third person retains complete gates at yaw="+yaw+", pitch="+pitch);
+                        Assert.That(Physics.CheckSphere(runner.Cameras.Output.transform.position,.025f), Is.False,
+                            "Cinemachine should still avoid gate obstacles.");
+                        if (id == "L04")
+                            Assert.That(Vector3.Distance(runner.Cameras.Output.transform.position,
+                                runner.Board.Robot.transform.position + Vector3.up * .55f), Is.EqualTo(view.distance).Within(.03f),
+                                "Former walls must not shorten the follow distance.");
+                        Assert.That(runner.Session.Rules.Resolve(state,Direction.W).Accepted, Is.False);
+                    }
+                Assert.That(runner.Session.State, Is.SameAs(state)); Assert.That(LevelJson.Hash(runner.Definition), Is.EqualTo(hash));
+                runner.ToggleCamera(); Assert.That(gateStructure.All(r=>!r.enabled), Is.True);
+                runner.ToggleCamera(); Assert.That(gateStructure.All(r=>r.enabled), Is.True);
+            }
         }
 
         [UnityTest] public IEnumerator ActualVKeyClearsBufferedMovementAndTogglesWithoutResettingTheCommand()

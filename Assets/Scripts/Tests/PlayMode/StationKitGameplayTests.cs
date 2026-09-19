@@ -46,7 +46,7 @@ namespace Sokoban.Tests
             Assert.That(runner.TryMove(d),Is.True); yield return WaitFor(()=>!runner.Presenter.Busy);
         }
 
-        [UnityTest] public IEnumerator CampaignAndAuthoringUseAllElevenAssetsWithOriginalData()
+        [UnityTest] public IEnumerator CampaignAndAuthoringLeaveWallAndVoidCellsEmptyWithOriginalData()
         {
             var seen=new HashSet<string>();
             // Small campaign maps need not contain every decorative floor variant.
@@ -54,6 +54,14 @@ namespace Sokoban.Tests
             {
                 string hash=LevelJson.Hash(level);
                 runner.LoadLevel(level); yield return null;
+                Assert.That(runner.Board.GetComponentsInChildren<Transform>().Any(t=>t.name.StartsWith("Wall ")), Is.False);
+                for (int z = 0; z < level.height; z++)
+                    for (int x = 0; x < level.width; x++)
+                    {
+                        var cell = new Cell(x, z); var terrain = level.TerrainAt(cell);
+                        bool walkable = terrain == Sokoban.Domain.Terrain.Floor || terrain == Sokoban.Domain.Terrain.LowFriction;
+                        Assert.That(runner.Board.transform.Find("Floor " + cell) != null, Is.EqualTo(walkable), level.id + " " + cell);
+                    }
                 foreach(var t in runner.Board.GetComponentsInChildren<Transform>(true)) if(t.name.EndsWith("Root",StringComparison.Ordinal)) seen.Add(t.name);
                 foreach(var c in level.crates)
                 {
@@ -64,8 +72,9 @@ namespace Sokoban.Tests
                 Assert.That(runner.Board.Circuits.Layout.GateLabels.Count, Is.EqualTo(level.gates.Length));
                 foreach (var label in runner.Board.GetComponentsInChildren<Text>(true)) Assert.That(label.raycastTarget, Is.False);
             }
-            foreach(string id in new[]{"EnergyCrate","CargoCrate","GoalSocket","UtilitySocket","PowerGate","FloorPlain","FloorService","FloorGrate","WallStraight","WallCorner","WallEnd"})
+            foreach(string id in new[]{"EnergyCrate","CargoCrate","GoalSocket","UtilitySocket","PowerGate","FloorPlain","FloorService","FloorGrate"})
                 Assert.That(seen.Contains(id+"Root"),Is.True,id);
+            foreach(string id in new[]{"WallStraight","WallCorner","WallEnd"}) Assert.That(seen.Contains(id+"Root"),Is.False,id);
         }
 
         [UnityTest] public IEnumerator MixedOccupancyUsesRealAnyAllAndIndependentSourceIndicators()
@@ -142,13 +151,12 @@ namespace Sokoban.Tests
             }
         }
 
-        [UnityTest] public IEnumerator TopDownHidesWholeUpperKitButLeavesCameraObstaclesAndBases()
+        [UnityTest] public IEnumerator TopDownHidesUpperGatesButLeavesTheirCameraObstaclesAndBases()
         {
-            runner.SelectLevel(2); yield return null;
-            var walls=runner.Board.GetComponentsInChildren<Transform>().Where(t=>t.name=="Upper").ToArray();
+            runner.LoadLevel(LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L06").text)); yield return null;
             var colliders=runner.Board.GetComponentsInChildren<Collider>(); var enabled=colliders.Select(c=>c.enabled).ToArray();
+            Assert.That(runner.Board.Gates, Is.Not.Empty); Assert.That(colliders, Is.Not.Empty);
             Assert.That(runner.Cameras.TopDown,Is.True); yield return new WaitForSeconds(.35f);
-            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).All(r=>!r.enabled),Is.True);
             foreach(var gate in runner.Board.Gates.Values)
             {
                 var root=gate.transform.Find("PowerGateRoot");
@@ -158,8 +166,8 @@ namespace Sokoban.Tests
             }
             CollectionAssert.AreEqual(enabled,colliders.Select(c=>c.enabled).ToArray());
             runner.ToggleCamera(); yield return new WaitForSeconds(.35f);
-            Assert.That(walls.SelectMany(t=>t.GetComponentsInChildren<Renderer>()).All(r=>r.enabled),Is.True,
-                "Third person always restores the complete wall geometry.");
+            Assert.That(runner.Board.Gates.Values.All(g=>g.transform.Find("PowerGateRoot/UpperStructure")
+                .GetComponentsInChildren<Renderer>().All(r=>r.enabled)), Is.True);
             Assert.That(runner.Session.Rules.Resolve(runner.Session.State,Direction.W).Accepted,Is.False);
         }
 

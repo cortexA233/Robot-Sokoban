@@ -1,0 +1,73 @@
+{
+  "version": "v0.10.0",
+  "branch": "codex/experiment-wall-void",
+  "baseline": "2ddca2f5f23697874db9b1a33606a8dec27ed362",
+  "unity": "2022.3.51f1",
+  "scope": "Wall cells render as void without changing level data or rules",
+  "tests": [
+    {
+      "mode": "PlayMode",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "result": "Passed",
+      "startUtc": "2026-09-19 02:21:16Z",
+      "endUtc": "2026-09-19 02:21:50Z"
+    },
+    {
+      "mode": "EditMode",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "result": "Passed",
+      "startUtc": "2026-09-19 02:22:17Z",
+      "endUtc": "2026-09-19 02:22:17Z"
+    }
+  ],
+  "cameraComparison": {
+    "level": "L04",
+    "player": [
+      2,
+      0,
+      1
+    ],
+    "orbitTargetHeight": 0.55,
+    "yaw": 0,
+    "requestedDistance": 4.8,
+    "fieldOfView": 55,
+    "observations": [
+      {
+        "pitch": 30,
+        "beforeDistance": 0.4503332,
+        "afterDistance": 4.8
+      },
+      {
+        "pitch": 48,
+        "beforeDistance": 0.5828457,
+        "afterDistance": 4.8
+      }
+    ]
+  },
+  "campaign": [
+    "L04",
+    "L06",
+    "L07",
+    "L08",
+    "L10",
+    "L11",
+    "L12"
+  ],
+  "campaignProofsPassed": 7,
+  "protectedFiles": 74,
+  "protectedFileMismatches": 0,
+  "consoleErrors": 0,
+  "buildPerformed": false,
+  "limitations": [
+    "Editor experiment only; no standalone Player build.",
+    "Author data still identifies Wall cells; authoring grid retains wall symbols.",
+    "Gates retain their camera obstacles.",
+    "Original live-edit draft is preserved; the old runtime session ends for compilation and tests."
+  ]
+}

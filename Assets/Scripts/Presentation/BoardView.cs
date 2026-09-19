@@ -34,25 +34,6 @@ namespace Sokoban
             obj.GetComponent<Renderer>().sharedMaterial = theme.trackMark;
             var collider = obj.GetComponent<Collider>(); collider.enabled = false; Destroy(collider);
         }
-        private static string WallAsset(LevelDefinition level, Cell cell, out float yaw)
-        {
-            var neighbors = new bool[4]; int count = 0, single = 0;
-            for (int i = 0; i < 4; i++)
-                if (neighbors[i] = level.TerrainAt(cell.Step((Direction)i)) == Terrain.Wall) { count++; single = i; }
-            yaw = 0;
-            if (count <= 1) { yaw = count == 0 ? 0 : (single * 90 + 180) % 360; return "WallEnd"; }
-            if (count == 2)
-            {
-                if (neighbors[0] && neighbors[2]) { yaw = 90; return "WallStraight"; }
-                if (neighbors[1] && neighbors[3]) return "WallStraight";
-                for (int q = 0; q < 4; q++)
-                    if (neighbors[(2 + q) % 4] && neighbors[(3 + q) % 4]) { yaw = q * 90; break; }
-                return "WallCorner";
-            }
-            for (int i = 0; i < 4; i++) if (!neighbors[i]) yaw = i * 90;
-            return "WallStraight"; // Full-cell geometry also closes T and cross junctions.
-        }
-
         public void Build(LevelDefinition level)
         {
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
@@ -66,7 +47,9 @@ namespace Sokoban
                 for (int x = 0; x < level.width; x++)
                 {
                     var cell = new Cell(x, z); var terrain = level.TerrainAt(cell); var pos = Position(cell);
-                    if (terrain == Terrain.Void) continue;
+                    // Wall-to-void experiment: leave no deck, wall or camera obstacle.
+                    // Keep author data intact; RuleEngine still blocks these cells.
+                    if (terrain == Terrain.Void || terrain == Terrain.Wall) continue;
                     string deck = terrain != Terrain.Floor || featureCells.Contains(cell) ? "FloorPlain" :
                         (x * 17 + z * 31) % 13 == 0 ? "FloorService" : (x * 19 + z * 7) % 23 == 0 ? "FloorGrate" : "FloorPlain";
                     var floor = Place(deck, "Floor " + cell, pos);
@@ -74,15 +57,6 @@ namespace Sokoban
                     {
                         floor.GetComponentInChildren<Renderer>().sharedMaterial = theme.trackSurface;
                         for (int i = -1; i <= 1; i++) TrackMark(pos + new Vector3(i * .22f, .0015f, 0));
-                    }
-                    if (terrain == Terrain.Wall)
-                    {
-                        string asset = WallAsset(level, cell, out float yaw);
-                        var wall = Place(asset, "Wall " + cell, pos, yaw);
-                        var upper = StationKitRendering.Part(wall.transform, asset + "Root/Upper").GetComponentsInChildren<Renderer>();
-                        // Camera obstruction only; logical collision is owned by RuleEngine.
-                        var obstacle = wall.AddComponent<BoxCollider>(); obstacle.center = new Vector3(0, .77f, 0); obstacle.size = new Vector3(.98f, 1.54f, .98f);
-                        occluders.Add(new CameraOcclusion(upper, obstacle));
                     }
                 }
             foreach (var crate in level.crates)
