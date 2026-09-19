@@ -45,7 +45,9 @@ def measure(root,aid,stage,raw=False):
     check(all(o.type in ('EMPTY','MESH') for o in [root]+list(root.children_recursive)),pref+'no_reference_camera_or_light')
     check(all(o.data.materials and all(o.data.materials) for o in mesh_objects(root)),pref+'no_missing_material')
     check(max(abs(root.matrix_world[i][j]-(1 if i==j else 0)) for i in range(4) for j in range(4))<1e-4,pref+'identity_root')
-    budgets={'EnergyCrate':5000,'CargoCrate':3000,'PowerGate':6000}
+    # v0.11.0 budgets include the authored locks, guide faces and socket contacts.
+    budgets={'EnergyCrate':6500,'CargoCrate':4500,'PowerGate':6000,
+        'GoalSocket':3500,'UtilitySocket':3500,'RedirectorPlate':1000,'LowFrictionDeck':1200}
     budget=budgets.get(aid,2500 if aid.endswith('Socket') else 600 if aid.startswith('Floor') else 1500)
     check(m['triangles']<=budget,pref+'triangle_budget',m['triangles'])
     size=m['bounds']['size']; lo=m['bounds']['min']; hi=m['bounds']['max']
@@ -74,6 +76,8 @@ def measure(root,aid,stage,raw=False):
     elif aid.startswith('Wall'):
         check(max(abs(a-b) for a,b in zip(size,(.98,1.54,.98)))<.001,pref+'whole_cell_wall',size)
     elif aid=='PowerGate': check(size[0]<=.981 and size[2]<=.981,pref+'one_cell_footprint')
+    elif aid in ('RedirectorPlate','LowFrictionDeck'):
+        check(size[0]<=.981 and size[2]<=.981 and hi[1]<=.008,pref+'flush_transport_surface',m['bounds'])
     return m
 
 def source_sweeps():
@@ -117,6 +121,10 @@ def main():
         srgb=lambda c: 12.92*c if c<=.0031308 else 1.055*c**(1/2.4)-.055
         color='#'+''.join(f'{max(0,min(255,round(srgb(c)*255))):02X}' for c in node.inputs['Base Color'].default_value[:3])
         interfaces['materials'][m.name]={'role':m.get('role'),'sRGB':color,'roughness':node.inputs['Roughness'].default_value,'metallic':node.inputs['Metallic'].default_value,'emissionStrength':node.inputs['Emission Strength'].default_value}
+        interfaces['materials'][m.name]['roughnessTextureDriven']=node.inputs['Roughness'].is_linked
+        interfaces['materials'][m.name]['metallicTextureDriven']=node.inputs['Metallic'].is_linked
+        interfaces['materials'][m.name]['textures']=sorted({Path(bpy.path.abspath(n.image.filepath)).resolve().relative_to(PROJECT).as_posix()
+            for n in m.node_tree.nodes if n.type=='TEX_IMAGE' and n.image})
     source_sweeps()
     roundtrip={}
     for aid in IDS:

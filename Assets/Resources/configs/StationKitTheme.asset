@@ -35,6 +35,10 @@ MonoBehaviour:
     prefab: {fileID: 2919537913268942877, guid: f1ce5c53ca210944684b57d68f7fcc4a, type: 3}
   - id: WallEnd
     prefab: {fileID: 6694596802459623610, guid: 51aa881e692c77747a54b00c11e5acd0, type: 3}
+  - id: RedirectorPlate
+    prefab: {fileID: 6521549583215937871, guid: 681f128799859d24c9839acaf3a40ad8, type: 3}
+  - id: LowFrictionDeck
+    prefab: {fileID: 2792880998902964106, guid: b87c21c68a28924459550eb59738667b, type: 3}
   styles:
   - key: blue
     material: {fileID: 2100000, guid: 98e11d44c04d0f24f8e83277a24bd0bc, type: 2}
@@ -90,5 +94,8 @@ MonoBehaviour:
   trackMark: {fileID: 2100000, guid: afad58afdd704a245a8b822ed352d98e, type: 2}
   labelMaterial: {fileID: 2100000, guid: 0eb49106c3314dc459faf7e5a2c6fee3, type: 2}
   spaceBackground: {fileID: 2100000, guid: b64f9101c5edaa04aadb660ba3c0f202, type: 2}
+  artPostProcessing: {fileID: 11400000, guid: 0cf8dd5f83ad9d549baf9a57477ae09c, type: 2}
+  artFillColor: {r: 0.72, g: 0.82, b: 1, a: 1}
+  artFillIntensity: 0.28
   labelFont: {fileID: 12800000, guid: 5e43384c0f517914e8b4f2975e8f181d, type: 3}
   gateSeconds: 0.18

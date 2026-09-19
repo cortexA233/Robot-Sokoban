@@ -1,5 +1,5 @@
 {
-  "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
+  "sourceSha256": "14452bdc88cbd1987b55dff36564f650bd0d0f2c312c95d88d7723a4f319b1df",
   "blenderVersion": "5.2.2 LTS",
   "gate": {
     "LowerPanel": {
@@ -86,75 +86,120 @@
     }
   },
   "materials": {
-    "M_StationBody": {
-      "role": "Body",
-      "sRGB": "#D9DFE5",
-      "roughness": 0.47999998927116394,
-      "metallic": 0.11999999731779099,
-      "emissionStrength": 0.0
-    },
-    "M_StationEnergyWindow": {
-      "role": "FixedEnergy",
-      "sRGB": "#99DAE1",
-      "roughness": 0.30000001192092896,
-      "metallic": 0.10000000149011612,
-      "emissionStrength": 0.3499999940395355
-    },
-    "M_StationCargoBrace": {
-      "role": "Body",
-      "sRGB": "#C4AC81",
-      "roughness": 0.5400000214576721,
-      "metallic": 0.25,
-      "emissionStrength": 0.0
-    },
-    "M_StationLinkAccent": {
-      "role": "LinkAccent",
-      "sRGB": "#FFFFFF",
-      "roughness": 0.5,
-      "metallic": 0.0,
-      "emissionStrength": 0.0
-    },
-    "M_StationStatusEmission": {
-      "role": "StatusEmission",
-      "sRGB": "#273D40",
-      "roughness": 0.44999998807907104,
-      "metallic": 0.0,
-      "emissionStrength": 0.0
-    },
     "M_StationMetal": {
       "role": "Metal",
       "sRGB": "#83939F",
-      "roughness": 0.3799999952316284,
-      "metallic": 0.6499999761581421,
-      "emissionStrength": 0.0
-    },
-    "M_StationDark": {
-      "role": "Dark",
-      "sRGB": "#202A35",
-      "roughness": 0.6200000047683716,
-      "metallic": 0.18000000715255737,
-      "emissionStrength": 0.0
+      "roughness": 0.28999999165534973,
+      "metallic": 0.7799999713897705,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": true,
+      "metallicTextureDriven": true,
+      "textures": [
+        "Assets/Art/StationKit/Textures/Metal.png",
+        "Assets/Art/StationKit/Textures/MicroNormal.png"
+      ]
     },
     "M_StationSymbol": {
       "role": "Symbol",
       "sRGB": "#F2F5EC",
       "roughness": 0.550000011920929,
       "metallic": 0.0,
-      "emissionStrength": 0.0
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": false,
+      "metallicTextureDriven": false,
+      "textures": []
+    },
+    "M_StationDark": {
+      "role": "Dark",
+      "sRGB": "#202A35",
+      "roughness": 0.7200000286102295,
+      "metallic": 0.11999999731779099,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": true,
+      "metallicTextureDriven": true,
+      "textures": [
+        "Assets/Art/StationKit/Textures/MicroNormal.png",
+        "Assets/Art/StationKit/Textures/Polymer.png"
+      ]
     },
     "M_StationCargoBody": {
       "role": "Body",
-      "sRGB": "#796653",
-      "roughness": 0.6700000166893005,
-      "metallic": 0.05000000074505806,
-      "emissionStrength": 0.0
+      "sRGB": "#74675B",
+      "roughness": 0.6299999952316284,
+      "metallic": 0.10000000149011612,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": true,
+      "metallicTextureDriven": true,
+      "textures": [
+        "Assets/Art/StationKit/Textures/MicroNormal.png",
+        "Assets/Art/StationKit/Textures/Polymer.png"
+      ]
+    },
+    "M_StationStatusEmission": {
+      "role": "StatusEmission",
+      "sRGB": "#273D40",
+      "roughness": 0.44999998807907104,
+      "metallic": 0.0,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": false,
+      "metallicTextureDriven": false,
+      "textures": []
     },
     "M_StationFloor": {
       "role": "Body",
       "sRGB": "#657580",
       "roughness": 0.7200000286102295,
       "metallic": 0.15000000596046448,
-      "emissionStrength": 0.0
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": false,
+      "metallicTextureDriven": false,
+      "textures": []
+    },
+    "M_StationLinkAccent": {
+      "role": "LinkAccent",
+      "sRGB": "#FFFFFF",
+      "roughness": 0.5,
+      "metallic": 0.0,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": false,
+      "metallicTextureDriven": false,
+      "textures": []
+    },
+    "M_StationEnergyWindow": {
+      "role": "FixedEnergy",
+      "sRGB": "#99DAE1",
+      "roughness": 0.1899999976158142,
+      "metallic": 0.2199999988079071,
+      "emissionStrength": 0.3499999940395355,
+      "roughnessTextureDriven": false,
+      "metallicTextureDriven": false,
+      "textures": []
+    },
+    "M_StationBody": {
+      "role": "Body",
+      "sRGB": "#D9DFE5",
+      "roughness": 0.38999998569488525,
+      "metallic": 0.18000000715255737,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": true,
+      "metallicTextureDriven": true,
+      "textures": [
+        "Assets/Art/StationKit/Textures/Coating.png",
+        "Assets/Art/StationKit/Textures/MicroNormal.png"
+      ]
+    },
+    "M_StationCargoBrace": {
+      "role": "Body",
+      "sRGB": "#A3A69A",
+      "roughness": 0.4300000071525574,
+      "metallic": 0.47999998927116394,
+      "emissionStrength": 0.0,
+      "roughnessTextureDriven": true,
+      "metallicTextureDriven": true,
+      "textures": [
+        "Assets/Art/StationKit/Textures/Brace.png",
+        "Assets/Art/StationKit/Textures/MicroNormal.png"
+      ]
     }
   }
 }

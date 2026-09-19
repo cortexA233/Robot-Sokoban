@@ -1,0 +1,47 @@
+{
+  "version": "v0.11.0",
+  "branch": "codex/experiment-art-polish",
+  "implementationStartingCommit": "786a08e",
+  "sourceFbxChecks": 364,
+  "unityAssetChecks": 96,
+  "relatedPlayModeLatest": {
+    "total": 38,
+    "passed": 38,
+    "failed": 0
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "sizeBytes": 95849770,
+    "executableSha256": "7a193068a4e18076b1aad0c95bb9037fcb00ed0edc69657a75e16c248040a8c3"
+  },
+  "player": {
+    "menu": true,
+    "levelSelection": true,
+    "topDown": true,
+    "thirdPersonViaHud": true,
+    "configuredViewport": [
+      1280,
+      720
+    ],
+    "errorLogMatches": [],
+    "progressRestored": true,
+    "nativeShortKeyInjection": "V tap was not observed; HUD button used. Automated V key test passed."
+  },
+  "editorCaptureSize": [
+    1920,
+    1080
+  ],
+  "protectedFiles": 69,
+  "protectedChanges": [],
+  "scenesAndProjectSettingsUnchanged": true,
+  "documentationFilesChecked": 7,
+  "preExistingMissingLinks": [
+    [
+      "C:\\recent_project\\Sokoban_3D_Test\\Docs\\README.md",
+      "Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+    ]
+  ],
+  "pythonJsonAndAsmdefParsing": "passed"
+}

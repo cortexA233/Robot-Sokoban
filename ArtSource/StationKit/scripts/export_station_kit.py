@@ -5,7 +5,7 @@ import bpy, bmesh
 from mathutils import Matrix, Vector
 
 BASE=Path(__file__).resolve().parents[1]; PROJECT=BASE.parents[1]
-IDS=['EnergyCrate','CargoCrate','GoalSocket','UtilitySocket','PowerGate','FloorPlain','FloorService','FloorGrate','WallStraight','WallCorner','WallEnd']
+IDS=['EnergyCrate','CargoCrate','GoalSocket','UtilitySocket','PowerGate','FloorPlain','FloorService','FloorGrate','WallStraight','WallCorner','WallEnd','RedirectorPlate','LowFrictionDeck']
 BASIS=Matrix(((1,0,0,0),(0,0,1,0),(0,1,0,0),(0,0,0,1)))
 
 def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -39,7 +39,7 @@ def protect(path):
         backup=PROJECT/'Logs/StationKitBackups'/datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         backup.mkdir(parents=True,exist_ok=True); shutil.copy2(path,backup/path.name)
 
-def export_all():
+def export_all(asset_ids=None):
     source=bpy.data.scenes['StationKit_Workshop']; bpy.context.window.scene=source; source.frame_set(1)
     report={'blenderVersion':bpy.app.version_string,'stage':'source','assets':{}}
     settings=dict(use_selection=True,object_types={'MESH','EMPTY'},global_scale=1,
@@ -51,10 +51,14 @@ def export_all():
         if props[k].type=='ENUM':
             valid={i.identifier for i in props[k].enum_items}
             assert (v if isinstance(v,set) else {v})<=valid,k
-    receipt={}
+    receipt_path=BASE/'validation/export_receipt.json'
+    receipt=json.loads(receipt_path.read_text()) if receipt_path.exists() else {}
+    selected=set(IDS if asset_ids is None else asset_ids)
+    if not selected <= set(IDS): raise ValueError('Unknown asset ID')
     for aid in IDS:
         root=bpy.data.objects[aid+'Root']; objects=[root]+list(root.children_recursive)
         report['assets'][aid]=metrics(root)
+        if aid not in selected: continue
         names={o:o.name for o in objects}; copies={}
         temp=bpy.data.scenes.new('StationKit_Export_Temporary'); temp.unit_settings.scale_length=1
         try:

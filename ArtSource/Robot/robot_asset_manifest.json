@@ -1,68 +1,348 @@
 {
-  "schemaVersion": "robot-asset-v1",
+  "developmentVersion": "v0.11.0",
+  "checkedAt": "2026-09-19T15:58:36.052204+00:00",
+  "tools": {
+    "blender": "5.2.2 LTS",
+    "unity": "2022.3.51f1",
+    "urp": "14.0.11",
+    "cinemachine": "2.10.7"
+  },
+  "textureDependencies": [
+    "Assets/Art/StationKit/Textures/Brace.png",
+    "Assets/Art/StationKit/Textures/Coating.png",
+    "Assets/Art/StationKit/Textures/Metal.png",
+    "Assets/Art/StationKit/Textures/MicroNormal.png",
+    "Assets/Art/StationKit/Textures/Polymer.png",
+    "Assets/Art/StationKit/Textures/Rubber.png"
+  ],
+  "surfaceConvention": "Linear packed PNG: R=metallic, A=smoothness; shared tangent-space normal. Repeat + mipmaps. Existing URP/Lit materials and GUIDs.",
+  "verification": {
+    "sourceAndFbx": "passed",
+    "unityAssetChecks": 96,
+    "relevantPlayModeUniquePassed": 38,
+    "reports": [
+      "Docs/Versions/V0.11.0Validation/UnityAssets.json",
+      "Docs/Versions/V0.11.0Validation/PlayModeInitial.xml",
+      "Docs/Versions/V0.11.0Validation/PlayModeRetest.xml"
+    ],
+    "scope": "Measured asset geometry/material references, robot clips/contact, imported transport surfaces, power/gate/movement/camera regressions. See version plan for visual and Player checks."
+  },
+  "historicalEvidence": "Pre-v0.11.0 standalone Unity showcase reports and older preview images describe the initial production baseline, not the current exported files.",
+  "protocol": "robot-asset-v1",
   "assetName": "Robot",
-  "targetUnityVersion": "2022.3.51f1",
-  "targetRenderPipeline": "URP 14.0.11",
-  "blenderVersion": "5.2.2 LTS",
+  "source": "ArtSource/Robot/Robot.blend",
+  "sourceSha256": "de66fd3299a8bab2e44e5b72643237d399e364a1cee992d0f2bd3ed3889bc6da",
+  "assets": [
+    {
+      "assetId": "Robot",
+      "rootPath": "RobotRoot",
+      "fbx": "Assets/Art/Robot/Meshes/Robot.fbx",
+      "fbxSha256": "276de093624eb6b092953b989b389b389c97e62175b2412906d262840a71c0e2",
+      "prefab": "Assets/Resources/prefabs/gameplay/player/Robot.prefab",
+      "prefabSha256": "c2af430e0a850267e348e7d4d73337c6de43fccc78b79fb6c86913bab92f5fd0",
+      "triangles": 7468,
+      "rendererCount": 15,
+      "bounds": {
+        "min": [
+          -0.35,
+          0.0,
+          -0.320500016
+        ],
+        "max": [
+          0.35,
+          0.799999952,
+          0.36
+        ],
+        "size": [
+          0.7,
+          0.799999952,
+          0.680500031
+        ]
+      },
+      "renderers": [
+        {
+          "path": "BodyPivot/Body",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Eye_L",
+          "materials": [
+            {
+              "name": "M_RobotEmission",
+              "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Eye_R",
+          "materials": [
+            {
+              "name": "M_RobotEmission",
+              "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Head",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Screen",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Chassis",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PusherHousing",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PushSlide/PusherStem",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PushSlide/PushPlate",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Track_L",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Track_R",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_LB_Pivot/Wheel_LB",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_LF_Pivot/Wheel_LF",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_RB_Pivot/Wheel_RB",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_RF_Pivot/Wheel_RF",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "unitMeters": 1,
   "unityAxes": {
     "up": "+Y",
-    "forward": "+Z",
-    "right": "+X"
+    "forward": "+Z"
   },
-  "blenderAxes": {
-    "up": "+Z",
-    "forward": "-Y"
-  },
-  "rootNode": "RobotRoot",
-  "rootMotion": false,
-  "fps": 30,
-  "clips": [
-    {
-      "name": "Idle",
-      "startFrame": 0,
-      "endFrame": 60,
-      "durationSeconds": 2.0,
-      "loop": true
-    },
-    {
-      "name": "Move",
-      "startFrame": 70,
-      "endFrame": 100,
-      "durationSeconds": 1.0,
-      "loop": true
-    },
-    {
-      "name": "Push",
-      "startFrame": 110,
-      "endFrame": 128,
-      "durationSeconds": 0.6,
-      "loop": false
-    }
-  ],
-  "push": {
-    "contactFrame": 113,
-    "releaseFrame": 125,
-    "contactNormalized": 0.16666666666666666,
-    "releaseNormalized": 0.8333333333333334,
-    "strokeMeters": 0.24,
-    "retractedFaceZ": 0.36,
-    "extendedFaceZ": 0.6,
-    "contactHeightY": 0.4
-  },
-  "anchors": {
-    "emotion": {
-      "path": "EmotionAnchor",
-      "position": [
-        0,
-        1.05,
-        0
-      ]
-    },
-    "pushContact": {
-      "path": "PushSlide/PushContact"
-    }
-  },
+  "sourceBlenderFromUnity": "(x,-z,y)",
+  "schemaVersion": "robot-asset-v1",
   "geometry": {
     "dimensionsUnityXYZ": [
       0.7000000476837158,
@@ -79,7 +359,7 @@
       0.3205000162124634,
       0.7999999523162842
     ],
-    "triangles": 4996,
+    "triangles": 7468,
     "meshObjects": 15,
     "totalExportNodes": 25,
     "materials": [
@@ -192,316 +472,150 @@
       ]
     }
   },
-  "materials": [
+  "rootNode": "RobotRoot",
+  "rootMotion": false,
+  "clips": [
     {
-      "name": "M_RobotBody",
-      "baseColorSrgb": "#D9DFE5",
-      "metallic": 0.1,
-      "roughness": 0.55,
-      "blenderEmissionStrength": 0,
-      "unityEmission": "none"
+      "name": "Idle",
+      "startFrame": 0,
+      "endFrame": 60,
+      "durationSeconds": 2.0,
+      "loop": true
     },
     {
-      "name": "M_RobotDark",
-      "baseColorSrgb": "#202A35",
-      "metallic": 0.2,
-      "roughness": 0.65,
-      "blenderEmissionStrength": 0,
-      "unityEmission": "none"
+      "name": "Move",
+      "startFrame": 70,
+      "endFrame": 100,
+      "durationSeconds": 1.0,
+      "loop": true
     },
     {
-      "name": "M_RobotAccent",
-      "baseColorSrgb": "#F29D38",
-      "metallic": 0,
-      "roughness": 0.5,
-      "blenderEmissionStrength": 0,
-      "unityEmission": "none"
-    },
-    {
-      "name": "M_RobotEmission",
-      "baseColorSrgb": "#63DCEB",
-      "metallic": 0,
-      "roughness": 0.4,
-      "blenderEmissionStrength": 2,
-      "unityEmission": "linear(#63DCEB) * 0.6"
+      "name": "Push",
+      "startFrame": 110,
+      "endFrame": 128,
+      "durationSeconds": 0.6,
+      "loop": false
     }
   ],
-  "textures": [],
-  "exportSettings": {
-    "use_selection": true,
-    "object_types": [
-      "EMPTY",
-      "MESH"
-    ],
-    "global_scale": 1.0,
-    "apply_unit_scale": true,
-    "apply_scale_options": "FBX_SCALE_UNITS",
-    "axis_forward": "-Z",
-    "axis_up": "Y",
-    "use_space_transform": false,
-    "bake_space_transform": false,
-    "use_mesh_modifiers": true,
-    "use_triangles": true,
-    "add_leaf_bones": false,
-    "bake_anim": true,
-    "bake_anim_use_nla_strips": false,
-    "bake_anim_use_all_actions": false,
-    "bake_anim_force_startend_keying": true,
-    "bake_anim_step": 1.0,
-    "bake_anim_simplify_factor": 0.0,
-    "path_mode": "RELATIVE",
-    "embed_textures": false,
-    "rawFbxFromBlender": [
-      [
-        1.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        1.0,
-        0.0
-      ],
-      [
-        0.0,
-        1.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ]
-    ],
-    "axisHandling": "Explicit per-node/mesh conversion; Unity bakeAxisConversion=true"
+  "anchors": {
+    "emotion": "RobotRoot/EmotionAnchor",
+    "contact": "RobotRoot/PushSlide/PushContact"
   },
-  "unityImport": {
-    "modelRootWrapper": "Robot",
-    "robotRootPath": "RobotRoot",
-    "bakeAxisConversion": true,
-    "preserveHierarchy": true,
-    "animationType": "Generic",
-    "avatar": "NoAvatar",
-    "animationCompression": "Off",
-    "optimizeGameObjects": false,
-    "applyRootMotion": false,
-    "clips": [
-      {
-        "name": "Idle",
-        "duration": 2.0,
-        "loop": true,
-        "curves": 250
-      },
-      {
-        "name": "Move",
-        "duration": 1.000000238418579,
-        "loop": true,
-        "curves": 250
-      },
-      {
-        "name": "Push",
-        "duration": 0.6000001430511475,
-        "loop": false,
-        "curves": 250
-      }
-    ],
-    "rootEuler": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 0.0
-    },
-    "rootScale": {
-      "x": 1.0,
-      "y": 1.0,
-      "z": 1.0
-    }
+  "push": {
+    "retractedFaceZ": 0.36,
+    "extendedFaceZ": 0.6,
+    "contactHeightY": 0.4,
+    "strokeMeters": 0.24
   },
-  "validation": {
-    "blenderChecked": true,
-    "fbxRoundTripChecked": true,
-    "unityChecked": true,
-    "sourceChecks": 63,
-    "fbxChecks": 64,
-    "unityChecks": 28,
-    "maxUnityContactErrorMeters": 4.76837158203125e-07,
-    "reports": [
-      "ArtSource/Robot/blender_validation.json",
-      "ArtSource/Robot/fbx_validation.json",
-      "ArtSource/Robot/unity_validation.json"
-    ],
-    "scope": "Asset import, local transforms, sampled clips, physical contact face, synchronized one-metre displacement and URP preview.",
-    "gameplayIntegrationChecked": false
-  },
-  "previewNotes": {
-    "idle": "Three seamless cycles at 30 fps (6 seconds).",
-    "move": "Three seamless cycles at 30 fps (3 seconds).",
-    "push": "Frames 110-128 inclusive, followed by a 0.6 s neutral hold for viewing; runtime clip duration is 0.6 s."
-  },
-  "knownIssues": [],
-  "remainingGameIntegration": [
-    "RobotPresenter sampling and grid movement",
-    "Blocked/victory emotion bubbles",
-    "Undo/restart cancellation and camera modes in complete levels"
+  "currentPreviews": [
+    "ArtSource/Robot/previews/refined_front.png",
+    "ArtSource/Robot/previews/refined_back.png"
   ],
   "files": [
     {
-      "path": "ArtSource/Robot/previews/animation_contact_sheet.png",
-      "bytes": 454146,
-      "sha256": "5c975162875df3f5327f0c451563ac9ecf12d641626ad89384e470a3ec165be0"
-    },
-    {
-      "path": "ArtSource/Robot/previews/back.png",
-      "bytes": 489382,
-      "sha256": "bfe8f73685376d6615be329318a73ad873ea07e753d38a343c82bada490638d1"
-    },
-    {
-      "path": "ArtSource/Robot/previews/blockout/back.png",
-      "bytes": 475037,
-      "sha256": "6cbbc4402c2887a942f8a93a7206f6b110fd6763bcefbc5c6adcd421e1c536d9"
-    },
-    {
-      "path": "ArtSource/Robot/previews/blockout/front.png",
-      "bytes": 507508,
-      "sha256": "dffbe343d7e5037ba087b4396a36c67aef4755a37c8c4601acc85ca8cfa0cf32"
-    },
-    {
-      "path": "ArtSource/Robot/previews/blockout/side.png",
-      "bytes": 503609,
-      "sha256": "3224e088d37927002c549f3f0f097ccb1a99dbd90c54965ca9649b0c7dc40eb2"
-    },
-    {
-      "path": "ArtSource/Robot/previews/blockout/top.png",
-      "bytes": 551255,
-      "sha256": "8d32c8d8627a048a50f553d3cccfe40b197f58211f186eb1fd2d9c4fed68f781"
-    },
-    {
-      "path": "ArtSource/Robot/previews/front.png",
-      "bytes": 505987,
-      "sha256": "5e4bcf5925968084430be989cf2d94d4da525bd53a961b421f6cd8e293116f97"
-    },
-    {
-      "path": "ArtSource/Robot/previews/hero.png",
-      "bytes": 599042,
-      "sha256": "da5d9fb94be5afb1724094d2b8879fa36f0e92aff0370fb7cf0ed2a375cc7479"
-    },
-    {
-      "path": "ArtSource/Robot/previews/idle.mp4",
-      "bytes": 60045,
-      "sha256": "979c5ac250205a8f5fa81cfae1f6fade9c85f6b8deea844b177fc651d3a80c74"
-    },
-    {
-      "path": "ArtSource/Robot/previews/move.mp4",
-      "bytes": 54433,
-      "sha256": "0982f1e695b9e83e6090385ed5bdabcabeeaaa4a16814a7427029d5f9bf0d6d0"
-    },
-    {
-      "path": "ArtSource/Robot/previews/push.mp4",
-      "bytes": 24903,
-      "sha256": "422015b422287c3a621c4b3ace679eecb6da3a117399c7feb4656588456bb244"
-    },
-    {
-      "path": "ArtSource/Robot/previews/push_contact.png",
-      "bytes": 619622,
-      "sha256": "a06b492127c6553f81410a83f1f124d3d75409e33030cfa3117bba5412afb5f8"
-    },
-    {
-      "path": "ArtSource/Robot/previews/side.png",
-      "bytes": 506364,
-      "sha256": "74d613b33154801af3934c8159388f7b4dfd61b318b3ff26a432931102fdabce"
-    },
-    {
-      "path": "ArtSource/Robot/previews/third_person.png",
-      "bytes": 606918,
-      "sha256": "6898a43660b866f040101ab23ff95dcb33614ff2cbdb2ab3da69be5b604e4991"
-    },
-    {
-      "path": "ArtSource/Robot/previews/top.png",
-      "bytes": 571187,
-      "sha256": "2ee98fb256bf8455e40feda899a7654fdc4d34bfcce1b6da58bb3c52473b60e9"
-    },
-    {
-      "path": "ArtSource/Robot/previews/unity.png",
-      "bytes": 113619,
-      "sha256": "4d263a9f6f705ad9d709470da6d355b4050c88aee60c311339e13b987caf96fd"
-    },
-    {
       "path": "ArtSource/Robot/Robot.blend",
-      "bytes": 174709,
-      "sha256": "78c70c27dc8a088cd97ba72c773a8deb1b9a6e980c8a8dc5663c9c5d5025788b"
-    },
-    {
-      "path": "ArtSource/Robot/Robot_blockout.blend",
-      "bytes": 154928,
-      "sha256": "4ab117415cee01067992890eee4c6bc5cec7b261f3ab3c487ed44227997ad2e8"
+      "sha256": "de66fd3299a8bab2e44e5b72643237d399e364a1cee992d0f2bd3ed3889bc6da",
+      "bytes": 206748
     },
     {
       "path": "ArtSource/Robot/scripts/build_robot.py",
-      "bytes": 16911,
-      "sha256": "b31498eae3096479c9675a62fba0a8cb4db3b7d34151b657f886bda1f76fdd66"
+      "sha256": "b31498eae3096479c9675a62fba0a8cb4db3b7d34151b657f886bda1f76fdd66",
+      "bytes": 16911
     },
     {
       "path": "ArtSource/Robot/scripts/export_robot.py",
-      "bytes": 6197,
-      "sha256": "ee80145bb1ccf190dd7214a9424b2a9cc5e15a40806e62c9db3e8d090971892f"
+      "sha256": "ee80145bb1ccf190dd7214a9424b2a9cc5e15a40806e62c9db3e8d090971892f",
+      "bytes": 6197
     },
     {
       "path": "ArtSource/Robot/scripts/package_previews.py",
-      "bytes": 1436,
-      "sha256": "aee3eb5b425264b770915611b59e5e218c4b896471cead94f9eb7fa43b79c894"
+      "sha256": "aee3eb5b425264b770915611b59e5e218c4b896471cead94f9eb7fa43b79c894",
+      "bytes": 1436
+    },
+    {
+      "path": "ArtSource/Robot/scripts/refine_robot.py",
+      "sha256": "02d775f49d87da4eab9899c1e7d7fe595c93c2739dd13a3c9da0606a5eadc4a6",
+      "bytes": 4537
     },
     {
       "path": "ArtSource/Robot/scripts/render_previews.py",
-      "bytes": 2313,
-      "sha256": "03d055c398d0f2fee1a7f644f3d6ba8cd0770527c09c8a853a7ecca894161407"
+      "sha256": "03d055c398d0f2fee1a7f644f3d6ba8cd0770527c09c8a853a7ecca894161407",
+      "bytes": 2313
+    },
+    {
+      "path": "ArtSource/Robot/scripts/render_refinement_previews.py",
+      "sha256": "75e9e662168bc43e3aa9dee0b06f5d3297bb33adbdc208d1ba15b94efddecae8",
+      "bytes": 931
     },
     {
       "path": "ArtSource/Robot/scripts/validate_robot.py",
-      "bytes": 10446,
-      "sha256": "edecf5f641f51b5096f862bb10bc89439fbb55d0916d8c3508796d362c986a5a"
+      "sha256": "edecf5f641f51b5096f862bb10bc89439fbb55d0916d8c3508796d362c986a5a",
+      "bytes": 10446
     },
     {
       "path": "ArtSource/Robot/scripts/write_manifest.py",
-      "bytes": 5028,
-      "sha256": "4903c2cd2197b99f060f85c78385fd18b4b47c99ecca5b656580f54ada579193"
+      "sha256": "4903c2cd2197b99f060f85c78385fd18b4b47c99ecca5b656580f54ada579193",
+      "bytes": 5028
     },
     {
       "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
-      "bytes": 3673,
-      "sha256": "e45413ae6fab181640ed610e7c5b999eedbbc6cc0315e7a6c81c8b3fa35c62c3"
+      "sha256": "e45413ae6fab181640ed610e7c5b999eedbbc6cc0315e7a6c81c8b3fa35c62c3",
+      "bytes": 3673
     },
     {
       "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
-      "bytes": 3672,
-      "sha256": "ecdd9f31628220c5d458c11479d039137a539d787f5690f6ce82399bd7d6b349"
+      "sha256": "67c91bf62dbf1ef1205116b3763953398f13f9e5150312534c2181ac7203daed",
+      "bytes": 3820
     },
     {
       "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
-      "bytes": 3683,
-      "sha256": "c9bd04347eb9fd60148d1575dfe89420465ebb85d228651920aa8d1915790a59"
+      "sha256": "514ebef9d56fef945ffc38031ccaf66bc1c0ffa51a48cce84371408ec59bd891",
+      "bytes": 3825
     },
     {
       "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
-      "bytes": 3714,
-      "sha256": "1a1dee9bdaa757bd2b3b3ae56feb8fbfe522911d1411fc06600b56c5f234fcb7"
-    },
-    {
-      "path": "Assets/Art/Robot/Animations/Robot.controller",
-      "bytes": 3634,
-      "sha256": "a3cbb7785c98baa0ca5abc78403273bcdf845f9c3bdf64675cfe318317f2102b"
+      "sha256": "c8dd3cd234cab9b7af1cff646bc00df2ad6a099ecc0b52093209fb9fca875d84",
+      "bytes": 3718
     },
     {
       "path": "Assets/Art/Robot/Meshes/Robot.fbx",
-      "bytes": 472220,
-      "sha256": "37708b3c35f7c3c5f44df035bd16b217cf33f8fa810e178c65c4d73384d5964c"
+      "sha256": "276de093624eb6b092953b989b389b389c97e62175b2412906d262840a71c0e2",
+      "bytes": 535772
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Brace.png",
+      "sha256": "08cc7b0907209b3191b4b56130e851aacbb02f7e008bb85cec1540a9587fb102",
+      "bytes": 38571
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Coating.png",
+      "sha256": "fb240bf7320690453b5030edb7e1ff733ca478fd1e2d7988427141562e8aa11c",
+      "bytes": 39016
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Metal.png",
+      "sha256": "9818f07de528c7189b63a24d037cebc16bde7776c12ce8ab4cff98c17ae7db47",
+      "bytes": 37803
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/MicroNormal.png",
+      "sha256": "a5257af8976d2d65f41e3737acab958a27b1b98f83c9b62116f7450e8db6688f",
+      "bytes": 67418
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Polymer.png",
+      "sha256": "0028cbcc81fb2821b6a9438f138c6fbf964f99d9ddbbe1d06ba6e3c1623ecc9e",
+      "bytes": 39114
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Rubber.png",
+      "sha256": "60ba7964ed79c88cd2efa776fbdeff7c63e706503299da76205fc59477e97a78",
+      "bytes": 39440
     },
     {
       "path": "Assets/Resources/prefabs/gameplay/player/Robot.prefab",
-      "bytes": 3502,
-      "sha256": "c2af430e0a850267e348e7d4d73337c6de43fccc78b79fb6c86913bab92f5fd0"
+      "sha256": "c2af430e0a850267e348e7d4d73337c6de43fccc78b79fb6c86913bab92f5fd0",
+      "bytes": 3502
     }
   ]
 }

@@ -124,7 +124,8 @@ namespace Sokoban.Tests
         {
             var level = LevelJson.Read(Resources.Load<TextAsset>("configs/levels/L12").text);
             var proof = JsonUtility.FromJson<SolutionRecord>(Resources.Load<TextAsset>("configs/solutions/L12.solution").text);
-            foreach (int prefix in new[] { 0, 35 })
+            // Use the current solution's powered goal state; step 35 belongs to an older route.
+            foreach (int prefix in new[] { 0, proof.commands.Length })
             {
                 runner.LoadLevel(level); yield return null;
                 foreach (char command in proof.commands.Take(prefix))

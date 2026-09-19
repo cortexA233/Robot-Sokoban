@@ -70,6 +70,7 @@ namespace Sokoban
                 output.clearFlags = CameraClearFlags.Skybox;
             }
             output.nearClipPlane = .05f; output.farClipPlane = 150;
+            StationArtPresentation.Configure(output, transform, theme);
             output.orthographic = true;
             output.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, .25f);
             output.GetComponent<CinemachineBrain>().m_UpdateMethod = CinemachineBrain.UpdateMethod.LateUpdate;

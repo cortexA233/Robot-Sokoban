@@ -22,6 +22,15 @@
 
 三段动作均在 Blender 内以机械节点关键帧制作。轮组有非对称橙色标记，Move 与 Push 各转一圈。Idle 轻微左右观察；Move 保持 3°前倾；Push 伸出、保持并收回。根节点始终静止。
 
+## v0.11.0 美术细化
+
+当前实验分支通过 Blender MCP 增加侧面检修板、头部接缝、背部接口、轮毂和推杆套筒，并接入共享表面细节贴图。维持 **0.70 × 0.80 × 0.6805 m**、15 个 Mesh、25 个节点、4 种材质及原有三段动作；当前 **7,468 三角面**。
+
+- [正面预览](previews/refined_front.png) · [背面预览](previews/refined_back.png)来自当前 Blender 源文件。
+- 当前 [清单](robot_asset_manifest.json) 与 [v0.11.0 Unity 资产检查](../../Docs/Versions/V0.11.0Validation/UnityAssets.json) 对应本次文件。下文初次交付的 unity_validation.json、旧预览及“无贴图”说明属于历史基线。
+- 表面贴图位于 Assets/Art/StationKit/Textures/，由机器人与场景共享。Blender 使用相对路径；URP 的 R 通道为金属度、A 通道为光滑度，另有微表面法线。
+- refine_robot.py 仅记录本次增量细化，带版本标记防止重复追加；常规手工修改继续使用现有导出脚本。当前清单由 ArtSource/StationKit/scripts/write_refinement_manifests.py 汇总新验收，旧初次生产清单脚本不用于本次交付。
+
 ## 验证
 
 交付时的 `blender_validation.json`、`fbx_validation.json`、`unity_validation.json` 均通过。报告包含实际采样值和资产 SHA-256；`robot_asset_manifest.json` 汇总参数及交付文件哈希。这些结果仅适用于记录的文件版本。2026-09-16已发现工作区 `Robot.blend` 存在未提交修改、与清单哈希不符；保留该修改，采用新源导出前重新验证，不能只刷新清单哈希。

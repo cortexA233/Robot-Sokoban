@@ -26,14 +26,6 @@ namespace Sokoban
             obj.name = name; obj.transform.localPosition = position; obj.transform.localRotation = Quaternion.Euler(0, yaw, 0);
             return obj;
         }
-        private void TrackMark(Vector3 position)
-        {
-            var obj = GameObject.CreatePrimitive(PrimitiveType.Cube); obj.name = "Low friction marking";
-            obj.transform.SetParent(transform, false); obj.transform.localPosition = position;
-            obj.transform.localScale = new Vector3(.025f, .002f, .72f);
-            obj.GetComponent<Renderer>().sharedMaterial = theme.trackMark;
-            var collider = obj.GetComponent<Collider>(); collider.enabled = false; Destroy(collider);
-        }
         public void Build(LevelDefinition level)
         {
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
@@ -50,14 +42,10 @@ namespace Sokoban
                     // Wall-to-void experiment: leave no deck, wall or camera obstacle.
                     // Keep author data intact; RuleEngine still blocks these cells.
                     if (terrain == Terrain.Void || terrain == Terrain.Wall) continue;
-                    string deck = terrain != Terrain.Floor || featureCells.Contains(cell) ? "FloorPlain" :
+                    string deck = terrain == Terrain.LowFriction ? "LowFrictionDeck" :
+                        terrain != Terrain.Floor || featureCells.Contains(cell) ? "FloorPlain" :
                         (x * 17 + z * 31) % 13 == 0 ? "FloorService" : (x * 19 + z * 7) % 23 == 0 ? "FloorGrate" : "FloorPlain";
-                    var floor = Place(deck, "Floor " + cell, pos);
-                    if (terrain == Terrain.LowFriction)
-                    {
-                        floor.GetComponentInChildren<Renderer>().sharedMaterial = theme.trackSurface;
-                        for (int i = -1; i <= 1; i++) TrackMark(pos + new Vector3(i * .22f, .0015f, 0));
-                    }
+                    Place(deck, "Floor " + cell, pos);
                 }
             foreach (var crate in level.crates)
                 crates.Add(crate.id, Place(crate.kind == CrateDefinition.Energy ? "EnergyCrate" : "CargoCrate", crate.id, Position(crate.Cell)).transform);

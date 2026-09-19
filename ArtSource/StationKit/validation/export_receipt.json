@@ -1,13 +1,15 @@
 {
-  "Assets/Art/StationKit/Meshes/EnergyCrate.fbx": "23936106cc74fa38e310b793aa66bd99d1eb4691a78ac941f90baff5a53928ce",
-  "Assets/Art/StationKit/Meshes/CargoCrate.fbx": "a982dd3ad445501e3112f022ee6849254957e1e708ea9ac28e6ca5d7dceb8592",
-  "Assets/Art/StationKit/Meshes/GoalSocket.fbx": "85d79e4590754fde12e8094662d5be02ab6db0f6747af9775222260ded273e65",
-  "Assets/Art/StationKit/Meshes/UtilitySocket.fbx": "e04876208de48d50b920626e980c29f0011ff36f8e6ee78228cdcab8aa5ea6ac",
-  "Assets/Art/StationKit/Meshes/PowerGate.fbx": "b87051586938a23e215b2b3255e28480d1bd68d6016726c36ba7ca5bdbcf8c12",
+  "Assets/Art/StationKit/Meshes/EnergyCrate.fbx": "a5fa80843aaab58f826ab62f62e466136c93cd0d2ab8bba1b7ba4df6a1db7fa6",
+  "Assets/Art/StationKit/Meshes/CargoCrate.fbx": "efe425158ec348ee89fe714b3b4416d78a52df4b44b142a3eb5a84f019f976bc",
+  "Assets/Art/StationKit/Meshes/GoalSocket.fbx": "68e9a7c5c4bd47c3085e1d627aa5ca90e085e32380f62627318755c78b2c57aa",
+  "Assets/Art/StationKit/Meshes/UtilitySocket.fbx": "400051b5c38ee3c0f1936c0b612bf3b85d33e318e83134d6bc90fb060bc24de5",
+  "Assets/Art/StationKit/Meshes/PowerGate.fbx": "270533d3887c795d08dd169fe1878f104de165f67a7fb9e473e7681a411c0cf3",
   "Assets/Art/StationKit/Meshes/FloorPlain.fbx": "011844bb00968e2c38f9a40b0d07b39e085b2f8d21dcdc9d819aa2d69d7ed868",
   "Assets/Art/StationKit/Meshes/FloorService.fbx": "f6efe14841f7f871072d51e1b8d4ba75ac7a8deb598c19f08d05555342fb7aed",
   "Assets/Art/StationKit/Meshes/FloorGrate.fbx": "b021b3206591181ec13c1e695feec3196f575ca8719a16b4b9b25574cc4d0c54",
   "Assets/Art/StationKit/Meshes/WallStraight.fbx": "065bba65f16c647b4ba8ab36ee480713e7ca345acacd7583705333be364c6713",
   "Assets/Art/StationKit/Meshes/WallCorner.fbx": "c5613b9569a21eaeb85ea33dfdf6ad2f419c231261b4535faa70ccf7162240c5",
-  "Assets/Art/StationKit/Meshes/WallEnd.fbx": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194"
+  "Assets/Art/StationKit/Meshes/WallEnd.fbx": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194",
+  "Assets/Art/StationKit/Meshes/RedirectorPlate.fbx": "f56e5ab4d4b4ff91f84eda518d1a6b95bdbc8bb93ddf83fd52120f0d626abaff",
+  "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx": "ff879f509d9940fb47a7330d12b3f2eeb030bde33d4b7c57d278bc2dfd06052f"
 }

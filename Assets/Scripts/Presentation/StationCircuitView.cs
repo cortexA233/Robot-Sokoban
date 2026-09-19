@@ -51,12 +51,14 @@ namespace Sokoban
 
         public void AddSocket(SocketDefinition socket, Transform wrapper)
         {
-            // Preserve the imported model and its GUID; replace its busy, mutually exclusive markings in presentation only.
-            foreach (var renderer in wrapper.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
+            // Keep the Blender housing; the existing circuit layer owns identity and power.
+            var housing = wrapper.Find(socket.isGoal ? "GoalSocketRoot/Geometry" : "UtilitySocketRoot/Geometry");
+            foreach (var renderer in wrapper.GetComponentsInChildren<Renderer>())
+                renderer.enabled = renderer.transform.IsChildOf(housing);
             var root = new GameObject("Circuit socket").transform; root.SetParent(wrapper, false);
             graphics.Place(root, "Socket plate", graphics.Quad, new Vector3(0, .001f, 0), graphics.Surface, new Vector3(.93f, 1, .93f));
             var primary = Layout.PrimaryGateFor(socket.id);
-            if (primary != null) AddIdentity(root, primary);
+            if (primary != null) AddIdentity(root, primary, true);
             if (socket.isGoal)
             {
                 graphics.Place(root, "Goal ring", graphics.Ring, new Vector3(0, .0022f, 0), graphics.Ink);
@@ -72,16 +74,17 @@ namespace Sokoban
 
         private Material Connection(string gateId) => graphics.Connection(theme, Layout.GateStyles[gateId]);
 
-        private void AddIdentity(Transform parent, string gateId)
+        private void AddIdentity(Transform parent, string gateId, bool inset = false)
         {
             var root = new GameObject("Connection " + gateId).transform; root.SetParent(parent, false);
             for (int side = 0; side < 4; side++)
             {
                 var edge = new GameObject("Edge " + side).transform; edge.SetParent(root, false);
                 edge.localRotation = Quaternion.Euler(0, side * 90, 0);
-                graphics.Place(edge, "Connection colour", graphics.Quad, new Vector3(0,.004f,.44f), Connection(gateId), new Vector3(.644f,1,.10f));
+                graphics.Place(edge, "Connection colour", graphics.Quad, new Vector3(0,.004f,.44f), Connection(gateId),
+                    new Vector3(inset ? .61f : .644f, 1, inset ? .045f : .10f));
                 graphics.Place(edge, "Connection shape", graphics.Symbol(Layout.GateStyles[gateId]), new Vector3(0,.0045f,.44f), graphics.Surface,
-                    new Vector3(.14f,1,.14f));
+                    new Vector3(inset ? .085f : .14f, 1, inset ? .085f : .14f));
             }
         }
 
