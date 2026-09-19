@@ -272,7 +272,7 @@
       0.3205000162124634,
       0.7999999523162842
     ],
-    "triangles": 4996,
+    "triangles": 7468,
     "meshObjects": 15,
     "totalExportNodes": 25,
     "materials": [
@@ -385,5 +385,5 @@
       ]
     }
   },
-  "artifactSha256": "78c70c27dc8a088cd97ba72c773a8deb1b9a6e980c8a8dc5663c9c5d5025788b"
+  "artifactSha256": "de66fd3299a8bab2e44e5b72643237d399e364a1cee992d0f2bd3ed3889bc6da"
 }

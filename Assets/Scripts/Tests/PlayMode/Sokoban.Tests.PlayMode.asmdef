@@ -1,6 +1,6 @@
 {
   "name": "Sokoban.Tests.PlayMode",
-  "references": ["Sokoban.Domain", "Sokoban.Runtime", "UnityEngine.TestRunner", "UnityEngine.UI", "Unity.InputSystem", "KToolkit"],
+  "references": ["Sokoban.Domain", "Sokoban.Runtime", "UnityEngine.TestRunner", "UnityEngine.UI", "Unity.InputSystem", "KToolkit", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
   "overrideReferences": true,
   "precompiledReferences": ["nunit.framework.dll"],
   "autoReferenced": false,

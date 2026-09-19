@@ -52,7 +52,7 @@ namespace Sokoban.Tests
             Assert.That(runner.Board.Robot.transform.position, Is.EqualTo(new Vector3(3, 0, 2)));
             Assert.That(runner.Session.State.Pushes, Is.EqualTo(1));
             var view = runner.Board.Redirectors.Values.Single(); Assert.That(view.Facing, Is.EqualTo(Direction.E));
-            var mesh = view.GetComponentInChildren<MeshFilter>().sharedMesh;
+            var mesh = view.transform.Find("Direction and edge arrows").GetComponent<MeshFilter>().sharedMesh;
             Assert.That(mesh.vertices.Count(v => Mathf.Abs(v.x) > .4f), Is.GreaterThan(0), "Edge arrows must remain outside the crate.");
         }
 

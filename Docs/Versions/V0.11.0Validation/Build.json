@@ -1,0 +1,221 @@
+{
+  "result": "Succeeded",
+  "errors": 0,
+  "warnings": 0,
+  "output": "C:/recent_project/Sokoban_3D_Test/Builds/V0.11.0/Windows/Robot Sokoban.exe",
+  "sizeBytes": 95849770,
+  "assets": [
+    {
+      "path": "Assets/Art/StationKit/Textures/Rubber.png",
+      "bytes": 148
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Polymer.png",
+      "bytes": 148
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Coating.png",
+      "bytes": 148
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/MicroNormal.png",
+      "bytes": 152
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Brace.png",
+      "bytes": 148
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Metal.png",
+      "bytes": 148
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/RedirectorPlate.fbx",
+      "bytes": 51768
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx",
+      "bytes": 49320
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx",
+      "bytes": 10148
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx",
+      "bytes": 4084
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/RedirectorPlate.fbx",
+      "bytes": 1632
+    },
+    {
+      "path": "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx",
+      "bytes": 1632
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 47
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 43
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 63
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 47
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 55
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 43
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 92
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 80
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 80
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 68
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 116
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 156
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 156
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 156
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 168
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 168
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 156
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "bytes": 24
+    },
+    {
+      "path": "Assets/Settings/StationArtProfile.asset",
+      "bytes": 156
+    },
+    {
+      "path": "Assets/Settings/StationArtProfile.asset",
+      "bytes": 80
+    },
+    {
+      "path": "Assets/Settings/StationArtProfile.asset",
+      "bytes": 120
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Rubber.png",
+      "bytes": 349524
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Polymer.png",
+      "bytes": 349524
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Coating.png",
+      "bytes": 349524
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/MicroNormal.png",
+      "bytes": 349524
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Brace.png",
+      "bytes": 349524
+    },
+    {
+      "path": "Assets/Art/StationKit/Textures/Metal.png",
+      "bytes": 349524
+    }
+  ]
+}

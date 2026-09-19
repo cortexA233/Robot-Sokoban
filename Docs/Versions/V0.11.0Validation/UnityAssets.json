@@ -1,0 +1,1794 @@
+{
+  "version": "v0.11.0",
+  "checkedAt": "2026-09-19T15:58:35.4803074Z",
+  "unityVersion": "2022.3.51f1",
+  "passed": true,
+  "assets": [
+    {
+      "assetId": "EnergyCrate",
+      "rootPath": "EnergyCrateRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/EnergyCrate.fbx",
+      "fbxSha256": "a5fa80843aaab58f826ab62f62e466136c93cd0d2ab8bba1b7ba4df6a1db7fa6",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/EnergyCrate.prefab",
+      "prefabSha256": "3936d2cfc168c089c8d7fe5be5d6bb2877957685b1cf3fd37e2f4996baf1aeac",
+      "triangles": 5396,
+      "rendererCount": 3,
+      "bounds": {
+        "min": [
+          -0.400250018,
+          0.0,
+          -0.400250018
+        ],
+        "max": [
+          0.400250018,
+          0.8,
+          0.400250018
+        ],
+        "size": [
+          0.800500035,
+          0.8,
+          0.800500035
+        ]
+      },
+      "renderers": [
+        {
+          "path": "EnergyWindow/FixedWindows",
+          "materials": [
+            {
+              "name": "M_StationEnergyWindow",
+              "path": "Assets/Material/Station/M_StationEnergyWindow.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Geometry/Shell",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/EnergyGlyph",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationEnergyWindow",
+              "path": "Assets/Material/Station/M_StationEnergyWindow.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "CargoCrate",
+      "rootPath": "CargoCrateRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/CargoCrate.fbx",
+      "fbxSha256": "efe425158ec348ee89fe714b3b4416d78a52df4b44b142a3eb5a84f019f976bc",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/CargoCrate.prefab",
+      "prefabSha256": "04253d3ca5cec8350d8f21fc2ca18e75147b510a0e0b80cf791b8e4504c545b3",
+      "triangles": 3640,
+      "rendererCount": 2,
+      "bounds": {
+        "min": [
+          -0.4004,
+          0.0,
+          -0.4004
+        ],
+        "max": [
+          0.4004,
+          0.8,
+          0.4004
+        ],
+        "size": [
+          0.8008,
+          0.8,
+          0.8008
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Geometry/Shell",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationCargoBody",
+              "path": "Assets/Material/Station/M_StationCargoBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/CargoBraces",
+          "materials": [
+            {
+              "name": "M_StationCargoBrace",
+              "path": "Assets/Material/Station/M_StationCargoBrace.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Brace.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "GoalSocket",
+      "rootPath": "GoalSocketRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/GoalSocket.fbx",
+      "fbxSha256": "68e9a7c5c4bd47c3085e1d627aa5ca90e085e32380f62627318755c78b2c57aa",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/GoalSocket.prefab",
+      "prefabSha256": "8579b4c2f70855eb0d90e66b88ab56202ead12bd839f80ac4cbab78c589b4c10",
+      "triangles": 3216,
+      "rendererCount": 4,
+      "bounds": {
+        "min": [
+          -0.474000037,
+          -0.052,
+          -0.474000037
+        ],
+        "max": [
+          0.474000037,
+          0.0133000016,
+          0.474000037
+        ],
+        "size": [
+          0.9480001,
+          0.0653,
+          0.9480001
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Geometry/Rim.008",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "materials": [
+            {
+              "name": "M_StationLinkAccent",
+              "path": "Assets/Material/Station/M_StationLinkAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_StationStatusEmission",
+              "path": "Assets/Material/Station/M_StationStatusEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/TargetRings",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "UtilitySocket",
+      "rootPath": "UtilitySocketRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/UtilitySocket.fbx",
+      "fbxSha256": "400051b5c38ee3c0f1936c0b612bf3b85d33e318e83134d6bc90fb060bc24de5",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/UtilitySocket.prefab",
+      "prefabSha256": "75d2194e5df6dc9250fbcd17ec6d0c03ebf781f6f353144424399c6afc1ac69a",
+      "triangles": 3136,
+      "rendererCount": 4,
+      "bounds": {
+        "min": [
+          -0.474000037,
+          -0.052,
+          -0.474000037
+        ],
+        "max": [
+          0.474000037,
+          0.0133000016,
+          0.474000037
+        ],
+        "size": [
+          0.9480001,
+          0.0653,
+          0.9480001
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Geometry/Rim.008",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "LinkMarkers/IdentityBands",
+          "materials": [
+            {
+              "name": "M_StationLinkAccent",
+              "path": "Assets/Material/Station/M_StationLinkAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/PowerLamps",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_StationStatusEmission",
+              "path": "Assets/Material/Station/M_StationStatusEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "TypeMarker/PlugSymbols",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "PowerGate",
+      "rootPath": "PowerGateRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/PowerGate.fbx",
+      "fbxSha256": "270533d3887c795d08dd169fe1878f104de165f67a7fb9e473e7681a411c0cf3",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/PowerGate.prefab",
+      "prefabSha256": "7ca05eb7cb777da03d431f27a9b3f4ddc68f61b789db4e8f67b0ff5f156992a6",
+      "triangles": 4545,
+      "rendererCount": 11,
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.0134999752,
+          -0.4905
+        ],
+        "max": [
+          0.49,
+          1.654,
+          0.4905
+        ],
+        "size": [
+          0.98,
+          1.6675,
+          0.981
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Base/CornerFeet",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/LowerPanel/LowerPanelMesh",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "MovingParts/UpperPanel/UpperPanelMesh",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PowerStatus/ConditionLamp",
+          "materials": [
+            {
+              "name": "M_StationStatusEmission_Off",
+              "path": "Assets/Material/Station/M_StationStatusEmission_Off.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_Identity",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationLinkAccent_Purple",
+              "path": "Assets/Material/Station/M_StationLinkAccent_Purple.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "SourceBadge02/SourceBadge02_SourcePower",
+          "materials": [
+            {
+              "name": "M_StationStatusEmission_Off",
+              "path": "Assets/Material/Station/M_StationStatusEmission_Off.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_Identity",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationLinkAccent_Blue",
+              "path": "Assets/Material/Station/M_StationLinkAccent_Blue.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "SourceBadgeTemplate/SourceBadgeTemplate_SourcePower",
+          "materials": [
+            {
+              "name": "M_StationStatusEmission_Off",
+              "path": "Assets/Material/Station/M_StationStatusEmission_Off.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/ClosedMark",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "TopDownMarkers/OpenMark",
+          "materials": [
+            {
+              "name": "M_StationSymbol",
+              "path": "Assets/Material/Station/M_StationSymbol.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "UpperStructure/FrameAndCassette",
+          "materials": [
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "FloorPlain",
+      "rootPath": "FloorPlainRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/FloorPlain.fbx",
+      "fbxSha256": "011844bb00968e2c38f9a40b0d07b39e085b2f8d21dcdc9d819aa2d69d7ed868",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/FloorPlain.prefab",
+      "prefabSha256": "0ba418c0d6f9251bdc87ae9c08c348eb5589d341781a1d969ca6ccd062359f10",
+      "triangles": 88,
+      "rendererCount": 1,
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24000001,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24000001,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Deck",
+          "materials": [
+            {
+              "name": "M_StationFloor",
+              "path": "Assets/Material/Station/M_StationFloor.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "FloorService",
+      "rootPath": "FloorServiceRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/FloorService.fbx",
+      "fbxSha256": "f6efe14841f7f871072d51e1b8d4ba75ac7a8deb598c19f08d05555342fb7aed",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/FloorService.prefab",
+      "prefabSha256": "c40a7866bac30d1d4082ec6e701f4b60931b86861bc58798e0482eb7e7cb8116",
+      "triangles": 312,
+      "rendererCount": 1,
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24000001,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24000001,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Deck",
+          "materials": [
+            {
+              "name": "M_StationFloor",
+              "path": "Assets/Material/Station/M_StationFloor.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "FloorGrate",
+      "rootPath": "FloorGrateRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/FloorGrate.fbx",
+      "fbxSha256": "b021b3206591181ec13c1e695feec3196f575ca8719a16b4b9b25574cc4d0c54",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/FloorGrate.prefab",
+      "prefabSha256": "345bbc911d1582959896587cda5d18acedff03f165a1519440a3c61d67ef529c",
+      "triangles": 364,
+      "rendererCount": 1,
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24000001,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.0,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.24000001,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Deck",
+          "materials": [
+            {
+              "name": "M_StationFloor",
+              "path": "Assets/Material/Station/M_StationFloor.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "WallStraight",
+      "rootPath": "WallStraightRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/WallStraight.fbx",
+      "fbxSha256": "065bba65f16c647b4ba8ab36ee480713e7ca345acacd7583705333be364c6713",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/WallStraight.prefab",
+      "prefabSha256": "bbefb962ac375d609f1303d4277cabdfff11c7c15d6b2168ff1a3af723ee37ad",
+      "triangles": 732,
+      "rendererCount": 2,
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "materials": [
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "WallCorner",
+      "rootPath": "WallCornerRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/WallCorner.fbx",
+      "fbxSha256": "c5613b9569a21eaeb85ea33dfdf6ad2f419c231261b4535faa70ccf7162240c5",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/WallCorner.prefab",
+      "prefabSha256": "c7bb1a01a6d06432f0c0a729fc7109778d0411521d5e92444d418587add67f2c",
+      "triangles": 732,
+      "rendererCount": 2,
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "materials": [
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "WallEnd",
+      "rootPath": "WallEndRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/WallEnd.fbx",
+      "fbxSha256": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/WallEnd.prefab",
+      "prefabSha256": "33117f332b416e2c228d84faa3656fcff11e2e3ca450de0fa4228c0d203e1b01",
+      "triangles": 856,
+      "rendererCount": 2,
+      "bounds": {
+        "min": [
+          -0.49,
+          0.0,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          1.54,
+          0.49
+        ],
+        "size": [
+          0.98,
+          1.54,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Base/Plinth",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Upper/WallBody",
+          "materials": [
+            {
+              "name": "M_StationBody",
+              "path": "Assets/Material/Station/M_StationBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "RedirectorPlate",
+      "rootPath": "RedirectorPlateRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/RedirectorPlate.fbx",
+      "fbxSha256": "f56e5ab4d4b4ff91f84eda518d1a6b95bdbc8bb93ddf83fd52120f0d626abaff",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/RedirectorPlate.prefab",
+      "prefabSha256": "6416e6d7f9db8b21dc4bb066e3d68af83625ba4e7708e6acaacba9a751e1f169",
+      "triangles": 500,
+      "rendererCount": 2,
+      "bounds": {
+        "min": [
+          -0.482000023,
+          -0.00200000033,
+          -0.482000023
+        ],
+        "max": [
+          0.482000023,
+          0.007,
+          0.482000023
+        ],
+        "size": [
+          0.964000046,
+          0.009000001,
+          0.964000046
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Frame",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "materials": [
+            {
+              "name": "M_StationTrackSurface",
+              "path": "Assets/Material/StationGameplay/M_StationTrackSurface.mat",
+              "metallicMask": "",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "LowFrictionDeck",
+      "rootPath": "LowFrictionDeckRoot",
+      "fbx": "Assets/Art/StationKit/Meshes/LowFrictionDeck.fbx",
+      "fbxSha256": "ff879f509d9940fb47a7330d12b3f2eeb030bde33d4b7c57d278bc2dfd06052f",
+      "prefab": "Assets/Resources/prefabs/gameplay/StationKit/LowFrictionDeck.prefab",
+      "prefabSha256": "09d34f943d43873e7902d2e63d4fe4206dab4a377a41056666d62c3cc71575dd",
+      "triangles": 600,
+      "rendererCount": 4,
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24000001,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.00699999928,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.247000009,
+          0.98
+        ]
+      },
+      "renderers": [
+        {
+          "path": "Deck",
+          "materials": [
+            {
+              "name": "M_StationFloor",
+              "path": "Assets/Material/Station/M_StationFloor.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Frame",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_StationMetal",
+              "path": "Assets/Material/Station/M_StationMetal.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Metal.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "GlideInlays",
+          "materials": [
+            {
+              "name": "M_StationDark",
+              "path": "Assets/Material/Station/M_StationDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Polymer.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "materials": [
+            {
+              "name": "M_StationTrackSurface",
+              "path": "Assets/Material/StationGameplay/M_StationTrackSurface.mat",
+              "metallicMask": "",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "assetId": "Robot",
+      "rootPath": "RobotRoot",
+      "fbx": "Assets/Art/Robot/Meshes/Robot.fbx",
+      "fbxSha256": "276de093624eb6b092953b989b389b389c97e62175b2412906d262840a71c0e2",
+      "prefab": "Assets/Resources/prefabs/gameplay/player/Robot.prefab",
+      "prefabSha256": "c2af430e0a850267e348e7d4d73337c6de43fccc78b79fb6c86913bab92f5fd0",
+      "triangles": 7468,
+      "rendererCount": 15,
+      "bounds": {
+        "min": [
+          -0.35,
+          0.0,
+          -0.320500016
+        ],
+        "max": [
+          0.35,
+          0.799999952,
+          0.36
+        ],
+        "size": [
+          0.7,
+          0.799999952,
+          0.680500031
+        ]
+      },
+      "renderers": [
+        {
+          "path": "BodyPivot/Body",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Eye_L",
+          "materials": [
+            {
+              "name": "M_RobotEmission",
+              "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Eye_R",
+          "materials": [
+            {
+              "name": "M_RobotEmission",
+              "path": "Assets/Art/Robot/Materials/M_RobotEmission.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Head",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "BodyPivot/HeadYaw/Screen",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "Chassis",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PusherHousing",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PushSlide/PusherStem",
+          "materials": [
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            }
+          ]
+        },
+        {
+          "path": "PushSlide/PushPlate",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Track_L",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Track_R",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_LB_Pivot/Wheel_LB",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_LF_Pivot/Wheel_LF",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_RB_Pivot/Wheel_RB",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        },
+        {
+          "path": "Wheel_RF_Pivot/Wheel_RF",
+          "materials": [
+            {
+              "name": "M_RobotDark",
+              "path": "Assets/Art/Robot/Materials/M_RobotDark.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Rubber.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotBody",
+              "path": "Assets/Art/Robot/Materials/M_RobotBody.mat",
+              "metallicMask": "Assets/Art/StationKit/Textures/Coating.png",
+              "normalMap": "Assets/Art/StationKit/Textures/MicroNormal.png"
+            },
+            {
+              "name": "M_RobotAccent",
+              "path": "Assets/Art/Robot/Materials/M_RobotAccent.mat",
+              "metallicMask": "",
+              "normalMap": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "EnergyCrate/semantic_root",
+      "passed": true,
+      "detail": "EnergyCrateRoot"
+    },
+    {
+      "name": "EnergyCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "EnergyCrate/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "EnergyCrate/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "EnergyCrate/crate_envelope",
+      "passed": true,
+      "detail": "(0.80, 0.80, 0.80)"
+    },
+    {
+      "name": "CargoCrate/semantic_root",
+      "passed": true,
+      "detail": "CargoCrateRoot"
+    },
+    {
+      "name": "CargoCrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CargoCrate/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CargoCrate/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "CargoCrate/crate_envelope",
+      "passed": true,
+      "detail": "(0.80, 0.80, 0.80)"
+    },
+    {
+      "name": "GoalSocket/semantic_root",
+      "passed": true,
+      "detail": "GoalSocketRoot"
+    },
+    {
+      "name": "GoalSocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GoalSocket/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "GoalSocket/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "UtilitySocket/semantic_root",
+      "passed": true,
+      "detail": "UtilitySocketRoot"
+    },
+    {
+      "name": "UtilitySocket/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "UtilitySocket/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "UtilitySocket/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PowerGate/semantic_root",
+      "passed": true,
+      "detail": "PowerGateRoot"
+    },
+    {
+      "name": "PowerGate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PowerGate/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PowerGate/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PowerGate/gate_footprint",
+      "passed": true,
+      "detail": "(0.98, 1.67, 0.98)"
+    },
+    {
+      "name": "FloorPlain/semantic_root",
+      "passed": true,
+      "detail": "FloorPlainRoot"
+    },
+    {
+      "name": "FloorPlain/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorPlain/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorPlain/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorService/semantic_root",
+      "passed": true,
+      "detail": "FloorServiceRoot"
+    },
+    {
+      "name": "FloorService/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorService/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorService/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorGrate/semantic_root",
+      "passed": true,
+      "detail": "FloorGrateRoot"
+    },
+    {
+      "name": "FloorGrate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorGrate/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "FloorGrate/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallStraight/semantic_root",
+      "passed": true,
+      "detail": "WallStraightRoot"
+    },
+    {
+      "name": "WallStraight/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallStraight/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallStraight/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallCorner/semantic_root",
+      "passed": true,
+      "detail": "WallCornerRoot"
+    },
+    {
+      "name": "WallCorner/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallCorner/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallCorner/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallEnd/semantic_root",
+      "passed": true,
+      "detail": "WallEndRoot"
+    },
+    {
+      "name": "WallEnd/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallEnd/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "WallEnd/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "RedirectorPlate/semantic_root",
+      "passed": true,
+      "detail": "RedirectorPlateRoot"
+    },
+    {
+      "name": "RedirectorPlate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "RedirectorPlate/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "RedirectorPlate/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "LowFrictionDeck/semantic_root",
+      "passed": true,
+      "detail": "LowFrictionDeckRoot"
+    },
+    {
+      "name": "LowFrictionDeck/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "LowFrictionDeck/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "LowFrictionDeck/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/semantic_root",
+      "passed": true,
+      "detail": "RobotRoot"
+    },
+    {
+      "name": "Robot/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/no_physics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/urp_materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/robot_envelope",
+      "passed": true,
+      "detail": "(0.70, 0.80, 0.68)"
+    },
+    {
+      "name": "Robot/three_clips",
+      "passed": true,
+      "detail": [
+        "Idle",
+        "Move",
+        "Push"
+      ]
+    },
+    {
+      "name": "Robot/clip_Idle",
+      "passed": true,
+      "detail": 2.0
+    },
+    {
+      "name": "Robot/clip_Move",
+      "passed": true,
+      "detail": 1.00000024
+    },
+    {
+      "name": "Robot/clip_Push",
+      "passed": true,
+      "detail": 0.600000143
+    },
+    {
+      "name": "Robot/static_anchor_and_root/0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/static_anchor_and_root/18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Robot/push_contact",
+      "passed": true,
+      "detail": 4.172325E-07
+    },
+    {
+      "name": "Robot/visible_wheel_revolution/Wheel_LF_Pivot",
+      "passed": true,
+      "detail": 359.998352
+    },
+    {
+      "name": "Robot/visible_wheel_revolution/Wheel_LB_Pivot",
+      "passed": true,
+      "detail": 359.998352
+    },
+    {
+      "name": "Robot/visible_wheel_revolution/Wheel_RF_Pivot",
+      "passed": true,
+      "detail": 359.998352
+    },
+    {
+      "name": "Robot/visible_wheel_revolution/Wheel_RB_Pivot",
+      "passed": true,
+      "detail": 359.998352
+    },
+    {
+      "name": "theme/transport_prefabs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "theme/profile_build_dependency",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/Brace.png"
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/Coating.png"
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/Metal.png"
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/MicroNormal.png"
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/Polymer.png"
+    },
+    {
+      "name": "texture/linear_mipmapped_repeat",
+      "passed": true,
+      "detail": "Assets/Art/StationKit/Textures/Rubber.png"
+    }
+  ]
+}

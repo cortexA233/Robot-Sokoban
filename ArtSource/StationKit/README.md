@@ -11,6 +11,29 @@
 - [Unity 多路连接](previews/unity_connections_1080.png) · [地板、直段、转角、端头、T/十字拼接](previews/blender_joins.png)
 - [Blender 机械开合](previews/blender_mechanical.mp4) · [Blender 断电占据交接](previews/blender_occupancy.mp4) · [Unity 断电占据交接](previews/unity_occupancy.mp4)
 
+## v0.11.0 美术细化
+
+本次实验在原 11 项资产上细化两类箱子、两类插槽和门，新增 RedirectorPlate、LowFrictionDeck 两个 Blender/FBX/Prefab，共 **13 个主资产**。普通地板和墙体 FBX 未改，不制作悬空平台收边。
+
+| 细化资产 | 当前三角面 | Renderer 数 |
+| --- | ---: | ---: |
+| EnergyCrate | 5396 | 3 |
+| CargoCrate | 3640 | 2 |
+| GoalSocket | 3216 | 4 |
+| UtilitySocket | 3136 | 4 |
+| PowerGate | 4545 | 11 |
+| RedirectorPlate | 500 | 2 |
+| LowFrictionDeck | 600 | 4 |
+
+当前实测记录在 [清单](station_kit_asset_manifest.json)、[Unity 资产检查](../../Docs/Versions/V0.11.0Validation/UnityAssets.json)及 [v0.11.0](../../Docs/Versions/V0.11.0.md)。下文首批数量、材质参数、无贴图说明和旧预览保留为初次生产历史。
+
+- refine_station_kit.py 对已有源网格进行增量细化，保留原节点/材质槽，版本标记阻止重复追加；不运行旧生成器重建。
+- export_all(asset_ids=[...]) 支持定向导出，省略参数才导出全部 13 项。保存原 .meta/GUID。
+- create_surface_masks.py 在 Blender 中创建 5 张 256² 金属度/光滑度纹理及 1 张微表面法线；bind_blender_surfaces.py 绑定相对路径。贴图与机器人共享，URP 使用线性导入、Repeat 和 mipmaps。
+- apply_unity_art.cs 通过 MCP 维护材质、两个新增 Prefab 和相机效果配置，不保存或覆盖关卡场景。只在需要重建本次配置时执行；日常直接编辑现有资产。
+- validate_unity_art.cs 用隔离 Prefab 检查资产与机器人动画；write_refinement_manifests.py 要求实际源/FBX/Unity 哈希及本轮回归通过后，才更新当前清单。
+- 游戏显示导入的插槽 Geometry/Rim，类型/连接/供电仍由 StationCircuitView 负责；旧 FBX 标识保持隐藏。新增装饰不参与物理和供电。
+
 ## 交付资产
 
 所有 FBX 位于 `Assets/Art/StationKit/Meshes/`；对应同名 Prefab 位于

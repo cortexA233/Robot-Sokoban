@@ -17,6 +17,9 @@ namespace Sokoban
         public Mesh[] socketSymbols, badgeSymbols;
         public Material powerOff, powerOn, trackSurface, trackMark, labelMaterial;
         public Material spaceBackground;
+        public UnityEngine.Rendering.VolumeProfile artPostProcessing;
+        public Color artFillColor = new Color(.72f, .82f, 1f);
+        [Range(0, 1)] public float artFillIntensity = .28f;
         public Font labelFont;
         [Range(.05f, .5f)] public float gateSeconds = .18f;
 

@@ -15,12 +15,8 @@ namespace Sokoban
         {
             Facing = (Direction)Enum.Parse(typeof(Direction), definition.facing);
             transform.localRotation = Quaternion.Euler(0, (int)Facing * 90, 0);
-            var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var plate = Instantiate(theme.Prefab("RedirectorPlate"), transform);
             plate.name = "Directional plate"; plate.transform.SetParent(transform, false);
-            plate.transform.localPosition = new Vector3(0, .009f, 0);
-            plate.transform.localScale = new Vector3(.98f, .016f, .98f);
-            plate.GetComponent<Renderer>().sharedMaterial = theme.trackSurface;
-            var collider = plate.GetComponent<Collider>(); collider.enabled = false; Destroy(collider);
 
             var vertices = new List<Vector3>(); var triangles = new List<int>();
             AddArrow(vertices, triangles, 0, 0, .72f);
@@ -40,7 +36,7 @@ namespace Sokoban
             int start = vertices.Count;
             foreach (var point in new[] { new Vector2(-.14f, -.46f), new Vector2(.14f, -.46f), new Vector2(.14f, 0),
                 new Vector2(.4f, 0), new Vector2(0, .46f), new Vector2(-.4f, 0), new Vector2(-.14f, 0) })
-                vertices.Add(new Vector3(x + point.x * scale, .02f, z + point.y * scale));
+                vertices.Add(new Vector3(x + point.x * scale, .003f, z + point.y * scale));
             foreach (int index in new[] { 0, 2, 1, 0, 6, 2, 3, 5, 4 }) triangles.Add(start + index);
         }
         private void OnDestroy() { if (arrowMesh) Destroy(arrowMesh); }

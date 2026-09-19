@@ -1,8 +1,8 @@
 {
   "protocol": "station-kit-v1",
-  "checkedAt": "2026-09-17T01:55:17.765038+00:00",
+  "checkedAt": "2026-09-19T15:46:02.342216+00:00",
   "blenderVersion": "5.2.2 LTS",
-  "sourceSha256": "44ea755dd24372dc88d9767ca0abc7c725bf4419edf519f840065a2a79a89c83",
+  "sourceSha256": "14452bdc88cbd1987b55dff36564f650bd0d0f2c312c95d88d7723a4f319b1df",
   "passed": true,
   "source": {
     "EnergyCrate": {
@@ -23,7 +23,7 @@
           0.8005
         ]
       },
-      "triangles": 3460,
+      "triangles": 5396,
       "meshCount": 3,
       "rendererCount": 3,
       "degenerateTriangles": 0,
@@ -53,7 +53,7 @@
         },
         {
           "path": "Geometry/Shell",
-          "triangles": 2788,
+          "triangles": 4724,
           "bounds": {
             "min": [
               -0.40025,
@@ -137,14 +137,14 @@
           0.8008
         ]
       },
-      "triangles": 2540,
+      "triangles": 3640,
       "meshCount": 2,
       "rendererCount": 2,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Shell",
-          "triangles": 1688,
+          "triangles": 2744,
           "bounds": {
             "min": [
               -0.4,
@@ -177,16 +177,16 @@
         },
         {
           "path": "TypeMarker/CargoBraces",
-          "triangles": 852,
+          "triangles": 896,
           "bounds": {
             "min": [
               -0.4004,
-              0.1081397,
+              0.1051829,
               -0.4004
             ],
             "max": [
               0.4004,
-              0.8,
+              0.79995,
               0.4004
             ]
           },
@@ -200,6 +200,11 @@
               "slot": 1,
               "material": "M_StationMetal",
               "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark",
+              "role": "Dark"
             }
           ]
         }
@@ -208,39 +213,39 @@
     "GoalSocket": {
       "bounds": {
         "min": [
-          -0.47,
+          -0.474,
           -0.052,
-          -0.47
+          -0.474
         ],
         "max": [
-          0.47,
-          0.005,
-          0.47
+          0.474,
+          0.0133,
+          0.474
         ],
         "size": [
-          0.9400001,
-          0.057,
-          0.9400001
+          0.9480001,
+          0.0653,
+          0.9480001
         ]
       },
-      "triangles": 1120,
+      "triangles": 3216,
       "meshCount": 4,
       "rendererCount": 4,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Rim",
-          "triangles": 528,
+          "triangles": 2624,
           "bounds": {
             "min": [
-              -0.47,
+              -0.474,
               -0.052,
-              -0.47
+              -0.474
             ],
             "max": [
-              0.47,
-              0.005,
-              0.47
+              0.474,
+              0.0133,
+              0.474
             ]
           },
           "materials": [
@@ -345,39 +350,39 @@
     "UtilitySocket": {
       "bounds": {
         "min": [
-          -0.47,
+          -0.474,
           -0.052,
-          -0.47
+          -0.474
         ],
         "max": [
-          0.47,
-          0.005,
-          0.47
+          0.474,
+          0.0133,
+          0.474
         ],
         "size": [
-          0.9400001,
-          0.057,
-          0.9400001
+          0.9480001,
+          0.0653,
+          0.9480001
         ]
       },
-      "triangles": 1040,
+      "triangles": 3136,
       "meshCount": 4,
       "rendererCount": 4,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Rim",
-          "triangles": 528,
+          "triangles": 2624,
           "bounds": {
             "min": [
-              -0.47,
+              -0.474,
               -0.052,
-              -0.47
+              -0.474
             ],
             "max": [
-              0.47,
-              0.005,
-              0.47
+              0.474,
+              0.0133,
+              0.474
             ]
           },
           "materials": [
@@ -484,20 +489,20 @@
         "min": [
           -0.49,
           -0.0135,
-          -0.49
+          -0.4905
         ],
         "max": [
           0.49,
-          1.6504999,
-          0.49
+          1.654,
+          0.4905
         ],
         "size": [
           0.98,
-          1.6639999,
-          0.98
+          1.6675,
+          0.981
         ]
       },
-      "triangles": 2865,
+      "triangles": 4545,
       "meshCount": 11,
       "rendererCount": 11,
       "degenerateTriangles": 0,
@@ -527,7 +532,7 @@
         },
         {
           "path": "MovingParts/LowerPanel/LowerPanelMesh",
-          "triangles": 268,
+          "triangles": 412,
           "bounds": {
             "min": [
               -0.425,
@@ -560,7 +565,7 @@
         },
         {
           "path": "MovingParts/UpperPanel/UpperPanelMesh",
-          "triangles": 268,
+          "triangles": 412,
           "bounds": {
             "min": [
               -0.425,
@@ -764,17 +769,17 @@
         },
         {
           "path": "UpperStructure/FrameAndCassette",
-          "triangles": 1616,
+          "triangles": 3008,
           "bounds": {
             "min": [
               -0.49,
               0.09,
-              -0.49
+              -0.4905
             ],
             "max": [
               0.49,
-              1.6504999,
-              0.49
+              1.654,
+              0.4905
             ]
           },
           "materials": [
@@ -1183,6 +1188,204 @@
           ]
         }
       ]
+    },
+    "RedirectorPlate": {
+      "bounds": {
+        "min": [
+          -0.482,
+          -0.002,
+          -0.482
+        ],
+        "max": [
+          0.482,
+          0.007,
+          0.482
+        ],
+        "size": [
+          0.964,
+          0.009,
+          0.964
+        ]
+      },
+      "triangles": 500,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Frame",
+          "triangles": 488,
+          "bounds": {
+            "min": [
+              -0.482,
+              -0.002,
+              -0.482
+            ],
+            "max": [
+              0.482,
+              0.007,
+              0.482
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.435,
+              0.0,
+              -0.435
+            ],
+            "max": [
+              0.435,
+              0.0008,
+              0.435
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        }
+      ]
+    },
+    "LowFrictionDeck": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.007,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.247,
+          0.98
+        ]
+      },
+      "triangles": 600,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 88,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "Frame",
+          "triangles": 464,
+          "bounds": {
+            "min": [
+              -0.482,
+              -0.002,
+              -0.482
+            ],
+            "max": [
+              0.482,
+              0.007,
+              0.482
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "GlideInlays",
+          "triangles": 36,
+          "bounds": {
+            "min": [
+              -0.2305,
+              0.0009,
+              -0.365
+            ],
+            "max": [
+              0.2305,
+              0.0017,
+              0.365
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.435,
+              0.0,
+              -0.435
+            ],
+            "max": [
+              0.435,
+              0.0008,
+              0.435
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal",
+              "role": "Metal"
+            }
+          ]
+        }
+      ]
     }
   },
   "fbx": {
@@ -1204,7 +1407,7 @@
           0.8005
         ]
       },
-      "triangles": 3460,
+      "triangles": 5396,
       "meshCount": 3,
       "rendererCount": 3,
       "degenerateTriangles": 0,
@@ -1234,7 +1437,7 @@
         },
         {
           "path": "Geometry/Shell",
-          "triangles": 2788,
+          "triangles": 4724,
           "bounds": {
             "min": [
               -0.40025,
@@ -1299,7 +1502,7 @@
           ]
         }
       ],
-      "sha256": "23936106cc74fa38e310b793aa66bd99d1eb4691a78ac941f90baff5a53928ce"
+      "sha256": "a5fa80843aaab58f826ab62f62e466136c93cd0d2ab8bba1b7ba4df6a1db7fa6"
     },
     "CargoCrate": {
       "bounds": {
@@ -1319,14 +1522,14 @@
           0.8008
         ]
       },
-      "triangles": 2540,
+      "triangles": 3640,
       "meshCount": 2,
       "rendererCount": 2,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Shell",
-          "triangles": 1688,
+          "triangles": 2744,
           "bounds": {
             "min": [
               -0.4,
@@ -1359,16 +1562,16 @@
         },
         {
           "path": "TypeMarker/CargoBraces",
-          "triangles": 852,
+          "triangles": 896,
           "bounds": {
             "min": [
               -0.4004,
-              0.1081397,
+              0.1051829,
               -0.4004
             ],
             "max": [
               0.4004,
-              0.8,
+              0.79995,
               0.4004
             ]
           },
@@ -1382,48 +1585,53 @@
               "slot": 1,
               "material": "M_StationMetal.002",
               "role": "Metal"
+            },
+            {
+              "slot": 2,
+              "material": "M_StationDark.002",
+              "role": "Dark"
             }
           ]
         }
       ],
-      "sha256": "a982dd3ad445501e3112f022ee6849254957e1e708ea9ac28e6ca5d7dceb8592"
+      "sha256": "efe425158ec348ee89fe714b3b4416d78a52df4b44b142a3eb5a84f019f976bc"
     },
     "GoalSocket": {
       "bounds": {
         "min": [
-          -0.47,
+          -0.474,
           -0.052,
-          -0.47
+          -0.474
         ],
         "max": [
-          0.47,
-          0.005,
-          0.47
+          0.474,
+          0.0133,
+          0.474
         ],
         "size": [
-          0.9400001,
-          0.057,
-          0.9400001
+          0.9480001,
+          0.0653,
+          0.9480001
         ]
       },
-      "triangles": 1120,
+      "triangles": 3216,
       "meshCount": 4,
       "rendererCount": 4,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Rim",
-          "triangles": 528,
+          "triangles": 2624,
           "bounds": {
             "min": [
-              -0.47,
+              -0.474,
               -0.052,
-              -0.47
+              -0.474
             ],
             "max": [
-              0.47,
-              0.005,
-              0.47
+              0.474,
+              0.0133,
+              0.474
             ]
           },
           "materials": [
@@ -1524,44 +1732,44 @@
           ]
         }
       ],
-      "sha256": "85d79e4590754fde12e8094662d5be02ab6db0f6747af9775222260ded273e65"
+      "sha256": "68e9a7c5c4bd47c3085e1d627aa5ca90e085e32380f62627318755c78b2c57aa"
     },
     "UtilitySocket": {
       "bounds": {
         "min": [
-          -0.47,
+          -0.474,
           -0.052,
-          -0.47
+          -0.474
         ],
         "max": [
-          0.47,
-          0.005,
-          0.47
+          0.474,
+          0.0133,
+          0.474
         ],
         "size": [
-          0.9400001,
-          0.057,
-          0.9400001
+          0.9480001,
+          0.0653,
+          0.9480001
         ]
       },
-      "triangles": 1040,
+      "triangles": 3136,
       "meshCount": 4,
       "rendererCount": 4,
       "degenerateTriangles": 0,
       "renderers": [
         {
           "path": "Geometry/Rim",
-          "triangles": 528,
+          "triangles": 2624,
           "bounds": {
             "min": [
-              -0.47,
+              -0.474,
               -0.052,
-              -0.47
+              -0.474
             ],
             "max": [
-              0.47,
-              0.005,
-              0.47
+              0.474,
+              0.0133,
+              0.474
             ]
           },
           "materials": [
@@ -1662,27 +1870,27 @@
           ]
         }
       ],
-      "sha256": "e04876208de48d50b920626e980c29f0011ff36f8e6ee78228cdcab8aa5ea6ac"
+      "sha256": "400051b5c38ee3c0f1936c0b612bf3b85d33e318e83134d6bc90fb060bc24de5"
     },
     "PowerGate": {
       "bounds": {
         "min": [
           -0.49,
           -0.0135,
-          -0.49
+          -0.4905
         ],
         "max": [
           0.49,
-          1.6504999,
-          0.49
+          1.654,
+          0.4905
         ],
         "size": [
           0.98,
-          1.6639999,
-          0.98
+          1.6675,
+          0.981
         ]
       },
-      "triangles": 2865,
+      "triangles": 4545,
       "meshCount": 11,
       "rendererCount": 11,
       "degenerateTriangles": 0,
@@ -1712,7 +1920,7 @@
         },
         {
           "path": "MovingParts/LowerPanel/LowerPanelMesh",
-          "triangles": 268,
+          "triangles": 412,
           "bounds": {
             "min": [
               -0.425,
@@ -1745,7 +1953,7 @@
         },
         {
           "path": "MovingParts/UpperPanel/UpperPanelMesh",
-          "triangles": 268,
+          "triangles": 412,
           "bounds": {
             "min": [
               -0.425,
@@ -1949,17 +2157,17 @@
         },
         {
           "path": "UpperStructure/FrameAndCassette",
-          "triangles": 1616,
+          "triangles": 3008,
           "bounds": {
             "min": [
               -0.49,
               0.09,
-              -0.49
+              -0.4905
             ],
             "max": [
               0.49,
-              1.6504999,
-              0.49
+              1.654,
+              0.4905
             ]
           },
           "materials": [
@@ -1981,7 +2189,7 @@
           ]
         }
       ],
-      "sha256": "b87051586938a23e215b2b3255e28480d1bd68d6016726c36ba7ca5bdbcf8c12"
+      "sha256": "270533d3887c795d08dd169fe1878f104de165f67a7fb9e473e7681a411c0cf3"
     },
     "FloorPlain": {
       "bounds": {
@@ -2375,6 +2583,206 @@
         }
       ],
       "sha256": "9a983bab592a602882fcbe16db95cabc625df163d4e11f33529bccd736fd3194"
+    },
+    "RedirectorPlate": {
+      "bounds": {
+        "min": [
+          -0.482,
+          -0.002,
+          -0.482
+        ],
+        "max": [
+          0.482,
+          0.007,
+          0.482
+        ],
+        "size": [
+          0.964,
+          0.009,
+          0.964
+        ]
+      },
+      "triangles": 500,
+      "meshCount": 2,
+      "rendererCount": 2,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Frame",
+          "triangles": 488,
+          "bounds": {
+            "min": [
+              -0.482,
+              -0.002,
+              -0.482
+            ],
+            "max": [
+              0.482,
+              0.007,
+              0.482
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.009",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.009",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.435,
+              0.0,
+              -0.435
+            ],
+            "max": [
+              0.435,
+              0.0008,
+              0.435
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal.009",
+              "role": "Metal"
+            }
+          ]
+        }
+      ],
+      "sha256": "f56e5ab4d4b4ff91f84eda518d1a6b95bdbc8bb93ddf83fd52120f0d626abaff"
+    },
+    "LowFrictionDeck": {
+      "bounds": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.007,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.247,
+          0.98
+        ]
+      },
+      "triangles": 600,
+      "meshCount": 4,
+      "rendererCount": 4,
+      "degenerateTriangles": 0,
+      "renderers": [
+        {
+          "path": "Deck",
+          "triangles": 88,
+          "bounds": {
+            "min": [
+              -0.49,
+              -0.24,
+              -0.49
+            ],
+            "max": [
+              0.49,
+              0.0,
+              0.49
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationFloor.004",
+              "role": "Body"
+            }
+          ]
+        },
+        {
+          "path": "Frame",
+          "triangles": 464,
+          "bounds": {
+            "min": [
+              -0.482,
+              -0.002,
+              -0.482
+            ],
+            "max": [
+              0.482,
+              0.007,
+              0.482
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.010",
+              "role": "Dark"
+            },
+            {
+              "slot": 1,
+              "material": "M_StationMetal.010",
+              "role": "Metal"
+            }
+          ]
+        },
+        {
+          "path": "GlideInlays",
+          "triangles": 36,
+          "bounds": {
+            "min": [
+              -0.2305,
+              0.0009,
+              -0.365
+            ],
+            "max": [
+              0.2305,
+              0.0017,
+              0.365
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationDark.010",
+              "role": "Dark"
+            }
+          ]
+        },
+        {
+          "path": "Surface",
+          "triangles": 12,
+          "bounds": {
+            "min": [
+              -0.435,
+              0.0,
+              -0.435
+            ],
+            "max": [
+              0.435,
+              0.0008,
+              0.435
+            ]
+          },
+          "materials": [
+            {
+              "slot": 0,
+              "material": "M_StationMetal.010",
+              "role": "Metal"
+            }
+          ]
+        }
+      ],
+      "sha256": "ff879f509d9940fb47a7330d12b3f2eeb030bde33d4b7c57d278bc2dfd06052f"
     }
   },
   "checks": [
@@ -2406,7 +2814,7 @@
     {
       "name": "source/EnergyCrate/triangle_budget",
       "passed": true,
-      "detail": 3460
+      "detail": 5396
     },
     {
       "name": "source/EnergyCrate/0.8m_cube",
@@ -2462,7 +2870,7 @@
     {
       "name": "source/CargoCrate/triangle_budget",
       "passed": true,
-      "detail": 2540
+      "detail": 3640
     },
     {
       "name": "source/CargoCrate/0.8m_cube",
@@ -2523,7 +2931,7 @@
     {
       "name": "source/GoalSocket/triangle_budget",
       "passed": true,
-      "detail": 1120
+      "detail": 3216
     },
     {
       "name": "source/UtilitySocket/nondegenerate",
@@ -2553,7 +2961,7 @@
     {
       "name": "source/UtilitySocket/triangle_budget",
       "passed": true,
-      "detail": 1040
+      "detail": 3136
     },
     {
       "name": "source/PowerGate/nondegenerate",
@@ -2583,7 +2991,7 @@
     {
       "name": "source/PowerGate/triangle_budget",
       "passed": true,
-      "detail": 2865
+      "detail": 4545
     },
     {
       "name": "source/PowerGate/one_cell_footprint",
@@ -2861,6 +3269,108 @@
       ]
     },
     {
+      "name": "source/RedirectorPlate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/RedirectorPlate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/RedirectorPlate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/RedirectorPlate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/RedirectorPlate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/RedirectorPlate/triangle_budget",
+      "passed": true,
+      "detail": 500
+    },
+    {
+      "name": "source/RedirectorPlate/flush_transport_surface",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.482,
+          -0.002,
+          -0.482
+        ],
+        "max": [
+          0.482,
+          0.007,
+          0.482
+        ],
+        "size": [
+          0.964,
+          0.009,
+          0.964
+        ]
+      }
+    },
+    {
+      "name": "source/LowFrictionDeck/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/LowFrictionDeck/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/LowFrictionDeck/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/LowFrictionDeck/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/LowFrictionDeck/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source/LowFrictionDeck/triangle_budget",
+      "passed": true,
+      "detail": 600
+    },
+    {
+      "name": "source/LowFrictionDeck/flush_transport_surface",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.007,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.247,
+          0.98
+        ]
+      }
+    },
+    {
       "name": "source/GoalSocket/sweep_EnergyCrate_EW",
       "passed": true,
       "detail": {
@@ -3040,7 +3550,7 @@
     {
       "name": "fbx/EnergyCrate/triangle_budget",
       "passed": true,
-      "detail": 3460
+      "detail": 5396
     },
     {
       "name": "fbx/EnergyCrate/0.8m_cube",
@@ -3106,7 +3616,7 @@
     {
       "name": "fbx/CargoCrate/triangle_budget",
       "passed": true,
-      "detail": 2540
+      "detail": 3640
     },
     {
       "name": "fbx/CargoCrate/0.8m_cube",
@@ -3177,7 +3687,7 @@
     {
       "name": "fbx/GoalSocket/triangle_budget",
       "passed": true,
-      "detail": 1120
+      "detail": 3216
     },
     {
       "name": "fbx/GoalSocket/triangle_roundtrip",
@@ -3217,7 +3727,7 @@
     {
       "name": "fbx/UtilitySocket/triangle_budget",
       "passed": true,
-      "detail": 1040
+      "detail": 3136
     },
     {
       "name": "fbx/UtilitySocket/triangle_roundtrip",
@@ -3257,7 +3767,7 @@
     {
       "name": "fbx/PowerGate/triangle_budget",
       "passed": true,
-      "detail": 2865
+      "detail": 4545
     },
     {
       "name": "fbx/PowerGate/one_cell_footprint",
@@ -3601,6 +4111,128 @@
     },
     {
       "name": "fbx/WallEnd/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/triangle_budget",
+      "passed": true,
+      "detail": 500
+    },
+    {
+      "name": "fbx/RedirectorPlate/flush_transport_surface",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.482,
+          -0.002,
+          -0.482
+        ],
+        "max": [
+          0.482,
+          0.007,
+          0.482
+        ],
+        "size": [
+          0.964,
+          0.009,
+          0.964
+        ]
+      }
+    },
+    {
+      "name": "fbx/RedirectorPlate/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/RedirectorPlate/bounds_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/positive_scales",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/no_reference_camera_or_light",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/no_missing_material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/identity_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/triangle_budget",
+      "passed": true,
+      "detail": 600
+    },
+    {
+      "name": "fbx/LowFrictionDeck/flush_transport_surface",
+      "passed": true,
+      "detail": {
+        "min": [
+          -0.49,
+          -0.24,
+          -0.49
+        ],
+        "max": [
+          0.49,
+          0.007,
+          0.49
+        ],
+        "size": [
+          0.98,
+          0.247,
+          0.98
+        ]
+      }
+    },
+    {
+      "name": "fbx/LowFrictionDeck/triangle_roundtrip",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fbx/LowFrictionDeck/bounds_roundtrip",
       "passed": true,
       "detail": null
     }

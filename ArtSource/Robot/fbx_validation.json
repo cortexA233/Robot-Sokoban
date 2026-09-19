@@ -276,7 +276,7 @@
       0.3205000162124634,
       0.7999999523162842
     ],
-    "triangles": 4996,
+    "triangles": 7468,
     "meshObjects": 15,
     "totalExportNodes": 25,
     "materials": [
@@ -389,7 +389,7 @@
       ]
     }
   },
-  "artifactSha256": "37708b3c35f7c3c5f44df035bd16b217cf33f8fa810e178c65c4d73384d5964c",
+  "artifactSha256": "276de093624eb6b092953b989b389b389c97e62175b2412906d262840a71c0e2",
   "rawFbxFrameRanges": {
     "RobotRoot": [
       0.0,
