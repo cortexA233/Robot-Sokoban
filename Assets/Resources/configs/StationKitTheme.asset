@@ -89,5 +89,6 @@ MonoBehaviour:
   trackSurface: {fileID: 2100000, guid: 4a35f6ebacca97e438bf6e389e1fc579, type: 2}
   trackMark: {fileID: 2100000, guid: afad58afdd704a245a8b822ed352d98e, type: 2}
   labelMaterial: {fileID: 2100000, guid: 0eb49106c3314dc459faf7e5a2c6fee3, type: 2}
+  spaceBackground: {fileID: 2100000, guid: b64f9101c5edaa04aadb660ba3c0f202, type: 2}
   labelFont: {fileID: 12800000, guid: 5e43384c0f517914e8b4f2975e8f181d, type: 3}
   gateSeconds: 0.18

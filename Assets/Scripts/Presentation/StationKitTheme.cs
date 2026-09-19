@@ -16,6 +16,7 @@ namespace Sokoban
         public SocketBinding[] bindings;
         public Mesh[] socketSymbols, badgeSymbols;
         public Material powerOff, powerOn, trackSurface, trackMark, labelMaterial;
+        public Material spaceBackground;
         public Font labelFont;
         [Range(.05f, .5f)] public float gateSeconds = .18f;
 

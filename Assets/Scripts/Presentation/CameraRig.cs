@@ -62,6 +62,13 @@ namespace Sokoban
             output = new GameObject("Game Camera", typeof(Camera), typeof(AudioListener), typeof(CinemachineBrain)).GetComponent<Camera>();
             output.transform.SetParent(transform, false); output.tag = "MainCamera";
             output.backgroundColor = new Color(.045f, .065f, .09f); output.clearFlags = CameraClearFlags.SolidColor;
+            var theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
+            if (theme && theme.spaceBackground)
+            {
+                // Camera-local backdrop: preserve the scene's ambient lighting and reflections.
+                output.gameObject.AddComponent<Skybox>().material = theme.spaceBackground;
+                output.clearFlags = CameraClearFlags.Skybox;
+            }
             output.nearClipPlane = .05f; output.farClipPlane = 150;
             output.orthographic = true;
             output.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, .25f);

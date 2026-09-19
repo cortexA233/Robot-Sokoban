@@ -1,0 +1,50 @@
+{
+  "version": "v0.10.1",
+  "baseline": "9162293",
+  "branch": "codex/experiment-wall-void",
+  "unity": "2022.3.51f1",
+  "urp": "14.0.11",
+  "technique": "Camera-local procedural skybox; static 3D noise and anti-aliased stars without image textures.",
+  "playMode": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "evidence": "PlayMode.json"
+  },
+  "shaderAndBuild": {
+    "build": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "included": [
+      {
+        "path": "Assets/Material/StationGameplay/M_SpaceBackground.mat",
+        "bytes": 324
+      },
+      {
+        "path": "Assets/Shaders/Environment/SpaceBackground.shader",
+        "bytes": 6888
+      }
+    ],
+    "shaderErrors": [],
+    "environment": {
+      "skybox": "Resources/unity_builtin_extra",
+      "ambient": "Flat",
+      "ambientIntensity": 1
+    }
+  },
+  "buildOutput": "Builds/V0.10.1/Windows/Robot Sokoban.exe",
+  "buildDurationSeconds": 13.4004152,
+  "protectedFileCount": 81,
+  "protectedFileChanges": 0,
+  "consoleErrors": 0,
+  "visualChecks": [
+    "ThirdPerson1080.png",
+    "ThirdPerson720.png",
+    "TopDown1080.png",
+    "ReverseOrbit.png"
+  ],
+  "limitations": [
+    "The Windows Player build was verified, but it was not launched for this iteration.",
+    "Visual inspection used Editor Game View and direct Camera captures; the 720p capture excludes overlay HUD."
+  ]
+}

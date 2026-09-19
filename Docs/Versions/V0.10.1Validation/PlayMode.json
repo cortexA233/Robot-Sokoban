@@ -1,0 +1,36 @@
+{
+  "mode": "PlayMode",
+  "total": 5,
+  "passed": 5,
+  "failed": 0,
+  "result": "Passed",
+  "startUtc": "2026-09-19 02:44:45Z",
+  "endUtc": "2026-09-19 02:45:14Z",
+  "tests": [
+    {
+      "name": "Sokoban.Tests.CameraReadabilityTests.ActualVKeyClearsBufferedMovementAndTogglesWithoutResettingTheCommand",
+      "result": "Passed",
+      "durationSeconds": 1.648614
+    },
+    {
+      "name": "Sokoban.Tests.CameraReadabilityTests.AuthorPlaytestDefaultsToTopAndRestartPreservesAnExplicitViewChoice",
+      "result": "Passed",
+      "durationSeconds": 0.956654
+    },
+    {
+      "name": "Sokoban.Tests.CameraReadabilityTests.EveryCampaignEntryDefaultsToNorthUpAndFitsTheHudClearArea",
+      "result": "Passed",
+      "durationSeconds": 3.057123
+    },
+    {
+      "name": "Sokoban.Tests.CameraReadabilityTests.FullOrbitLeavesWallCellsEmptyAndKeepsGateStructureWithoutChangingRules",
+      "result": "Passed",
+      "durationSeconds": 21.789074
+    },
+    {
+      "name": "Sokoban.Tests.CameraReadabilityTests.ProjectionCommitsAtTheEndAndRapidReversalKeepsTheSameSession",
+      "result": "Passed",
+      "durationSeconds": 1.462392
+    }
+  ]
+}

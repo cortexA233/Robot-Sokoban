@@ -30,11 +30,18 @@ namespace Sokoban.Tests
 
         [UnityTest] public IEnumerator EveryCampaignEntryDefaultsToNorthUpAndFitsTheHudClearArea()
         {
+            var sceneSkybox = RenderSettings.skybox;
+            var background = Resources.Load<StationKitTheme>("configs/StationKitTheme").spaceBackground;
+            Assert.That(background, Is.Not.Null);
+            Assert.That(background.shader.isSupported, Is.True);
             for (int i = 0; i < runner.CampaignLevelCount; i++)
             {
                 runner.SelectLevel(i); yield return new WaitForSeconds(.3f);
                 Assert.That(runner.Cameras.TopDown, Is.True);
                 Assert.That(runner.Cameras.Output.orthographic, Is.True);
+                Assert.That(runner.Cameras.Output.clearFlags, Is.EqualTo(CameraClearFlags.Skybox));
+                Assert.That(runner.Cameras.Output.GetComponent<Skybox>().material, Is.SameAs(background));
+                Assert.That(RenderSettings.skybox, Is.SameAs(sceneSkybox), "Backgrounds must not change global scene lighting.");
                 Assert.That(Cursor.lockState, Is.EqualTo(CursorLockMode.None));
                 Assert.That(Cursor.visible, Is.True);
                 CheckFraming();
