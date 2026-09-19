@@ -3,7 +3,7 @@ name: sokoban-unity-editor
 description: Operate or recover this project's Unity Editor through CoplayDev MCP, including scene/asset changes and Unity test runs.
 ---
 
-# Sokoban Unity Editor
+# Robot Sokoban Unity Editor
 
 Use this workflow for live Editor access. Static C# or documentation edits alone do not need it. Project authorization and pinned versions come from [AGENTS.md](../../../AGENTS.md).
 

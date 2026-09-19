@@ -1,6 +1,6 @@
 # 关卡编辑器使用说明
 
-环境：Unity 2022.3.51f1、URP 14.0.11。入口：**Sokoban_Tools > Level Editor**。
+环境：Unity 2022.3.51f1、URP 14.0.11。入口：**Robot Sokoban > Level Editor**。
 
 窗口按文件、编辑、校验与试玩、帮助分组，现场编辑工具在作者模式可折叠，从 GM 进入时自动展开。左侧画笔分为工具、地形、角色与箱子、机关；示例关卡在可展开的“示例关卡”中。第一次编辑可打开 L04 或 LAB01。当前简化与覆盖规则见 [v0.4.1 实现记录](../Versions/V0.4.1EditorSimplification.md)，基础迭代验收见 [v0.4.0](../Versions/V0.4.0.md)，完整交付范围另见 GDD 第 6/11 节。
 

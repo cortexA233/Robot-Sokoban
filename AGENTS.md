@@ -1,4 +1,4 @@
-# Sokoban agent guide
+# Robot Sokoban agent guide
 
 Work within the current user request. Explicit user instructions take precedence over skill workflows and historical plans. Read the task-relevant sections below; a small change does not require a full project or skill scan.
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Sokoban
 {
     /// <summary>Presentation-only asset and identity configuration; never changes level rules.</summary>
-    [CreateAssetMenu(menuName = "Sokoban/Station Kit Theme")]
+    [CreateAssetMenu(menuName = "Robot Sokoban/Station Kit Theme")]
     public sealed class StationKitTheme : ScriptableObject
     {
         [Serializable] public sealed class Asset { public string id; public GameObject prefab; }

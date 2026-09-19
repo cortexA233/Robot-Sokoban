@@ -41,8 +41,8 @@ namespace Sokoban.Editor
         private bool LiveMode => document && document.isLiveDraft;
         private bool CanEditDocument => !EditorApplication.isPlayingOrWillChangePlaymode || (LiveMode && liveWorkspace && liveWorkspace.Editing);
 
-        [MenuItem("Sokoban_Tools/Level Editor")]
-        public static LevelEditorWindow OpenWindow() => GetWindow<LevelEditorWindow>("Sokoban Level Editor");
+        [MenuItem("Robot Sokoban/Level Editor")]
+        public static LevelEditorWindow OpenWindow() => GetWindow<LevelEditorWindow>("Robot Sokoban Level Editor");
 
         private void OnEnable()
         {

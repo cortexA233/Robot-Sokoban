@@ -75,10 +75,10 @@ $unityEditor = 'C:\Program Files\Unity\Hub\Editor\2022.3.51f1\Editor\Unity.exe'
 - Windows x64 构建成功。本地产物：`Builds/SetupSmoke/Sokoban_3D_Test.exe`；日志：`Logs/setup-build.log`。
 - 本次构建使用现有 SampleScene 验证项目接入，游戏功能按 GDD 后续实现。
 
-构建和验证日志由 `.gitignore` 排除。复现构建：
+构建和验证日志由 `.gitignore` 排除。以上路径是当时的验证记录；游戏现名 **Robot Sokoban**，后续构建文件使用 `Robot Sokoban.exe`。复现接入验证的构建命令（使用当前 Build Settings 场景）：
 
 ```powershell
 & $unityEditor -batchmode -quit -projectPath $PWD.Path `
-  -buildWindows64Player "$PWD/Builds/SetupSmoke/Sokoban_3D_Test.exe" `
+  -buildWindows64Player "$PWD/Builds/SetupSmoke/Robot Sokoban.exe" `
   -logFile "$PWD/Logs/setup-build.log"
 ```

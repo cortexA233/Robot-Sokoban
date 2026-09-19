@@ -1,4 +1,4 @@
-# 《空间站重启》游戏 GDD 与 Unity 实现方案
+# 《Robot Sokoban》游戏 GDD 与 Unity 实现方案
 
 版本：1.10 · 日期：2026-09-18 · 状态：产品与技术规格；已实现范围见 [ImplementationProgress.md](../ImplementationProgress.md) · 用途：技术策划招聘 Take-home 测试
 
@@ -424,7 +424,7 @@ L06 的普通箱与能源箱均遵守门占据防夹规则；允许利用箱子�
 
 ### 6.1 窗口与工具
 
-入口：`Sokoban_Tools > Level Editor`。使用 UI Toolkit EditorWindow，配合 SceneView 网格交互。
+入口：`Robot Sokoban > Level Editor`。使用 UI Toolkit EditorWindow，配合 SceneView 网格交互。
 
 | 区域 | 必需功能 |
 |---|---|
@@ -918,7 +918,7 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 
 | 步骤 | 评审操作 | 预期结果 |
 |---|---|---|
-| 1 | 用2022.3.51f1打开工程，按README进入 `Sokoban_Tools > Level Editor` | 无编译错误，能找到帮助、示例关卡和新建按钮 |
+| 1 | 用2022.3.51f1打开工程，按README进入 `Robot Sokoban > Level Editor` | 无编译错误，能找到帮助、示例关卡和新建按钮 |
 | 2 | 新建9×7地图，点击“一键生成边界墙”，核对自动生成的关卡 ID | 网格尺寸和落格预览正确，生成新的关卡ID |
 | 3 | 放玩家(1,3)、箱子(2,3)、目标插槽(6,3)、门(7,3) | 所有元素能选中和修改；门显示缺少供电来源的提示 |
 | 4 | 将(3,3)、(4,3)、(5,3)刷为低摩擦轨道，门设置Any并选择(6,3)的目标插槽为来源 | 轨道区别于普通地板，插槽到门有连接可视化，校验通过 |

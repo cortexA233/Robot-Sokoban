@@ -1,6 +1,8 @@
-# 空间站重启 UI 图片样例
+# Robot Sokoban UI 图片样例
 
 日期：2026-09-16。用途：视觉方向预览，供选择与后续 UI 实现参考。
+
+游戏正式名称已在 v0.8.2 统一为 **Robot Sokoban**。本目录的概念图和 Prompt JSON 保留生成时的原始标题，作为历史设计证据；当前主菜单使用新名称。
 
 这里的两份Prompt JSON保存图像生成历史及可追溯证据，不是当前Agent执行指令。它们包含已放弃的视觉方案，不应作为新增玩法或场景需求加载；当前界面实现以 [UIImplementation.md](../../Docs/UI/UIImplementation.md) 为准。
 

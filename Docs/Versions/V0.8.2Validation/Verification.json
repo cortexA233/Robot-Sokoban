@@ -1,0 +1,89 @@
+{
+  "version": "v0.8.2",
+  "implementationBaseline": "c5a5e3c2a845d382c8c742f59d1002808affde17",
+  "unityVersion": "2022.3.51f1",
+  "editor": {
+    "product": "Robot Sokoban",
+    "mainMenuTitle": "Robot Sokoban",
+    "titleSize": "(760.00, 100.00)",
+    "titleFontSize": 64,
+    "editorTitle": "Robot Sokoban Level Editor",
+    "campaignMenu": "Robot Sokoban/Campaign Catalog",
+    "themeMenu": "Robot Sokoban/Station Kit Theme",
+    "dataPath": "C:/Users/corte/AppData/LocalLow/DefaultCompany/Robot Sokoban",
+    "sceneDirty": false
+  },
+  "mainMenu": {
+    "title": "Robot Sokoban",
+    "width": 760.0,
+    "preferredWidth": 486.0,
+    "height": 100.0,
+    "preferredHeight": 92.0,
+    "active": true,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "product": "Robot Sokoban",
+    "screenshot": "MainMenu1080.png",
+    "screenshotSize": [
+      1920,
+      1080
+    ]
+  },
+  "player": {
+    "pid": 9912,
+    "hasExited": false,
+    "windowTitles": [
+      "Robot Sokoban",
+      "MSCTFIME UI",
+      "Default IME"
+    ],
+    "companyName": "DefaultCompany",
+    "productName": "Robot Sokoban",
+    "executable": "Builds/V0.8.2/Windows/Robot Sokoban.exe",
+    "titleVerified": true,
+    "startupLog": "Logs/V0.8.2/Player.log",
+    "closedAfterCheck": true,
+    "startupErrorMatches": 0
+  },
+  "build": {
+    "target": "StandaloneWindows64",
+    "scenes": [
+      "Assets/Scenes/Bootstrap.unity"
+    ],
+    "development": false,
+    "result": "succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "output": "Builds/V0.8.2/Windows/Robot Sokoban.exe",
+    "jobId": "build-91a25c8a7f",
+    "startedAtUtc": "2026-09-19T01:28:13.7179731Z",
+    "completedAtUtc": "2026-09-19T01:28:29.8581181Z",
+    "durationSeconds": 16.140145,
+    "sizeMb": 87.7
+  },
+  "consoleErrors": 0,
+  "staticChecks": {
+    "documentsChecked": 13,
+    "linksChecked": 209,
+    "newBrokenLinks": [],
+    "existingBrokenLinks": [
+      {
+        "file": "Docs/README.md",
+        "link": "Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+      }
+    ],
+    "protectedFilesChecked": 35,
+    "protectedFilesChanged": [],
+    "oldNameOnlyInPreservedPromptHistory": [
+      "ArtSource/UIConcepts/prompts.json",
+      "ArtSource/UIConcepts/prompts_v2.json"
+    ],
+    "sourceScriptsChangedOnlyInDisplayStrings": true,
+    "newAutomatedTestsAdded": false
+  },
+  "limitations": [
+    "Historical concept images, prompts, raw validation logs and historical build paths retain their original names.",
+    "Windows progress and PlayerPrefs now use the Robot Sokoban product location; legacy data remains untouched without automatic migration.",
+    "The existing course PPT link in Docs/README.md is missing."
+  ]
+}

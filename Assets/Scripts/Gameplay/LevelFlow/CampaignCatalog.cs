@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sokoban
 {
-    [CreateAssetMenu(fileName = "CampaignCatalog", menuName = "Sokoban/Campaign Catalog")]
+    [CreateAssetMenu(fileName = "CampaignCatalog", menuName = "Robot Sokoban/Campaign Catalog")]
     public sealed class CampaignCatalog : ScriptableObject
     {
         [SerializeField, Tooltip("按游玩顺序引用关卡 JSON；默认不包含开发实验关。")]

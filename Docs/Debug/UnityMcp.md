@@ -15,13 +15,15 @@
 | Codex 服务名 | `coplay_unity` |
 | Unity 实例 | `Sokoban_3D_Test` |
 
+游戏显示名称为 **Robot Sokoban**；MCP 实例名来自现有工程目录，仍按表中技术标识选择连接。
+
 Unity 包由 Package Manager 自动恢复。Python 服务和 CLI 安装在本机 uv 的独立工具环境中，复现安装：
 
 ```powershell
 uv tool install --python 3.13 mcpforunityserver==10.2.0
 ```
 
-打开工程，执行 **Tools > Sokoban > Configure CoplayDev MCP**，再重新打开 Unity。包会在编辑器载入后自动启动后台 HTTP 服务并连接；也可在 **Window > MCP for Unity** 中管理启动、停止和连接。
+打开工程，执行 **Robot Sokoban > Configure CoplayDev MCP**，再重新打开 Unity。包会在编辑器载入后自动启动后台 HTTP 服务并连接；也可在 **Window > MCP for Unity** 中管理启动、停止和连接。
 
 该配置菜单使用上游的 Unity `EditorPrefs` 保存本机传输方式、地址和自动启动选项，这些偏好由同一 Windows 用户下的 Unity 项目共享。切换到使用其他 MCP 地址的工程时，可在 MCP 窗口调整，返回本工程时重新执行上述菜单。
 

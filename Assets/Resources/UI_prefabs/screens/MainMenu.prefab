@@ -978,7 +978,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7A7A\u95F4\u7AD9\u91CD\u542F"
+  m_Text: Robot Sokoban
 --- !u!1 &3438570639043265980
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@
 
 更新：2026-09-18（v0.8.0 收尾）。设计依据：`ArtSource/UIConcepts/minimal_ui_v2.png`，采用浅色底、深灰文字、细线、橙色主操作。所有页面由真实 UGUI 控件组成，没有使用概念图充当游戏背景。
 
+游戏正式名称为 **Robot Sokoban**（v0.8.2），主菜单标题与 Unity Product Name 一致；历史概念图和验收截图保留生成当时的文案。
+
 ## 玩家流程
 
 - Bootstrap → 主菜单 → 开始 / 继续 / 选关 → 关卡 → 成绩结算 → 下一关 / 重开 / 选关 / 主菜单。主菜单显示完成数量，“继续游戏”从最近关卡的起点进入；v0.7.1 移除“从第一关开始”快捷入口，重玩首关通过选关进入，已有成绩保留。
@@ -55,7 +57,9 @@ v0.6.0 的实机采样和回归发现，次要按钮从 `Color.clear`（透明�
 
 `PlayerProgress` 将最近关卡、完成记录及同一次通关的最佳步数/推动数保存到 `Application.persistentDataPath/player-progress.json`。先比较步数，同步数再比较推动数。稳定 ID 对应关卡身份，规范内容哈希区分版本；目录重排不影响记录，内容改变后旧成绩不用于新版，目录中已移除的关卡不作为继续入口。所有关卡仍可选择。
 
-写入使用原子替换及上一份有效 `.bak`；不可读文件在覆盖前保留为 `.unreadable-*`。损坏时回退备份或空记录，写入失败保留内存进度，主菜单显示“重试保存进度”；导航、退出和应用暂停时也尝试保存。主音量、灵敏度和镜头反转继续沿用 `Sokoban.Settings.*` PlayerPrefs，不迁移或清空旧设置。
+写入使用原子替换及上一份有效 `.bak`；不可读文件在覆盖前保留为 `.unreadable-*`。损坏时回退备份或空记录，写入失败保留内存进度，主菜单显示“重试保存进度”；导航、退出和应用暂停时也尝试保存。主音量、灵敏度和镜头反转的 PlayerPrefs 键名继续沿用 `Sokoban.Settings.*`。
+
+v0.8.2 更改 Product Name 后，Windows 进度目录为 `%USERPROFILE%/AppData/LocalLow/DefaultCompany/Robot Sokoban/`，PlayerPrefs 也使用新产品名称对应的存储位置。旧 `Sokoban_3D_Test` 目录和设置仍保留，不会自动迁移；需要继续旧进度时，可在游戏关闭且新目录尚无进度文件时，将原目录的 `player-progress.json` 及已有 `.bak` 复制到新目录。设置可在新版本的设置页重新调整。
 
 ## 字体
 

@@ -11,7 +11,7 @@ namespace Sokoban.Editor
     {
         public const string ServerUrl = "http://127.0.0.1:8087";
 
-        [MenuItem("Sokoban_Tools/Configure CoplayDev MCP")]
+        [MenuItem("Robot Sokoban/Configure CoplayDev MCP")]
         public static void Configure()
         {
             // MCP for Unity stores transport preferences in Unity's user-level EditorPrefs.
@@ -23,7 +23,7 @@ namespace Sokoban.Editor
             EditorConfigurationCache.Instance.Refresh();
             SetupWindowService.MarkSetupCompleted();
 
-            Debug.Log("Sokoban MCP configured at " + ServerUrl + "/mcp. " +
+            Debug.Log("Robot Sokoban MCP configured at " + ServerUrl + "/mcp. " +
                       "Open Window > MCP for Unity to manage the connection.");
         }
     }

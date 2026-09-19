@@ -3,7 +3,7 @@ name: sokoban-robot-asset
 description: Modify this project's Blender robot source, mechanical animation, FBX export or asset validation.
 ---
 
-# Sokoban robot asset
+# Robot Sokoban robot asset
 
 Use this workflow for robot art maintenance. Gameplay movement, camera behavior and animation playback code use [GameDesign.md](../../../Docs/Gameplay/GameDesign.md) section 9 instead.
 
