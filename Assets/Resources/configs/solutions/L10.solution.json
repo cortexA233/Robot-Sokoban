@@ -1,10 +1,10 @@
 {
     "schemaVersion": 1,
     "levelId": "L10",
-    "contentHash": "40de2e3b3a5cea9807d01bb5b6608a57410b6bd3735e8ad4d4fc5e6633fd0276",
-    "commands": "NNNNEENNESSSSSWESEENNNNNSSWWSWWWSEESENSEENNNN",
-    "expectedMoves": 45,
-    "expectedPushes": 11,
+    "contentHash": "a85025adecda77546b0fe65d493e2a187fafd3812f7ee8020d05b067566aa018",
+    "commands": "NNNNEENNEWSSSSESSEENNNWWNWNNESSWSSESWESEENNNSSSWWWWNNNWNESENESEENNSSWWNNNWSESSWWNENESSSSSEENNNN",
+    "expectedMoves": 95,
+    "expectedPushes": 19,
     "expectedPlayer": {
         "x": 6,
         "z": 5

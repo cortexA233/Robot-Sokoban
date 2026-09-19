@@ -812,7 +812,7 @@ Push接触帧=113，移动结束/开始收回帧=125；交付清单与当前导�
 | 材质 | `Assets/Art/Robot/Materials/`，Body、Dark、Accent、Emission四种URP材质 |
 | 动画控制器 | `Assets/Art/Robot/Animations/Robot.controller`，Idle为默认状态；三状态，无参数、无状态间Transitions |
 | 视觉预制体 | `Assets/Resources/prefabs/gameplay/player/Robot.prefab`，已有Animator、Root Motion关闭，没有游戏控制脚本 |
-| 导入/验收工具 | `Assets/Scripts/Editor/Robot/RobotAssetTools.cs`，菜单 `Tools > Robot > Import and Validate` |
+| 导入/验收 | v0.8.0 已删除一次性工具；直接维护现有导入设置与 Prefab，按 [机器人维护说明](../../ArtSource/Robot/README.md) 验证 |
 | 源文件/流水线 | `ArtSource/Robot/Robot.blend`、`ArtSource/Robot/scripts/` |
 | 交付清单 | [robot_asset_manifest.json](../../ArtSource/Robot/robot_asset_manifest.json) |
 | 资产验证记录 | [Blender 63项](../../ArtSource/Robot/blender_validation.json)、[FBX回读64项](../../ArtSource/Robot/fbx_validation.json)、[Unity 28项](../../ArtSource/Robot/unity_validation.json)，交付报告均通过 |

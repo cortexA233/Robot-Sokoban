@@ -15,7 +15,7 @@ namespace Sokoban.Editor
         public static void RequireValid(CampaignCatalog catalog)
         {
             var result = Inspect(catalog);
-            if (!result.IsValid) throw new BuildFailedException("正式目录不能构建。请打开 Sokoban_Tools > Campaign Catalog 修复：\n" + result.Summary);
+            if (!result.IsValid) throw new BuildFailedException("正式目录不能构建。请检查 configs/CampaignCatalog 资产及关卡参考解法：\n" + result.Summary);
             Debug.Log(result.Summary);
         }
 

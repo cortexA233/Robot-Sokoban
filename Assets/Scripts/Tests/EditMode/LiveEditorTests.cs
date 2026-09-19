@@ -183,6 +183,14 @@ namespace Sokoban.Tests
                 window.RefreshLive(); var original = runner.Session.State;
                 yield return Submit(window, "capture-live"); workspaces.Add(window.LiveWorkspace);
                 Assert.That(window.Document.isLiveDraft, Is.True); Assert.That(runner.LiveEditing, Is.True);
+                Assert.That(window.rootVisualElement.Q<Foldout>("live-tools").value, Is.True);
+                window.rootVisualElement.Q<Foldout>("live-tools").value = false;
+                Assert.That(window.CaptureLive(runner), Is.True); workspaces.Add(window.LiveWorkspace);
+                Assert.That(window.rootVisualElement.Q<Foldout>("live-tools").value, Is.True);
+                window.CreateGUI(); yield return null;
+                Assert.That(window.rootVisualElement.Q<Foldout>("live-tools").value, Is.True);
+                var current = window.Document;
+                Assert.That(window.CaptureLive(null), Is.False); Assert.That(window.Document, Is.SameAs(current));
                 var floor = FreeCell(window.Document.level);
                 yield return Submit(window, "brush-LowFriction"); Paint(window, floor); yield return null;
                 Assert.That(window.Document.level.TerrainAt(floor), Is.EqualTo(Terrain.LowFriction));

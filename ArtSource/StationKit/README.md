@@ -50,7 +50,7 @@ Cinemachine **2.10.7**、CoplayDev MCP **10.2.0**。不依赖外部图片、模�
 
 Blender 对象使用完整层级前缀避免全局名称冲突；自定义属性 `nodeName` 保存导出节点名。
 正常编辑 Mesh 后保存，再执行导出脚本。不要重跑生成器代替保存手工修改。
-手工改动基础材质颜色/粗糙度后，同时维护 `StationKitAssetTools` 中的 Unity 映射；验证报告会分别记录源材质与实际 URP 参数，不假定 FBX 材质自动迁移正确。
+手工改动基础材质颜色/粗糙度后，同时直接维护已有 Unity URP 材质参数与 Prefab/主题引用；验证报告会分别记录源材质与实际 URP 参数，不假定 FBX 材质自动迁移正确。
 `build_station_kit.py` 对已有源文件默认拒绝重建；明确传入 `--rebuild` 才会重建，并先备份整个源文件到 `Logs/StationKitBackups/`。
 导出只处理临时副本，不应用修改器或坐标变换到原模型；与上次导出收据不一致的现有 FBX 会先备份。
 Unity 工具覆盖已有材质、Prefab、展示场景前也保留备份，始终保留 `.meta` 和 GUID。
@@ -120,14 +120,10 @@ pipeline = runpy.run_path('ArtSource/StationKit/scripts/preview_station_kit.py')
 pipeline['gallery_layout']()
 ```
 
-通过项目 Unity MCP 核对工程路径/就绪状态，刷新并等待编译，然后执行菜单：
+通过项目 Unity MCP 核对工程路径/就绪状态，刷新并等待编译。v0.8.0 删除一次性导入、图集生成及游戏接入工具；直接维护已有导入设置、材质、Prefab 和 StationKitTheme，并检查受影响的游戏表现。
 
-1. `Tools > Station Kit > Import and Validate Assets`
-2. `Tools > Station Kit > Build and Capture Gallery`
-3. `Tools > Station Kit > Capture Occupancy Sequence`
+保留 `Tools > Station Kit > Capture Occupancy Sequence`，现由独立 `StationKitOccupancyEvidence` 使用已有资产建立临时隔离场景，捕获 72 帧后恢复原场景。输出位于 `Logs/StationKitFrames/`（含 `unity_occupancy.json`），不重建模型、材质或图集，也不覆盖历史证据。原 [StationKitPreview.unity](../../Assets/Scenes/StationKitPreview.unity) 保留供观察，不在正式构建列表。
 
-工具建立隔离场景，保存 [StationKitPreview.unity](../../Assets/Scenes/StationKitPreview.unity)，随后恢复原场景。
-展示场景不在正式构建列表，八个命名区域可分别观察。相机隔离在 layer 31，不修改项目层名称。
 三种地板按 1 m 拼接；墙按相邻关系选直段/转角/端头并旋转 90°，T/十字邻接用完整实心格体组合，禁止使用 L 形空壳替代墙格。
 
 安装了 Pillow、ffmpeg 后，`python ArtSource/StationKit/scripts/package_evidence.py` 将本地帧编码为三段视频并生成 QA 图板。

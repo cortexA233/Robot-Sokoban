@@ -1,0 +1,112 @@
+{
+  "markdownFiles": 16,
+  "localLinks": 355,
+  "knownMissing": [
+    [
+      "Docs/README.md",
+      "Art/GSND6000/GSND6000_Rigging_Weekly.pptx"
+    ]
+  ],
+  "consoleErrors": 0,
+  "editorScene": "Assets/Scenes/Bootstrap.unity",
+  "sceneDirty": false,
+  "gameViewOriginalIndexRestored": 3,
+  "enterPlayModeOptionsRestored": "None",
+  "temporaryRuntimeHarnessRemoved": true,
+  "nativeDraftDialogPending": false,
+  "buildAssemblies": {
+    "Development": {
+      "sha256": "418f9665ba72b6eae4d161cab55dbcaaca92fac7db836e852a8f572cb38407aa",
+      "containsGmPage": true,
+      "containsTemporaryHarness": false
+    },
+    "Windows": {
+      "sha256": "e354a2874a616e945361ba0c1f5738a2c72e5c88d6070ff82165d30dfe604ce9",
+      "containsGmPage": false,
+      "containsTemporaryHarness": false
+    }
+  },
+  "images": {
+    "EditorGmBoard720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 142439
+    },
+    "EditorGmLargeFont1080.png": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 330946
+    },
+    "EditorGmLargeFont720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 174670
+    },
+    "EditorGmLevel720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 151925
+    },
+    "PlayerGmBoard1080.png": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 269423
+    },
+    "PlayerGmBoard720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 138564
+    },
+    "PlayerGmLevel1080.png": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 274145
+    },
+    "PlayerGmLevel720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 144332
+    },
+    "PlayerSelect720.png": {
+      "width": 12582912,
+      "height": 4292542531,
+      "bytes": 16742
+    },
+    "PlayerSelection1080.png": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 65057
+    },
+    "PlayerSelection720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 40965
+    },
+    "ReleaseSelection1080.png": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 63132
+    },
+    "ReleaseSelection720.png": {
+      "width": 1280,
+      "height": 720,
+      "bytes": 39079
+    },
+    "NativeDraftDialog.png": {
+      "width": 6291456,
+      "height": 4292542531,
+      "bytes": 13208
+    },
+    "NativeLiveWindow.png": {
+      "width": 12582912,
+      "height": 4292542531,
+      "bytes": 58663
+    }
+  },
+  "restoredPlayerFiles": {
+    "player-progress.json": "efd3227e6cd9de8b8135c80cfde8dea0d156e56eb56f102273c731575afe1c0d",
+    "player-progress.json.bak": "45eda653e51c7d1003190fb00f330ab35b8ddbe29ff88d358c8b67b1bc478dab"
+  },
+  "restoredDraftFiles": 25,
+  "nativeDraftDialogAllChoicesPassed": true
+}

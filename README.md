@@ -2,7 +2,7 @@
 
 使用 **Unity 2022.3.51f1** 打开仓库根目录。
 
-当前已具备作者工具基础、九关连续游玩、KToolkit 简约 UGUI、可撤销 GM 和 Play Mode 现场关卡编辑，空间站首批美术套件已接入游戏；尚未达到 GDD 的完整 Take-home 交付标准。
+当前已具备作者工具基础、当前七关连续游玩、KToolkit 简约 UGUI、可撤销 GM 和 Play Mode 现场关卡编辑，空间站首批美术套件已接入游戏；尚未达到 GDD 的完整 Take-home 交付标准。
 
 **v0.3.0 已封版**：固定转向板与六张新关卡已接入，正式目录 L04–L12，共九关。[封版记录与验证](Docs/Versions/V0.3.0.md)。最新 Windows 验收包为 `Builds/V0.5.1/Windows/Sokoban.exe`；默认俯视与 V 切换保留，第三人称局部剔除已按反馈移除，见 [v0.5.1 验收](Docs/Versions/V0.5.1Validation/README.md)。本包显式使用 Bootstrap；默认 Build Settings 仍为原有 SampleScene，重新构建时需指定 `Assets/Scenes/Bootstrap.unity`。
 
@@ -17,7 +17,7 @@
 - 通关后点击“下一关”按目录继续；Esc 暂停页可选关、设置或返回主菜单。L12 通关显示“空间站已重启”，可返回选关或重玩。切关会重置本关计数与撤销记录。
 - 主菜单与关卡使用水平幕布，关卡之间使用垂直幕布，每段约 0.6 秒。设置支持主音量、鼠标灵敏度和反转垂直镜头并保存；关卡进度与最佳成绩持久化仍待实现。
 - [UGUI 页面、过渡实现与验证说明](Docs/UI/UIImplementation.md)
-- Editor 或开发版按 **F1** 打开 GM，移动玩家/箱子可撤销；普通箱与能源箱的占据、供电和门状态分别显示。
+- Editor 或开发版按 **F1** 打开 GM，移动玩家/箱子可撤销；局面页点源格选择玩家/箱子，输入目标 X/Z 移动；保留网格、ID/箱型与连接线。
 - 在 GM 关卡页或 Level Editor 点击“捕获当前游戏局面”，编辑独立现场草稿后“应用并继续试玩”。箱型、数量、地形变更建立新的试玩起点；“结束现场试玩”返回原局面。
 - 已有构建记录：第五轮开发版 `Builds/GMIterationDevelopment/StationRestart.exe`，空间站接入后的非开发版 `Builds/StationKitIntegration/StationRestart.exe`。构建产物仅保存在本机，具体覆盖见 [实现状态](Docs/ImplementationProgress.md)；完整关卡编辑器在 Unity Editor 内使用。
 - [关卡编辑器与 GM 使用说明](Docs/Editor/LevelEditorGuide.md)

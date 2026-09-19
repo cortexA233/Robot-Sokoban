@@ -26,6 +26,8 @@ namespace Sokoban.Editor
         private IVisualElementScheduledItem noticeTimer;
         private string validatedHash;
         private bool levelPropertiesExpanded;
+        [SerializeField] private bool liveToolsExpanded;
+        private Foldout liveFoldout;
         private bool brushing;
         private int undoGroup;
         private readonly HashSet<Cell> stroke = new HashSet<Cell>();
@@ -107,10 +109,11 @@ namespace Sokoban.Editor
             Button(editing, "撤销", Undo.PerformUndo, "undo"); Button(editing, "重做", Undo.PerformRedo, "redo");
             var testing = ToolbarGroup(toolbar, "校验与试玩");
             Button(testing, "校验", Validate, "validate-level"); Button(testing, "试玩并录制", Play, "playtest");
-            var publishing = ToolbarGroup(toolbar, "目录与帮助");
-            Button(publishing, "关卡目录", () => CampaignCatalogWindow.OpenWindow(), "campaign-catalog");
+            var publishing = ToolbarGroup(toolbar, "帮助");
             Button(publishing, "帮助", () => HelpWindow.OpenHelp(), "help");
-            var liveFoldout = new Foldout { text = "现场编辑", value = false, viewDataKey = "live-tools" }; rootVisualElement.Add(liveFoldout);
+            liveFoldout = new Foldout { name = "live-tools", text = "现场编辑", value = liveToolsExpanded };
+            liveFoldout.RegisterValueChangedCallback(e => liveToolsExpanded = e.newValue);
+            rootVisualElement.Add(liveFoldout);
             var liveBar = new VisualElement { style = { flexDirection = FlexDirection.Row, flexWrap = Wrap.Wrap } }; liveFoldout.Add(liveBar);
             Button(liveBar, "捕获当前游戏局面", () => CaptureLive(UnityEngine.Object.FindObjectOfType<LevelRunner>()), "capture-live");
             Button(liveBar, "编辑已有现场草稿", () => Run(() => { ShowLiveDraft(); liveWorkspace.Resume(); RefreshMode(); }), "resume-live");
@@ -261,18 +264,25 @@ namespace Sokoban.Editor
                 {
                     int choice = EditorUtility.DisplayDialogComplex("现场草稿尚未应用", "可以继续编辑已有草稿，或重新捕获当前局面。旧草稿备份保留。", "继续已有草稿", "取消", "重新捕获并替换");
                     if (choice == 1) return false;
-                    if (choice == 0) { ShowLiveDraft(); liveWorkspace.Resume(); Refresh(); return true; }
+                    if (choice == 0) { liveWorkspace.Resume(); ShowLiveDraft(); ExpandLiveTools(); return true; }
                 }
                 var sourceAuthor = AuthorDocument;
                 var old = liveWorkspace;
-                if (old) { old.Backup(); old.ReleaseInput(); }
+                if (old) old.Backup();
                 var next = LiveEditWorkspace.Capture(runner, sourceAuthor);
+                if (old && old.Runner != runner) old.ReleaseInput();
                 if (!authorDocument) authorDocument = sourceAuthor;
                 liveWorkspace = next; document = next.Draft; selectedId = null; selectedCell = null;
                 if (old) { Undo.ClearUndo(old.Draft); DestroyImmediate(old.Draft); DestroyImmediate(old); }
-                RefreshLive(); Focus(); return true;
+                RefreshLive(); ExpandLiveTools(); return true;
             }
             catch (Exception exception) { if (hint != null) hint.text = exception.Message; else Debug.LogWarning(exception.Message); return false; }
+        }
+        private void ExpandLiveTools()
+        {
+            liveToolsExpanded = true;
+            if (liveFoldout != null) liveFoldout.value = true;
+            Focus();
         }
         private void ShowLiveDraft()
         {
@@ -720,7 +730,7 @@ namespace Sokoban.Editor
         {
             rootVisualElement.Clear(); minSize = new Vector2(430, 430);
             var scroll = new ScrollView(); rootVisualElement.Add(scroll);
-            scroll.Add(new Label("制作与试玩\n1. 新建 → 展开右侧关卡属性与尺寸 → 一键生成边界墙。\n2. 按地形、角色与箱子、机关分类选择画笔。P 玩家 / C 能源箱 / X 普通箱 / ◎ 目标插槽 / s 辅助插槽 / D 门。\n3. 门在右侧选择供电来源；转向板用朝向或 Q/E 旋转。\n4. 点击试玩会自动校验；有错误时侧边提示，完整列表保留在底部，带坐标的问题可以点击定位。\n5. 通关后保存参考解法，退出 Play Mode，保存关卡；修改后需重新试玩通关、录制并保存。\n\n选择与放置\n选择模式下点击其他格，会同步切换格子和对象；空格会清空旧对象。箱子和插槽同格时，右侧可切换正在编辑的对象。再次点击同格保留当前对象。\n点右侧对象按钮或按 Esc 回到选择；画笔模式可以连续放置。放置会替换同层对象，箱子与机关可合法叠放；删除对象使用右侧“删除选中元素”。Wall/Void 会删除该格所有对象。\n\n正式关卡目录\n打开关卡目录，使用当前已保存作者关卡或拖入 JSON，加入前须通过结构与当前解法校验。上移/下移/移出支持撤销，最后保存目录；移出保留关卡和解法文件。开发测试关须显式加入。构建会重新检查正式目录和参考解法，错误会阻止构建。\n\n快捷键\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Esc 选择，Q/E 旋转。“场景内相机聚焦”会对准整张地图，SceneView Alt/中键保留导航。试玩中方向键为世界方向，V 切视角，Z 撤销，R 重开。\n\n现场编辑\n展开顶栏现场编辑工具。捕获 → 编辑草稿 → 应用并继续 → 结束现场试玩；保存草稿不会覆盖原作者文件。\n\nL04–L12 为九张正式关卡，LAB01 为开发实验关。坐标从左下角 (0,0) 开始，北方在上。")
+            scroll.Add(new Label("制作与试玩\n1. 新建 → 展开右侧关卡属性与尺寸 → 一键生成边界墙。\n2. 按地形、角色与箱子、机关分类选择画笔。P 玩家 / C 能源箱 / X 普通箱 / ◎ 目标插槽 / s 辅助插槽 / D 门。\n3. 门在右侧选择供电来源；转向板用朝向或 Q/E 旋转。\n4. 点击试玩会自动校验；有错误时侧边提示，完整列表保留在底部，带坐标的问题可以点击定位。\n5. 通关后保存参考解法，退出 Play Mode，保存关卡；修改后需重新试玩通关、录制并保存。\n\n选择与放置\n选择模式下点击其他格，会同步切换格子和对象；空格会清空旧对象。箱子和插槽同格时，右侧可切换正在编辑的对象。再次点击同格保留当前对象。\n点右侧对象按钮或按 Esc 回到选择；画笔模式可以连续放置。放置会替换同层对象，箱子与机关可合法叠放；删除对象使用右侧“删除选中元素”。Wall/Void 会删除该格所有对象。\n\n正式关卡目录\n在 Project 中选择 configs/CampaignCatalog 资产，通过 Inspector 的 Levels 列表维护已保存的关卡 JSON 引用与顺序，并保存资源。移出仅删除引用；构建会检查目录、资源和参考解法，错误会阻止构建。\n\n快捷键\nCtrl+S 保存，Ctrl+Z / Ctrl+Y 撤销重做，Esc 选择，Q/E 旋转。“场景内相机聚焦”会对准整张地图，SceneView Alt/中键保留导航。试玩中方向键为世界方向，V 切视角，Z 撤销，R 重开。\n\n现场编辑\nGM 关卡页“现场编辑（打开关卡编辑器）”自动打开草稿并展开操作组。捕获 → 编辑草稿 → 应用并继续 → 结束现场试玩；保存草稿不会覆盖原作者文件，持久化关卡使用另存副本或带回作者文档后保存。\n\nL04–L12 为示例关卡；正式七关以 CampaignCatalog 为准，LAB01 为开发实验关。坐标从左下角 (0,0) 开始，北方在上。")
             { style = { whiteSpace = WhiteSpace.Normal, paddingLeft = 16, paddingRight = 16, paddingTop = 16, paddingBottom = 16 } });
         }
     }

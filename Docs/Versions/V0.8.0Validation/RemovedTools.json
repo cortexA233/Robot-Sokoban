@@ -1,0 +1,25 @@
+{
+  "deleted": [
+    "Assets/Scripts/Editor/LevelEditor/CampaignCatalogWindow.cs",
+    "Assets/Scripts/Editor/LevelEditor/CampaignCatalogWindow.cs.meta",
+    "Assets/Scripts/Editor/LevelEditor/GameplayAssetSetup.cs",
+    "Assets/Scripts/Editor/LevelEditor/GameplayAssetSetup.cs.meta",
+    "Assets/Scripts/Editor/Robot.meta",
+    "Assets/Scripts/Editor/Robot/RobotAssetTools.cs",
+    "Assets/Scripts/Editor/Robot/RobotAssetTools.cs.meta",
+    "Assets/Scripts/Editor/StationKit/StationKitAssetTools.cs",
+    "Assets/Scripts/Editor/StationKit/StationKitAssetTools.cs.meta",
+    "Assets/Scripts/Editor/StationKit/StationKitGallery.cs",
+    "Assets/Scripts/Editor/StationKit/StationKitGallery.cs.meta",
+    "Assets/Scripts/Editor/StationKit/StationKitGameplayAssets.cs",
+    "Assets/Scripts/Editor/StationKit/StationKitGameplayAssets.cs.meta",
+    "Assets/Scripts/Editor/UI.meta",
+    "Assets/Scripts/Editor/UI/GmUIAssetBuilder.cs",
+    "Assets/Scripts/Editor/UI/GmUIAssetBuilder.cs.meta",
+    "Assets/Scripts/Editor/UI/Sokoban.UI.Editor.asmdef",
+    "Assets/Scripts/Editor/UI/Sokoban.UI.Editor.asmdef.meta",
+    "Assets/Scripts/Editor/UI/StationUIAssetBuilder.cs",
+    "Assets/Scripts/Editor/UI/StationUIAssetBuilder.cs.meta"
+  ],
+  "danglingRemovedGuids": []
+}

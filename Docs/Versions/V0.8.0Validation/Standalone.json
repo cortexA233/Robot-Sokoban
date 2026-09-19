@@ -1,0 +1,9 @@
+{
+    "passed": true,
+    "error": "",
+    "input": "InputSystem queued keyboard/mouse and raycast-checked UGUI pointer events",
+    "widths": [
+        1280,
+        1920
+    ]
+}

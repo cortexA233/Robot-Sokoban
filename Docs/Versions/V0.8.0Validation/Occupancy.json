@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "frames": 72,
+  "checks": 133,
+  "report": "Logs/StationKitFrames/unity_occupancy.json",
+  "failed": []
+}

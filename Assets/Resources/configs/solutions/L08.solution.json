@@ -1,10 +1,10 @@
 {
     "schemaVersion": 1,
     "levelId": "L08",
-    "contentHash": "a7323d7b965972bcdd5a8343a811c0be72721297e90a11ebc1c5b825dc55e620",
-    "commands": "ENEES",
-    "expectedMoves": 5,
-    "expectedPushes": 3,
+    "contentHash": "363c4eaec6aaf0bd34bff448b6bbc127b50cfbca10d224eb839ce18c0abef730",
+    "commands": "NEEWWSENEES",
+    "expectedMoves": 11,
+    "expectedPushes": 5,
     "expectedPlayer": {
         "x": 4,
         "z": 3

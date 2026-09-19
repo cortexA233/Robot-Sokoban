@@ -1,0 +1,50 @@
+{
+  "development": {
+    "job_id": "build-6072df7d40",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "Builds/V0.8.0/Development/Sokoban.exe",
+    "started_at": "2026-09-19T00:10:38.0572055Z",
+    "duration_seconds": 21.193983799999998,
+    "completed_at": "2026-09-19T00:10:59.2511893Z",
+    "total_size_mb": 114.27,
+    "errors": 0,
+    "warnings": 0
+  },
+  "release": {
+    "job_id": "build-a0923e501b",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "Builds/V0.8.0/Windows/Sokoban.exe",
+    "started_at": "2026-09-19T00:11:36.7067915Z",
+    "duration_seconds": 14.231404,
+    "completed_at": "2026-09-19T00:11:50.9381955Z",
+    "total_size_mb": 87.7,
+    "errors": 0,
+    "warnings": 0
+  },
+  "developmentValidation": {
+    "job_id": "build-f06c3330de",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "Builds/V0.8.0/Validation/Sokoban.exe",
+    "started_at": "2026-09-19T00:06:22.3208017Z",
+    "duration_seconds": 13.967562599999999,
+    "completed_at": "2026-09-19T00:06:36.2883643Z",
+    "total_size_mb": 114.29,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseValidation": {
+    "job_id": "build-8eb1a75fb0",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "Builds/V0.8.0/ValidationRelease/Sokoban.exe",
+    "started_at": "2026-09-19T00:07:08.2803559Z",
+    "duration_seconds": 18.298896,
+    "completed_at": "2026-09-19T00:07:26.5792519Z",
+    "total_size_mb": 87.71,
+    "errors": 0,
+    "warnings": 0
+  }
+}

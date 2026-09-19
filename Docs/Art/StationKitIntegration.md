@@ -38,7 +38,7 @@ Any/All 继续来自现有 `GateDefinition.powerMode`；v0.7.1 移除门旁“�
 ## 动画、相机与恢复
 
 - 门采用已交付的双段上收姿态，默认 0.18 秒，可通过主题调整；不缩小门板或移动资产根。
-- 暂停、导航遮盖、GM 动画暂停统一冻结门动画。撤销、重开、重建、卸载取消旧 Tween，并直接恢复目标姿态与全部状态灯。
+- 正式暂停、导航遮盖、现场编辑统一冻结门动画。撤销、重开、重建、卸载取消旧 Tween，并直接恢复目标姿态与全部状态灯。
 - 普通动作结束后允许门的短动画完成；新指令开始时使上一过渡收敛到已确认状态，避免下一次通行穿过尚未收起的门板。
 - 俯视隐藏墙上部、门柱上部、收纳区和门板；保留基座，显示新的两侧端点与开/关地标。
 - 进入关卡默认俯视，V 切换第三人称并可返回；完整参数和输入契约见 [GDD 第 3 节](../Gameplay/GameDesign.md#3-操作与双视角)。
@@ -48,8 +48,7 @@ Any/All 继续来自现有 `GateDefinition.powerMode`；v0.7.1 移除门旁“�
 
 v0.7.1 的单色边框、去门标牌和本体连线交互见 [本轮验收](../Versions/V0.7.1Validation/README.md)。原简约图形、布线和标牌的验收见 [v0.2.0 实现报告](../History/08-CircuitReadability/ImplementationReport.md)：EditMode 3/3、PlayMode 41/41，包含当前三关完整参考解法与九张实机画面。下面的表格和截图保留首次套件接入时的历史结果。
 
-首次接入的生成入口为 `Tools > Station Kit > Prepare Gameplay Integration`。
-已有主题的 Prefab、调色板和来源绑定不会被重建覆盖；该入口会补缺失的文字材质引用并校正主题发光标志。
+首次接入的一次性生成工具在 v0.8.0 删除。后续直接维护已有 StationKitTheme、Prefab、调色板、材质与网格引用，保留资源键及 GUID；通过表现测试和实机检查验证变更。
 Blender/FBX 的重新制作与资产验收仍沿用 [原生产说明](../../ArtSource/StationKit/README.md)。
 
 | 验证 | 结果 |

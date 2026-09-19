@@ -50,7 +50,7 @@ namespace Sokoban.UI
             }
             Get<Button>("Content/Enter").interactable = rows.Count > 0;
             Get<Text>("Content/Back/Label").text = Runner.Session == null ? "返回主菜单" : Runner.Completed ? "返回结算" : "返回游戏";
-            Get<Text>("Content/Summary").text = $"{Runner.CompletedLevelCount} / {Runner.CampaignLevelCount} 已完成 · 所有关卡均可选择";
+            Get<Text>("Content/Summary").text = $"{Runner.CompletedLevelCount} / {Runner.CampaignLevelCount} 已完成";
             if (rows.Count > 0)
             {
                 var enter = Get<Button>("Content/Enter"); var back = Get<Button>("Content/Back");

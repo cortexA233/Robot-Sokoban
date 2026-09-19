@@ -27,7 +27,7 @@ namespace Sokoban.Editor
                 return;
             }
             var scene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/Bootstrap.unity");
-            if (!scene) throw new InvalidOperationException("Bootstrap 场景缺失，请运行 Prepare Gameplay Assets。");
+            if (!scene) throw new InvalidOperationException("Bootstrap 场景缺失，请检查 Assets/Scenes/Bootstrap.unity。");
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             document.Backup();
             LevelJson.AtomicWrite(Snapshot, LevelJson.Write(document.level.Copy()));

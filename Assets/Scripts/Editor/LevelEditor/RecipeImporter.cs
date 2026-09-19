@@ -1,21 +1,11 @@
 using System;
-using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Sokoban.Domain;
-using UnityEditor;
 using UnityEngine;
 
 namespace Sokoban.Editor
 {
-    [Serializable]
-    public sealed class LevelRecipe
-    {
-        public LevelDefinition definition;
-        public string commands;
-    }
-
     public static class RecipeImporter
     {
         public static void ImportInto(LevelDocument document, string json)
@@ -61,23 +51,5 @@ namespace Sokoban.Editor
             finally { UnityEngine.Object.DestroyImmediate(temporary); }
         }
 
-        // [MenuItem("Tools/Sokoban/Import Design Recipes")]
-        public static void ImportDesignRecipes()
-        {
-            foreach (string recipePath in Directory.GetFiles("Docs/LevelRecipes", "*.json").OrderBy(p => p))
-            {
-                var document = ScriptableObject.CreateInstance<LevelDocument>();
-                try
-                {
-                    ImportInto(document, File.ReadAllText(recipePath));
-                    string category = document.level.id.StartsWith("LAB", StringComparison.Ordinal) ? "test_levels" : "levels";
-                    string path = $"Assets/Resources/configs/{category}/{document.level.id}.json";
-                    if (File.Exists(path)) throw new IOException("关卡已存在，批量导入不会覆盖：" + path);
-                    document.Save(path, false);
-                    Debug.Log(document.level.id + ": " + document.solution.Verify(document.level, true));
-                }
-                finally { UnityEngine.Object.DestroyImmediate(document); }
-            }
-        }
     }
 }

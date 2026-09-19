@@ -1,17 +1,17 @@
 {
     "schemaVersion": 1,
     "levelId": "L12",
-    "contentHash": "436b2ffb508c0ab920b6288503ad538f2abb8e7952e1b5b30993c085491fbf6e",
-    "commands": "ENNENWNEEWSWWESSSWWNNNNNSSEEESSESENWWNNEE",
-    "expectedMoves": 41,
-    "expectedPushes": 12,
+    "contentHash": "3c8b1c1c2c911e4c1f71f4c393335b2204226f5b462a52a59af9c16b03b83b88",
+    "commands": "NWWSSSEEEWWWNNNEENEEESSNNWWSWWWSSSEEENNSSWNNENWWESSSWWNNNNNSSEEESSSEEWNWNNWNEESWSSESENWWNNEE",
+    "expectedMoves": 92,
+    "expectedPushes": 18,
     "expectedPlayer": {
         "x": 6,
         "z": 4
     },
     "expectedCrateCells": [
         {
-            "x": 4,
+            "x": 7,
             "z": 1
         },
         {

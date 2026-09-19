@@ -70,6 +70,30 @@ namespace Sokoban.Tests
             Assert.That(runner.Completed, Is.False);
             Assert.That(runner.GetCampaignStatus(3), Does.StartWith("已完成"));
         }
+        [UnityTest] public IEnumerator SelectionStatusesAreEmptyOrValidBestMovesAfterDiskReload()
+        {
+            var levels = Resources.Load<CampaignCatalog>("configs/CampaignCatalog").ReadLevels();
+            Assert.That(runner.GetCampaignStatus(0), Is.Empty);
+            runner.SelectLevel(0); Assert.That(runner.GetCampaignStatus(0), Is.Empty, "A visit alone is not completion.");
+            string hash = LevelJson.Hash(levels[0]);
+            LevelJson.AtomicWrite(path, "{\"schemaVersion\":1,\"recentLevelId\":\"" + levels[0].id + "\",\"scores\":[{\"levelId\":\"" + levels[0].id +
+                "\",\"contentHash\":\"" + hash + "\",\"moves\":10,\"pushes\":3},{\"levelId\":\"" + levels[1].id +
+                "\",\"contentHash\":\"" + new string('0', 64) + "\",\"moves\":8,\"pushes\":2}]}");
+            Object.Destroy(runner.gameObject); yield return null; yield return Boot();
+            Assert.That(runner.GetCampaignStatus(0), Is.EqualTo("已完成 · 10 步"));
+            Assert.That(runner.GetCampaignStatus(1), Is.Empty); Assert.That(runner.Progress.HasOlderScore(levels[1]), Is.True);
+            Assert.That(runner.Progress.Best(levels[0]).pushes, Is.EqualTo(3)); Assert.That(runner.CompletedLevelCount, Is.EqualTo(1));
+            runner.OpenLevelSelect(); yield return null;
+            var page = (LevelSelectPage)KUIManager.instance.GetFirstUIWithType<LevelSelectPage>();
+            Assert.That(page.transform.Find("Content/Summary").GetComponent<Text>().text, Is.EqualTo("1 / " + levels.Length + " 已完成"));
+            for (int i = 0; i < levels.Length; i++)
+            {
+                var row = page.transform.Find("Content/List/Viewport/Rows/Level" + (i + 1).ToString("00"));
+                Assert.That(row.GetComponent<Button>().interactable, Is.True);
+                Assert.That(row.Find("Status").GetComponent<Text>().text, Is.EqualTo(i == 0 ? "已完成 · 10 步" : ""));
+            }
+        }
+
         [UnityTest, Timeout(30000)] public IEnumerator DebugEditsAndLiveSandboxCannotPublishScores()
         {
             runner.SelectLevel(3); string error;

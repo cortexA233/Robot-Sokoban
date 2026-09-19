@@ -10,7 +10,7 @@
 - Unity：**2022.3.51f1 / URP 14.0.11**。
 - Prefab：`Assets/Resources/prefabs/gameplay/player/Robot.prefab`。
 - 动画控制器：`Assets/Art/Robot/Animations/Robot.controller`；材质：`Assets/Art/Robot/Materials/`。
-- Unity 导入与验证工具：`Assets/Scripts/Editor/Robot/RobotAssetTools.cs`。
+- Unity 资产直接维护现有导入设置、材质、控制器与 Prefab；v0.8.0 已删除旧导入/验证工具和自动标记触发。
 - 实测静止尺寸（Unity X/Y/Z）：**0.7000 / 0.8000 / 0.6805 m**。接地面 Y=0。
 - **4,996 三角面、15 个 Mesh、25 个导出节点、4 种材质**；无贴图或外部模型依赖。
 
@@ -56,7 +56,7 @@ $robotBlender = 'D:\Steam\steamapps\common\Blender\blender.exe'
 python ArtSource/Robot/scripts/package_previews.py
 ```
 
-Unity 菜单 **Tools → Robot → Import and Validate** 会写入材质、导入设置、控制器、Prefab、预览和验证报告；临时预览场景不代表此命令只读。需要更新导入资产时保护手工修改，再执行并检查结果。只有所需验证确实通过、报告对应本次文件后，才执行 `python ArtSource/Robot/scripts/write_manifest.py` 更新清单。视频打包脚本需要Pillow和ffmpeg，仅更新视频时使用。
+Unity 刷新后直接检查现有 FBX 导入设置、三条剪辑、材质、控制器和 Prefab 引用，保留 `.meta`/GUID。旧导入/验证工具及 `.validate-unity` 自动触发已删除；修改资产后通过受影响的游戏/表现测试和实机检查记录新的证据，旧报告仅作历史参考。所需验证通过后才执行 `python ArtSource/Robot/scripts/write_manifest.py` 更新清单。视频打包需要 Pillow 与 ffmpeg。
 
 `build_robot.py` 是从头生成模型的入口，常规维护不运行。仅在请求包含重建且现有源修改已受到保护时使用；该脚本会重建任务所属内容。导出脚本通过临时副本处理坐标与关键帧，不覆盖源模型。
 

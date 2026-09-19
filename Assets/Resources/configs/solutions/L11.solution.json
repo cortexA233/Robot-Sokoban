@@ -1,10 +1,10 @@
 {
     "schemaVersion": 1,
     "levelId": "L11",
-    "contentHash": "795fc7324690b977e86a2605eafdbcddf56e3ae0a62e843376fcc75a5df81022",
-    "commands": "ENEEEWSSSNNNWNEESEN",
-    "expectedMoves": 19,
-    "expectedPushes": 10,
+    "contentHash": "cb7cc6305aabd42a250f838bcc41ea06265ce52838b7e1c55f381e790781b54b",
+    "commands": "WNWWSEEWWSENEESSSNNNWNESEWNESEN",
+    "expectedMoves": 31,
+    "expectedPushes": 12,
     "expectedPlayer": {
         "x": 6,
         "z": 6

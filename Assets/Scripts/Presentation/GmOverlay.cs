@@ -27,7 +27,7 @@ namespace Sokoban
             root.SetParent(canvas, false); root.SetAsFirstSibling(); root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
             root.offsetMin = root.offsetMax = Vector2.zero;
             font = canvas.GetComponentInChildren<Text>(true).font;
-            if (!style) throw new System.InvalidOperationException("GM 叠加材质缺失，请重建 GM Prefab。");
+            if (!style) throw new System.InvalidOperationException("GM 叠加材质缺失，请检查 GM Prefab 的 OverlayStyle 材质引用。");
             material = new Material(style);
         }
         private void LateUpdate()
@@ -55,8 +55,8 @@ namespace Sokoban
                 {
                     Cell selected;
                     if (SelectedId == DebugBoardEdit.PlayerId) selected = state.Player;
-                    else if (!state.Crates.TryGetValue(SelectedId, out selected)) selected = state.Player;
-                    Label(BoardView.Position(selected) + new Vector3(0, 1.35f, .34f), "▼", 30);
+                    else if (!state.Crates.TryGetValue(SelectedId, out selected)) { SelectedId = null; }
+                    if (SelectedId != null) Label(BoardView.Position(selected) + new Vector3(0, 1.35f, .34f), "▼", 30);
                 }
             }
             for (int i = usedLabels; i < labels.Count; i++) labels[i].gameObject.SetActive(false);

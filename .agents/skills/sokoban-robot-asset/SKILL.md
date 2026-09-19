@@ -7,7 +7,7 @@ description: Modify this project's Blender robot source, mechanical animation, F
 
 Use this workflow for robot art maintenance. Gameplay movement, camera behavior and animation playback code use [GameDesign.md](../../../Docs/Gameplay/GameDesign.md) section 9 instead.
 
-Start from the existing source and protect local edits. `build_robot.py` and Unity's **Import and Validate** rebuild outputs; ordinary inspection does not require them. Keep `robot-asset-v1` dimensions, anchors, three clips and GUIDs unless the requested change includes updating their consumers.
+Start from the existing source and protect local edits. `build_robot.py` rebuilds source outputs; ordinary inspection does not require it. The old Unity import/validation generator and `.validate-unity` trigger were removed in v0.8.0. Maintain existing FBX import settings, materials, controller and prefabs directly, refresh Unity and verify changed contracts and gameplay presentation. Keep `robot-asset-v1` dimensions, anchors, three clips and GUIDs unless the requested change includes updating their consumers.
 
 Load only the needed route:
 

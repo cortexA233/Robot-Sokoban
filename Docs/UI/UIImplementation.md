@@ -1,11 +1,11 @@
 # 简约 UGUI 与页面过渡
 
-更新：2026-09-18（v0.6.0）。设计依据：`ArtSource/UIConcepts/minimal_ui_v2.png`，采用浅色底、深灰文字、细线、橙色主操作。所有页面由真实 UGUI 控件组成，没有使用概念图充当游戏背景。
+更新：2026-09-18（v0.8.0 收尾）。设计依据：`ArtSource/UIConcepts/minimal_ui_v2.png`，采用浅色底、深灰文字、细线、橙色主操作。所有页面由真实 UGUI 控件组成，没有使用概念图充当游戏背景。
 
 ## 玩家流程
 
 - Bootstrap → 主菜单 → 开始 / 继续 / 选关 → 关卡 → 成绩结算 → 下一关 / 重开 / 选关 / 主菜单。主菜单显示完成数量，“继续游戏”从最近关卡的起点进入；v0.7.1 移除“从第一关开始”快捷入口，重玩首关通过选关进入，已有成绩保留。
-- 选关列表由 CampaignCatalog 生成，全部关卡可选，以顺序号显示关卡，附完成标记和最佳成绩。键盘焦点进入屏外条目时自动滚动到可见区域；选中条目后点击“进入关卡”。返回选关前的游戏局面和暂停状态会保留。
+- 选关列表由 CampaignCatalog 生成，全部关卡可选，以顺序号显示关卡，当前有效成绩仅显示“已完成 · N 步”，未完成/无记录/旧版本成绩留空；页头只显示“X / Y 已完成”。推动数仍保存在存档、HUD 与结算中。键盘焦点进入屏外条目时自动滚动到可见区域；选中条目后点击“进入关卡”。返回选关前的游戏局面和暂停状态会保留。
 - 进入关卡默认俯视，按 V 切换第三人称，再按 V 返回俯视；HUD 的 V 按钮显示切换目标。第三人称保持鼠标锁定并支持键盘快捷键；俯视释放鼠标，可直接点击 HUD 的撤销、重开和视角按钮。Esc 打开暂停菜单。
 - 设置可调整主音量、鼠标灵敏度、反转垂直镜头，立即生效；完成设置、导航与退出时保存 PlayerPrefs。基础游戏音效已接入，主音量控制 AudioListener；音效来源与事件约定见 [音效说明](../Audio/Sfx.md)。
 - 编辑器试玩直接进入原测试关，保留“保存参考解法”与撤销，不进入主菜单或正式关卡导航，不打开正式进度文件。非正式 LoadLevel、GM 修改后及现场试玩的完成不会写入正式成绩。
@@ -26,7 +26,7 @@
 | HelpPage | Help.prefab | 按需查看的通用操作与规则说明 |
 | GeneralFadePage | GeneralFade.prefab | 覆盖画面的转场幕布 |
 
-页面布局保存在可编辑的 Prefab 中，运行时只绑定控件与刷新状态。菜单 `Tools > Sokoban > Build Minimal UGUI Prefabs` 可从 `Assets/Scripts/Editor/UI/StationUIAssetBuilder.cs` 重建它们；此操作会覆盖这八个 Prefab 的手工布局修改。
+页面布局直接维护现有 Prefab，运行时只绑定与刷新控件；v0.8.0 删除玩家/GM 生成器。编辑时保留 GUID、资源键与绑定名称，保存后重开并检查运行加载。
 
 运行时 UI 代码在 `Assets/Scripts/UI`，通过 asmref 归入 Sokoban.Runtime。UGUI 使用 1920×1080 参考分辨率，CanvasScaler 同时匹配宽高；界面中没有屏幕截图或运行时生成的装饰贴图。
 
@@ -63,15 +63,17 @@ v0.6.0 的实机采样和回归发现，次要按钮从 `Color.clear`（透明�
 
 ## GM 调试工作台增量
 
-`GmPage` 使用 KToolkit KUIPage 与可编辑的 `screens/GM/Gm.prefab`，按 F1 打开，包含分类搜索、坐标/点选移位、交换、朝向、机关状态和诊断导出。常用撤销、重开、视角按钮固定在滚动内容之外；只读监视条不占用游戏输入。
+`GmPage` 使用 KToolkit KUIPage 与 `screens/GM/Gm.prefab`，F1 打开，仅含关卡/局面两页。点棋盘源格选择玩家/箱子，独立输入目标 X/Z 后移动；空格/静态机关清空选择。保留搜索、字号、宽度、拖动及固定的撤销/重开/视角按钮。已删除监视、诊断、机关状态页、交换/朝向、增删箱和动画调试。
 
-GM 输入占用、现场编辑占用、游戏暂停和动作动画暂停分别管理。StationUIController 在调试工作台占用输入时禁用底层交互；LevelRunner 先消费 F1/Esc 和点选，再处理普通游戏输入。运行时 GM 类型只编译进 Editor/Development Build，Prefab 本身只包含 Unity 内置组件，因此非开发构建不会出现缺失脚本。
+GM 与现场编辑分别占用输入，正式暂停仍独立管理。StationUIController 禁用底层交互；LevelRunner 先消费 F1/Esc 和点选。选择跟随对象，重开/切关/现场应用/结束重置；GM 改动的录制/正式成绩限制保持。GM 类型只编译进 Editor/Development Build，Prefab 仅含内置组件，非开发构建无缺失脚本。
+
+Editor 中“现场编辑（打开关卡编辑器）”捕获现场、打开/聚焦窗口并展开现场操作组；提示为“编辑关卡后请在关卡编辑器内保存变更或保存为新副本”。已有草稿保留保护流程；开发 Player 隐藏该入口。
 
 叠加线使用 `Assets/Art/UI/Materials/GmOverlay.mat`，由 Prefab 内禁用的 OverlayStyle LineRenderer 显式引用，避免仅用 Shader.Find 导致 Player 构建剔除 URP Unlit Shader。运行时克隆材质并随叠加层销毁。
 
 叠加标签在 CinemachineBrain 更新镜头之后投影；网格坐标与实体 ID 使用不同位置，避免切换镜头时错位或同时显示时重叠。
 
-运行时按 F1 显示已有 Prefab，不会重新生成资产。重建方法为 `GmUIAssetBuilder.Build()`，只覆盖 GM Prefab；当前源码已注释 `Sokoban_Tools > Build GM UGUI Prefab` 的菜单注册，不再提供该菜单项。其历史验证记录见 [第五轮 GM/现场编辑报告](../History/05-GmLiveEditing/ImplementationReport.md)；GM 生成器与玩家页面生成器彼此独立；v0.6.0 玩家生成器扩展为八页，未修改 KToolkit 源码。具体用法见 [运行时 GM](../Editor/LevelEditorGuide.md#运行时-gm)。
+运行时按 F1 加载现有 Prefab，不依赖生成器。原生成阶段的验证仍见 [第五轮报告](../History/05-GmLiveEditing/ImplementationReport.md)；当前操作见 [运行时 GM](../Editor/LevelEditorGuide.md#运行时-gm)。
 
 ## 原有页面验证
 

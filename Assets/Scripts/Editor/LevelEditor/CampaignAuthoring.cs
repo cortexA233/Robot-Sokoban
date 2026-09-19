@@ -40,7 +40,7 @@ namespace Sokoban.Editor
             $"目录未通过：{Problems.Count(p => p.IsError)} 个错误。\n" + string.Join("\n", Problems.Where(p => p.IsError));
     }
 
-    // The catalog window and build guard share this validation and authoring path.
+    // Validates the existing catalog and replay proofs for the build guard.
     public static class CampaignAuthoring
     {
         public const string CatalogPath = "Assets/Resources/configs/CampaignCatalog.asset";
@@ -114,48 +114,5 @@ namespace Sokoban.Editor
             result.Problems.Add(new CatalogProblem(-1, CatalogPath, "正式关卡目录资源缺失。")); return result;
         }
 
-        public static void Add(CampaignCatalog catalog, TextAsset asset)
-        {
-            string path = AssetDatabase.GetAssetPath(asset);
-            if (!asset || !path.StartsWith("Assets/", StringComparison.Ordinal) || !path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) || path.Contains("/Editor/"))
-                throw new InvalidOperationException("请选择已保存并导入工程的关卡 JSON（不能位于 Editor 文件夹）。");
-            var entries = ReadEntries(catalog);
-            if (entries.Contains(asset)) throw new InvalidOperationException("该文件已在目录中。");
-            var next = entries.Concat(new[] { asset }).ToArray();
-            var report = ValidateEntries(next);
-            if (!report.IsValid) throw new InvalidOperationException(report.Summary);
-            WriteEntries(catalog, next, "加入正式关卡目录");
-        }
-
-        public static void Remove(CampaignCatalog catalog, int index)
-        {
-            var entries = ReadEntries(catalog).ToList();
-            if (index < 0 || index >= entries.Count) throw new ArgumentOutOfRangeException(nameof(index));
-            entries.RemoveAt(index); WriteEntries(catalog, entries.ToArray(), "移出正式关卡目录");
-        }
-
-        public static void Move(CampaignCatalog catalog, int from, int to)
-        {
-            var entries = ReadEntries(catalog).ToList();
-            if (from < 0 || from >= entries.Count || to < 0 || to >= entries.Count) throw new ArgumentOutOfRangeException(nameof(to));
-            if (from == to) return;
-            var entry = entries[from]; entries.RemoveAt(from); entries.Insert(to, entry);
-            WriteEntries(catalog, entries.ToArray(), "调整正式关卡顺序");
-        }
-
-        private static void WriteEntries(CampaignCatalog catalog, TextAsset[] entries, string undoLabel)
-        {
-            if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("请先退出试玩再编辑正式目录。");
-            Undo.RecordObject(catalog, undoLabel);
-            var serialized = new SerializedObject(catalog); var property = serialized.FindProperty("levels"); property.arraySize = entries.Length;
-            for (int i = 0; i < entries.Length; i++) property.GetArrayElementAtIndex(i).objectReferenceValue = entries[i];
-            serialized.ApplyModifiedPropertiesWithoutUndo(); EditorUtility.SetDirty(catalog);
-        }
-
-        public static void Save(CampaignCatalog catalog)
-        {
-            if (!catalog) throw new InvalidOperationException("正式目录缺失。");
-            AssetDatabase.SaveAssetIfDirty(catalog);
-        }
     }
 }

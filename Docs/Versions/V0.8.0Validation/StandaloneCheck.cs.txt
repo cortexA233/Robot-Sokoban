@@ -1,0 +1,141 @@
+// Temporary standalone acceptance harness; excluded from both delivered builds.
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using KToolkit;
+using Sokoban.Domain;
+using Sokoban.UI;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
+namespace Sokoban
+{
+    public sealed class V080Check : MonoBehaviour
+    {
+        private const string Output = "C:/recent_project/Sokoban_3D_Test/Docs/Versions/V0.8.0Validation/";
+        private LevelRunner runner;
+        private Keyboard keyboard;
+        private Mouse mouse;
+        [Serializable] private sealed class Report { public bool passed; public string error; public string input = "InputSystem queued keyboard/mouse and raycast-checked UGUI pointer events"; public int[] widths = { 1280, 1920 }; }
+        [RuntimeInitializeOnLoadMethod] private static void Boot()
+        { if (!Application.isEditor) DontDestroyOnLoad(new GameObject("Temporary v080 acceptance", typeof(V080Check))); }
+        private IEnumerator Start()
+        {
+            Application.runInBackground = true;
+            InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            keyboard = InputSystem.AddDevice<Keyboard>(); mouse = InputSystem.AddDevice<Mouse>();
+            var stack = new Stack<IEnumerator>(); stack.Push(Exercise());
+            while (stack.Count > 0)
+            {
+                Exception failure = null; bool more = false; object current = null;
+                try { more = stack.Peek().MoveNext(); if (more) current = stack.Peek().Current; }
+                catch (Exception e) { failure = e; }
+                if (failure != null) { Finish(false, failure.ToString()); yield break; }
+                if (!more) stack.Pop(); else if (current is IEnumerator child) stack.Push(child); else yield return current;
+            }
+            Finish(true, null);
+        }
+        private void Finish(bool passed, string error)
+        { File.WriteAllText(Output + (Debug.isDebugBuild ? "Standalone.json" : "StandaloneRelease.json"), JsonUtility.ToJson(new Report { passed = passed, error = error }, true)); Application.Quit(passed ? 0 : 1); }
+        private static void Require(bool condition, string message) { if (!condition) throw new Exception(message); }
+        private T Page<T>() where T : KUIBase => (T)KUIManager.instance.GetFirstUIWithType<T>();
+        private IEnumerator Click(Button button)
+        {
+            yield return null; Canvas.ForceUpdateCanvases(); Require(button.IsInteractable(), "Inactive button " + button.name);
+            var rect = (RectTransform)button.transform;
+            var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left, position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center)) };
+            var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
+            Require(hits.Count > 0 && hits[0].gameObject.GetComponentInParent<Button>() == button, "Obscured " + button.name);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerDownHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerClickHandler);
+            yield return null;
+        }
+        private IEnumerator Key(Key key)
+        {
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null;
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(key)); yield return null;
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null;
+        }
+        private IEnumerator Capture(string name)
+        { yield return new WaitForEndOfFrame(); ScreenCapture.CaptureScreenshot(Output + name + ".png"); yield return null; }
+        private IEnumerator Exercise()
+        {
+            yield return null; yield return null;
+            runner = FindObjectOfType<LevelRunner>(); Require(runner && runner.Error == null, "Runner startup");
+            var levels = Resources.Load<CampaignCatalog>("configs/CampaignCatalog").ReadLevels();
+            string save = "C:/recent_project/Sokoban_3D_Test/Logs/V0.8.0/StandaloneProgress.json";
+            LevelJson.AtomicWrite(save, "{\"schemaVersion\":1,\"recentLevelId\":\"" + levels[0].id + "\",\"scores\":[{\"levelId\":\"" + levels[0].id +
+                "\",\"contentHash\":\"" + LevelJson.Hash(levels[0]) + "\",\"moves\":10,\"pushes\":3},{\"levelId\":\"" + levels[1].id +
+                "\",\"contentHash\":\"" + new string('0', 64) + "\",\"moves\":8,\"pushes\":2}]}");
+            runner.Progress = new PlayerProgress(save); runner.UI.Refresh();
+            foreach (int width in new[] { 1280, 1920 })
+            {
+                Screen.SetResolution(width, width * 9 / 16, false); yield return new WaitForSecondsRealtime(.4f);
+                Require(Screen.width == width && Screen.height == width * 9 / 16, "Exact render size");
+                if (runner.Session != null) { runner.UI.ReturnToMainMenu(); yield return Transition(); }
+                yield return Click(Page<MainMenuPage>().transform.Find("Content/Actions/Levels").GetComponent<Button>());
+                var select = Page<LevelSelectPage>();
+                Require(select.transform.Find("Content/Summary").GetComponent<Text>().text == "1 / " + levels.Length + " 已完成", "Selection summary");
+                for (int i = 0; i < levels.Length; i++)
+                {
+                    var row = select.transform.Find("Content/List/Viewport/Rows/Level" + (i + 1).ToString("00"));
+                    Require(row.GetComponent<Button>().IsInteractable(), "All rows available");
+                    Require(row.Find("Status").GetComponent<Text>().text == (i == 0 ? "已完成 · 10 步" : ""), "Status format");
+                }
+                yield return Capture((Debug.isDebugBuild ? "PlayerSelection" : "ReleaseSelection") + Screen.height);
+                yield return Click(select.transform.Find("Content/List/Viewport/Rows/Level01").GetComponent<Button>());
+                yield return Click(select.transform.Find("Content/Enter").GetComponent<Button>()); yield return Transition();
+#if DEVELOPMENT_BUILD
+                Require(LevelRunner.DebugEnabled && runner.Gm != null, "Development GM");
+                yield return Key(UnityEngine.InputSystem.Key.F1); Require(runner.DebugVisible, "F1 opens GM");
+                Func<string, Button> button = name => runner.Gm.gameObject.GetComponentsInChildren<Button>(true).Single(b => b.name == name);
+                yield return Click(button("TabLevelContent"));
+                Require(!button("Live").gameObject.activeSelf, "Editor entry hidden in Player");
+                yield return Capture("PlayerGmLevel" + Screen.height);
+                yield return Click(button("TabBoardContent"));
+                var panel = runner.Gm.gameObject.GetComponentsInChildren<RectTransform>(true).Single(t => t.name == "Panel");
+                foreach (var pair in runner.Session.State.Crates.Concat(new[] { new KeyValuePair<string, Cell>(DebugBoardEdit.PlayerId, runner.Session.State.Player) }))
+                {
+                    Vector2 screen = runner.Cameras.Output.WorldToScreenPoint(BoardView.Position(pair.Value));
+                    var bounds = ((RectTransform)runner.Gm.transform).rect;
+                    panel.anchoredPosition = new Vector2(screen.x < Screen.width / 2f ? bounds.width - panel.rect.width : 0, 0); yield return null;
+                    var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = screen }, hits);
+                    Require(hits.Count == 0, "Visible source cell");
+                    InputSystem.QueueStateEvent(mouse, new MouseState { position = screen }); yield return null;
+                    InputSystem.QueueStateEvent(mouse, new MouseState { position = screen }.WithButton(MouseButton.Left)); yield return null;
+                    InputSystem.QueueStateEvent(mouse, new MouseState { position = screen }); yield return null;
+                    Require(runner.Gm.SelectedId == pair.Key, "Pointer selected " + pair.Key);
+                }
+                var before = runner.Session.State;
+                Cell target = Enumerable.Range(0, runner.Definition.height).SelectMany(z => Enumerable.Range(0, runner.Definition.width).Select(x => new Cell(x, z)))
+                    .First(c => runner.Definition.TerrainAt(c) == Sokoban.Domain.Terrain.Floor && c != before.Player && !before.Crates.Values.Contains(c));
+                var fields = runner.Gm.gameObject.GetComponentsInChildren<InputField>(true);
+                fields.Single(f => f.name == "X").text = target.x.ToString(); fields.Single(f => f.name == "Z").text = target.z.ToString();
+                yield return Click(button("Place")); Require(runner.Session.State.Player == target, "Selected player moved");
+                Require(runner.Session.State.Moves == before.Moves && runner.Session.State.Pushes == before.Pushes, "Counters retained");
+                yield return Click(button("Undo")); Require(runner.Session.State == before, "Undo restores snapshot");
+                yield return Capture("PlayerGmBoard" + Screen.height);
+                yield return Key(UnityEngine.InputSystem.Key.Escape); Require(!runner.DebugVisible && !runner.Paused, "Escape consumes GM close");
+#else
+                Require(!LevelRunner.DebugEnabled, "Release debug disabled");
+                Require(typeof(LevelRunner).Assembly.GetType("Sokoban.UI.GmPage") == null, "GM type excluded from release assembly");
+                yield return Key(UnityEngine.InputSystem.Key.F1); Require(!runner.DebugVisible, "F1 does not open GM in release");
+                Require(Resources.Load<GameObject>("UI_prefabs/screens/GM/Gm").GetComponentsInChildren<MonoBehaviour>(true).All(c => c != null), "GM prefab has no missing scripts");
+#endif
+            }
+            Require(new PlayerProgress(save).Best(levels[0]).pushes == 3, "Disk score preserves pushes");
+        }
+        private IEnumerator Transition()
+        {
+            float end = Time.realtimeSinceStartup + 8;
+            while (runner.UI.IsTransitioning && Time.realtimeSinceStartup < end) yield return null;
+            Require(!runner.UI.IsTransitioning, "Transition finished");
+        }
+    }
+}

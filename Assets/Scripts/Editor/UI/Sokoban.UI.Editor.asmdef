@@ -1,6 +1,0 @@
-{
-  "name": "Sokoban.UI.Editor",
-  "rootNamespace": "Sokoban.Editor",
-  "references": ["Sokoban.Runtime", "UnityEngine.UI"],
-  "includePlatforms": ["Editor"]
-}

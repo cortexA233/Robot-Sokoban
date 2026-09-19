@@ -56,7 +56,7 @@ namespace Sokoban
         public void Build(LevelDefinition level)
         {
             theme = Resources.Load<StationKitTheme>("configs/StationKitTheme");
-            if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Run Tools > Station Kit > Prepare Gameplay Integration.");
+            if (!theme) throw new InvalidOperationException("StationKitTheme is missing. Check Assets/Resources/configs/StationKitTheme.asset.");
             Circuits = gameObject.AddComponent<StationCircuitView>(); Circuits.Initialize(level, theme);
             var featureCells = new HashSet<Cell>();
             foreach (var socket in level.sockets) featureCells.Add(socket.Cell);
@@ -109,7 +109,7 @@ namespace Sokoban
                 redirectors.Add(redirector.id, view);
             }
             var prefab = Resources.Load<GameObject>("prefabs/gameplay/player/PlayerActor");
-            if (!prefab) throw new InvalidOperationException("PlayerActor prefab is missing. Run Tools > Sokoban > Prepare Gameplay Assets.");
+            if (!prefab) throw new InvalidOperationException("PlayerActor prefab is missing. Check Assets/Resources/prefabs/gameplay/player/PlayerActor.prefab.");
             Robot = Instantiate(prefab, transform).GetComponent<RobotPresenter>(); Robot.Initialize();
         }
 

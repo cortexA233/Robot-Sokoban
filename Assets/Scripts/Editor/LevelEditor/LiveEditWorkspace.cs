@@ -125,23 +125,7 @@ namespace Sokoban.Editor
         static LiveEditBridge()
         {
             LevelRunner.LiveEditRequested -= Open; LevelRunner.LiveEditRequested += Open;
-            LevelRunner.LiveCrateRequested -= Crate; LevelRunner.LiveCrateRequested += Crate;
         }
         private static void Open(LevelRunner runner) => LevelEditorWindow.OpenWindow().CaptureLive(runner);
-        private static void Crate(LevelRunner runner, string kindOrId, Cell cell, bool delete)
-        {
-            var window = LevelEditorWindow.OpenWindow();
-            if (!window.CaptureLive(runner)) return;
-            try
-            {
-                window.Document.Change(delete ? "删除现场箱子" : "增加现场箱子", () =>
-                {
-                    if (delete) window.Document.level.crates = window.Document.level.crates.Where(c => c.id != kindOrId).ToArray();
-                    else window.Document.Place(kindOrId == CrateDefinition.Cargo ? LevelBrush.CargoCrate : LevelBrush.Crate, cell, "N");
-                });
-                window.RefreshLive();
-            }
-            catch (Exception exception) { Debug.LogWarning(exception.Message); }
-        }
     }
 }

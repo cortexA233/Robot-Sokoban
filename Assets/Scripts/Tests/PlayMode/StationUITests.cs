@@ -101,7 +101,7 @@ namespace Sokoban.Tests
             Assert.That(runner.Session, Is.Null);
             yield return Click<LevelSelectPage>("Content/Enter");
             yield return WaitForTransition();
-            Assert.That(runner.Definition.id, Is.EqualTo("L05"));
+            Assert.That(runner.Definition.id, Is.EqualTo(runner.GetCampaignId(1)));
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(Page<HudPage>().transform.Find("Header/Stage").GetComponent<Text>().text, Is.EqualTo("关卡 02"));
         }
@@ -110,10 +110,10 @@ namespace Sokoban.Tests
         {
             yield return Click<MainMenuPage>("Content/Actions/Levels");
             var page = Page<LevelSelectPage>();
-            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level09/Label").GetComponent<Text>().text, Is.EqualTo("关卡 09"));
+            Assert.That(page.transform.Find("Content/List/Viewport/Rows/Level" + runner.CampaignLevelCount.ToString("00") + "/Label").GetComponent<Text>().text, Is.EqualTo("关卡 " + runner.CampaignLevelCount.ToString("00")));
             page.transform.Find("Content/List").GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
             yield return null;
-            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level09");
+            yield return Click<LevelSelectPage>("Content/List/Viewport/Rows/Level" + runner.CampaignLevelCount.ToString("00"));
             yield return Click<LevelSelectPage>("Content/Enter");
             yield return WaitForTransition();
             Assert.That(runner.Definition.id, Is.EqualTo("L12"));
@@ -163,7 +163,7 @@ namespace Sokoban.Tests
             yield return Click<CompletionPage>("Content/Next");
             Assert.That(runner.Definition.id, Is.EqualTo("L04"));
             yield return WaitForTransition();
-            Assert.That(runner.Definition.id, Is.EqualTo("L05"));
+            Assert.That(runner.Definition.id, Is.EqualTo(runner.GetCampaignId(1)));
             Assert.That(runner.Session.State.Moves, Is.Zero);
             Assert.That(runner.Session.UndoCount, Is.Zero);
             Assert.That(Page<CompletionPage>().gameObject.activeSelf, Is.False);
@@ -356,7 +356,7 @@ namespace Sokoban.Tests
                 runner.UI.CloseSettings(); yield return null;
                 Assert.That(EventSystem.current.currentSelectedGameObject, Is.SameAs(start.gameObject));
                 runner.OpenLevelSelect(); yield return null;
-                var row = Page<LevelSelectPage>().transform.Find("Content/List/Viewport/Rows/Level09").GetComponent<Button>();
+                var row = Page<LevelSelectPage>().transform.Find("Content/List/Viewport/Rows/Level" + runner.CampaignLevelCount.ToString("00")).GetComponent<Button>();
                 row.Select(); yield return null;
                 var viewport = Page<LevelSelectPage>().transform.Find("Content/List/Viewport").GetComponent<RectTransform>();
                 var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(viewport, row.transform);

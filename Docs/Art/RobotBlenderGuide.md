@@ -371,13 +371,11 @@ Assets/Art/Robot/
   Textures/                        使用贴图时才创建
 Assets/Resources/prefabs/gameplay/player/
   Robot.prefab
-Assets/Scripts/Editor/Robot/
-  RobotAssetTools.cs                Unity 导入与验证工具
 ```
 
 上述导入目录遵循 [ProjectStructure.md](../Engineering/ProjectStructure.md)；源文件与资产流水线仍保留在 `ArtSource/Robot/`。
 
-上述工程和资源已经存在，后续修改在原路径更新并保留`.meta`/GUID。游戏行为应放在GDD约定的PlayerActor外层与项目脚本中。`Tools > Robot > Import and Validate` 会重导入、写材质/控制器/预制体以及报告和预览，应在明确需要更新资产时运行并检查完整diff；它不是无副作用的只读检查。
+上述工程和资源已经存在，后续修改在原路径更新并保留`.meta`/GUID。游戏行为应放在GDD约定的PlayerActor外层与项目脚本中。v0.8.0 已删除旧 Unity 导入/验证工具及自动触发；直接维护现有 FBX 导入设置、材质、控制器和 Prefab，刷新后核对三条剪辑、尺寸/锚点与游戏表现并保存本次验证证据。
 
 下面为清单结构模板。当前真实版本、已通过检查和具体数值以 `ArtSource/Robot/robot_asset_manifest.json` 为准，不用模板里的占位值覆盖已交付清单：
 

@@ -1,0 +1,56 @@
+{
+  "nativeReplayPassed": true,
+  "campaignPlayMode": "CampaignPlayMode.xml",
+  "levels": [
+    {
+      "id": "L04",
+      "moves": 22,
+      "pushes": 8,
+      "contentHash": "be72335c00f5ad6993ecd16704e5892868848f8e031464e73fe754eb4e948f08",
+      "updated": false
+    },
+    {
+      "id": "L06",
+      "moves": 41,
+      "pushes": 15,
+      "contentHash": "6b0f2e7c43cb716bc2ec03c2345d162d2eb893a9883bc45e0f250903396a0ac5",
+      "updated": false
+    },
+    {
+      "id": "L07",
+      "moves": 10,
+      "pushes": 2,
+      "contentHash": "3ae15c6c4f6fa62530adb64980b9ea14638a0b3cf66c11dac0addc61aef6e948",
+      "updated": false
+    },
+    {
+      "id": "L08",
+      "moves": 11,
+      "pushes": 5,
+      "contentHash": "363c4eaec6aaf0bd34bff448b6bbc127b50cfbca10d224eb839ce18c0abef730",
+      "updated": true
+    },
+    {
+      "id": "L10",
+      "moves": 95,
+      "pushes": 19,
+      "contentHash": "a85025adecda77546b0fe65d493e2a187fafd3812f7ee8020d05b067566aa018",
+      "updated": true
+    },
+    {
+      "id": "L11",
+      "moves": 31,
+      "pushes": 12,
+      "contentHash": "cb7cc6305aabd42a250f838bcc41ea06265ce52838b7e1c55f381e790781b54b",
+      "updated": true
+    },
+    {
+      "id": "L12",
+      "moves": 92,
+      "pushes": 18,
+      "contentHash": "3c8b1c1c2c911e4c1f71f4c393335b2204226f5b462a52a59af9c16b03b83b88",
+      "updated": true
+    }
+  ],
+  "mapAndCatalogDiff": []
+}

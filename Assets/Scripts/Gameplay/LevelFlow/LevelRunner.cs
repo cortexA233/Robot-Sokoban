@@ -86,7 +86,7 @@ namespace Sokoban
         public string GetCampaignStatus(int index)
         {
             var best = Progress.Best(campaign[index]);
-            return best != null ? $"已完成 · {best.moves} 步 / {best.pushes} 推" : Progress.HasOlderScore(campaign[index]) ? "关卡已更新 · 待完成" : "待完成";
+            return best != null ? $"已完成 · {best.moves} 步" : "";
         }
         public void RetryProgressSave() { Progress.TrySave(); NotifyChanged(); }
         private void RecordCompletion()
@@ -108,7 +108,6 @@ namespace Sokoban
             SessionId = Guid.NewGuid().ToString("N"); Revision++;
             CampaignIndex = IsPlaytest ? -1 : Array.FindIndex(campaign, entry => entry.id == level.id && LevelJson.Hash(entry) == LevelJson.Hash(level));
             Completed = Session.State.Completed; Paused = false; LevelSelectionOpen = false;
-            DebugAnimationPaused = false;
             idleTime = 0; input.Clear(); Message = ""; Error = null;
             if (officialSession && !IsPlaytest && CampaignIndex >= 0) { Progress.Visit(Definition); RecordCompletion(); }
             NotifyChanged();
@@ -156,27 +155,26 @@ namespace Sokoban
                 if (keyboard.rKey.wasPressedThisFrame) Restart();
             }
             Cameras.ReadMouse(!Paused && !Completed);
-            if (Paused || Completed || DebugAnimationPaused) return;
+            if (Paused || Completed) return;
             if (!Presenter.Busy) { idleTime += Time.deltaTime; Board.Robot.Sample(0, idleTime % Board.Robot.idle.length); }
             var direction = input.Poll(Presenter.Busy, Cameras.Forward);
             if (direction.HasValue) TryMove(direction.Value);
         }
         public bool TryMove(Direction direction)
         {
-            if (Session == null || NavigationLocked || LevelSelectionOpen || DebugInputCaptured || DebugAnimationPaused || Paused || Presenter.Busy || Completed) return false;
+            if (Session == null || NavigationLocked || LevelSelectionOpen || DebugInputCaptured || Paused || Presenter.Busy || Completed) return false;
             var previousPower = Session.Rules.Power(Session.State);
             var result = Session.Move(direction);
             if (!result.Accepted)
             {
                 Audio?.Play(SoundCue.Blocked);
-                RecordDebug("移动 " + direction + "：" + result.RejectReason);
                 Board.Robot.transform.rotation = Quaternion.Euler(0, (int)direction * 90, 0);
                 if (Time.unscaledTime - rejectedAt >= .5f)
                 { rejectedAt = Time.unscaledTime; Message = result.RejectReason == RejectReason.TransportCycle
                     ? "运输路线形成循环，本次推动已取消。请调整挡停位置。" : "前方受阻。只能推动一个箱子；按 Z 撤销。"; NotifyChanged(); }
                 return false;
             }
-            Revision++; RecordDebug("移动 " + direction + "：接受");
+            Revision++;
             Presenter.Present(result, () =>
             {
                 Board.Restore(Session, false); idleTime = 0; Completed = Session.State.Completed;
@@ -189,14 +187,16 @@ namespace Sokoban
         {
             if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing || Session.UndoCount == 0) return;
             Presenter.Cancel(); input.Clear(); Session.Undo(); Board.Restore(Session); Cameras.Snap(); Revision++;
-            RecordDebug("撤销");
             Completed = Session.State.Completed; Message = ""; idleTime = 0; NotifyChanged();
         }
         public void Restart()
         {
             if (Session == null || NavigationLocked || LevelSelectionOpen || LiveEditing) return;
             Presenter.Cancel(); input.Clear(); Session.Restart(); Board.Restore(Session);
-            Cameras.Snap(); Revision++; RecordDebug("重开");
+            Cameras.Snap(); Revision++;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Gm?.ClearSelection();
+#endif
             Completed = Session.State.Completed; Message = ""; idleTime = 0; NotifyChanged();
         }
         public void ToggleCamera()
