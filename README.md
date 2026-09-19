@@ -5,10 +5,16 @@
 当前正式流程包含 **7 关**（L04 → L06 → L07 → L08 → L10 → L11 → L12），支持选关、连续闯关、撤销、重开、双视角、暂停、结算、设置，以及本地进度和最佳成绩保存。配套 Unity 关卡编辑器、GM 面板和 Play Mode 现场编辑，支持从制作、试玩到修改验证的完整工作流程。
 
 ## 开发工具
-* 引擎：Unity 2022.3.51f1
-* DCC软件：Blender 5.2.2
-* IDE：Rider + VS Code
-* AI Agent工具：Codex为主，包含Blender MCP建模/材质/动画+工作流搭建+开发实现，Claude Code辅助做debug和简单review
+
+| 工具 | 在项目中的用途 |
+| --- | --- |
+| Unity 2022.3.51f1 / C# / URP 14.0.11 / Cinemachine / DOTween / Rider / VSCode | 引擎和IDE基建 |
+| 自制开源框架 [KToolkit](https://github.com/cortexA233/KToolkit_for_unity) / UGUI | UI系统与页面管理，事件系统，其余小工具等 |
+| Codex，Claude Code，各类文档与项目 Skills | Codex主力开发，Claude Code辅助Debug和review，项目专用Skill用于稳定固化开发流程，如遵循版本排期，规范化需求细化，拆分和实现等 |
+| CoplayDev MCP for Unity 10.2.0 / PowerShell | 连接 Unity，操作场景与资源、检查 Console、运行测试和构建；命令行脚本补充自动化入口 |
+| Blender + MCP / Python | 美术资产生产，建模/材质/简单rigging和动画；Python 另用于生成 8 个基础音效 |
+| GPT ImageGen | 探索 UI 风格与组件布局，生成最终UI图 |
+| Git / Unity Test Runner | 隔离任务、保存版本与合并；执行自动化测试 |
 
 ## 运行与操作
 
@@ -56,18 +62,6 @@
 | 第 2 天前半：基于版本的路线规划 | 验收后列出原型版本的迭代方向和不足，和Agent讨论得出细化的版本规划并形成规划文档 | 详细的版本[路线图/规划文档](Docs/Versions/Roadmap.md) |
 | 第 2 天后半：内容铺量与易用性 | 场景美术资产生产；加入固定转向板和运输谜题；扩充并调整关卡；打磨门与插槽的视觉关系和表现、编辑器选择/覆盖交互、目录与构建校验；调整俯视和第三人称镜头 | 批量生产关卡和美术资产内容，改善观察与操作体验 |
 | 第 3 天：体验与收尾 | 简化 UI，修复导航反馈；保存进度与成绩；合入基础音效；按试玩反馈调整关卡和镜头、精简 GM 与废弃工具；执行回归、Windows 构建及实机检查 | 关卡，美术和3C最终调整，完成 v0.8.0 收尾与验收记录 |
-
-### 使用的工具
-
-| 工具 | 在项目中的用途 |
-| --- | --- |
-| Unity 2022.3.51f1 / C# / URP 14.0.11 / Cinemachine / DOTween / Rider / VSCode | 引擎和IDE基建 |
-| 自制开源框架 [KToolkit](https://github.com/cortexA233/KToolkit_for_unity) / UGUI | UI系统与页面管理，事件系统，其余小工具等 |
-| Codex，Claude Code，各类文档与项目 Skills | Codex主力开发，Claude Code辅助Debug和review，项目专用Skill用于稳定固化开发流程，如遵循版本排期，规范化需求细化，拆分和实现等 |
-| CoplayDev MCP for Unity 10.2.0 / PowerShell | 连接 Unity，操作场景与资源、检查 Console、运行测试和构建；命令行脚本补充自动化入口 |
-| Blender + MCP / Python | 美术资产生产；Python 另用于生成 8 个基础音效 |
-| GPT ImageGen | 探索 UI 风格与组件布局，生成最终UI图 |
-| Git / Unity Test Runner | 隔离任务、保存版本与合并；执行自动化测试 |
 
 ### 任务规划与编排
 
