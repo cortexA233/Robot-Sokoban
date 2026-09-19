@@ -63,7 +63,7 @@
 | --- | --- |
 | Unity 2022.3.51f1 / C# / URP 14.0.11 / Cinemachine / DOTween / Rider / VSCode | 引擎和IDE基建 |
 | 自制开源框架 [KToolkit](https://github.com/cortexA233/KToolkit_for_unity) / UGUI | UI系统与页面管理，事件系统，其余小工具等 |
-| Codex、AGENTS.md 与项目 Skills | 辅助需求细化、方案拆分、代码与文档编写、排错和验证；项目约定固定版本、资产接口与完成标准 |
+| Codex，Claude Code，各类文档与项目 Skills | Codex主力开发，Claude Code辅助Debug和review，项目专用Skill用于稳定固化开发流程，如遵循版本排期，规范化需求细化，拆分和实现等 |
 | CoplayDev MCP for Unity 10.2.0 / PowerShell | 连接 Unity，操作场景与资源、检查 Console、运行测试和构建；命令行脚本补充自动化入口 |
 | Blender + MCP / Python | 美术资产生产；Python 另用于生成 8 个基础音效 |
 | GPT ImageGen | 探索 UI 风格与组件布局，生成最终UI图 |
