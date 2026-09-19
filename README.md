@@ -1,47 +1,84 @@
-# Sokoban_3D_Test
+# 空间站重启 · 3D 推箱子
 
-使用 **Unity 2022.3.51f1** 打开仓库根目录。
+使用 **Unity 2022.3.51f1** 制作的技术策划笔试作品。题目要求在一周内完成具有完整关卡体验和关卡编辑器的推箱子游戏，并提交可编译运行的工程源码。本项目主体开发用时 **3 天**，围绕玩法规则、关卡生产工具、调试效率与完整游玩流程完成当前交付范围。
 
-当前已具备作者工具基础、当前七关连续游玩、KToolkit 简约 UGUI、可撤销 GM 和 Play Mode 现场关卡编辑，空间站首批美术套件已接入游戏；尚未达到 GDD 的完整 Take-home 交付标准。
+玩家操控维修机器人，将能源箱推入目标插槽，为空间站恢复供电。插槽可以控制门，能源需要在临时开路和最终目标之间调配；普通箱、低摩擦轨道与固定转向板进一步构成空间和运输谜题。所有目标插槽通电即通关，普通箱无需归位。
 
-**v0.3.0 已封版**：固定转向板与六张新关卡已接入，正式目录 L04–L12，共九关。[封版记录与验证](Docs/Versions/V0.3.0.md)。最新 Windows 验收包为 `Builds/V0.5.1/Windows/Sokoban.exe`；默认俯视与 V 切换保留，第三人称局部剔除已按反馈移除，见 [v0.5.1 验收](Docs/Versions/V0.5.1Validation/README.md)。本包显式使用 Bootstrap；默认 Build Settings 仍为原有 SampleScene，重新构建时需指定 `Assets/Scenes/Bootstrap.unity`。
+当前正式流程包含 **7 关**（L04 → L06 → L07 → L08 → L10 → L11 → L12），支持选关、连续闯关、撤销、重开、双视角、暂停、结算、设置，以及本地进度和最佳成绩保存。配套 Unity 关卡编辑器、GM 面板和 Play Mode 现场编辑，支持从制作、试玩到修改验证的完整工作流程。
 
-文档从 [分类索引](Docs/README.md) 进入，可按 Gameplay、美术、UI、编辑器、Debug、工程维护或开发阶段查找；最新范围见 [当前实现状态](Docs/ImplementationProgress.md)。
+## 运行与操作
 
-新迭代先按 [开发版本台账](Docs/Versions/README.md) 规划编号、范围和验收，再开始实现；提交使用对应版本前缀追踪。
+1. 在 Unity Hub 中添加仓库根目录，用 **2022.3.51f1** 打开，等待依赖解析和资源导入完成。
+2. 打开 `Assets/Scenes/Bootstrap.unity`，点击 Play，在主菜单选择“开始游戏”或“选择关卡”。有历史进度时显示“继续游戏”，从最近关卡的起点继续。
+3. 构建 Windows x64 时，在 **File > Build Settings** 中将 `Bootstrap.unity` 设为启用的首个场景，并取消模板 `SampleScene`。仓库当前默认构建场景仍是 SampleScene，需要手动调整。勾选 **Development Build** 可使用 GM；普通构建不提供 GM。
 
-- 打开 **Sokoban_Tools > Level Editor**，左侧选择 L04–L12 或 LAB01，再点击“试玩并录制”。
-- 可以从空白图放地形、玩家、能源箱、普通箱、插槽、门与固定转向板；箱型和门的供电来源在右侧配置。普通箱有交叉支架，可推、不供电、无需归位。校验错误可点击定位。
-- 试玩：进入关卡默认俯视，V 切换第三人称/返回俯视；WASD 为镜头相对方向，方向键为世界方向，Z 撤销，R 重开，Esc 暂停。通关后可保存参考解法，再用 Unity Play 按钮退出并返回原设计。
-- 直接打开 `Assets/Scenes/Bootstrap.unity` 并 Play 进入主菜单。“开始游戏”经幕布过渡进入 L04；“选择关卡”先选择条目，再点击“进入关卡”。九关均可直接选择；L04–L06 为窄道与普通箱谜题，L07–L12 组合供电门、滑动轨道与转向板，最大 9×9。
-- 通关后点击“下一关”按目录继续；Esc 暂停页可选关、设置或返回主菜单。L12 通关显示“空间站已重启”，可返回选关或重玩。切关会重置本关计数与撤销记录。
-- 主菜单与关卡使用水平幕布，关卡之间使用垂直幕布，每段约 0.6 秒。设置支持主音量、鼠标灵敏度和反转垂直镜头并保存；关卡进度与最佳成绩持久化仍待实现。
-- [UGUI 页面、过渡实现与验证说明](Docs/UI/UIImplementation.md)
-- Editor 或开发版按 **F1** 打开 GM，移动玩家/箱子可撤销；局面页点源格选择玩家/箱子，输入目标 X/Z 移动；保留网格、ID/箱型与连接线。
-- 在 GM 关卡页或 Level Editor 点击“捕获当前游戏局面”，编辑独立现场草稿后“应用并继续试玩”。箱型、数量、地形变更建立新的试玩起点；“结束现场试玩”返回原局面。
-- 已有构建记录：第五轮开发版 `Builds/GMIterationDevelopment/StationRestart.exe`，空间站接入后的非开发版 `Builds/StationKitIntegration/StationRestart.exe`。构建产物仅保存在本机，具体覆盖见 [实现状态](Docs/ImplementationProgress.md)；完整关卡编辑器在 Unity Editor 内使用。
-- [关卡编辑器与 GM 使用说明](Docs/Editor/LevelEditorGuide.md)
-- [GM 与关卡编辑器现场试玩方案（M1–M3 已实现）](Docs/Debug/GMAndLiveEditingPlan.md)
-- [实现状态、验证结果和剩余范围](Docs/ImplementationProgress.md)
-- 正式顺序由 `Assets/Resources/configs/CampaignCatalog.asset` 的 JSON 引用列表决定；LAB01 默认不在目录内。编辑器试玩不进入正式关卡切换流程。
+| 操作 | 按键 / 方式 |
+| --- | --- |
+| 移动与推动 | WASD 按镜头方向移动；方向键按世界方向移动 |
+| 切换视角 | V：默认俯视与第三人称切换 |
+| 调整镜头 | 第三人称下鼠标环绕；滚轮缩放 |
+| 撤销 / 重开 | Z / R；撤销会恢复整次推动、滑行与供电变化 |
+| 暂停 | Esc |
+| 调试面板 | F1，仅 Unity Play Mode / Development Build |
 
-- 渲染管线：URP 14.0.11。
-- 输入：Input System 1.18.0，使用新输入系统。
-- 相机：Cinemachine 2.10.7。动作时钟：当前工作区已导入的 DOTween 1.2.825 核心 DLL；本轮没有改写或提交此前未跟踪的商业插件导入。
-- KToolkit 源码：`Assets/Scripts/KToolkit_for_unity`，入口为 `KFrameworkManager.instance.InitKFramework()`。
-- 编辑器自动化：CoplayDev MCP for Unity 10.2.0；[连接、CLI 与验证说明](Docs/Debug/UnityMcp.md)。
-- [依赖修复、KToolkit 来源及验证方法](Docs/Engineering/UnitySetup.md)
-- [游戏设计与实现方案](Docs/Gameplay/GameDesign.md)
-- [机器人建模与动画指南](Docs/Art/RobotBlenderGuide.md)
-- [空间站场景与机关资产生产需求（含普通箱，首批11个主资产及新会话开工提示）](Docs/Art/StationArtProduction.md)
+所有正式关卡均可直接选择；完成后可进入下一关，末关结算后可重玩或返回选关。设置中的主音量、鼠标灵敏度和垂直反转会保存。
 
-## 目录约定
+## 关卡编辑器与 GM
 
-Agent 的按需阅读入口、授权与完成标准见 [AGENTS.md](AGENTS.md)；新增/移动文件的详细规则见 [ProjectStructure.md](Docs/Engineering/ProjectStructure.md)。组织方式参考 Element_Ballance，无需该参考工程在本机存在。
+### 制作、试玩与加入正式目录
 
-- `Assets/Art/`：按主题组织模型、材质和动画。
-- `Assets/Scripts/`：按功能组织运行时代码；项目工具在 `Editor/`，KToolkit 在 `KToolkit_for_unity/`。
-- `Assets/Resources/`：运行时 Prefab、配置等内容；机器人位于 `prefabs/gameplay/player/Robot.prefab`。
-- `Assets/Scenes/`、`Assets/Settings/`：场景与项目资源设置。
-- `ArtSource/`：可编辑美术源文件、导出脚本和交付证据。
-- `Docs/`、`Tools/`：文档与外部命令行工具。
+1. 打开 **Sokoban_Tools > Level Editor**，点击“新建”，或从“示例关卡”打开已有地图。新图默认 9×9，可调整尺寸、生成边界墙。
+2. 在二维棋盘或 Scene 视图中绘制地形、玩家、两类箱子、插槽、门和转向板。右侧修改所选对象的属性；门选择供电插槽及 Any / All 条件，转向板设置方向。坐标从左下角 `(0,0)` 开始，X 向东、Z 向北。
+3. 点击“校验”，可点击问题定位格子；Ctrl+Z / Ctrl+Y 撤销重做，Ctrl+S 保存。同层放置会覆盖原对象，删除使用“删除选中元素”。结构校验通过后仍需试玩确认有解。
+4. 点击“试玩并录制”，通关后“保存为参考解法”，退出 Play Mode，再保存关卡。原始摆放保留，试玩不会写入正式玩家进度；改图后需重新通关录制。
+5. 在 Project 中选择 `Assets/Resources/configs/CampaignCatalog.asset`，通过 Inspector 的 **Levels** 列表添加已保存的关卡 JSON 并调整顺序。构建前会自动检查目录、资源和参考解法，缺失或过期的解法会阻止构建。
+
+### GM 与现场编辑
+
+- 在游戏中按 **F1** 打开 GM，Editor 内先让 Game 视图获得焦点。“关卡”页可按正式目录序号跳关；“局面”页在面板外点选玩家或箱子，填写目标 X/Z，再点“移动到此格”。移动可以撤销，非法落点会被拒绝。
+- 底部提供撤销、重开、视角切换，以及网格、ID/箱型、连接线显示。可拖动面板、调整宽度和字号；Esc 或“关闭”收起。GM 实际移位后不能保存正式成绩或原关卡参考解法，全部撤销或普通关卡重开可恢复资格。
+- **现场编辑仅在 Unity Editor 内使用**：GM“关卡”页点“现场编辑（打开关卡编辑器）”→ 修改自动打开的现场草稿 →“应用并继续试玩”→“结束现场试玩”恢复捕获前的局面。应用后会建立新的试玩起点，重置计数与玩法撤销历史。
+- 现场模式下 Ctrl+S 只备份临时草稿；要持久化为关卡，使用“另存为副本”，或“带回作者文档”后在作者模式保存。应用现场修改不会自动覆盖原关卡文件。
+
+完整操作见 [关卡编辑器与 GM 指南](Docs/Editor/LevelEditorGuide.md)。
+
+## 三天开发安排
+
+下表按主体开发的主要交付阶段归纳，期间有交叉迭代；工程初始化、依赖核对和机器人资产准备可从前期提交追溯。
+
+| 时间 | 工作分配 | 阶段产出 |
+| --- | --- | --- |
+| 第 1 天：规则与工具闭环 | 明确规则、坐标与数据结构；实现移动/推动、供电门、低摩擦与撤销；完成编辑器的建图、保存、校验、试玩；串联菜单和关卡，加入普通箱、GM/现场编辑并接入基础美术 | 从编辑器制作关卡，到游戏通关、返回修改的流程可用 |
+| 第 2 天：内容与易用性 | 加入固定转向板和运输谜题；扩充并调整关卡；打磨门与插槽的视觉关系、编辑器选择/覆盖交互、目录与构建校验；调整俯视和第三人称镜头 | 形成可反复制作、录制解法和验证的关卡内容，改善观察与操作体验 |
+| 第 3 天：体验与收尾 | 简化 UI，修复导航反馈；保存进度与成绩；合入基础音效；按试玩反馈调整关卡和镜头、精简 GM 与废弃工具；执行回归、Windows 构建及实机检查 | 确定当前七关目录，完成 v0.8.0 收尾与验收记录 |
+
+### 使用的工具
+
+| 工具 | 在项目中的用途 |
+| --- | --- |
+| Unity 2022.3.51f1 / C# / URP 14.0.11 | 规则、关卡工具、场景表现、运行与打包；Input System 1.18.0 处理输入 |
+| KToolkit / UGUI、Cinemachine 2.10.7、DOTween | UI 与页面管理、双视角相机、移动和界面过渡动画 |
+| Codex、AGENTS.md 与项目 Skills | 辅助需求细化、方案拆分、代码与文档编写、排错和验证；项目约定固定版本、资产接口与完成标准 |
+| CoplayDev MCP for Unity 10.2.0 / PowerShell | 连接 Unity，操作场景与资源、检查 Console、运行测试和构建；命令行脚本补充自动化入口 |
+| Blender / Python | 制作机器人、机械动画和空间站模块，导出 FBX 并校验；Python 另用于生成 8 个基础音效 |
+| ImageGen | 探索 UI 风格与组件布局；最终界面由实际 UGUI 控件实现 |
+| Git / 独立工作树、Unity Test Runner | 隔离任务、保存版本与合并；执行 EditMode / PlayMode 自动测试 |
+
+### 任务规划与编排
+
+1. **先定义可验收的范围。** 由人工确定玩法方向、视觉取舍与试玩反馈，Codex 辅助细化和实现；优先完成关卡编辑器及完整游玩流程，再扩展内容和表现。[GDD](Docs/Gameplay/GameDesign.md) 统一规则、数据与模块接口。
+2. **按依赖拆任务，按版本追踪。** 规则与数据先行，编辑器和游戏共用规则内核，动画与音效消费规则结果。后续需求在 [路线图](Docs/Versions/Roadmap.md) 中编号，再分配版本、范围、依赖和验收项；变更与取消保留记录，避免把历史设想当作当前功能。
+3. **独立模块隔离开发，再合并验证。** 游戏、工具、UI、美术和音频分别组织任务；例如音效曾在独立 Git 工作树实施，与 UI/存档工作分开，合并时处理冲突并补做组合回归。美术通过 FBX、Prefab、命名与挂点约定接入。
+4. **每轮形成可检查的结果。** 实现后检查编译和 Console，运行受影响测试，再按改动检查实际界面或构建；失败则修复复验。计划、验证记录与带版本前缀的聚焦提交共同保留开发依据。
+
+## 验证与资料
+
+最近的 [v0.8.0 收尾验收](Docs/Versions/V0.8.0Validation/README.md) 记录了 **161/161 项 EditMode、35 项 PlayMode 分组通过、七关参考解法回放、开发/非开发 Windows 构建**，以及双分辨率界面和现场草稿保护检查。
+
+当前交付包含基础音效；BGM、独立音量等扩展未纳入本次收尾。历史方案与各轮验证边界保留在 [版本台账](Docs/Versions/README.md)，构建产物在本机生成，不随仓库提交。
+
+- [文档索引](Docs/README.md)：玩法、UI、编辑器、美术、工程说明与开发历史。
+- [规则与实现设计](Docs/Gameplay/GameDesign.md) · [UI 实现](Docs/UI/UIImplementation.md) · [依赖说明](Docs/Engineering/UnitySetup.md)。
+- [机器人源文件与动画](ArtSource/Robot/README.md) · [空间站资产](ArtSource/StationKit/README.md) · [音效来源](Docs/Audio/Sfx.md)。
+
+代码位于 `Assets/Scripts/`，关卡与运行时资源位于 `Assets/Resources/`，场景位于 `Assets/Scenes/`；可编辑美术源文件和导出脚本位于 `ArtSource/`，策划与验证记录位于 `Docs/`，外部脚本位于 `Tools/`。
